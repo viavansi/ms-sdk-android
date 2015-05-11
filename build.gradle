@@ -1,0 +1,72 @@
+repositories {
+    mavenCentral()
+    maven { url 'http://repo1.maven.org/maven2' }
+    maven { url "http://repositorio.viavansi.com/artifactory/libs-releases-local/" }
+}
+
+buildscript {
+    repositories {
+        mavenCentral()
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:1.0.0'
+    }
+}
+
+apply plugin: 'android-library'
+apply plugin: 'maven'
+
+android {
+    compileSdkVersion 21
+    buildToolsVersion "21.1.2"
+
+    defaultConfig {
+        minSdkVersion 10
+        targetSdkVersion 21
+        versionCode 1
+        versionName "1.0"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+configurations {
+    deployerJars
+}
+
+dependencies {
+	// Maven publishing
+    deployerJars 'org.apache.maven.wagon:wagon-http:2.2'
+    
+    compile 'com.google.code.gson:gson:2.2.+'
+
+    compile 'com.wordnik:swagger-annotations:1.5.1-M1'
+
+    // OAuth libraries
+    compile 'oauth.signpost:signpost-core:1.2.1.2'
+    compile 'oauth.signpost:signpost-commonshttp4:1.2.1.2'
+    
+    // HttpClient with Multipart, etc
+    compile('org.apache.httpcomponents:httpmime:4.3.6') {
+        exclude module: 'httpclient'
+    }
+    compile 'org.apache.httpcomponents:httpclient-android:4.3.5'
+}
+
+// For Maven Repository submitting : Execute task: UploadArchives. Ex: > gradle uploadArchives
+uploadArchives {
+    repositories.mavenDeployer {
+        configuration = configurations.deployerJars
+        repository(url: repoUrl) {
+            authentication(userName: repoUsername, password: repoPassword)
+        }
+        pom.version = '2.5.0'
+        pom.artifactId = "ms-sdk-android"
+        pom.groupId = "com.viafirma"
+    }
+}
