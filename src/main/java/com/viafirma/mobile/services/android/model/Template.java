@@ -21,6 +21,8 @@ public class Template  implements Serializable {
   private Date creationDate = null;
   @SerializedName("form")
   private Form form = null;
+  @SerializedName("version")
+  private String version = null;
 
   
   /**
@@ -78,6 +80,17 @@ public class Template  implements Serializable {
   }
 
   
+  /**
+   **/
+  @ApiModelProperty(required = true, value = "")
+  public String getVersion() {
+    return version;
+  }
+  public void setVersion(String version) {
+    this.version = version;
+  }
+
+  
 
   @Override
   public String toString()  {
@@ -89,6 +102,7 @@ public class Template  implements Serializable {
     sb.append("  description: ").append(description).append("\n");
     sb.append("  creationDate: ").append(creationDate).append("\n");
     sb.append("  form: ").append(form).append("\n");
+    sb.append("  version: ").append(version).append("\n");
     sb.append("}\n");
     return sb.toString();
   }

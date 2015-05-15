@@ -18,6 +18,8 @@ public class TemplateList  implements Serializable {
   private String description = null;
   @SerializedName("creationDate")
   private Date creationDate = null;
+  @SerializedName("version")
+  private Integer version = null;
 
   
   /**
@@ -64,6 +66,17 @@ public class TemplateList  implements Serializable {
   }
 
   
+  /**
+   **/
+  @ApiModelProperty(required = true, value = "")
+  public Integer getVersion() {
+    return version;
+  }
+  public void setVersion(Integer version) {
+    this.version = version;
+  }
+
+  
 
   @Override
   public String toString()  {
@@ -74,6 +87,7 @@ public class TemplateList  implements Serializable {
     sb.append("  title: ").append(title).append("\n");
     sb.append("  description: ").append(description).append("\n");
     sb.append("  creationDate: ").append(creationDate).append("\n");
+    sb.append("  version: ").append(version).append("\n");
     sb.append("}\n");
     return sb.toString();
   }

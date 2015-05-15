@@ -34,7 +34,7 @@ public class V1workflowsApi {
     
 
     // create path and map variables
-    String path = "/v1/workflows/".replaceAll("\\{format\\}","json");
+    String path = "/v1/workflows".replaceAll("\\{format\\}","json");
 
     // query params
     Map<String, String> queryParams = new HashMap<String, String>();
