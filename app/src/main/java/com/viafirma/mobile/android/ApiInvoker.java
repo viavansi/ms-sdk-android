@@ -1,4 +1,4 @@
-package com.viafirma.mobile.services.android;
+package com.viafirma.mobile.android;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;

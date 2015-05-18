@@ -1,13 +1,13 @@
-package com.viafirma.mobile.services.android.api;
+package com.viafirma.mobile.android.api;
 
-import com.viafirma.mobile.services.android.ApiException;
-import com.viafirma.mobile.services.android.ApiInvoker;
+import com.viafirma.mobile.android.ApiException;
+import com.viafirma.mobile.android.ApiInvoker;
 
-import com.viafirma.mobile.services.android.model.*;
+import com.viafirma.mobile.android.model.*;
 
 import java.util.*;
 
-import com.viafirma.mobile.services.android.model.Evidence;
+import com.viafirma.mobile.android.model.Evidence;
 
 import org.apache.http.entity.ContentType;
 import org.apache.http.entity.mime.MultipartEntityBuilder;

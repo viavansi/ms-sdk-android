@@ -1,6 +1,6 @@
-package com.viafirma.mobile.services.android.model;
+package com.viafirma.mobile.android.model;
 
-import com.viafirma.mobile.services.android.model.Item;
+import com.viafirma.mobile.android.model.Item;
 import java.util.*;
 
 import com.wordnik.swagger.annotations.*;
