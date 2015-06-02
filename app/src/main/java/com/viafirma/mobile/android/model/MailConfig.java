@@ -10,9 +10,9 @@ import java.io.Serializable;
 public class MailConfig  implements Serializable {
   
   @SerializedName("required")
-  private Boolean required = null;
+  private Boolean required = Boolean.FALSE;
   @SerializedName("visible")
-  private Boolean visible = null;
+  private Boolean visible = Boolean.FALSE;
   @SerializedName("default_value")
   private String default_value = null;
 

@@ -23,7 +23,7 @@ public class Item  implements Serializable {
   @SerializedName("size")
   private String size = null;
   @SerializedName("required")
-  private Boolean required = null;
+  private Boolean required = Boolean.FALSE;
   @SerializedName("validation")
   private String validation = null;
   @SerializedName("validationRegex")
@@ -43,7 +43,7 @@ public class Item  implements Serializable {
   @SerializedName("update")
   private String update = null;
   @SerializedName("disabled")
-  private Boolean disabled = null;
+  private Boolean disabled = Boolean.FALSE;
   @SerializedName("values")
   private List<String> values = new ArrayList<String>() ;
   @SerializedName("height")

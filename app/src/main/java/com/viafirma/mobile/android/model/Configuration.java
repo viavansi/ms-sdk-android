@@ -14,25 +14,25 @@ public class Configuration  implements Serializable {
   @SerializedName("viafirmaURL")
   private String viafirmaURL = null;
   @SerializedName("editableURL")
-  private Boolean editableURL = null;
+  private Boolean editableURL = Boolean.FALSE;
   @SerializedName("frontCamera")
-  private Boolean frontCamera = null;
+  private Boolean frontCamera = Boolean.FALSE;
   @SerializedName("autoLogout")
-  private Boolean autoLogout = null;
+  private Boolean autoLogout = Boolean.FALSE;
   @SerializedName("showCSV")
-  private Boolean showCSV = null;
+  private Boolean showCSV = Boolean.FALSE;
   @SerializedName("personMask")
-  private Boolean personMask = null;
+  private Boolean personMask = Boolean.FALSE;
   @SerializedName("registerHide")
-  private Boolean registerHide = null;
+  private Boolean registerHide = Boolean.FALSE;
   @SerializedName("allowsInvalidSSLCertificate")
-  private Boolean allowsInvalidSSLCertificate = null;
+  private Boolean allowsInvalidSSLCertificate = Boolean.FALSE;
   @SerializedName("evidenceBase64")
-  private Boolean evidenceBase64 = null;
+  private Boolean evidenceBase64 = Boolean.FALSE;
   @SerializedName("finalize_menu_options")
   private List<MenuOption> finalize_menu_options = new ArrayList<MenuOption>() ;
   @SerializedName("sSLPinningEnabled")
-  private Boolean sSLPinningEnabled = null;
+  private Boolean sSLPinningEnabled = Boolean.FALSE;
 
   
   /**

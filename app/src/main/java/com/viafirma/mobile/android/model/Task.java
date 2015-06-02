@@ -12,7 +12,7 @@ public class Task  implements Serializable {
   @SerializedName("code")
   private String code = null;
   @SerializedName("finalStatus")
-  private Boolean finalStatus = null;
+  private Boolean finalStatus = Boolean.FALSE;
   @SerializedName("numThreads")
   private Integer numThreads = null;
   @SerializedName("cacheName")

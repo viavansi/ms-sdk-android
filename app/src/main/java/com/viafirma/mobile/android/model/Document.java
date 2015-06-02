@@ -31,9 +31,9 @@ public class Document  implements Serializable {
   @SerializedName("templateType")
   private TemplateTypeEnum templateType = null;
   @SerializedName("formRequired")
-  private Boolean formRequired = null;
+  private Boolean formRequired = Boolean.FALSE;
   @SerializedName("formDisabled")
-  private Boolean formDisabled = null;
+  private Boolean formDisabled = Boolean.FALSE;
   @SerializedName("items")
   private List<Item> items = new ArrayList<Item>() ;
 

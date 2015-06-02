@@ -13,7 +13,7 @@ public class MenuOption  implements Serializable {
   @SerializedName("className")
   private String className = null;
   @SerializedName("automatic")
-  private Boolean automatic = null;
+  private Boolean automatic = Boolean.FALSE;
   @SerializedName("name")
   private String name = null;
   @SerializedName("icon")

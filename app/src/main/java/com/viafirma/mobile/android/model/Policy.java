@@ -28,7 +28,7 @@ public class Policy  implements Serializable {
   @SerializedName("typeSign")
   private TypeSignEnum typeSign = null;
   @SerializedName("signByServer")
-  private Boolean signByServer = null;
+  private Boolean signByServer = Boolean.FALSE;
   @SerializedName("certificateAlias")
   private String certificateAlias = null;
   @SerializedName("certificatePassword")

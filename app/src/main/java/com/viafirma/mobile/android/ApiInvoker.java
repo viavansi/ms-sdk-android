@@ -57,6 +57,7 @@ import java.util.Date;
 import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import android.util.Log;
 
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
@@ -199,7 +200,11 @@ public class ApiInvoker {
       }
     }
     catch (Exception e) {
-      throw new ApiException(500, e.getMessage());
+      if (e instanceof ApiException) {
+        throw (ApiException)e;
+      } else {
+        throw new ApiException(500, e.getClass() + " - " + e.getMessage());
+      }
     }
   }
 
@@ -211,7 +216,11 @@ public class ApiInvoker {
         return null;
     }
     catch (Exception e) {
-      throw new ApiException(500, e.getMessage());
+      if (e instanceof ApiException) {
+        throw (ApiException)e;
+      } else {
+        throw new ApiException(500, e.getClass() + " - " + e.getMessage());
+      }
     }
   }
 
@@ -305,8 +314,8 @@ public class ApiInvoker {
 			AbstractHttpEntity se;
 	        if (body != null && !(body instanceof MultipartEntityBuilder)) { // body JSON
 				se = new StringEntity(serialize(body), "UTF-8");
-				//BasicHeader basicHeader = new BasicHeader(HTTP.CONTENT_TYPE, "application/json;charset=UTF-8");
-				//se.setContentType(basicHeader);
+				BasicHeader basicHeader = new BasicHeader(HTTP.CONTENT_TYPE, "application/json;charset=UTF-8");
+				se.setContentType(basicHeader);
 				put.setEntity(se);
 	        } else if (body != null && body instanceof MultipartEntityBuilder) { // body MULTIPART
 	        	HttpEntity httpEntity = ((MultipartEntityBuilder)body).build();
@@ -394,8 +403,12 @@ public class ApiInvoker {
 		}
 		return responseString;		
 		
-	} catch(Exception e) {
-      	throw new ApiException(500, e.getMessage());
+	} catch (Exception e) {
+	  if (e instanceof ApiException) {
+	    throw (ApiException)e;
+	  } else {
+	    throw new ApiException(500, e.getClass() + " - " + e.getMessage());
+	  }
     }
   }
 
