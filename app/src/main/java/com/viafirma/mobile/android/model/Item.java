@@ -58,6 +58,8 @@ public class Item  implements Serializable {
   private List<String> monthNames = new ArrayList<String>() ;
   @SerializedName("dayNames")
   private List<String> dayNames = new ArrayList<String>() ;
+  @SerializedName("increment")
+  private Integer increment = null;
 
   
   /**
@@ -324,6 +326,17 @@ public class Item  implements Serializable {
   }
 
   
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public Integer getIncrement() {
+    return increment;
+  }
+  public void setIncrement(Integer increment) {
+    this.increment = increment;
+  }
+
+  
 
   @Override
   public String toString()  {
@@ -354,6 +367,7 @@ public class Item  implements Serializable {
     sb.append("  minLength: ").append(minLength).append("\n");
     sb.append("  monthNames: ").append(monthNames).append("\n");
     sb.append("  dayNames: ").append(dayNames).append("\n");
+    sb.append("  increment: ").append(increment).append("\n");
     sb.append("}\n");
     return sb.toString();
   }

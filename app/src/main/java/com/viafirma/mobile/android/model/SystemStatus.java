@@ -17,6 +17,8 @@ public class SystemStatus  implements Serializable {
   private String status = null;
   @SerializedName("message")
   private String message = null;
+  @SerializedName("notification")
+  private String notification = null;
 
   
   /**
@@ -63,6 +65,17 @@ public class SystemStatus  implements Serializable {
   }
 
   
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public String getNotification() {
+    return notification;
+  }
+  public void setNotification(String notification) {
+    this.notification = notification;
+  }
+
+  
 
   @Override
   public String toString()  {
@@ -73,6 +86,7 @@ public class SystemStatus  implements Serializable {
     sb.append("  description: ").append(description).append("\n");
     sb.append("  status: ").append(status).append("\n");
     sb.append("  message: ").append(message).append("\n");
+    sb.append("  notification: ").append(notification).append("\n");
     sb.append("}\n");
     return sb.toString();
   }
