@@ -7,6 +7,7 @@ import com.viafirma.mobile.services.android.model.*;
 
 import java.util.*;
 
+import com.viafirma.mobile.services.android.model.Alive;
 import com.viafirma.mobile.services.android.model.InfoSystemStatus;
 
 import org.apache.http.entity.ContentType;
@@ -27,6 +28,48 @@ public class V1systemApi {
     return INSTANCE;
   }
   
+  
+    
+  public Alive isAlive () throws ApiException {
+    Object postBody = null;
+    
+
+    // create path and map variables
+    String path = "/v1/system/alive".replaceAll("\\{format\\}","json");
+
+    // query params
+    Map<String, String> queryParams = new HashMap<String, String>();
+    Map<String, String> headerParams = new HashMap<String, String>();
+    Map<String, String> formParams = new HashMap<String, String>();
+
+    
+    
+    String[] contentTypes = {
+      
+    };
+
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+
+    if(contentType.startsWith("multipart/form-data")) {
+      boolean hasFields = false;
+      MultipartEntityBuilder mp = MultipartEntityBuilder.create();
+      mp.setMode(HttpMultipartMode.BROWSER_COMPATIBLE);
+      
+      if(hasFields)
+        postBody = mp;
+    }
+    else {
+      
+    }
+
+      String response = ApiInvoker.getInstance().invokeAPI(path, "GET", queryParams, postBody, headerParams, formParams, contentType);
+      if(response != null){
+        return (Alive) ApiInvoker.deserialize(response, "", Alive.class);
+      } else {
+        return null;
+      }
+    
+  }
   
     
   public InfoSystemStatus getSystemInfo () throws ApiException {

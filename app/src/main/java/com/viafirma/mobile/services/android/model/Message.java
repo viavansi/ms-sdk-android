@@ -4,6 +4,7 @@ import com.viafirma.mobile.services.android.model.Document;
 import com.viafirma.mobile.services.android.model.Param;
 import com.viafirma.mobile.services.android.model.Workflow;
 import com.viafirma.mobile.services.android.model.Policy;
+import com.viafirma.mobile.services.android.model.Calendar;
 import com.viafirma.mobile.services.android.model.ErrorResponse;
 import java.util.*;
 import com.viafirma.mobile.services.android.model.Notification;
@@ -44,6 +45,12 @@ public class Message  implements Serializable {
   private List<String> callbackMailsFormKeys = new ArrayList<String>() ;
   @SerializedName("error")
   private ErrorResponse error = null;
+  @SerializedName("pid")
+  private String pid = null;
+  @SerializedName("server")
+  private String server = null;
+  @SerializedName("processTimeExpired")
+  private Calendar processTimeExpired = null;
   @SerializedName("commentReject")
   private String commentReject = null;
 
@@ -205,6 +212,39 @@ public class Message  implements Serializable {
   /**
    **/
   @ApiModelProperty(required = false, value = "")
+  public String getPid() {
+    return pid;
+  }
+  public void setPid(String pid) {
+    this.pid = pid;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public String getServer() {
+    return server;
+  }
+  public void setServer(String server) {
+    this.server = server;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public Calendar getProcessTimeExpired() {
+    return processTimeExpired;
+  }
+  public void setProcessTimeExpired(Calendar processTimeExpired) {
+    this.processTimeExpired = processTimeExpired;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
   public String getCommentReject() {
     return commentReject;
   }
@@ -233,6 +273,9 @@ public class Message  implements Serializable {
     sb.append("  callbackMails: ").append(callbackMails).append("\n");
     sb.append("  callbackMailsFormKeys: ").append(callbackMailsFormKeys).append("\n");
     sb.append("  error: ").append(error).append("\n");
+    sb.append("  pid: ").append(pid).append("\n");
+    sb.append("  server: ").append(server).append("\n");
+    sb.append("  processTimeExpired: ").append(processTimeExpired).append("\n");
     sb.append("  commentReject: ").append(commentReject).append("\n");
     sb.append("}\n");
     return sb.toString();
