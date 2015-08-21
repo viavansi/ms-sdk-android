@@ -41,18 +41,15 @@ configurations {
 
 dependencies {
 	// Maven publishing
-    deployerJars ('org.apache.maven.wagon:wagon-http:2.2'){
-        exclude module: 'httpclient'
-    }
+    deployerJars 'org.apache.maven.wagon:wagon-http:2.2'
     
     compile 'com.google.code.gson:gson:2.2.+'
 
-    compile ('com.wordnik:swagger-annotations:1.5.1-M1') {
-        exclude module: 'httpclient-android'
-    }
+    compile 'com.wordnik:swagger-annotations:1.5.1-M1'
 
     // OAuth libraries
     //compile 'oauth.signpost:signpost-core:1.2.1.2'
+    //compile 'oauth.signpost:signpost-commonshttp4:1.2.1.2'
     compile ('oauth.signpost:signpost-commonshttp4:1.2.1.2') {
         exclude module: 'httpclient'
     }
@@ -71,7 +68,7 @@ uploadArchives {
         repository(url: repoUrl) {
             authentication(userName: repoUsername, password: repoPassword)
         }
-        pom.version = '2.5.0'
+        pom.version = '2.6.0'
         pom.artifactId = "ms-sdk-android"
         pom.groupId = "com.viafirma"
     }

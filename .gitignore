@@ -37,7 +37,10 @@ local.properties
 .idea/workspace.xml
 
 # Gradle cache
+gradle/
 .gradle
+gradlew
+gradlew.bat
 
 # Sandbox stuff
 _sandbox
