@@ -63,6 +63,10 @@
 		> gradle -v
 3. From the command line, in the path where you have the source, run the following command:
 
-		> gradle uploadArchives
+```
+gradle clean assemble
+gradle uploadArchives
+```
+
 4. This will generate all the files and upload the AAR to the repository specified on `gradle.properties`
 5. You need to specify a new version number every time, the account configured does not have permission to modify/remove uploaded artifacts.
