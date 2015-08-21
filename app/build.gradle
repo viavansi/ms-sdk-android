@@ -48,8 +48,11 @@ dependencies {
     compile 'com.wordnik:swagger-annotations:1.5.1-M1'
 
     // OAuth libraries
-    compile 'oauth.signpost:signpost-core:1.2.1.2'
-    compile 'oauth.signpost:signpost-commonshttp4:1.2.1.2'
+    //compile 'oauth.signpost:signpost-core:1.2.1.2'
+    //compile 'oauth.signpost:signpost-commonshttp4:1.2.1.2'
+    compile ('oauth.signpost:signpost-commonshttp4:1.2.1.2') {
+        exclude module: 'httpclient'
+    }
     
     // HttpClient with Multipart, etc
     compile('org.apache.httpcomponents:httpmime:4.3.6') {
@@ -65,7 +68,7 @@ uploadArchives {
         repository(url: repoUrl) {
             authentication(userName: repoUsername, password: repoPassword)
         }
-        pom.version = '2.5.8'
+        pom.version = '2.6.0'
         pom.artifactId = "ms-sdk-android"
         pom.groupId = "com.viafirma"
     }

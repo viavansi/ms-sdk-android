@@ -158,7 +158,7 @@ public class ApiInvoker {
 
   public String escapeString(String str) {
     try{
-      return URLEncoder.encode(str, "UTF-8");
+      return URLEncoder.encode(str, "UTF-8").replaceAll("\\+", "%20");
     }
     catch(UnsupportedEncodingException e) {
       return str;

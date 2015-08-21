@@ -17,18 +17,18 @@ public class Calendar  implements Serializable {
   private Integer firstDayOfWeek = null;
   @SerializedName("minimalDaysInFirstWeek")
   private Integer minimalDaysInFirstWeek = null;
-  @SerializedName("timeZone")
-  private TimeZone timeZone = null;
-  @SerializedName("time")
-  private Date time = null;
-  @SerializedName("timeInMillis")
-  private Long timeInMillis = null;
-  @SerializedName("weekDateSupported")
-  private Boolean weekDateSupported = Boolean.FALSE;
   @SerializedName("weekYear")
   private Integer weekYear = null;
   @SerializedName("weeksInWeekYear")
   private Integer weeksInWeekYear = null;
+  @SerializedName("weekDateSupported")
+  private Boolean weekDateSupported = Boolean.FALSE;
+  @SerializedName("time")
+  private Date time = null;
+  @SerializedName("timeZone")
+  private TimeZone timeZone = null;
+  @SerializedName("timeInMillis")
+  private Long timeInMillis = null;
 
   
   /**
@@ -67,50 +67,6 @@ public class Calendar  implements Serializable {
   /**
    **/
   @ApiModelProperty(required = false, value = "")
-  public TimeZone getTimeZone() {
-    return timeZone;
-  }
-  public void setTimeZone(TimeZone timeZone) {
-    this.timeZone = timeZone;
-  }
-
-  
-  /**
-   **/
-  @ApiModelProperty(required = false, value = "")
-  public Date getTime() {
-    return time;
-  }
-  public void setTime(Date time) {
-    this.time = time;
-  }
-
-  
-  /**
-   **/
-  @ApiModelProperty(required = false, value = "")
-  public Long getTimeInMillis() {
-    return timeInMillis;
-  }
-  public void setTimeInMillis(Long timeInMillis) {
-    this.timeInMillis = timeInMillis;
-  }
-
-  
-  /**
-   **/
-  @ApiModelProperty(required = false, value = "")
-  public Boolean getWeekDateSupported() {
-    return weekDateSupported;
-  }
-  public void setWeekDateSupported(Boolean weekDateSupported) {
-    this.weekDateSupported = weekDateSupported;
-  }
-
-  
-  /**
-   **/
-  @ApiModelProperty(required = false, value = "")
   public Integer getWeekYear() {
     return weekYear;
   }
@@ -130,6 +86,50 @@ public class Calendar  implements Serializable {
   }
 
   
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public Boolean getWeekDateSupported() {
+    return weekDateSupported;
+  }
+  public void setWeekDateSupported(Boolean weekDateSupported) {
+    this.weekDateSupported = weekDateSupported;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public Date getTime() {
+    return time;
+  }
+  public void setTime(Date time) {
+    this.time = time;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public TimeZone getTimeZone() {
+    return timeZone;
+  }
+  public void setTimeZone(TimeZone timeZone) {
+    this.timeZone = timeZone;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public Long getTimeInMillis() {
+    return timeInMillis;
+  }
+  public void setTimeInMillis(Long timeInMillis) {
+    this.timeInMillis = timeInMillis;
+  }
+
+  
 
   @Override
   public String toString()  {
@@ -139,12 +139,12 @@ public class Calendar  implements Serializable {
     sb.append("  lenient: ").append(lenient).append("\n");
     sb.append("  firstDayOfWeek: ").append(firstDayOfWeek).append("\n");
     sb.append("  minimalDaysInFirstWeek: ").append(minimalDaysInFirstWeek).append("\n");
-    sb.append("  timeZone: ").append(timeZone).append("\n");
-    sb.append("  time: ").append(time).append("\n");
-    sb.append("  timeInMillis: ").append(timeInMillis).append("\n");
-    sb.append("  weekDateSupported: ").append(weekDateSupported).append("\n");
     sb.append("  weekYear: ").append(weekYear).append("\n");
     sb.append("  weeksInWeekYear: ").append(weeksInWeekYear).append("\n");
+    sb.append("  weekDateSupported: ").append(weekDateSupported).append("\n");
+    sb.append("  time: ").append(time).append("\n");
+    sb.append("  timeZone: ").append(timeZone).append("\n");
+    sb.append("  timeInMillis: ").append(timeInMillis).append("\n");
     sb.append("}\n");
     return sb.toString();
   }
