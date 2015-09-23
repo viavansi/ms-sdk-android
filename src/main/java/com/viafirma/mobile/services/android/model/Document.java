@@ -15,6 +15,8 @@ public class Document  implements Serializable {
   private String templateCode = null;
   @SerializedName("templateReference")
   private String templateReference = null;
+  @SerializedName("templateVersion")
+  private Integer templateVersion = null;
   @SerializedName("draftedCode")
   private String draftedCode = null;
   @SerializedName("draftedReference")
@@ -57,6 +59,17 @@ public class Document  implements Serializable {
   }
   public void setTemplateReference(String templateReference) {
     this.templateReference = templateReference;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public Integer getTemplateVersion() {
+    return templateVersion;
+  }
+  public void setTemplateVersion(Integer templateVersion) {
+    this.templateVersion = templateVersion;
   }
 
   
@@ -167,6 +180,7 @@ public class Document  implements Serializable {
     
     sb.append("  templateCode: ").append(templateCode).append("\n");
     sb.append("  templateReference: ").append(templateReference).append("\n");
+    sb.append("  templateVersion: ").append(templateVersion).append("\n");
     sb.append("  draftedCode: ").append(draftedCode).append("\n");
     sb.append("  draftedReference: ").append(draftedReference).append("\n");
     sb.append("  signedCode: ").append(signedCode).append("\n");

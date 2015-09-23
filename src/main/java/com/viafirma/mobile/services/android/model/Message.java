@@ -3,8 +3,8 @@ package com.viafirma.mobile.services.android.model;
 import com.viafirma.mobile.services.android.model.Document;
 import com.viafirma.mobile.services.android.model.Param;
 import com.viafirma.mobile.services.android.model.Workflow;
+import java.util.Date;
 import com.viafirma.mobile.services.android.model.Policy;
-import com.viafirma.mobile.services.android.model.Calendar;
 import com.viafirma.mobile.services.android.model.ErrorResponse;
 import java.util.*;
 import com.viafirma.mobile.services.android.model.Notification;
@@ -50,7 +50,7 @@ public class Message  implements Serializable {
   @SerializedName("server")
   private String server = null;
   @SerializedName("processTimeExpired")
-  private Calendar processTimeExpired = null;
+  private Date processTimeExpired = null;
   @SerializedName("commentReject")
   private String commentReject = null;
 
@@ -234,10 +234,10 @@ public class Message  implements Serializable {
   /**
    **/
   @ApiModelProperty(required = false, value = "")
-  public Calendar getProcessTimeExpired() {
+  public Date getProcessTimeExpired() {
     return processTimeExpired;
   }
-  public void setProcessTimeExpired(Calendar processTimeExpired) {
+  public void setProcessTimeExpired(Date processTimeExpired) {
     this.processTimeExpired = processTimeExpired;
   }
 

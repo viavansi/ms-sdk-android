@@ -68,7 +68,7 @@ uploadArchives {
         repository(url: repoUrl) {
             authentication(userName: repoUsername, password: repoPassword)
         }
-        pom.version = '2.6.0'
+        pom.version = '2.6.2'
         pom.artifactId = "ms-sdk-android"
         pom.groupId = "com.viafirma"
     }

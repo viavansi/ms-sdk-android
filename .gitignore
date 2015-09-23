@@ -44,3 +44,6 @@ gradlew.bat
 
 # Sandbox stuff
 _sandbox
+
+# Gradle properties
+gradle.properties
