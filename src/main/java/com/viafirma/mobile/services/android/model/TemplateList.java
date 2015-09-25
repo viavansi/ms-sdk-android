@@ -19,7 +19,7 @@ public class TemplateList  implements Serializable {
   @SerializedName("creationDate")
   private Date creationDate = null;
   @SerializedName("version")
-  private Integer version = null;
+  private String version = null;
 
   
   /**
@@ -69,10 +69,10 @@ public class TemplateList  implements Serializable {
   /**
    **/
   @ApiModelProperty(required = true, value = "")
-  public Integer getVersion() {
+  public String getVersion() {
     return version;
   }
-  public void setVersion(Integer version) {
+  public void setVersion(String version) {
     this.version = version;
   }
 
