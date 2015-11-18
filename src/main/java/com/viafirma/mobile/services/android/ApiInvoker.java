@@ -203,7 +203,7 @@ public class ApiInvoker {
       if (e instanceof ApiException) {
         throw (ApiException)e;
       } else {
-        throw new ApiException(500, e.getClass() + " - " + e.getMessage());
+        throw new ApiException(0, e);
       }
     }
   }
@@ -219,7 +219,7 @@ public class ApiInvoker {
       if (e instanceof ApiException) {
         throw (ApiException)e;
       } else {
-        throw new ApiException(500, e.getClass() + " - " + e.getMessage());
+        throw new ApiException(0, e);
       }
     }
   }
@@ -407,7 +407,7 @@ public class ApiInvoker {
 	  if (e instanceof ApiException) {
 	    throw (ApiException)e;
 	  } else {
-	    throw new ApiException(500, e.getClass() + " - " + e.getMessage());
+	    throw new ApiException(0, e);
 	  }
     }
   }

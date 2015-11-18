@@ -6,7 +6,20 @@ public class ApiException extends Exception {
 
   public ApiException() {}
 
-  public ApiException(int code, String message) {
+    public ApiException(int code, String message) {
+    super(message);
+    this.code = code;
+    this.message = cause.getMessage();
+  }
+  
+  public ApiException(int code, Throwable cause) {
+    super(cause);
+    this.code = code;
+    this.message = cause.getMessage();
+  }
+
+  public ApiException(int code, String message, Throwable cause) {
+    super(message, cause);
     this.code = code;
     this.message = message;
   }
