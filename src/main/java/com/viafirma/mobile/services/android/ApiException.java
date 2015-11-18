@@ -9,7 +9,7 @@ public class ApiException extends Exception {
     public ApiException(int code, String message) {
     super(message);
     this.code = code;
-    this.message = cause.getMessage();
+    this.message = message;
   }
   
   public ApiException(int code, Throwable cause) {
