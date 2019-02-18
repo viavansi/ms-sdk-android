@@ -1,9 +1,11 @@
 package com.viafirma.mobile.services.android.model;
 
+import com.viafirma.mobile.services.android.model.Signature;
 import com.viafirma.mobile.services.android.model.Param;
-import com.viafirma.mobile.services.android.model.ErrorResponse;
+import com.viafirma.mobile.services.android.model.Check;
 import com.viafirma.mobile.services.android.model.Evidence;
 import java.util.*;
+import com.viafirma.mobile.services.android.model.ErrorResponse;
 
 import com.wordnik.swagger.annotations.*;
 import com.google.gson.annotations.SerializedName;
@@ -41,8 +43,12 @@ public class Policy  implements Serializable {
   private List<Param> paramList = new ArrayList<Param>() ;
   @SerializedName("evidences")
   private List<Evidence> evidences = new ArrayList<Evidence>() ;
+  @SerializedName("signatures")
+  private List<Signature> signatures = new ArrayList<Signature>() ;
   @SerializedName("error")
   private ErrorResponse error = null;
+  @SerializedName("checklist")
+  private List<Check> checklist = new ArrayList<Check>() ;
 
   
   /**
@@ -169,11 +175,34 @@ public class Policy  implements Serializable {
   /**
    **/
   @ApiModelProperty(required = false, value = "")
+  public List<Signature> getSignatures() {
+    return signatures;
+  }
+  public void setSignatures(List<Signature> signatures) {
+    this.signatures = signatures;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
   public ErrorResponse getError() {
     return error;
   }
   public void setError(ErrorResponse error) {
     this.error = error;
+  }
+
+  
+  /**
+   * (since 3.4.0) checklist actions
+   **/
+  @ApiModelProperty(required = false, value = "(since 3.4.0) checklist actions")
+  public List<Check> getChecklist() {
+    return checklist;
+  }
+  public void setChecklist(List<Check> checklist) {
+    this.checklist = checklist;
   }
 
   
@@ -194,7 +223,9 @@ public class Policy  implements Serializable {
     sb.append("  idSign: ").append(idSign).append("\n");
     sb.append("  paramList: ").append(paramList).append("\n");
     sb.append("  evidences: ").append(evidences).append("\n");
+    sb.append("  signatures: ").append(signatures).append("\n");
     sb.append("  error: ").append(error).append("\n");
+    sb.append("  checklist: ").append(checklist).append("\n");
     sb.append("}\n");
     return sb.toString();
   }

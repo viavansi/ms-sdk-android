@@ -10,16 +10,16 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:1.0.0'
+        classpath 'com.android.tools.build:gradle:2.3.3'
     }
 }
 
-apply plugin: 'android-library'
+apply plugin: 'com.android.library'
 apply plugin: 'maven'
 
 android {
     compileSdkVersion 21
-    buildToolsVersion "21.1.2"
+    buildToolsVersion "25.0.0"
 
     defaultConfig {
         minSdkVersion 10
@@ -33,6 +33,9 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    lintOptions {
+		abortOnError false
+	}
 }
 
 configurations {
@@ -47,29 +50,44 @@ dependencies {
 
     compile 'com.wordnik:swagger-annotations:1.5.1-M1'
 
-    // OAuth libraries
-    //compile 'oauth.signpost:signpost-core:1.2.1.2'
-    //compile 'oauth.signpost:signpost-commonshttp4:1.2.1.2'
-    compile ('oauth.signpost:signpost-commonshttp4:1.2.1.2') {
-        exclude module: 'httpclient'
-    }
-    
-    // HttpClient with Multipart, etc
-    compile('org.apache.httpcomponents:httpmime:4.3.6') {
-        exclude module: 'httpclient'
-    }
-    compile 'org.apache.httpcomponents:httpclient-android:4.3.5'
+    compile 'com.squareup.okhttp3:okhttp:3.2.0'
+    compile 'se.akerfeldt:okhttp-signpost:1.1.0'
+    compile 'oauth.signpost:signpost-core:1.2.1.2'
+    compile 'org.apache.commons:commons-lang3:3.4'
 }
 
-// For Maven Repository submitting : Execute task: UploadArchives. Ex: > gradle uploadArchives
-uploadArchives {
+// For Maven Repository submitting
+task uploadRelease(type: Upload) {
+    configuration = configurations.archives
     repositories.mavenDeployer {
         configuration = configurations.deployerJars
-        repository(url: repoUrl) {
+        repository(url: releaseUrl) {
             authentication(userName: repoUsername, password: repoPassword)
         }
-        pom.version = '2.6.6'
+        pom.version = '3.5.114'
         pom.artifactId = "ms-sdk-android"
         pom.groupId = "com.viafirma"
     }
 }
+
+task uploadSnapshot(type: Upload) {
+    configuration = configurations.archives
+    repositories.mavenDeployer {
+        configuration = configurations.deployerJars
+        snapshotRepository(url: snapshotUrl) {
+            authentication(userName: repoUsername, password: repoPassword)
+        }
+        pom.version = '3.5.114' + "-SNAPSHOT"
+        pom.artifactId = "ms-sdk-android"
+        pom.groupId = "com.viafirma"
+    }
+}
+
+// This is the task to be used for every release.
+task releaseVersion(dependsOn: ['clean', 'build', 'uploadRelease'])
+build.mustRunAfter clean
+uploadRelease.mustRunAfter build
+
+task snapshotVersion(dependsOn: ['clean', 'build', 'uploadSnapshot'])
+build.mustRunAfter clean
+uploadSnapshot.mustRunAfter build

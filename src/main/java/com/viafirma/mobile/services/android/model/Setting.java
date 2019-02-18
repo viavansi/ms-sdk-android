@@ -1,7 +1,10 @@
 package com.viafirma.mobile.services.android.model;
 
 import com.viafirma.mobile.services.android.model.Policy;
+import com.viafirma.mobile.services.android.model.Customization;
 import java.util.*;
+import com.viafirma.mobile.services.android.model.AcrofieldPosition;
+import com.viafirma.mobile.services.android.model.Font;
 
 import com.wordnik.swagger.annotations.*;
 import com.google.gson.annotations.SerializedName;
@@ -21,8 +24,12 @@ public class Setting  implements Serializable {
   private String computec_key = null;
   @SerializedName("policies")
   private List<Policy> policies = new ArrayList<Policy>() ;
+  @SerializedName("callbackAuthorization")
+  private String callbackAuthorization = null;
   @SerializedName("callbackURL")
   private String callbackURL = null;
+  @SerializedName("callbackCheckListMails")
+  private String callbackCheckListMails = null;
   @SerializedName("callbackMails")
   private String callbackMails = null;
   @SerializedName("callbackMailsFormKeys")
@@ -31,6 +38,16 @@ public class Setting  implements Serializable {
   private String validateCode = null;
   @SerializedName("workflow")
   private String workflow = null;
+  @SerializedName("font")
+  private Font font = null;
+  @SerializedName("acrofieldsPositions")
+  private List<AcrofieldPosition> acrofieldsPositions = new ArrayList<AcrofieldPosition>() ;
+  @SerializedName("readDocumentRequired")
+  private Boolean readDocumentRequired = Boolean.FALSE;
+  @SerializedName("allowDocumentResend")
+  private Boolean allowDocumentResend = Boolean.FALSE;
+  @SerializedName("customization")
+  private Customization customization = null;
 
   
   /**
@@ -91,11 +108,33 @@ public class Setting  implements Serializable {
   /**
    **/
   @ApiModelProperty(required = false, value = "")
+  public String getCallbackAuthorization() {
+    return callbackAuthorization;
+  }
+  public void setCallbackAuthorization(String callbackAuthorization) {
+    this.callbackAuthorization = callbackAuthorization;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
   public String getCallbackURL() {
     return callbackURL;
   }
   public void setCallbackURL(String callbackURL) {
     this.callbackURL = callbackURL;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public String getCallbackCheckListMails() {
+    return callbackCheckListMails;
+  }
+  public void setCallbackCheckListMails(String callbackCheckListMails) {
+    this.callbackCheckListMails = callbackCheckListMails;
   }
 
   
@@ -143,6 +182,61 @@ public class Setting  implements Serializable {
   }
 
   
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public Font getFont() {
+    return font;
+  }
+  public void setFont(Font font) {
+    this.font = font;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public List<AcrofieldPosition> getAcrofieldsPositions() {
+    return acrofieldsPositions;
+  }
+  public void setAcrofieldsPositions(List<AcrofieldPosition> acrofieldsPositions) {
+    this.acrofieldsPositions = acrofieldsPositions;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public Boolean getReadDocumentRequired() {
+    return readDocumentRequired;
+  }
+  public void setReadDocumentRequired(Boolean readDocumentRequired) {
+    this.readDocumentRequired = readDocumentRequired;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public Boolean getAllowDocumentResend() {
+    return allowDocumentResend;
+  }
+  public void setAllowDocumentResend(Boolean allowDocumentResend) {
+    this.allowDocumentResend = allowDocumentResend;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public Customization getCustomization() {
+    return customization;
+  }
+  public void setCustomization(Customization customization) {
+    this.customization = customization;
+  }
+
+  
 
   @Override
   public String toString()  {
@@ -154,11 +248,18 @@ public class Setting  implements Serializable {
     sb.append("  policy: ").append(policy).append("\n");
     sb.append("  computec_key: ").append(computec_key).append("\n");
     sb.append("  policies: ").append(policies).append("\n");
+    sb.append("  callbackAuthorization: ").append(callbackAuthorization).append("\n");
     sb.append("  callbackURL: ").append(callbackURL).append("\n");
+    sb.append("  callbackCheckListMails: ").append(callbackCheckListMails).append("\n");
     sb.append("  callbackMails: ").append(callbackMails).append("\n");
     sb.append("  callbackMailsFormKeys: ").append(callbackMailsFormKeys).append("\n");
     sb.append("  validateCode: ").append(validateCode).append("\n");
     sb.append("  workflow: ").append(workflow).append("\n");
+    sb.append("  font: ").append(font).append("\n");
+    sb.append("  acrofieldsPositions: ").append(acrofieldsPositions).append("\n");
+    sb.append("  readDocumentRequired: ").append(readDocumentRequired).append("\n");
+    sb.append("  allowDocumentResend: ").append(allowDocumentResend).append("\n");
+    sb.append("  customization: ").append(customization).append("\n");
     sb.append("}\n");
     return sb.toString();
   }

@@ -9,15 +9,13 @@ import java.util.*;
 
 import com.viafirma.mobile.services.android.model.Policy;
 
-import org.apache.http.entity.ContentType;
-import org.apache.http.entity.mime.MultipartEntityBuilder;
-import org.apache.http.entity.mime.HttpMultipartMode;
-import org.apache.http.entity.mime.content.StringBody;
-import org.apache.http.entity.mime.content.FileBody;
-
 import java.io.File;
 import java.util.Map;
 import java.util.HashMap;
+
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 
 public class V1signaturesApi {
 
@@ -51,19 +49,19 @@ public class V1signaturesApi {
 
     if(contentType.startsWith("multipart/form-data")) {
       boolean hasFields = false;
-      MultipartEntityBuilder mp = MultipartEntityBuilder.create();
-      mp.setMode(HttpMultipartMode.BROWSER_COMPATIBLE);
+      MultipartBody.Builder mp = new MultipartBody.Builder();
+      mp.setType(MultipartBody.FORM);
       
       hasFields = true;
-      mp.addPart("messageCode", new StringBody(messageCode, ContentType.TEXT_PLAIN));
-      
-      
-      hasFields = true;
-      mp.addPart("policyCode", new StringBody(policyCode, ContentType.TEXT_PLAIN));
+      mp.addFormDataPart("messageCode", messageCode);
       
       
       hasFields = true;
-      mp.addPart("userCode", new StringBody(userCode, ContentType.TEXT_PLAIN));
+      mp.addFormDataPart("policyCode", policyCode);
+      
+      
+      hasFields = true;
+      mp.addFormDataPart("userCode", userCode);
       
       
       if(hasFields)
@@ -108,19 +106,19 @@ public class V1signaturesApi {
 
     if(contentType.startsWith("multipart/form-data")) {
       boolean hasFields = false;
-      MultipartEntityBuilder mp = MultipartEntityBuilder.create();
-      mp.setMode(HttpMultipartMode.BROWSER_COMPATIBLE);
+      MultipartBody.Builder mp = new MultipartBody.Builder();
+      mp.setType(MultipartBody.FORM);
       
       hasFields = true;
-      mp.addPart("messageCode", new StringBody(messageCode, ContentType.TEXT_PLAIN));
-      
-      
-      hasFields = true;
-      mp.addPart("policyCode", new StringBody(policyCode, ContentType.TEXT_PLAIN));
+      mp.addFormDataPart("messageCode", messageCode);
       
       
       hasFields = true;
-      mp.addPart("signatureCode", new StringBody(signatureCode, ContentType.TEXT_PLAIN));
+      mp.addFormDataPart("policyCode", policyCode);
+      
+      
+      hasFields = true;
+      mp.addFormDataPart("signatureCode", signatureCode);
       
       
       if(hasFields)

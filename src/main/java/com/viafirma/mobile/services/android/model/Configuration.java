@@ -1,6 +1,9 @@
 package com.viafirma.mobile.services.android.model;
 
+import com.viafirma.mobile.services.android.model.Group;
+import com.viafirma.mobile.services.android.model.FinalizeAction;
 import com.viafirma.mobile.services.android.model.MenuOption;
+import com.viafirma.mobile.services.android.model.Version;
 import java.util.*;
 
 import com.wordnik.swagger.annotations.*;
@@ -29,8 +32,28 @@ public class Configuration  implements Serializable {
   private Boolean allowsInvalidSSLCertificate = Boolean.FALSE;
   @SerializedName("evidenceBase64")
   private Boolean evidenceBase64 = Boolean.FALSE;
+  @SerializedName("version")
+  private String version = null;
+  @SerializedName("showUpdate")
+  private Boolean showUpdate = Boolean.FALSE;
+  @SerializedName("installURL")
+  private String installURL = null;
+  @SerializedName("installMessage")
+  private String installMessage = null;
+  @SerializedName("backendVersion")
+  private String backendVersion = null;
   @SerializedName("finalize_menu_options")
   private List<MenuOption> finalize_menu_options = new ArrayList<MenuOption>() ;
+  @SerializedName("autoRegisterDevice")
+  private Boolean autoRegisterDevice = Boolean.FALSE;
+  @SerializedName("versions")
+  private List<Version> versions = new ArrayList<Version>() ;
+  @SerializedName("clientSignature")
+  private Boolean clientSignature = Boolean.FALSE;
+  @SerializedName("finalizeActions")
+  private List<FinalizeAction> finalizeActions = new ArrayList<FinalizeAction>() ;
+  @SerializedName("groups")
+  private List<Group> groups = new ArrayList<Group>() ;
   @SerializedName("sSLPinningEnabled")
   private Boolean sSLPinningEnabled = Boolean.FALSE;
 
@@ -137,11 +160,121 @@ public class Configuration  implements Serializable {
   /**
    **/
   @ApiModelProperty(required = false, value = "")
+  public String getVersion() {
+    return version;
+  }
+  public void setVersion(String version) {
+    this.version = version;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public Boolean getShowUpdate() {
+    return showUpdate;
+  }
+  public void setShowUpdate(Boolean showUpdate) {
+    this.showUpdate = showUpdate;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public String getInstallURL() {
+    return installURL;
+  }
+  public void setInstallURL(String installURL) {
+    this.installURL = installURL;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public String getInstallMessage() {
+    return installMessage;
+  }
+  public void setInstallMessage(String installMessage) {
+    this.installMessage = installMessage;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public String getBackendVersion() {
+    return backendVersion;
+  }
+  public void setBackendVersion(String backendVersion) {
+    this.backendVersion = backendVersion;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
   public List<MenuOption> getFinalize_menu_options() {
     return finalize_menu_options;
   }
   public void setFinalize_menu_options(List<MenuOption> finalize_menu_options) {
     this.finalize_menu_options = finalize_menu_options;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public Boolean getAutoRegisterDevice() {
+    return autoRegisterDevice;
+  }
+  public void setAutoRegisterDevice(Boolean autoRegisterDevice) {
+    this.autoRegisterDevice = autoRegisterDevice;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public List<Version> getVersions() {
+    return versions;
+  }
+  public void setVersions(List<Version> versions) {
+    this.versions = versions;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public Boolean getClientSignature() {
+    return clientSignature;
+  }
+  public void setClientSignature(Boolean clientSignature) {
+    this.clientSignature = clientSignature;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public List<FinalizeAction> getFinalizeActions() {
+    return finalizeActions;
+  }
+  public void setFinalizeActions(List<FinalizeAction> finalizeActions) {
+    this.finalizeActions = finalizeActions;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public List<Group> getGroups() {
+    return groups;
+  }
+  public void setGroups(List<Group> groups) {
+    this.groups = groups;
   }
 
   
@@ -171,7 +304,17 @@ public class Configuration  implements Serializable {
     sb.append("  registerHide: ").append(registerHide).append("\n");
     sb.append("  allowsInvalidSSLCertificate: ").append(allowsInvalidSSLCertificate).append("\n");
     sb.append("  evidenceBase64: ").append(evidenceBase64).append("\n");
+    sb.append("  version: ").append(version).append("\n");
+    sb.append("  showUpdate: ").append(showUpdate).append("\n");
+    sb.append("  installURL: ").append(installURL).append("\n");
+    sb.append("  installMessage: ").append(installMessage).append("\n");
+    sb.append("  backendVersion: ").append(backendVersion).append("\n");
     sb.append("  finalize_menu_options: ").append(finalize_menu_options).append("\n");
+    sb.append("  autoRegisterDevice: ").append(autoRegisterDevice).append("\n");
+    sb.append("  versions: ").append(versions).append("\n");
+    sb.append("  clientSignature: ").append(clientSignature).append("\n");
+    sb.append("  finalizeActions: ").append(finalizeActions).append("\n");
+    sb.append("  groups: ").append(groups).append("\n");
     sb.append("  sSLPinningEnabled: ").append(sSLPinningEnabled).append("\n");
     sb.append("}\n");
     return sb.toString();

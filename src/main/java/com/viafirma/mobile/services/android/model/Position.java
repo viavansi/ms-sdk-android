@@ -14,6 +14,10 @@ public class Position  implements Serializable {
   private Rectangle rectangle = null;
   @SerializedName("page")
   private Integer page = null;
+  @SerializedName("positionMatchId")
+  private String positionMatchId = null;
+  @SerializedName("id")
+  private String id = null;
 
   
   /**
@@ -38,6 +42,28 @@ public class Position  implements Serializable {
   }
 
   
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public String getPositionMatchId() {
+    return positionMatchId;
+  }
+  public void setPositionMatchId(String positionMatchId) {
+    this.positionMatchId = positionMatchId;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public String getId() {
+    return id;
+  }
+  public void setId(String id) {
+    this.id = id;
+  }
+
+  
 
   @Override
   public String toString()  {
@@ -46,6 +72,8 @@ public class Position  implements Serializable {
     
     sb.append("  rectangle: ").append(rectangle).append("\n");
     sb.append("  page: ").append(page).append("\n");
+    sb.append("  positionMatchId: ").append(positionMatchId).append("\n");
+    sb.append("  id: ").append(id).append("\n");
     sb.append("}\n");
     return sb.toString();
   }

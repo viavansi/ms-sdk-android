@@ -27,7 +27,7 @@ public class Device  implements Serializable {
   @SerializedName("uniqueIdentifier")
   private String uniqueIdentifier = null;
   public enum TypeEnum {
-     ANDROID,  IOS,  WP, 
+     ANDROID,  IOS,  WINDOWS, 
   };
   @SerializedName("type")
   private TypeEnum type = null;

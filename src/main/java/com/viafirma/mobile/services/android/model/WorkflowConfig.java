@@ -17,6 +17,11 @@ public class WorkflowConfig  implements Serializable {
   private String description = null;
   @SerializedName("status")
   private List<Status> status = new ArrayList<Status>() ;
+  public enum TypeEnum {
+     APP,  WEB,  PRESENTIAL, 
+  };
+  @SerializedName("type")
+  private TypeEnum type = null;
 
   
   /**
@@ -52,6 +57,17 @@ public class WorkflowConfig  implements Serializable {
   }
 
   
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public TypeEnum getType() {
+    return type;
+  }
+  public void setType(TypeEnum type) {
+    this.type = type;
+  }
+
+  
 
   @Override
   public String toString()  {
@@ -61,6 +77,7 @@ public class WorkflowConfig  implements Serializable {
     sb.append("  code: ").append(code).append("\n");
     sb.append("  description: ").append(description).append("\n");
     sb.append("  status: ").append(status).append("\n");
+    sb.append("  type: ").append(type).append("\n");
     sb.append("}\n");
     return sb.toString();
   }

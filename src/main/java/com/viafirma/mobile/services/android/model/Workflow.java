@@ -1,8 +1,8 @@
 package com.viafirma.mobile.services.android.model;
 
-import java.util.Date;
 import com.viafirma.mobile.services.android.model.EventHistory;
 import java.util.*;
+import java.util.Date;
 
 import com.wordnik.swagger.annotations.*;
 import com.google.gson.annotations.SerializedName;
@@ -26,6 +26,11 @@ public class Workflow  implements Serializable {
   private Date lastUpdated = null;
   @SerializedName("expires")
   private Date expires = null;
+  public enum TypeEnum {
+     APP,  WEB,  PRESENTIAL, 
+  };
+  @SerializedName("type")
+  private TypeEnum type = null;
 
   
   /**
@@ -105,6 +110,17 @@ public class Workflow  implements Serializable {
   }
 
   
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public TypeEnum getType() {
+    return type;
+  }
+  public void setType(TypeEnum type) {
+    this.type = type;
+  }
+
+  
 
   @Override
   public String toString()  {
@@ -118,6 +134,7 @@ public class Workflow  implements Serializable {
     sb.append("  initiate: ").append(initiate).append("\n");
     sb.append("  lastUpdated: ").append(lastUpdated).append("\n");
     sb.append("  expires: ").append(expires).append("\n");
+    sb.append("  type: ").append(type).append("\n");
     sb.append("}\n");
     return sb.toString();
   }

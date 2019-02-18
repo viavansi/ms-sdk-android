@@ -1,5 +1,7 @@
 package com.viafirma.mobile.services.android;
 
+import android.util.Log;
+
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonDeserializationContext;
@@ -7,79 +9,50 @@ import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParseException;
 
-import org.apache.http.*;
-import org.apache.http.client.*;
-import org.apache.http.client.methods.*;
-import org.apache.http.conn.*;
-import org.apache.http.conn.scheme.*;
-import org.apache.http.conn.ssl.*;
-import org.apache.http.entity.*;
-import org.apache.http.entity.mime.*;
-import org.apache.http.entity.mime.content.*;
-import org.apache.http.impl.client.*;
-import org.apache.http.client.entity.UrlEncodedFormEntity;
-import org.apache.http.message.*;
-import org.apache.http.impl.conn.*;
-import org.apache.http.params.*;
-import org.apache.http.util.EntityUtils;
-import org.apache.http.protocol.HTTP;
+import org.apache.commons.lang3.StringEscapeUtils;
 
-import java.io.File;
-import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
 
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
-import java.net.Socket;
-import java.net.UnknownHostException;
+import java.net.SocketTimeoutException;
 import java.net.URLEncoder;
+import java.security.GeneralSecurityException;
+import java.security.KeyStore;
+import java.security.SecureRandom;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.Map;
+import java.util.Date;
+
 import java.util.HashMap;
 import java.util.List;
-import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-
-import java.security.GeneralSecurityException;
-import java.security.KeyManagementException;
-import java.security.KeyStore;
-import java.security.NoSuchAlgorithmException;
-import java.security.SecureRandom;
-import java.security.cert.*;
-
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-
-import java.util.Date;
-import java.util.Random;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import android.util.Log;
-
-import javax.crypto.Mac;
-import javax.crypto.spec.SecretKeySpec;
+import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 import javax.net.ssl.SSLContext;
+import javax.net.ssl.SSLSocketFactory;
 import javax.net.ssl.TrustManager;
+import javax.net.ssl.TrustManagerFactory;
 import javax.net.ssl.X509TrustManager;
 
-import oauth.signpost.OAuthConsumer;
-import oauth.signpost.commonshttp.CommonsHttpOAuthConsumer;
-import oauth.signpost.exception.OAuthException;
+import okhttp3.FormBody;
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
+import se.akerfeldt.okhttp.signpost.OkHttpOAuthConsumer;
+import se.akerfeldt.okhttp.signpost.SigningInterceptor;
 
 public class ApiInvoker {
   private static ApiInvoker INSTANCE = new ApiInvoker();
   private Map<String, String> defaultHeaderMap = new HashMap<String, String>();
   private boolean isDebug = false;
-
-  private HttpClient client = null;
-
-  private boolean ignoreSSLCertificates = false;
-
-  private ClientConnectionManager ignoreSSLConnectionManager;
 
   String basePath = null;
   String consumerKey = null;
@@ -87,6 +60,8 @@ public class ApiInvoker {
   String token = null;
   String tokenSecret = null;
   long timeoutSeconds = 120;
+  int timeoutRetryAttempts = 0;
+  SSLSocketFactory sslSocketFactory;
   
   public void setTimeoutSeconds(long timeoutSeconds) {
     this.timeoutSeconds = timeoutSeconds;
@@ -135,22 +110,73 @@ public class ApiInvoker {
   public void setTokenSecret(String tokenSecret) {
     this.tokenSecret = tokenSecret;
   }
+  
+	 public int getTimeoutRetryAttempts() {
+	    return timeoutRetryAttempts;
+	}
+	
+	public void setTimeoutRetryAttempts(int timeoutRetryAttempts) {
+	    this.timeoutRetryAttempts = timeoutRetryAttempts;
+	}
 
   public void enableDebug() {
     isDebug = true;
   }
 
   public ApiInvoker() {
-    initConnectionManager();
+    
   }
 
   public static ApiInvoker getInstance() {
     return INSTANCE;
   }
+  
+  public void loadKeystore(InputStream keyStore, String keystorePassword) throws GeneralSecurityException, IOException {
+	    IOException e1 = null;
+	    GeneralSecurityException e2 = null;
 
-  public void ignoreSSLCertificates(boolean ignoreSSLCertificates) {
-    this.ignoreSSLCertificates = ignoreSSLCertificates;
-  }
+        X509TrustManager defaultTrustManager = null;
+        try {
+            defaultTrustManager = defaultTrustManagerForCertificates();
+        } catch (IOException iex) {
+            e1 = iex;
+            Log.w("ApiInvoker", iex.getLocalizedMessage());
+        } catch (GeneralSecurityException gex) {
+            e2 = gex;
+            Log.w("ApiInvoker", gex.getLocalizedMessage());
+        }
+
+        X509TrustManager trustManager = null;
+        if (keyStore != null && keystorePassword != null) {
+          try {
+              trustManager = trustManagerForCertificates(keyStore, keystorePassword);
+          } catch (IOException iex) {
+              e1 = iex;
+              Log.w("ApiInvoker", iex.getLocalizedMessage());
+          } catch (GeneralSecurityException gex) {
+              e2 = gex;
+              Log.w("ApiInvoker", gex.getLocalizedMessage());
+          }
+        }
+
+        SSLContext sslContext = SSLContext.getInstance("TLSv1.2");
+        if (trustManager != null && defaultTrustManager != null) {
+            sslContext.init(null, new TrustManager[] {defaultTrustManager, trustManager}, new SecureRandom());
+            sslSocketFactory = sslContext.getSocketFactory();
+        } else if (trustManager != null) {
+            sslContext.init(null, new TrustManager[] {trustManager}, new SecureRandom());
+            sslSocketFactory = sslContext.getSocketFactory();
+        } else if (defaultTrustManager != null) {
+            sslContext.init(null, new TrustManager[] {defaultTrustManager}, new SecureRandom());
+            sslSocketFactory = sslContext.getSocketFactory();
+        }
+
+        if (e1 != null) {
+            throw e1;
+        } else if (e2 != null) {
+            throw e2;
+        }
+	}
 
   public void addDefaultHeader(String key, String value) {
     defaultHeaderMap.put(key, value);
@@ -225,18 +251,66 @@ public class ApiInvoker {
   }
 
   public String invokeAPI(String path, String method, Map<String, String> queryParams, Object body, Map<String, String> headerParams, Map<String, String> formParams, String contentType) throws ApiException {
-    
-    HttpParams httpParameters = new BasicHttpParams();
-    // Set the timeout in milliseconds until a connection is established.
-    // The default value is zero, that means the timeout is not used.
-    int timeoutConnection = (int)timeoutSeconds * 1000;
-    HttpConnectionParams.setConnectionTimeout(httpParameters, timeoutConnection);
-    // Set the default socket timeout (SO_TIMEOUT)
-    // in milliseconds which is the timeout for waiting for data.
-    int timeoutSocket = (int)timeoutSeconds * 1000;
-    HttpConnectionParams.setSoTimeout(httpParameters, timeoutSocket);
+          return retryInvokeAPI(path, method, queryParams, body, headerParams, formParams, contentType, 0);
+    }
 
-	HttpClient client = new DefaultHttpClient(httpParameters);
+    private String retryInvokeAPI(String path, String method, Map<String, String> queryParams, Object body, Map<String, String> headerParams, Map<String, String> formParams, String contentType, int currentAttempts) throws ApiException {
+        try {
+            return invokeAPI_(path, method, queryParams, body, headerParams, formParams, contentType);
+        } catch (SocketTimeoutException e) {
+            if (currentAttempts < timeoutRetryAttempts) {
+                Log.e("ApiInvoker", "Retry "+currentAttempts+" after an error of "+e.getMessage());
+                return retryInvokeAPI(path, method, queryParams, body, headerParams, formParams, contentType, currentAttempts+1);
+            } else {
+                throw new ApiException(0, e);
+            }
+        } catch (Exception e) {
+            if (e instanceof ApiException) {
+                throw (ApiException)e;
+            } else {
+                throw new ApiException(0, e);
+            }
+        }
+    }
+    
+   	public InputStream download(String url) throws IOException{
+        OkHttpClient.Builder clientBuilder = new OkHttpClient.Builder()
+                .connectTimeout(timeoutSeconds, TimeUnit.SECONDS)
+                .readTimeout(timeoutSeconds, TimeUnit.SECONDS)
+                .writeTimeout(timeoutSeconds, TimeUnit.SECONDS);
+
+        if(sslSocketFactory != null){
+            clientBuilder.sslSocketFactory(sslSocketFactory);
+        }
+
+        OkHttpClient client = clientBuilder.build();
+        Request request = new Request.Builder().url(url).build();
+
+        Response response = client.newCall(request).execute();
+        if (!response.isSuccessful()) {
+            throw new IOException();
+        }
+        return response.body().byteStream();
+    }
+
+  private String invokeAPI_(String path, String method, Map<String, String> queryParams, Object body, Map<String, String> headerParams, Map<String, String> formParams, String contentType) throws ApiException, IOException {
+    
+	OkHttpOAuthConsumer consumer = new OkHttpOAuthConsumer(consumerKey, consumerSecret);
+    if (token != null && tokenSecret != null) {
+        consumer.setTokenWithSecret(token, tokenSecret);
+    }
+
+ 	OkHttpClient.Builder clientBuilder = new OkHttpClient.Builder()
+            .connectTimeout(timeoutSeconds, TimeUnit.SECONDS)
+            .readTimeout(timeoutSeconds, TimeUnit.SECONDS)
+            .writeTimeout(timeoutSeconds, TimeUnit.SECONDS)
+            .addInterceptor(new SigningInterceptor(consumer));
+
+    if(sslSocketFactory != null){
+    	clientBuilder.sslSocketFactory(sslSocketFactory);
+    }
+
+    OkHttpClient client = clientBuilder.build();
 
     StringBuilder b = new StringBuilder();
 
@@ -265,305 +339,171 @@ public class ApiInvoker {
     }
     // headers.put("Accept", "application/json");
 
-	HttpRequestBase request = null;
-    HttpResponse response = null;
-    try{
+    Request request = null;
+    Response response = null;
       	if("GET".equals(method)) {
-        	request = new HttpGet(url);
-        	request.addHeader("Accept", "application/json");
-        	for(String key : headers.keySet()) {
-        	  	request.setHeader(key, headers.get(key));
-        	}
-      	} else if ("POST".equals(method)) {
-        	HttpPost post = new HttpPost(url);
+            Request.Builder builder = new Request.Builder();
+            builder.url(url);
+            builder.header("Accept", "application/json");
+            for(String key : headers.keySet()) {
+                builder.addHeader(key, headers.get(key));
+            }
+            request = builder.build();
 
-			for(String key : headers.keySet()) {
-				post.setHeader(key, headers.get(key));
-	        }
+        } else if ("POST".equals(method)) {
 
-			AbstractHttpEntity se;
-	        if (body != null && !(body instanceof MultipartEntityBuilder)) { // body JSON
-				se = new StringEntity(serialize(body), "UTF-8");
-				BasicHeader basicHeader = new BasicHeader(HTTP.CONTENT_TYPE, "application/json;charset=UTF-8");
-				se.setContentType(basicHeader);
-				post.setEntity(se);
-	        } else if (body != null && body instanceof MultipartEntityBuilder) { // body MULTIPART
-	        	HttpEntity httpEntity = ((MultipartEntityBuilder)body).build();
-	        	post.setEntity(httpEntity);
-	        } else if (formParams != null && "application/x-www-form-urlencoded".equals(contentType)) { // body FORM
-	       		List<NameValuePair> nameValuePairs = new LinkedList<NameValuePair>();
-	       		for (Map.Entry<String, String> param : formParams.entrySet())
-				{
-    				nameValuePairs.add(new BasicNameValuePair(param.getKey(), param.getValue()));
-				}
-	        	se = new UrlEncodedFormEntity(nameValuePairs, "UTF-8");
-	            BasicHeader basicHeader = new BasicHeader(HTTP.CONTENT_TYPE, "application/x-www-form-urlencoded");
-	            se.setContentType(basicHeader);
-	            post.setEntity(se);
-	        }
+            Request.Builder builder = new Request.Builder();
+            builder.url(url);
+            for(String key : headers.keySet()) {
+                builder.addHeader(key, headers.get(key));
+            }
 
-			request = post;
-	        
-		} else if ("PUT".equals(method)) {
-	        HttpPut put = new HttpPut(url);
-	        
-	        for(String key : headers.keySet()) {
-				put.setHeader(key, headers.get(key));
-	        }
+			RequestBody requestBody = null;
+            if (body != null && !(body instanceof MultipartBody.Builder)) {
+                // BODY JSON
+                MediaType JSON = MediaType.parse("application/json; charset=utf-8");
+                requestBody = RequestBody.create(JSON, serialize(body));
+            } else if (body != null && body instanceof MultipartBody.Builder) {
+                // BODY MULTIPART
+                requestBody = ((MultipartBody.Builder)body).build();
+            } else if (formParams != null && "application/x-www-form-urlencoded".equals(contentType)) {
+                // BODY FORM
+                FormBody.Builder fbuilder = new FormBody.Builder();
+                for (Map.Entry<String, String> param : formParams.entrySet())
+                {
+                    fbuilder.add(param.getKey(), param.getValue());
+                }
+                requestBody = fbuilder.build();
+            } else {
+                requestBody = RequestBody.create(null, new byte[0]);
+            }
+            
+            if (requestBody != null) {
+            	builder.post(requestBody);
+            }
+			request = builder.build();
+        }
+        else if ("PUT".equals(method)) {
+            Request.Builder builder = new Request.Builder();
+            builder.url(url);
+            for(String key : headers.keySet()) {
+                builder.addHeader(key, headers.get(key));
+            }
 
-			AbstractHttpEntity se;
-	        if (body != null && !(body instanceof MultipartEntityBuilder)) { // body JSON
-				se = new StringEntity(serialize(body), "UTF-8");
-				BasicHeader basicHeader = new BasicHeader(HTTP.CONTENT_TYPE, "application/json;charset=UTF-8");
-				se.setContentType(basicHeader);
-				put.setEntity(se);
-	        } else if (body != null && body instanceof MultipartEntityBuilder) { // body MULTIPART
-	        	HttpEntity httpEntity = ((MultipartEntityBuilder)body).build();
-	        	put.setEntity(httpEntity);
-	        } else if (formParams != null && "application/x-www-form-urlencoded".equals(contentType)) { // body FORM
-	       		List<NameValuePair> nameValuePairs = new LinkedList<NameValuePair>();
-	       		for (Map.Entry<String, String> param : formParams.entrySet())
-				{
-    				nameValuePairs.add(new BasicNameValuePair(param.getKey(), param.getValue()));
-				}
-	        	se = new UrlEncodedFormEntity(nameValuePairs, "UTF-8");
-	            BasicHeader basicHeader = new BasicHeader(HTTP.CONTENT_TYPE, "application/x-www-form-urlencoded");
-	            se.setContentType(basicHeader);
-	            put.setEntity(se);
-	        }
+			RequestBody requestBody = null;
+            if (body != null && !(body instanceof MultipartBody.Builder)) {
+                // BODY JSON
+                MediaType JSON = MediaType.parse("application/json; charset=utf-8");
+                requestBody = RequestBody.create(JSON, serialize(body));
+            } else if (body != null && body instanceof MultipartBody.Builder) {
+                // BODY MULTIPART
+				requestBody = ((MultipartBody.Builder)body).build();
+            } else if (formParams != null && "application/x-www-form-urlencoded".equals(contentType)) {
+                // BODY FORM
+                FormBody.Builder fbuilder = new FormBody.Builder();
+                for (Map.Entry<String, String> param : formParams.entrySet())
+                {
+                    fbuilder.add(param.getKey(), param.getValue());
+                }
+                requestBody = fbuilder.build();
+            } else {
+                requestBody = RequestBody.create(null, new byte[0]);
+            }
+            
+            if (requestBody != null) {
+            	builder.put(requestBody);
+            }
+            request = builder.build();
+            
+        } else if ("DELETE".equals(method)) {
+            Request.Builder builder = new Request.Builder();
+            builder.url(url);
+            for(String key : headers.keySet()) {
+                builder.addHeader(key, headers.get(key));
+            }
+            builder.delete();
+            request = builder.build();
+        } else if ("PATCH".equals(method)) {
+            Request.Builder builder = new Request.Builder();
+            builder.url(url);
+            for(String key : headers.keySet()) {
+                builder.addHeader(key, headers.get(key));
+            }
 
-			request = put;
-	        
-      	} else if ("DELETE".equals(method)) {
-        	HttpDelete delete = new HttpDelete(url);
-	        for(String key : headers.keySet()) {
-	          delete.setHeader(key, headers.get(key));
-	        }
-	        request = delete;
-      	} else if ("PATCH".equals(method)) {
-        	HttpPatch patch = new HttpPatch(url);
+            RequestBody requestBody = null;
+            if (body != null && !(body instanceof MultipartBody.Builder)) {
+                // BODY JSON
+                MediaType JSON = MediaType.parse("application/json; charset=utf-8");
+                requestBody = RequestBody.create(JSON, serialize(body));
+            } else if (body != null && body instanceof MultipartBody.Builder) {
+                // BODY MULTIPART
+                requestBody = ((MultipartBody.Builder)body).build();
+            } else if (formParams != null && "application/x-www-form-urlencoded".equals(contentType)) {
+                // BODY FORM
+                FormBody.Builder fbuilder = new FormBody.Builder();
+                for (Map.Entry<String, String> param : formParams.entrySet())
+                {
+                    fbuilder.add(param.getKey(), param.getValue());
+                }
+                requestBody = fbuilder.build();
+            } else {
+                requestBody = RequestBody.create(null, new byte[0]);
+            }
+            
+            if (requestBody != null) {
+            	builder.patch(requestBody);
+            }
+            request = builder.build();
+        }
 
-	        for(String key : headers.keySet()) {
-				patch.setHeader(key, headers.get(key));
-	        }
+        response = client.newCall(request).execute();
 
-			AbstractHttpEntity se;
-	        if (body != null) { // body JSON
-				se = new StringEntity(serialize(body), "UTF-8");
-				//BasicHeader basicHeader = new BasicHeader(HTTP.CONTENT_TYPE, "application/json;charset=UTF-8");
-				//se.setContentType(basicHeader);
-				patch.setEntity(se);
-	        } else if (body != null && body instanceof MultipartEntityBuilder) { // body MULTIPART
-	        	HttpEntity httpEntity = ((MultipartEntityBuilder)body).build();
-	        	patch.setEntity(httpEntity);
-	        } else if (formParams != null && "application/x-www-form-urlencoded".equals(contentType)) { // body FORM
-	       		List<NameValuePair> nameValuePairs = new LinkedList<NameValuePair>();
-	       		for (Map.Entry<String, String> param : formParams.entrySet())
-				{
-    				nameValuePairs.add(new BasicNameValuePair(param.getKey(), param.getValue()));
-				}
-	        	se = new UrlEncodedFormEntity(nameValuePairs, "UTF-8");
-	            BasicHeader basicHeader = new BasicHeader(HTTP.CONTENT_TYPE, "application/x-www-form-urlencoded");
-	            se.setContentType(basicHeader);
-	            patch.setEntity(se);
-	        }
-	        
-	        request = patch;
-      	}
-      
-      	if (consumerKey != null && consumerSecret != null) {
-      		OAuthConsumer oAuthConsumer = new CommonsHttpOAuthConsumer(consumerKey, consumerSecret);
-			if (token != null && tokenSecret != null) {
-		    	oAuthConsumer.setTokenWithSecret(token, tokenSecret);
-			}
-	  		oAuthConsumer.sign(request);
-		}
-		
-	  	response = client.execute(request);
-
-      	int code = response.getStatusLine().getStatusCode();
+      	int code = response.code();
       	String responseString = null;
       	if(code == 204) { 
         	responseString = "";
 		} else if(code >= 200 && code < 300) {
-        	if(response.getEntity() != null) {
-          		HttpEntity resEntity = response.getEntity();
-          		responseString = EntityUtils.toString(resEntity, HTTP.UTF_8);
-        	}
+ 			responseString = response.body().string();
+ 			// Fix encoding
+      		responseString = StringEscapeUtils.unescapeHtml3(responseString);
       	} else {
-        	if(response.getEntity() != null) {
-          		HttpEntity resEntity = response.getEntity();
-          		responseString = EntityUtils.toString(resEntity, HTTP.UTF_8);
-          		throw new ApiException(code, responseString);
-        	}
-        	else {
-          		responseString = "no data";
-        		throw new ApiException(code, responseString);
-      		}
+        	responseString = response.body().string();
+        	responseString = StringEscapeUtils.unescapeHtml3(responseString);
+            throw new ApiException(code, responseString);
 		}
 		return responseString;		
-		
-	} catch (Exception e) {
-	  if (e instanceof ApiException) {
-	    throw (ApiException)e;
-	  } else {
-	    throw new ApiException(0, e);
-	  }
-    }
-  }
-
-  private HttpClient getClient(String host) {
-    if (client == null) {
-      if (ignoreSSLCertificates && ignoreSSLConnectionManager != null) {
-        // Trust self signed certificates
-        client = new DefaultHttpClient(ignoreSSLConnectionManager, new BasicHttpParams());
-      } else {
-        client = new DefaultHttpClient();
-      }
-    }
-    return client;
-  }
-
-  private void initConnectionManager() {
-    try {
-      final SSLContext sslContext = SSLContext.getInstance("SSL");
-
-      // set up a TrustManager that trusts everything
-      TrustManager[] trustManagers = new TrustManager[] {
-        new X509TrustManager() {
-          public X509Certificate[] getAcceptedIssuers() {
-            return null;
-          }
-          public void checkClientTrusted(X509Certificate[] certs, String authType) {}
-          public void checkServerTrusted(X509Certificate[] certs, String authType) {}
-      }};
-
-      sslContext.init(null, trustManagers, new SecureRandom());
-
-      SSLSocketFactory sf = new SSLSocketFactory((KeyStore)null) {
-        private javax.net.ssl.SSLSocketFactory sslFactory = sslContext.getSocketFactory();
-
-        public Socket createSocket(Socket socket, String host, int port, boolean autoClose)
-          throws IOException, UnknownHostException {
-          return sslFactory.createSocket(socket, host, port, autoClose);
-        }
-
-        public Socket createSocket() throws IOException {
-          return sslFactory.createSocket();
-        }
-      };
-
-      sf.setHostnameVerifier(SSLSocketFactory.ALLOW_ALL_HOSTNAME_VERIFIER);
-      Scheme httpsScheme = new Scheme("https", sf, 443);
-      SchemeRegistry schemeRegistry = new SchemeRegistry();
-      schemeRegistry.register(httpsScheme);
-      schemeRegistry.register(new Scheme("http", PlainSocketFactory.getSocketFactory(), 80));
-
-      ignoreSSLConnectionManager = new SingleClientConnManager(new BasicHttpParams(), schemeRegistry);
-    } catch (NoSuchAlgorithmException e) {
-      // This will only be thrown if SSL isn't available for some reason.
-    } catch (KeyManagementException e) {
-      // This might be thrown when passing a key into init(), but no key is being passed.
-    } catch (GeneralSecurityException e) {
-      // This catches anything else that might go wrong.
-      // If anything goes wrong we default to the standard connection manager.
-    }
   }
   
-  private static String convertStreamToString(InputStream is) {
-	    /*
-	     * To convert the InputStream to String we use the BufferedReader.readLine()
-	     * method. We iterate until the BufferedReader return null which means
-	     * there's no more data to read. Each line will appended to a StringBuilder
-	     * and returned as String.
-	     */
-	    BufferedReader reader = new BufferedReader(new InputStreamReader(is));
-	    StringBuilder sb = new StringBuilder();
-
-	    String line = null;
-	    try {
-	        while ((line = reader.readLine()) != null) {
-	            sb.append(line + "\n");
-	        }
-	    } catch (IOException e) {
-	        e.printStackTrace();
-	    } finally {
-	        try {
-	            is.close();
-	        } catch (IOException e) {
-	            e.printStackTrace();
-	        }
-	    }
-	    return sb.toString();
-	}
-	
-	/**
-     * ONLY FOR TEST PURPOSES.
-     */
-//    class MySSLSocketFactory extends SSLSocketFactory {
-//        SSLContext sslContext = SSLContext.getInstance("TLS");
-//
-//        public MySSLSocketFactory(KeyStore truststore) throws NoSuchAlgorithmException, KeyManagementException, KeyStoreException, UnrecoverableKeyException {
-//            super(truststore);
-//
-//            TrustManager tm = new X509TrustManager() {
-//                public void checkClientTrusted(X509Certificate[] chain, String authType) throws CertificateException {
-//                }
-//
-//                public void checkServerTrusted(X509Certificate[] chain, String authType) throws CertificateException {
-//                }
-//
-//                public X509Certificate[] getAcceptedIssuers() {
-//                    return null;
-//                }
-//            };
-//
-//            sslContext.init(null, new TrustManager[] { tm }, null);
-//        }
-//
-//        @Override
-//        public Socket createSocket(Socket socket, String host, int port, boolean autoClose) throws IOException, UnknownHostException {
-//            return sslContext.getSocketFactory().createSocket(socket, host, port, autoClose);
-//        }
-//
-//        @Override
-//        public Socket createSocket() throws IOException {
-//            return sslContext.getSocketFactory().createSocket();
-//        }
-//    }
-
-    /**
-     * ONLY FOR TEST PURPOSES.
-     */
-//    public HttpClient getNewHttpClient() {
-//        try {
-//            KeyStore trustStore = KeyStore.getInstance(KeyStore.getDefaultType());
-//            trustStore.load(null, null);
-//
-//            SSLSocketFactory sf = new MySSLSocketFactory(trustStore);
-//            sf.setHostnameVerifier(SSLSocketFactory.ALLOW_ALL_HOSTNAME_VERIFIER);
-//
-//            HttpParams params = new BasicHttpParams();
-//            HttpProtocolParams.setVersion(params, HttpVersion.HTTP_1_1);
-//            HttpProtocolParams.setContentCharset(params, HTTP.UTF_8);
-//            int timeoutSeconds = 120;
-//            int timeoutConnection = timeoutSeconds * 1000;
-//            HttpConnectionParams.setConnectionTimeout(params, timeoutConnection);
-//            int timeoutSocket = timeoutSeconds * 1000;
-//            HttpConnectionParams.setSoTimeout(params, timeoutSocket);
-//
-//            SchemeRegistry registry = new SchemeRegistry();
-//            registry.register(new Scheme("http", PlainSocketFactory.getSocketFactory(), 80));
-//            registry.register(new Scheme("https", sf, 443));
-//            registry.register(new Scheme("https", sf, 8443));
-//
-//            ClientConnectionManager ccm = new ThreadSafeClientConnManager(params, registry);
-//
-//            return new DefaultHttpClient(ccm, params);
-//        } catch (Exception e) {
-//            return new DefaultHttpClient();
-//        }
-//    }
+  private X509TrustManager trustManagerForCertificates(InputStream is, String keystorePassword)
+            throws GeneralSecurityException, IOException {
+        // Use it to build an X509 trust manager.
+        KeyStore keyStore = KeyStore.getInstance(KeyStore.getDefaultType());
+        keyStore.load(is,keystorePassword.toCharArray());
+        TrustManagerFactory trustManagerFactory = TrustManagerFactory.getInstance(
+                TrustManagerFactory.getDefaultAlgorithm());
+        trustManagerFactory.init(keyStore);
+        TrustManager[] trustManagers = trustManagerFactory.getTrustManagers();
+        if (trustManagers.length != 1 || !(trustManagers[0] instanceof X509TrustManager)) {
+            throw new IllegalStateException("Unexpected default trust managers:"
+                    + Arrays.toString(trustManagers));
+        }
+        return (X509TrustManager) trustManagers[0];
+    }
+    
+    private X509TrustManager defaultTrustManagerForCertificates() throws GeneralSecurityException, IOException {
+        // Use it to build an X509 trust manager.
+        KeyStore keyStore = KeyStore.getInstance("AndroidCAStore");
+        keyStore.load(null, null); //Load default system keystore
+        TrustManagerFactory trustManagerFactory = TrustManagerFactory.getInstance(
+                TrustManagerFactory.getDefaultAlgorithm());
+        trustManagerFactory.init(keyStore);
+        TrustManager[] trustManagers = trustManagerFactory.getTrustManagers();
+        if (trustManagers.length != 1 || !(trustManagers[0] instanceof X509TrustManager)) {
+            throw new IllegalStateException("Unexpected default trust managers:"
+                    + Arrays.toString(trustManagers));
+        }
+        return (X509TrustManager) trustManagers[0];
+    }
 
 	private static class ListParameterizedType implements ParameterizedType {
 	

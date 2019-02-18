@@ -23,6 +23,11 @@ public class Template  implements Serializable {
   private Form form = null;
   @SerializedName("version")
   private String version = null;
+  public enum TypeEnum {
+     docx,  odt,  url,  pdf,  base64,  message, 
+  };
+  @SerializedName("type")
+  private TypeEnum type = null;
 
   
   /**
@@ -91,6 +96,17 @@ public class Template  implements Serializable {
   }
 
   
+  /**
+   **/
+  @ApiModelProperty(required = true, value = "")
+  public TypeEnum getType() {
+    return type;
+  }
+  public void setType(TypeEnum type) {
+    this.type = type;
+  }
+
+  
 
   @Override
   public String toString()  {
@@ -103,6 +119,7 @@ public class Template  implements Serializable {
     sb.append("  creationDate: ").append(creationDate).append("\n");
     sb.append("  form: ").append(form).append("\n");
     sb.append("  version: ").append(version).append("\n");
+    sb.append("  type: ").append(type).append("\n");
     sb.append("}\n");
     return sb.toString();
   }

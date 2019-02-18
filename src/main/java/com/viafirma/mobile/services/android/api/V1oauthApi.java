@@ -9,15 +9,13 @@ import java.util.*;
 
 import com.viafirma.mobile.services.android.model.Token;
 
-import org.apache.http.entity.ContentType;
-import org.apache.http.entity.mime.MultipartEntityBuilder;
-import org.apache.http.entity.mime.HttpMultipartMode;
-import org.apache.http.entity.mime.content.StringBody;
-import org.apache.http.entity.mime.content.FileBody;
-
 import java.io.File;
 import java.util.Map;
 import java.util.HashMap;
+
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 
 public class V1oauthApi {
 
@@ -51,19 +49,19 @@ public class V1oauthApi {
 
     if(contentType.startsWith("multipart/form-data")) {
       boolean hasFields = false;
-      MultipartEntityBuilder mp = MultipartEntityBuilder.create();
-      mp.setMode(HttpMultipartMode.BROWSER_COMPATIBLE);
+      MultipartBody.Builder mp = new MultipartBody.Builder();
+      mp.setType(MultipartBody.FORM);
       
       hasFields = true;
-      mp.addPart("x_auth_mode", new StringBody(x_auth_mode, ContentType.TEXT_PLAIN));
-      
-      
-      hasFields = true;
-      mp.addPart("x_auth_username", new StringBody(x_auth_username, ContentType.TEXT_PLAIN));
+      mp.addFormDataPart("x_auth_mode", x_auth_mode);
       
       
       hasFields = true;
-      mp.addPart("x_auth_password", new StringBody(x_auth_password, ContentType.TEXT_PLAIN));
+      mp.addFormDataPart("x_auth_username", x_auth_username);
+      
+      
+      hasFields = true;
+      mp.addFormDataPart("x_auth_password", x_auth_password);
       
       
       if(hasFields)
@@ -108,8 +106,8 @@ public class V1oauthApi {
 
     if(contentType.startsWith("multipart/form-data")) {
       boolean hasFields = false;
-      MultipartEntityBuilder mp = MultipartEntityBuilder.create();
-      mp.setMode(HttpMultipartMode.BROWSER_COMPATIBLE);
+      MultipartBody.Builder mp = new MultipartBody.Builder();
+      mp.setType(MultipartBody.FORM);
       
       if(hasFields)
         postBody = mp;

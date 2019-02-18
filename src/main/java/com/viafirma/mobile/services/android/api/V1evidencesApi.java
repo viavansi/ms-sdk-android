@@ -9,15 +9,13 @@ import java.util.*;
 
 import com.viafirma.mobile.services.android.model.Evidence;
 
-import org.apache.http.entity.ContentType;
-import org.apache.http.entity.mime.MultipartEntityBuilder;
-import org.apache.http.entity.mime.HttpMultipartMode;
-import org.apache.http.entity.mime.content.StringBody;
-import org.apache.http.entity.mime.content.FileBody;
-
 import java.io.File;
 import java.util.Map;
 import java.util.HashMap;
+
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 
 public class V1evidencesApi {
 
@@ -51,35 +49,35 @@ public class V1evidencesApi {
 
     if(contentType.startsWith("multipart/form-data")) {
       boolean hasFields = false;
-      MultipartEntityBuilder mp = MultipartEntityBuilder.create();
-      mp.setMode(HttpMultipartMode.BROWSER_COMPATIBLE);
+      MultipartBody.Builder mp = new MultipartBody.Builder();
+      mp.setType(MultipartBody.FORM);
       
       hasFields = true;
-      mp.addPart("messageCode", new StringBody(messageCode, ContentType.TEXT_PLAIN));
-      
-      
-      hasFields = true;
-      mp.addPart("policyCode", new StringBody(policyCode, ContentType.TEXT_PLAIN));
+      mp.addFormDataPart("messageCode", messageCode);
       
       
       hasFields = true;
-      mp.addPart("evidenceCode", new StringBody(evidenceCode, ContentType.TEXT_PLAIN));
+      mp.addFormDataPart("policyCode", policyCode);
       
       
       hasFields = true;
-      mp.addPart("imageBase64", new StringBody(imageBase64, ContentType.TEXT_PLAIN));
+      mp.addFormDataPart("evidenceCode", evidenceCode);
       
       
       hasFields = true;
-      mp.addPart("metadata", new StringBody(metadata, ContentType.TEXT_PLAIN));
+      mp.addFormDataPart("imageBase64", imageBase64);
       
       
       hasFields = true;
-      mp.addPart("fingerID", new StringBody(fingerID, ContentType.TEXT_PLAIN));
+      mp.addFormDataPart("metadata", metadata);
       
       
       hasFields = true;
-      mp.addPart("algorithmic", new StringBody(algorithmic, ContentType.TEXT_PLAIN));
+      mp.addFormDataPart("fingerID", fingerID);
+      
+      
+      hasFields = true;
+      mp.addFormDataPart("algorithmic", algorithmic);
       
       
       if(hasFields)

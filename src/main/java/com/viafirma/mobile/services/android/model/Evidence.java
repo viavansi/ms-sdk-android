@@ -1,7 +1,15 @@
 package com.viafirma.mobile.services.android.model;
 
+import com.viafirma.mobile.services.android.model.PositionsMatch;
+import com.viafirma.mobile.services.android.model.Geolocation;
 import com.viafirma.mobile.services.android.model.Position;
+import com.viafirma.mobile.services.android.model.EvidenceSignature;
+import com.viafirma.mobile.services.android.model.Param;
+import com.viafirma.mobile.services.android.model.EvidenceFingerPrint;
+import com.viafirma.mobile.services.android.model.EvidenceGeneric;
 import java.util.*;
+import com.viafirma.mobile.services.android.model.OcrData;
+import com.viafirma.mobile.services.android.model.EvidenceImage;
 
 import com.wordnik.swagger.annotations.*;
 import com.google.gson.annotations.SerializedName;
@@ -12,10 +20,16 @@ import java.io.Serializable;
 public class Evidence  implements Serializable {
   
   public enum TypeEnum {
-     ANNOTATION,  IMAGE,  FINGER_PRINT, 
+     SIGNATURE,  FINGERPRINT,  IMAGE,  ANNOTATION,  FINGER_PRINT,  OTP_SMS,  GENERIC, 
   };
   @SerializedName("type")
   private TypeEnum type = null;
+  @SerializedName("id")
+  private String id = null;
+  @SerializedName("enabledExpression")
+  private String enabledExpression = null;
+  @SerializedName("enabled")
+  private Boolean enabled = Boolean.FALSE;
   @SerializedName("code")
   private String code = null;
   public enum StatusEnum {
@@ -25,10 +39,14 @@ public class Evidence  implements Serializable {
   private StatusEnum status = null;
   @SerializedName("helpText")
   private String helpText = null;
+  @SerializedName("helpDetail")
+  private String helpDetail = null;
   @SerializedName("temporalReference")
   private String temporalReference = null;
   @SerializedName("positions")
   private List<Position> positions = new ArrayList<Position>() ;
+  @SerializedName("metadataList")
+  private List<Param> metadataList = new ArrayList<Param>() ;
   @SerializedName("metadata")
   private String metadata = null;
   @SerializedName("deviceType")
@@ -49,6 +67,46 @@ public class Evidence  implements Serializable {
   private String certificatePassword = null;
   @SerializedName("metadataCipherPublicKey")
   private String metadataCipherPublicKey = null;
+  @SerializedName("encryptionKeyAlias")
+  private String encryptionKeyAlias = null;
+  @SerializedName("optional")
+  private Boolean optional = Boolean.FALSE;
+  @SerializedName("ratioH")
+  private String ratioH = null;
+  @SerializedName("ratioW")
+  private String ratioW = null;
+  @SerializedName("signatureData")
+  private EvidenceSignature signatureData = null;
+  @SerializedName("fingerPrintData")
+  private EvidenceFingerPrint fingerPrintData = null;
+  @SerializedName("imageData")
+  private EvidenceImage imageData = null;
+  @SerializedName("positionsKey")
+  private String positionsKey = null;
+  @SerializedName("positionsMatch")
+  private List<PositionsMatch> positionsMatch = new ArrayList<PositionsMatch>() ;
+  @SerializedName("stampsMin")
+  private Integer stampsMin = null;
+  @SerializedName("stampsPolicy")
+  private String stampsPolicy = null;
+  @SerializedName("stylus")
+  private List<String> stylus = new ArrayList<String>() ;
+  @SerializedName("geolocation")
+  private Geolocation geolocation = null;
+  @SerializedName("imageQuality")
+  private Integer imageQuality = null;
+  @SerializedName("imageScaleFactor")
+  private Integer imageScaleFactor = null;
+  @SerializedName("ocr")
+  private OcrData ocr = null;
+  @SerializedName("genericData")
+  private EvidenceGeneric genericData = null;
+  @SerializedName("base64Image")
+  private String base64Image = null;
+  @SerializedName("imageType")
+  private String imageType = null;
+  @SerializedName("addLink")
+  private Boolean addLink = Boolean.FALSE;
 
   
   /**
@@ -59,6 +117,39 @@ public class Evidence  implements Serializable {
   }
   public void setType(TypeEnum type) {
     this.type = type;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public String getId() {
+    return id;
+  }
+  public void setId(String id) {
+    this.id = id;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public String getEnabledExpression() {
+    return enabledExpression;
+  }
+  public void setEnabledExpression(String enabledExpression) {
+    this.enabledExpression = enabledExpression;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public Boolean getEnabled() {
+    return enabled;
+  }
+  public void setEnabled(Boolean enabled) {
+    this.enabled = enabled;
   }
 
   
@@ -98,6 +189,17 @@ public class Evidence  implements Serializable {
   /**
    **/
   @ApiModelProperty(required = false, value = "")
+  public String getHelpDetail() {
+    return helpDetail;
+  }
+  public void setHelpDetail(String helpDetail) {
+    this.helpDetail = helpDetail;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
   public String getTemporalReference() {
     return temporalReference;
   }
@@ -114,6 +216,17 @@ public class Evidence  implements Serializable {
   }
   public void setPositions(List<Position> positions) {
     this.positions = positions;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public List<Param> getMetadataList() {
+    return metadataList;
+  }
+  public void setMetadataList(List<Param> metadataList) {
+    this.metadataList = metadataList;
   }
 
   
@@ -227,6 +340,229 @@ public class Evidence  implements Serializable {
   }
 
   
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public String getEncryptionKeyAlias() {
+    return encryptionKeyAlias;
+  }
+  public void setEncryptionKeyAlias(String encryptionKeyAlias) {
+    this.encryptionKeyAlias = encryptionKeyAlias;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public Boolean getOptional() {
+    return optional;
+  }
+  public void setOptional(Boolean optional) {
+    this.optional = optional;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public String getRatioH() {
+    return ratioH;
+  }
+  public void setRatioH(String ratioH) {
+    this.ratioH = ratioH;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public String getRatioW() {
+    return ratioW;
+  }
+  public void setRatioW(String ratioW) {
+    this.ratioW = ratioW;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public EvidenceSignature getSignatureData() {
+    return signatureData;
+  }
+  public void setSignatureData(EvidenceSignature signatureData) {
+    this.signatureData = signatureData;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public EvidenceFingerPrint getFingerPrintData() {
+    return fingerPrintData;
+  }
+  public void setFingerPrintData(EvidenceFingerPrint fingerPrintData) {
+    this.fingerPrintData = fingerPrintData;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public EvidenceImage getImageData() {
+    return imageData;
+  }
+  public void setImageData(EvidenceImage imageData) {
+    this.imageData = imageData;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public String getPositionsKey() {
+    return positionsKey;
+  }
+  public void setPositionsKey(String positionsKey) {
+    this.positionsKey = positionsKey;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public List<PositionsMatch> getPositionsMatch() {
+    return positionsMatch;
+  }
+  public void setPositionsMatch(List<PositionsMatch> positionsMatch) {
+    this.positionsMatch = positionsMatch;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public Integer getStampsMin() {
+    return stampsMin;
+  }
+  public void setStampsMin(Integer stampsMin) {
+    this.stampsMin = stampsMin;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public String getStampsPolicy() {
+    return stampsPolicy;
+  }
+  public void setStampsPolicy(String stampsPolicy) {
+    this.stampsPolicy = stampsPolicy;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = true, value = "")
+  public List<String> getStylus() {
+    return stylus;
+  }
+  public void setStylus(List<String> stylus) {
+    this.stylus = stylus;
+  }
+
+  
+  /**
+   * (since 3.5.0, internal) geolocation info
+   **/
+  @ApiModelProperty(required = false, value = "(since 3.5.0, internal) geolocation info")
+  public Geolocation getGeolocation() {
+    return geolocation;
+  }
+  public void setGeolocation(Geolocation geolocation) {
+    this.geolocation = geolocation;
+  }
+
+  
+  /**
+   * (since 3.5.0) calidad de la imagen donde 100 representa el máximo de calidad y 0 el máximo nivel de compresión
+   **/
+  @ApiModelProperty(required = false, value = "(since 3.5.0) calidad de la imagen donde 100 representa el máximo de calidad y 0 el máximo nivel de compresión")
+  public Integer getImageQuality() {
+    return imageQuality;
+  }
+  public void setImageQuality(Integer imageQuality) {
+    this.imageQuality = imageQuality;
+  }
+
+  
+  /**
+   * (since 3.5.0) factor multiplicador del tamaño de la imagen, para permitir zoom, 1, 2, 3
+   **/
+  @ApiModelProperty(required = false, value = "(since 3.5.0) factor multiplicador del tamaño de la imagen, para permitir zoom, 1, 2, 3")
+  public Integer getImageScaleFactor() {
+    return imageScaleFactor;
+  }
+  public void setImageScaleFactor(Integer imageScaleFactor) {
+    this.imageScaleFactor = imageScaleFactor;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public OcrData getOcr() {
+    return ocr;
+  }
+  public void setOcr(OcrData ocr) {
+    this.ocr = ocr;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public EvidenceGeneric getGenericData() {
+    return genericData;
+  }
+  public void setGenericData(EvidenceGeneric genericData) {
+    this.genericData = genericData;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public String getBase64Image() {
+    return base64Image;
+  }
+  public void setBase64Image(String base64Image) {
+    this.base64Image = base64Image;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public String getImageType() {
+    return imageType;
+  }
+  public void setImageType(String imageType) {
+    this.imageType = imageType;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public Boolean getAddLink() {
+    return addLink;
+  }
+  public void setAddLink(Boolean addLink) {
+    this.addLink = addLink;
+  }
+
+  
 
   @Override
   public String toString()  {
@@ -234,11 +570,16 @@ public class Evidence  implements Serializable {
     sb.append("class Evidence {\n");
     
     sb.append("  type: ").append(type).append("\n");
+    sb.append("  id: ").append(id).append("\n");
+    sb.append("  enabledExpression: ").append(enabledExpression).append("\n");
+    sb.append("  enabled: ").append(enabled).append("\n");
     sb.append("  code: ").append(code).append("\n");
     sb.append("  status: ").append(status).append("\n");
     sb.append("  helpText: ").append(helpText).append("\n");
+    sb.append("  helpDetail: ").append(helpDetail).append("\n");
     sb.append("  temporalReference: ").append(temporalReference).append("\n");
     sb.append("  positions: ").append(positions).append("\n");
+    sb.append("  metadataList: ").append(metadataList).append("\n");
     sb.append("  metadata: ").append(metadata).append("\n");
     sb.append("  deviceType: ").append(deviceType).append("\n");
     sb.append("  hashPdf: ").append(hashPdf).append("\n");
@@ -249,6 +590,26 @@ public class Evidence  implements Serializable {
     sb.append("  certificateAlias: ").append(certificateAlias).append("\n");
     sb.append("  certificatePassword: ").append(certificatePassword).append("\n");
     sb.append("  metadataCipherPublicKey: ").append(metadataCipherPublicKey).append("\n");
+    sb.append("  encryptionKeyAlias: ").append(encryptionKeyAlias).append("\n");
+    sb.append("  optional: ").append(optional).append("\n");
+    sb.append("  ratioH: ").append(ratioH).append("\n");
+    sb.append("  ratioW: ").append(ratioW).append("\n");
+    sb.append("  signatureData: ").append(signatureData).append("\n");
+    sb.append("  fingerPrintData: ").append(fingerPrintData).append("\n");
+    sb.append("  imageData: ").append(imageData).append("\n");
+    sb.append("  positionsKey: ").append(positionsKey).append("\n");
+    sb.append("  positionsMatch: ").append(positionsMatch).append("\n");
+    sb.append("  stampsMin: ").append(stampsMin).append("\n");
+    sb.append("  stampsPolicy: ").append(stampsPolicy).append("\n");
+    sb.append("  stylus: ").append(stylus).append("\n");
+    sb.append("  geolocation: ").append(geolocation).append("\n");
+    sb.append("  imageQuality: ").append(imageQuality).append("\n");
+    sb.append("  imageScaleFactor: ").append(imageScaleFactor).append("\n");
+    sb.append("  ocr: ").append(ocr).append("\n");
+    sb.append("  genericData: ").append(genericData).append("\n");
+    sb.append("  base64Image: ").append(base64Image).append("\n");
+    sb.append("  imageType: ").append(imageType).append("\n");
+    sb.append("  addLink: ").append(addLink).append("\n");
     sb.append("}\n");
     return sb.toString();
   }

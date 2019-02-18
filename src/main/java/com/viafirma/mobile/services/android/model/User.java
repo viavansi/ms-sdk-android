@@ -1,5 +1,8 @@
 package com.viafirma.mobile.services.android.model;
 
+import com.viafirma.mobile.services.android.model.Group;
+import com.viafirma.mobile.services.android.model.Param;
+import java.util.*;
 
 import com.wordnik.swagger.annotations.*;
 import com.google.gson.annotations.SerializedName;
@@ -35,6 +38,20 @@ public class User  implements Serializable {
   private String region = null;
   @SerializedName("pos")
   private String pos = null;
+  @SerializedName("confirmToken")
+  private String confirmToken = null;
+  @SerializedName("changePassToken")
+  private String changePassToken = null;
+  @SerializedName("logDevice")
+  private Boolean logDevice = Boolean.FALSE;
+  @SerializedName("status")
+  private String status = null;
+  @SerializedName("groups")
+  private List<String> groups = new ArrayList<String>() ;
+  @SerializedName("groupsInfo")
+  private List<Group> groupsInfo = new ArrayList<Group>() ;
+  @SerializedName("properties")
+  private List<Param> properties = new ArrayList<Param>() ;
   @SerializedName("mobile")
   private String mobile = null;
   @SerializedName("channel")
@@ -187,6 +204,83 @@ public class User  implements Serializable {
   /**
    **/
   @ApiModelProperty(required = false, value = "")
+  public String getConfirmToken() {
+    return confirmToken;
+  }
+  public void setConfirmToken(String confirmToken) {
+    this.confirmToken = confirmToken;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public String getChangePassToken() {
+    return changePassToken;
+  }
+  public void setChangePassToken(String changePassToken) {
+    this.changePassToken = changePassToken;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public Boolean getLogDevice() {
+    return logDevice;
+  }
+  public void setLogDevice(Boolean logDevice) {
+    this.logDevice = logDevice;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public String getStatus() {
+    return status;
+  }
+  public void setStatus(String status) {
+    this.status = status;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public List<String> getGroups() {
+    return groups;
+  }
+  public void setGroups(List<String> groups) {
+    this.groups = groups;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public List<Group> getGroupsInfo() {
+    return groupsInfo;
+  }
+  public void setGroupsInfo(List<Group> groupsInfo) {
+    this.groupsInfo = groupsInfo;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public List<Param> getProperties() {
+    return properties;
+  }
+  public void setProperties(List<Param> properties) {
+    this.properties = properties;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
   public String getMobile() {
     return mobile;
   }
@@ -225,6 +319,13 @@ public class User  implements Serializable {
     sb.append("  viafirmaCertificate: ").append(viafirmaCertificate).append("\n");
     sb.append("  region: ").append(region).append("\n");
     sb.append("  pos: ").append(pos).append("\n");
+    sb.append("  confirmToken: ").append(confirmToken).append("\n");
+    sb.append("  changePassToken: ").append(changePassToken).append("\n");
+    sb.append("  logDevice: ").append(logDevice).append("\n");
+    sb.append("  status: ").append(status).append("\n");
+    sb.append("  groups: ").append(groups).append("\n");
+    sb.append("  groupsInfo: ").append(groupsInfo).append("\n");
+    sb.append("  properties: ").append(properties).append("\n");
     sb.append("  mobile: ").append(mobile).append("\n");
     sb.append("  channel: ").append(channel).append("\n");
     sb.append("}\n");

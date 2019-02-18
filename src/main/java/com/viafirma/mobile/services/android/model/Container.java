@@ -1,7 +1,7 @@
 package com.viafirma.mobile.services.android.model;
 
-import com.viafirma.mobile.services.android.model.Row;
 import java.util.*;
+import com.viafirma.mobile.services.android.model.Row;
 
 import com.wordnik.swagger.annotations.*;
 import com.google.gson.annotations.SerializedName;

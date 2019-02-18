@@ -18,6 +18,8 @@ public class Download  implements Serializable {
   private String fileName = null;
   @SerializedName("expires")
   private Date expires = null;
+  @SerializedName("base64")
+  private String base64 = null;
 
   
   /**
@@ -64,6 +66,17 @@ public class Download  implements Serializable {
   }
 
   
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public String getBase64() {
+    return base64;
+  }
+  public void setBase64(String base64) {
+    this.base64 = base64;
+  }
+
+  
 
   @Override
   public String toString()  {
@@ -74,6 +87,7 @@ public class Download  implements Serializable {
     sb.append("  md5: ").append(md5).append("\n");
     sb.append("  fileName: ").append(fileName).append("\n");
     sb.append("  expires: ").append(expires).append("\n");
+    sb.append("  base64: ").append(base64).append("\n");
     sb.append("}\n");
     return sb.toString();
   }

@@ -44,6 +44,10 @@ public class Item  implements Serializable {
   private String update = null;
   @SerializedName("disabled")
   private Boolean disabled = Boolean.FALSE;
+  @SerializedName("hidden")
+  private Boolean hidden = Boolean.FALSE;
+  @SerializedName("random")
+  private Boolean random = Boolean.FALSE;
   @SerializedName("values")
   private List<String> values = new ArrayList<String>() ;
   @SerializedName("height")
@@ -252,6 +256,28 @@ public class Item  implements Serializable {
   /**
    **/
   @ApiModelProperty(required = false, value = "")
+  public Boolean getHidden() {
+    return hidden;
+  }
+  public void setHidden(Boolean hidden) {
+    this.hidden = hidden;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public Boolean getRandom() {
+    return random;
+  }
+  public void setRandom(Boolean random) {
+    this.random = random;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
   public List<String> getValues() {
     return values;
   }
@@ -360,6 +386,8 @@ public class Item  implements Serializable {
     sb.append("  match: ").append(match).append("\n");
     sb.append("  update: ").append(update).append("\n");
     sb.append("  disabled: ").append(disabled).append("\n");
+    sb.append("  hidden: ").append(hidden).append("\n");
+    sb.append("  random: ").append(random).append("\n");
     sb.append("  values: ").append(values).append("\n");
     sb.append("  height: ").append(height).append("\n");
     sb.append("  format: ").append(format).append("\n");

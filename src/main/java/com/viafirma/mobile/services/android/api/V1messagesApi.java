@@ -10,15 +10,13 @@ import java.util.*;
 import com.viafirma.mobile.services.android.model.Message;
 import com.viafirma.mobile.services.android.model.Document;
 
-import org.apache.http.entity.ContentType;
-import org.apache.http.entity.mime.MultipartEntityBuilder;
-import org.apache.http.entity.mime.HttpMultipartMode;
-import org.apache.http.entity.mime.content.StringBody;
-import org.apache.http.entity.mime.content.FileBody;
-
 import java.io.File;
 import java.util.Map;
 import java.util.HashMap;
+
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 
 public class V1messagesApi {
 
@@ -52,8 +50,8 @@ public class V1messagesApi {
 
     if(contentType.startsWith("multipart/form-data")) {
       boolean hasFields = false;
-      MultipartEntityBuilder mp = MultipartEntityBuilder.create();
-      mp.setMode(HttpMultipartMode.BROWSER_COMPATIBLE);
+      MultipartBody.Builder mp = new MultipartBody.Builder();
+      mp.setType(MultipartBody.FORM);
       
       if(hasFields)
         postBody = mp;
@@ -95,11 +93,11 @@ public class V1messagesApi {
 
     if(contentType.startsWith("multipart/form-data")) {
       boolean hasFields = false;
-      MultipartEntityBuilder mp = MultipartEntityBuilder.create();
-      mp.setMode(HttpMultipartMode.BROWSER_COMPATIBLE);
+      MultipartBody.Builder mp = new MultipartBody.Builder();
+      mp.setType(MultipartBody.FORM);
       
       hasFields = true;
-      mp.addPart("comment", new StringBody(comment, ContentType.TEXT_PLAIN));
+      mp.addFormDataPart("comment", comment);
       
       
       if(hasFields)
@@ -143,8 +141,8 @@ public class V1messagesApi {
 
     if(contentType.startsWith("multipart/form-data")) {
       boolean hasFields = false;
-      MultipartEntityBuilder mp = MultipartEntityBuilder.create();
-      mp.setMode(HttpMultipartMode.BROWSER_COMPATIBLE);
+      MultipartBody.Builder mp = new MultipartBody.Builder();
+      mp.setType(MultipartBody.FORM);
       
       if(hasFields)
         postBody = mp;
@@ -186,8 +184,8 @@ public class V1messagesApi {
 
     if(contentType.startsWith("multipart/form-data")) {
       boolean hasFields = false;
-      MultipartEntityBuilder mp = MultipartEntityBuilder.create();
-      mp.setMode(HttpMultipartMode.BROWSER_COMPATIBLE);
+      MultipartBody.Builder mp = new MultipartBody.Builder();
+      mp.setType(MultipartBody.FORM);
       
       if(hasFields)
         postBody = mp;

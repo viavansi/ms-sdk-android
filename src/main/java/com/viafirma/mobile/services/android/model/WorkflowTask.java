@@ -7,14 +7,12 @@ import java.io.Serializable;
 
 
 @ApiModel(description = "")
-public class Task  implements Serializable {
+public class WorkflowTask  implements Serializable {
   
   @SerializedName("code")
   private String code = null;
   @SerializedName("finalStatus")
   private Boolean finalStatus = Boolean.FALSE;
-  @SerializedName("numThreads")
-  private Integer numThreads = null;
   @SerializedName("cacheName")
   private String cacheName = null;
   @SerializedName("classRef")
@@ -46,17 +44,6 @@ public class Task  implements Serializable {
   /**
    **/
   @ApiModelProperty(required = true, value = "")
-  public Integer getNumThreads() {
-    return numThreads;
-  }
-  public void setNumThreads(Integer numThreads) {
-    this.numThreads = numThreads;
-  }
-
-  
-  /**
-   **/
-  @ApiModelProperty(required = true, value = "")
   public String getCacheName() {
     return cacheName;
   }
@@ -80,11 +67,10 @@ public class Task  implements Serializable {
   @Override
   public String toString()  {
     StringBuilder sb = new StringBuilder();
-    sb.append("class Task {\n");
+    sb.append("class WorkflowTask {\n");
     
     sb.append("  code: ").append(code).append("\n");
     sb.append("  finalStatus: ").append(finalStatus).append("\n");
-    sb.append("  numThreads: ").append(numThreads).append("\n");
     sb.append("  cacheName: ").append(cacheName).append("\n");
     sb.append("  classRef: ").append(classRef).append("\n");
     sb.append("}\n");

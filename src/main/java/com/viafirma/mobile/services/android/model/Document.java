@@ -2,6 +2,7 @@ package com.viafirma.mobile.services.android.model;
 
 import com.viafirma.mobile.services.android.model.Item;
 import java.util.*;
+import com.viafirma.mobile.services.android.model.Font;
 
 import com.wordnik.swagger.annotations.*;
 import com.google.gson.annotations.SerializedName;
@@ -28,7 +29,7 @@ public class Document  implements Serializable {
   @SerializedName("signedReference")
   private String signedReference = null;
   public enum TemplateTypeEnum {
-     docx,  odt,  url, 
+     docx,  odt,  url,  pdf,  base64,  message, 
   };
   @SerializedName("templateType")
   private TemplateTypeEnum templateType = null;
@@ -38,6 +39,24 @@ public class Document  implements Serializable {
   private Boolean formDisabled = Boolean.FALSE;
   @SerializedName("items")
   private List<Item> items = new ArrayList<Item>() ;
+  @SerializedName("pdfaCompliant")
+  private Boolean pdfaCompliant = Boolean.FALSE;
+  @SerializedName("font")
+  private Font font = null;
+  @SerializedName("policyCode")
+  private String policyCode = null;
+  @SerializedName("password")
+  private String password = null;
+  @SerializedName("readRequired")
+  private Boolean readRequired = Boolean.FALSE;
+  @SerializedName("numPages")
+  private Integer numPages = null;
+  @SerializedName("allowResend")
+  private Boolean allowResend = Boolean.FALSE;
+  @SerializedName("deleteSignedDocuments")
+  private Boolean deleteSignedDocuments = Boolean.FALSE;
+  @SerializedName("watermarkText")
+  private String watermarkText = null;
 
   
   /**
@@ -172,6 +191,108 @@ public class Document  implements Serializable {
   }
 
   
+  /**
+   * generate pdf compliant with PDF/A-3A ISO 19005-3
+   **/
+  @ApiModelProperty(required = false, value = "generate pdf compliant with PDF/A-3A ISO 19005-3")
+  public Boolean getPdfaCompliant() {
+    return pdfaCompliant;
+  }
+  public void setPdfaCompliant(Boolean pdfaCompliant) {
+    this.pdfaCompliant = pdfaCompliant;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public Font getFont() {
+    return font;
+  }
+  public void setFont(Font font) {
+    this.font = font;
+  }
+
+  
+  /**
+   * (since 3.5.0) code of policy to use
+   **/
+  @ApiModelProperty(required = false, value = "(since 3.5.0) code of policy to use")
+  public String getPolicyCode() {
+    return policyCode;
+  }
+  public void setPolicyCode(String policyCode) {
+    this.policyCode = policyCode;
+  }
+
+  
+  /**
+   * (since 3.5.0) document password
+   **/
+  @ApiModelProperty(required = false, value = "(since 3.5.0) document password")
+  public String getPassword() {
+    return password;
+  }
+  public void setPassword(String password) {
+    this.password = password;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public Boolean getReadRequired() {
+    return readRequired;
+  }
+  public void setReadRequired(Boolean readRequired) {
+    this.readRequired = readRequired;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public Integer getNumPages() {
+    return numPages;
+  }
+  public void setNumPages(Integer numPages) {
+    this.numPages = numPages;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public Boolean getAllowResend() {
+    return allowResend;
+  }
+  public void setAllowResend(Boolean allowResend) {
+    this.allowResend = allowResend;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public Boolean getDeleteSignedDocuments() {
+    return deleteSignedDocuments;
+  }
+  public void setDeleteSignedDocuments(Boolean deleteSignedDocuments) {
+    this.deleteSignedDocuments = deleteSignedDocuments;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public String getWatermarkText() {
+    return watermarkText;
+  }
+  public void setWatermarkText(String watermarkText) {
+    this.watermarkText = watermarkText;
+  }
+
+  
 
   @Override
   public String toString()  {
@@ -190,6 +311,15 @@ public class Document  implements Serializable {
     sb.append("  formRequired: ").append(formRequired).append("\n");
     sb.append("  formDisabled: ").append(formDisabled).append("\n");
     sb.append("  items: ").append(items).append("\n");
+    sb.append("  pdfaCompliant: ").append(pdfaCompliant).append("\n");
+    sb.append("  font: ").append(font).append("\n");
+    sb.append("  policyCode: ").append(policyCode).append("\n");
+    sb.append("  password: ").append(password).append("\n");
+    sb.append("  readRequired: ").append(readRequired).append("\n");
+    sb.append("  numPages: ").append(numPages).append("\n");
+    sb.append("  allowResend: ").append(allowResend).append("\n");
+    sb.append("  deleteSignedDocuments: ").append(deleteSignedDocuments).append("\n");
+    sb.append("  watermarkText: ").append(watermarkText).append("\n");
     sb.append("}\n");
     return sb.toString();
   }

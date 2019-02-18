@@ -1,13 +1,14 @@
 package com.viafirma.mobile.services.android.model;
 
-import com.viafirma.mobile.services.android.model.Document;
+import com.viafirma.mobile.services.android.model.Policy;
+import com.viafirma.mobile.services.android.model.Auditory;
 import com.viafirma.mobile.services.android.model.Param;
 import com.viafirma.mobile.services.android.model.Workflow;
-import java.util.Date;
-import com.viafirma.mobile.services.android.model.Policy;
-import com.viafirma.mobile.services.android.model.ErrorResponse;
 import java.util.*;
+import com.viafirma.mobile.services.android.model.Document;
 import com.viafirma.mobile.services.android.model.Notification;
+import java.util.Date;
+import com.viafirma.mobile.services.android.model.ErrorResponse;
 
 import com.wordnik.swagger.annotations.*;
 import com.google.gson.annotations.SerializedName;
@@ -19,6 +20,8 @@ public class Message  implements Serializable {
   
   @SerializedName("code")
   private String code = null;
+  @SerializedName("externalCode")
+  private String externalCode = null;
   @SerializedName("userCode")
   private String userCode = null;
   @SerializedName("groupCode")
@@ -41,8 +44,14 @@ public class Message  implements Serializable {
   private String callbackURL = null;
   @SerializedName("callbackMails")
   private String callbackMails = null;
+  @SerializedName("callbackCheckListMails")
+  private String callbackCheckListMails = null;
   @SerializedName("callbackMailsFormKeys")
   private List<String> callbackMailsFormKeys = new ArrayList<String>() ;
+  @SerializedName("callbackMailFilename")
+  private String callbackMailFilename = null;
+  @SerializedName("callbackAuthorization")
+  private String callbackAuthorization = null;
   @SerializedName("error")
   private ErrorResponse error = null;
   @SerializedName("pid")
@@ -53,6 +62,10 @@ public class Message  implements Serializable {
   private Date processTimeExpired = null;
   @SerializedName("commentReject")
   private String commentReject = null;
+  @SerializedName("callbackResponse")
+  private String callbackResponse = null;
+  @SerializedName("auditory")
+  private List<Auditory> auditory = new ArrayList<Auditory>() ;
 
   
   /**
@@ -63,6 +76,17 @@ public class Message  implements Serializable {
   }
   public void setCode(String code) {
     this.code = code;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public String getExternalCode() {
+    return externalCode;
+  }
+  public void setExternalCode(String externalCode) {
+    this.externalCode = externalCode;
   }
 
   
@@ -190,11 +214,44 @@ public class Message  implements Serializable {
   /**
    **/
   @ApiModelProperty(required = false, value = "")
+  public String getCallbackCheckListMails() {
+    return callbackCheckListMails;
+  }
+  public void setCallbackCheckListMails(String callbackCheckListMails) {
+    this.callbackCheckListMails = callbackCheckListMails;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
   public List<String> getCallbackMailsFormKeys() {
     return callbackMailsFormKeys;
   }
   public void setCallbackMailsFormKeys(List<String> callbackMailsFormKeys) {
     this.callbackMailsFormKeys = callbackMailsFormKeys;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public String getCallbackMailFilename() {
+    return callbackMailFilename;
+  }
+  public void setCallbackMailFilename(String callbackMailFilename) {
+    this.callbackMailFilename = callbackMailFilename;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public String getCallbackAuthorization() {
+    return callbackAuthorization;
+  }
+  public void setCallbackAuthorization(String callbackAuthorization) {
+    this.callbackAuthorization = callbackAuthorization;
   }
 
   
@@ -253,6 +310,28 @@ public class Message  implements Serializable {
   }
 
   
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public String getCallbackResponse() {
+    return callbackResponse;
+  }
+  public void setCallbackResponse(String callbackResponse) {
+    this.callbackResponse = callbackResponse;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public List<Auditory> getAuditory() {
+    return auditory;
+  }
+  public void setAuditory(List<Auditory> auditory) {
+    this.auditory = auditory;
+  }
+
+  
 
   @Override
   public String toString()  {
@@ -260,6 +339,7 @@ public class Message  implements Serializable {
     sb.append("class Message {\n");
     
     sb.append("  code: ").append(code).append("\n");
+    sb.append("  externalCode: ").append(externalCode).append("\n");
     sb.append("  userCode: ").append(userCode).append("\n");
     sb.append("  groupCode: ").append(groupCode).append("\n");
     sb.append("  appCode: ").append(appCode).append("\n");
@@ -271,12 +351,17 @@ public class Message  implements Serializable {
     sb.append("  policies: ").append(policies).append("\n");
     sb.append("  callbackURL: ").append(callbackURL).append("\n");
     sb.append("  callbackMails: ").append(callbackMails).append("\n");
+    sb.append("  callbackCheckListMails: ").append(callbackCheckListMails).append("\n");
     sb.append("  callbackMailsFormKeys: ").append(callbackMailsFormKeys).append("\n");
+    sb.append("  callbackMailFilename: ").append(callbackMailFilename).append("\n");
+    sb.append("  callbackAuthorization: ").append(callbackAuthorization).append("\n");
     sb.append("  error: ").append(error).append("\n");
     sb.append("  pid: ").append(pid).append("\n");
     sb.append("  server: ").append(server).append("\n");
     sb.append("  processTimeExpired: ").append(processTimeExpired).append("\n");
     sb.append("  commentReject: ").append(commentReject).append("\n");
+    sb.append("  callbackResponse: ").append(callbackResponse).append("\n");
+    sb.append("  auditory: ").append(auditory).append("\n");
     sb.append("}\n");
     return sb.toString();
   }

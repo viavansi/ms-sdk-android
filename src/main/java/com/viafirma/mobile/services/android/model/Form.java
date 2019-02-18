@@ -1,10 +1,10 @@
 package com.viafirma.mobile.services.android.model;
 
 import com.viafirma.mobile.services.android.model.FormNestedValue;
-import com.viafirma.mobile.services.android.model.Setting;
-import com.viafirma.mobile.services.android.model.FormValue;
-import java.util.*;
 import com.viafirma.mobile.services.android.model.Container;
+import com.viafirma.mobile.services.android.model.FormValue;
+import com.viafirma.mobile.services.android.model.Setting;
+import java.util.*;
 
 import com.wordnik.swagger.annotations.*;
 import com.google.gson.annotations.SerializedName;

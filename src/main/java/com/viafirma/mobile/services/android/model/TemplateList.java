@@ -18,6 +18,8 @@ public class TemplateList  implements Serializable {
   private String description = null;
   @SerializedName("creationDate")
   private Date creationDate = null;
+  @SerializedName("groups")
+  private String groups = null;
   @SerializedName("version")
   private String version = null;
 
@@ -68,6 +70,17 @@ public class TemplateList  implements Serializable {
   
   /**
    **/
+  @ApiModelProperty(required = false, value = "")
+  public String getGroups() {
+    return groups;
+  }
+  public void setGroups(String groups) {
+    this.groups = groups;
+  }
+
+  
+  /**
+   **/
   @ApiModelProperty(required = true, value = "")
   public String getVersion() {
     return version;
@@ -87,6 +100,7 @@ public class TemplateList  implements Serializable {
     sb.append("  title: ").append(title).append("\n");
     sb.append("  description: ").append(description).append("\n");
     sb.append("  creationDate: ").append(creationDate).append("\n");
+    sb.append("  groups: ").append(groups).append("\n");
     sb.append("  version: ").append(version).append("\n");
     sb.append("}\n");
     return sb.toString();

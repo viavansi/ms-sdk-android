@@ -10,15 +10,13 @@ import java.util.*;
 import com.viafirma.mobile.services.android.model.User;
 import com.viafirma.mobile.services.android.model.Template;
 
-import org.apache.http.entity.ContentType;
-import org.apache.http.entity.mime.MultipartEntityBuilder;
-import org.apache.http.entity.mime.HttpMultipartMode;
-import org.apache.http.entity.mime.content.StringBody;
-import org.apache.http.entity.mime.content.FileBody;
-
 import java.io.File;
 import java.util.Map;
 import java.util.HashMap;
+
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 
 public class V1usersApi {
 
@@ -52,8 +50,8 @@ public class V1usersApi {
 
     if(contentType.startsWith("multipart/form-data")) {
       boolean hasFields = false;
-      MultipartEntityBuilder mp = MultipartEntityBuilder.create();
-      mp.setMode(HttpMultipartMode.BROWSER_COMPATIBLE);
+      MultipartBody.Builder mp = new MultipartBody.Builder();
+      mp.setType(MultipartBody.FORM);
       
       if(hasFields)
         postBody = mp;
@@ -94,15 +92,15 @@ public class V1usersApi {
 
     if(contentType.startsWith("multipart/form-data")) {
       boolean hasFields = false;
-      MultipartEntityBuilder mp = MultipartEntityBuilder.create();
-      mp.setMode(HttpMultipartMode.BROWSER_COMPATIBLE);
+      MultipartBody.Builder mp = new MultipartBody.Builder();
+      mp.setType(MultipartBody.FORM);
       
       hasFields = true;
-      mp.addPart("code", new StringBody(code, ContentType.TEXT_PLAIN));
+      mp.addFormDataPart("code", code);
       
       
       hasFields = true;
-      mp.addPart("password", new StringBody(password, ContentType.TEXT_PLAIN));
+      mp.addFormDataPart("password", password);
       
       
       if(hasFields)
@@ -148,8 +146,8 @@ public class V1usersApi {
 
     if(contentType.startsWith("multipart/form-data")) {
       boolean hasFields = false;
-      MultipartEntityBuilder mp = MultipartEntityBuilder.create();
-      mp.setMode(HttpMultipartMode.BROWSER_COMPATIBLE);
+      MultipartBody.Builder mp = new MultipartBody.Builder();
+      mp.setType(MultipartBody.FORM);
       
       if(hasFields)
         postBody = mp;
@@ -191,8 +189,8 @@ public class V1usersApi {
 
     if(contentType.startsWith("multipart/form-data")) {
       boolean hasFields = false;
-      MultipartEntityBuilder mp = MultipartEntityBuilder.create();
-      mp.setMode(HttpMultipartMode.BROWSER_COMPATIBLE);
+      MultipartBody.Builder mp = new MultipartBody.Builder();
+      mp.setType(MultipartBody.FORM);
       
       if(hasFields)
         postBody = mp;
@@ -235,8 +233,8 @@ public class V1usersApi {
 
     if(contentType.startsWith("multipart/form-data")) {
       boolean hasFields = false;
-      MultipartEntityBuilder mp = MultipartEntityBuilder.create();
-      mp.setMode(HttpMultipartMode.BROWSER_COMPATIBLE);
+      MultipartBody.Builder mp = new MultipartBody.Builder();
+      mp.setType(MultipartBody.FORM);
       
       if(hasFields)
         postBody = mp;
