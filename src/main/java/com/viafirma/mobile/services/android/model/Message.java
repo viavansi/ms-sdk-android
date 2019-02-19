@@ -22,6 +22,8 @@ public class Message  implements Serializable {
   private String code = null;
   @SerializedName("externalCode")
   private String externalCode = null;
+  @SerializedName("externalStatus")
+  private String externalStatus = null;
   @SerializedName("userCode")
   private String userCode = null;
   @SerializedName("groupCode")
@@ -87,6 +89,17 @@ public class Message  implements Serializable {
   }
   public void setExternalCode(String externalCode) {
     this.externalCode = externalCode;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public String getExternalStatus() {
+    return externalStatus;
+  }
+  public void setExternalStatus(String externalStatus) {
+    this.externalStatus = externalStatus;
   }
 
   
@@ -340,6 +353,7 @@ public class Message  implements Serializable {
     
     sb.append("  code: ").append(code).append("\n");
     sb.append("  externalCode: ").append(externalCode).append("\n");
+    sb.append("  externalStatus: ").append(externalStatus).append("\n");
     sb.append("  userCode: ").append(userCode).append("\n");
     sb.append("  groupCode: ").append(groupCode).append("\n");
     sb.append("  appCode: ").append(appCode).append("\n");

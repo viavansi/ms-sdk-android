@@ -20,6 +20,8 @@ public class TemplateList  implements Serializable {
   private Date creationDate = null;
   @SerializedName("groups")
   private String groups = null;
+  @SerializedName("onlyWacom")
+  private Boolean onlyWacom = Boolean.FALSE;
   @SerializedName("version")
   private String version = null;
 
@@ -81,6 +83,17 @@ public class TemplateList  implements Serializable {
   
   /**
    **/
+  @ApiModelProperty(required = false, value = "")
+  public Boolean getOnlyWacom() {
+    return onlyWacom;
+  }
+  public void setOnlyWacom(Boolean onlyWacom) {
+    this.onlyWacom = onlyWacom;
+  }
+
+  
+  /**
+   **/
   @ApiModelProperty(required = true, value = "")
   public String getVersion() {
     return version;
@@ -101,6 +114,7 @@ public class TemplateList  implements Serializable {
     sb.append("  description: ").append(description).append("\n");
     sb.append("  creationDate: ").append(creationDate).append("\n");
     sb.append("  groups: ").append(groups).append("\n");
+    sb.append("  onlyWacom: ").append(onlyWacom).append("\n");
     sb.append("  version: ").append(version).append("\n");
     sb.append("}\n");
     return sb.toString();
