@@ -24,6 +24,8 @@ public class Message  implements Serializable {
   private String externalCode = null;
   @SerializedName("externalStatus")
   private String externalStatus = null;
+  @SerializedName("disabled")
+  private Boolean disabled = Boolean.FALSE;
   @SerializedName("userCode")
   private String userCode = null;
   @SerializedName("groupCode")
@@ -100,6 +102,17 @@ public class Message  implements Serializable {
   }
   public void setExternalStatus(String externalStatus) {
     this.externalStatus = externalStatus;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public Boolean getDisabled() {
+    return disabled;
+  }
+  public void setDisabled(Boolean disabled) {
+    this.disabled = disabled;
   }
 
   
@@ -354,6 +367,7 @@ public class Message  implements Serializable {
     sb.append("  code: ").append(code).append("\n");
     sb.append("  externalCode: ").append(externalCode).append("\n");
     sb.append("  externalStatus: ").append(externalStatus).append("\n");
+    sb.append("  disabled: ").append(disabled).append("\n");
     sb.append("  userCode: ").append(userCode).append("\n");
     sb.append("  groupCode: ").append(groupCode).append("\n");
     sb.append("  appCode: ").append(appCode).append("\n");

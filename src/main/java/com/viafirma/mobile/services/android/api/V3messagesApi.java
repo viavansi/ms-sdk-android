@@ -163,6 +163,49 @@ public class V3messagesApi {
   }
   
     
+  public Message disableByCode (String messageCode) throws ApiException {
+    Object postBody = null;
+    
+
+    // create path and map variables
+    String path = "/v3/messages/disabled/{messageCode}".replaceAll("\\{format\\}","json")
+      .replaceAll("\\{" + "messageCode" + "\\}", ApiInvoker.getInstance().escapeString(messageCode.toString()));
+
+    // query params
+    Map<String, String> queryParams = new HashMap<String, String>();
+    Map<String, String> headerParams = new HashMap<String, String>();
+    Map<String, String> formParams = new HashMap<String, String>();
+
+    
+    
+    String[] contentTypes = {
+      "application/x-www-form-urlencoded"
+    };
+
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+
+    if(contentType.startsWith("multipart/form-data")) {
+      boolean hasFields = false;
+      MultipartBody.Builder mp = new MultipartBody.Builder();
+      mp.setType(MultipartBody.FORM);
+      
+      if(hasFields)
+        postBody = mp;
+    }
+    else {
+      
+    }
+
+      String response = ApiInvoker.getInstance().invokeAPI(path, "PUT", queryParams, postBody, headerParams, formParams, contentType);
+      if(response != null){
+        return (Message) ApiInvoker.deserialize(response, "", Message.class);
+      } else {
+        return null;
+      }
+    
+  }
+  
+    
   public Message dispatchMessage (Message body) throws ApiException {
     Object postBody = body;
     
@@ -240,6 +283,103 @@ public class V3messagesApi {
       String response = ApiInvoker.getInstance().invokeAPI(path, "POST", queryParams, postBody, headerParams, formParams, contentType);
       if(response != null){
         return (Download) ApiInvoker.deserialize(response, "", Download.class);
+      } else {
+        return null;
+      }
+    
+  }
+  
+    
+  public List<MessageList> getMessagesByExternalStatus (String groupCode, String requestAppCode, String templateCode) throws ApiException {
+    Object postBody = null;
+    
+
+    // create path and map variables
+    String path = "/v3/messages/external/new".replaceAll("\\{format\\}","json");
+
+    // query params
+    Map<String, String> queryParams = new HashMap<String, String>();
+    Map<String, String> headerParams = new HashMap<String, String>();
+    Map<String, String> formParams = new HashMap<String, String>();
+
+    if(!"null".equals(String.valueOf(groupCode)))
+      queryParams.put("groupCode", String.valueOf(groupCode));
+    if(!"null".equals(String.valueOf(requestAppCode)))
+      queryParams.put("requestAppCode", String.valueOf(requestAppCode));
+    if(!"null".equals(String.valueOf(templateCode)))
+      queryParams.put("templateCode", String.valueOf(templateCode));
+    
+    
+    String[] contentTypes = {
+      
+    };
+
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+
+    if(contentType.startsWith("multipart/form-data")) {
+      boolean hasFields = false;
+      MultipartBody.Builder mp = new MultipartBody.Builder();
+      mp.setType(MultipartBody.FORM);
+      
+      if(hasFields)
+        postBody = mp;
+    }
+    else {
+      
+    }
+
+      String response = ApiInvoker.getInstance().invokeAPI(path, "GET", queryParams, postBody, headerParams, formParams, contentType);
+      if(response != null){
+        return (List<MessageList>) ApiInvoker.deserialize(response, "array", MessageList.class);
+      } else {
+        return null;
+      }
+    
+  }
+  
+    
+  public List<MessageList> getMessagesByExternalStatus (String externalStatus, String groupCode, String requestAppCode, String templateCode) throws ApiException {
+    Object postBody = null;
+    
+
+    // create path and map variables
+    String path = "/v3/messages/external/status/{externalStatus}".replaceAll("\\{format\\}","json")
+      .replaceAll("\\{" + "externalStatus" + "\\}", ApiInvoker.getInstance().escapeString(externalStatus.toString()));
+
+    // query params
+    Map<String, String> queryParams = new HashMap<String, String>();
+    Map<String, String> headerParams = new HashMap<String, String>();
+    Map<String, String> formParams = new HashMap<String, String>();
+
+    if(!"null".equals(String.valueOf(groupCode)))
+      queryParams.put("groupCode", String.valueOf(groupCode));
+    if(!"null".equals(String.valueOf(requestAppCode)))
+      queryParams.put("requestAppCode", String.valueOf(requestAppCode));
+    if(!"null".equals(String.valueOf(templateCode)))
+      queryParams.put("templateCode", String.valueOf(templateCode));
+    
+    
+    String[] contentTypes = {
+      
+    };
+
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+
+    if(contentType.startsWith("multipart/form-data")) {
+      boolean hasFields = false;
+      MultipartBody.Builder mp = new MultipartBody.Builder();
+      mp.setType(MultipartBody.FORM);
+      
+      if(hasFields)
+        postBody = mp;
+    }
+    else {
+      
+    }
+
+      String response = ApiInvoker.getInstance().invokeAPI(path, "GET", queryParams, postBody, headerParams, formParams, contentType);
+      if(response != null){
+        return (List<MessageList>) ApiInvoker.deserialize(response, "array", MessageList.class);
       } else {
         return null;
       }
@@ -521,7 +661,7 @@ public class V3messagesApi {
   }
   
     
-  public String resendMessage (String code) throws ApiException {
+  public String retryMessage (String code) throws ApiException {
     Object postBody = null;
     
 
@@ -555,6 +695,49 @@ public class V3messagesApi {
     }
 
       String response = ApiInvoker.getInstance().invokeAPI(path, "GET", queryParams, postBody, headerParams, formParams, contentType);
+      if(response != null){
+        return (String) ApiInvoker.deserialize(response, "", String.class);
+      } else {
+        return null;
+      }
+    
+  }
+  
+    
+  public String resendMessage (String code) throws ApiException {
+    Object postBody = null;
+    
+
+    // create path and map variables
+    String path = "/v3/messages/restart/{code}/".replaceAll("\\{format\\}","json")
+      .replaceAll("\\{" + "code" + "\\}", ApiInvoker.getInstance().escapeString(code.toString()));
+
+    // query params
+    Map<String, String> queryParams = new HashMap<String, String>();
+    Map<String, String> headerParams = new HashMap<String, String>();
+    Map<String, String> formParams = new HashMap<String, String>();
+
+    
+    
+    String[] contentTypes = {
+      
+    };
+
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+
+    if(contentType.startsWith("multipart/form-data")) {
+      boolean hasFields = false;
+      MultipartBody.Builder mp = new MultipartBody.Builder();
+      mp.setType(MultipartBody.FORM);
+      
+      if(hasFields)
+        postBody = mp;
+    }
+    else {
+      
+    }
+
+      String response = ApiInvoker.getInstance().invokeAPI(path, "PUT", queryParams, postBody, headerParams, formParams, contentType);
       if(response != null){
         return (String) ApiInvoker.deserialize(response, "", String.class);
       } else {

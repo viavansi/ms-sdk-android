@@ -25,6 +25,10 @@ public class MessageList  implements Serializable {
   private String templateCode = null;
   @SerializedName("creationDate")
   private Date creationDate = null;
+  @SerializedName("externalCode")
+  private String externalCode = null;
+  @SerializedName("externalStatus")
+  private String externalStatus = null;
 
   
   /**
@@ -99,6 +103,30 @@ public class MessageList  implements Serializable {
   }
 
   
+  /**
+   * (since 3.5.120, internal) external code
+   **/
+  @ApiModelProperty(required = true, value = "(since 3.5.120, internal) external code")
+  public String getExternalCode() {
+    return externalCode;
+  }
+  public void setExternalCode(String externalCode) {
+    this.externalCode = externalCode;
+  }
+
+  
+  /**
+   * (since 3.5.120, internal) external status
+   **/
+  @ApiModelProperty(required = true, value = "(since 3.5.120, internal) external status")
+  public String getExternalStatus() {
+    return externalStatus;
+  }
+  public void setExternalStatus(String externalStatus) {
+    this.externalStatus = externalStatus;
+  }
+
+  
 
   @Override
   public String toString()  {
@@ -111,6 +139,8 @@ public class MessageList  implements Serializable {
     sb.append("  groupCode: ").append(groupCode).append("\n");
     sb.append("  templateCode: ").append(templateCode).append("\n");
     sb.append("  creationDate: ").append(creationDate).append("\n");
+    sb.append("  externalCode: ").append(externalCode).append("\n");
+    sb.append("  externalStatus: ").append(externalStatus).append("\n");
     sb.append("}\n");
     return sb.toString();
   }
