@@ -36,6 +36,8 @@ public class Setting  implements Serializable {
   private List<String> callbackMailsFormKeys = new ArrayList<String>() ;
   @SerializedName("validateCode")
   private String validateCode = null;
+  @SerializedName("validateCodeFinish")
+  private String validateCodeFinish = null;
   @SerializedName("workflow")
   private String workflow = null;
   @SerializedName("font")
@@ -174,6 +176,17 @@ public class Setting  implements Serializable {
   /**
    **/
   @ApiModelProperty(required = false, value = "")
+  public String getValidateCodeFinish() {
+    return validateCodeFinish;
+  }
+  public void setValidateCodeFinish(String validateCodeFinish) {
+    this.validateCodeFinish = validateCodeFinish;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
   public String getWorkflow() {
     return workflow;
   }
@@ -254,6 +267,7 @@ public class Setting  implements Serializable {
     sb.append("  callbackMails: ").append(callbackMails).append("\n");
     sb.append("  callbackMailsFormKeys: ").append(callbackMailsFormKeys).append("\n");
     sb.append("  validateCode: ").append(validateCode).append("\n");
+    sb.append("  validateCodeFinish: ").append(validateCodeFinish).append("\n");
     sb.append("  workflow: ").append(workflow).append("\n");
     sb.append("  font: ").append(font).append("\n");
     sb.append("  acrofieldsPositions: ").append(acrofieldsPositions).append("\n");

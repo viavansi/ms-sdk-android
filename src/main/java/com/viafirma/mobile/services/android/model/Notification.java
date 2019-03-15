@@ -21,6 +21,8 @@ public class Notification  implements Serializable {
   private String messageCode = null;
   @SerializedName("validateCode")
   private String validateCode = null;
+  @SerializedName("validateCodeFinish")
+  private String validateCodeFinish = null;
   @SerializedName("text")
   private String text = null;
   @SerializedName("detail")
@@ -83,6 +85,17 @@ public class Notification  implements Serializable {
   }
   public void setValidateCode(String validateCode) {
     this.validateCode = validateCode;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public String getValidateCodeFinish() {
+    return validateCodeFinish;
+  }
+  public void setValidateCodeFinish(String validateCodeFinish) {
+    this.validateCodeFinish = validateCodeFinish;
   }
 
   
@@ -227,6 +240,7 @@ public class Notification  implements Serializable {
     sb.append("  code: ").append(code).append("\n");
     sb.append("  messageCode: ").append(messageCode).append("\n");
     sb.append("  validateCode: ").append(validateCode).append("\n");
+    sb.append("  validateCodeFinish: ").append(validateCodeFinish).append("\n");
     sb.append("  text: ").append(text).append("\n");
     sb.append("  detail: ").append(detail).append("\n");
     sb.append("  sound: ").append(sound).append("\n");
