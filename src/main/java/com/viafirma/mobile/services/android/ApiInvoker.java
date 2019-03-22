@@ -60,15 +60,24 @@ public class ApiInvoker {
   String token = null;
   String tokenSecret = null;
   long timeoutSeconds = 120;
+  long connectTimeout = 30;
   int timeoutRetryAttempts = 0;
   SSLSocketFactory sslSocketFactory;
   
-  public void setTimeoutSeconds(long timeoutSeconds) {
+  public void setReadTimeout(long timeoutSeconds) {
     this.timeoutSeconds = timeoutSeconds;
   }
 
-  public long getTimeoutSeconds() {
+  public long getReadTimeout() {
     return timeoutSeconds;
+  }
+  
+  public void setConnectTimeout(long timeoutSeconds) {
+  	this.connectTimeout = timeoutSeconds;
+  }
+  
+  public long getConnectTimeout() {
+    return connectTimeout;
   }
   
   public void setBasePath(String basePath) {
@@ -275,7 +284,7 @@ public class ApiInvoker {
     
    	public InputStream download(String url) throws IOException{
         OkHttpClient.Builder clientBuilder = new OkHttpClient.Builder()
-                .connectTimeout(timeoutSeconds, TimeUnit.SECONDS)
+                .connectTimeout(connectTimeout, TimeUnit.SECONDS)
                 .readTimeout(timeoutSeconds, TimeUnit.SECONDS)
                 .writeTimeout(timeoutSeconds, TimeUnit.SECONDS);
 
@@ -301,7 +310,7 @@ public class ApiInvoker {
     }
 
  	OkHttpClient.Builder clientBuilder = new OkHttpClient.Builder()
-            .connectTimeout(timeoutSeconds, TimeUnit.SECONDS)
+            .connectTimeout(connectTimeout, TimeUnit.SECONDS)
             .readTimeout(timeoutSeconds, TimeUnit.SECONDS)
             .writeTimeout(timeoutSeconds, TimeUnit.SECONDS)
             .addInterceptor(new SigningInterceptor(consumer));
