@@ -141,6 +141,10 @@ public class ApiInvoker {
   }
   
   public void loadKeystore(InputStream keyStore, String keystorePassword) throws GeneralSecurityException, IOException {
+      loadKeystore(keyStore, keystorePassword, false);
+    }
+  
+  public void loadKeystore(InputStream keyStore, String keystorePassword, boolean priorityCustomKS) throws GeneralSecurityException, IOException {
 	    IOException e1 = null;
 	    GeneralSecurityException e2 = null;
 
@@ -170,7 +174,11 @@ public class ApiInvoker {
 
         SSLContext sslContext = SSLContext.getInstance("TLSv1.2");
         if (trustManager != null && defaultTrustManager != null) {
-            sslContext.init(null, new TrustManager[] {defaultTrustManager, trustManager}, new SecureRandom());
+        	if (priorityCustomKS) {
+        		sslContext.init(null, new TrustManager[] {trustManager, defaultTrustManager}, new SecureRandom());
+        	} else {
+        		sslContext.init(null, new TrustManager[] {defaultTrustManager, trustManager}, new SecureRandom());
+        	}
             sslSocketFactory = sslContext.getSocketFactory();
         } else if (trustManager != null) {
             sslContext.init(null, new TrustManager[] {trustManager}, new SecureRandom());

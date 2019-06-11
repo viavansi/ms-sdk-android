@@ -50,6 +50,8 @@ public class Setting  implements Serializable {
   private Boolean allowDocumentResend = Boolean.FALSE;
   @SerializedName("customization")
   private Customization customization = null;
+  @SerializedName("callbackMailsFromForm")
+  private List<String> callbackMailsFromForm = new ArrayList<String>() ;
 
   
   /**
@@ -250,6 +252,17 @@ public class Setting  implements Serializable {
   }
 
   
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public List<String> getCallbackMailsFromForm() {
+    return callbackMailsFromForm;
+  }
+  public void setCallbackMailsFromForm(List<String> callbackMailsFromForm) {
+    this.callbackMailsFromForm = callbackMailsFromForm;
+  }
+
+  
 
   @Override
   public String toString()  {
@@ -274,6 +287,7 @@ public class Setting  implements Serializable {
     sb.append("  readDocumentRequired: ").append(readDocumentRequired).append("\n");
     sb.append("  allowDocumentResend: ").append(allowDocumentResend).append("\n");
     sb.append("  customization: ").append(customization).append("\n");
+    sb.append("  callbackMailsFromForm: ").append(callbackMailsFromForm).append("\n");
     sb.append("}\n");
     return sb.toString();
   }

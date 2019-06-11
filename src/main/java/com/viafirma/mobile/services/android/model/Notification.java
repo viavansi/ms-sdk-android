@@ -49,6 +49,15 @@ public class Notification  implements Serializable {
   private Long retryTime = null;
   @SerializedName("customization")
   private Customization customization = null;
+  @SerializedName("deliveryGroup")
+  private String deliveryGroup = null;
+  public enum DeliveryTypeEnum {
+     ONCE,  ALL, 
+  };
+  @SerializedName("deliveryType")
+  private DeliveryTypeEnum deliveryType = null;
+  @SerializedName("deliveryAppCode")
+  private String deliveryAppCode = null;
   @SerializedName("metadata")
   private List<Param> metadata = new ArrayList<Param>() ;
   @SerializedName("devices")
@@ -212,6 +221,39 @@ public class Notification  implements Serializable {
   /**
    **/
   @ApiModelProperty(required = false, value = "")
+  public String getDeliveryGroup() {
+    return deliveryGroup;
+  }
+  public void setDeliveryGroup(String deliveryGroup) {
+    this.deliveryGroup = deliveryGroup;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public DeliveryTypeEnum getDeliveryType() {
+    return deliveryType;
+  }
+  public void setDeliveryType(DeliveryTypeEnum deliveryType) {
+    this.deliveryType = deliveryType;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public String getDeliveryAppCode() {
+    return deliveryAppCode;
+  }
+  public void setDeliveryAppCode(String deliveryAppCode) {
+    this.deliveryAppCode = deliveryAppCode;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
   public List<Param> getMetadata() {
     return metadata;
   }
@@ -251,6 +293,9 @@ public class Notification  implements Serializable {
     sb.append("  updateDate: ").append(updateDate).append("\n");
     sb.append("  retryTime: ").append(retryTime).append("\n");
     sb.append("  customization: ").append(customization).append("\n");
+    sb.append("  deliveryGroup: ").append(deliveryGroup).append("\n");
+    sb.append("  deliveryType: ").append(deliveryType).append("\n");
+    sb.append("  deliveryAppCode: ").append(deliveryAppCode).append("\n");
     sb.append("  metadata: ").append(metadata).append("\n");
     sb.append("  devices: ").append(devices).append("\n");
     sb.append("}\n");

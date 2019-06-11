@@ -66,6 +66,8 @@ public class Item  implements Serializable {
   private String defaultCountry = null;
   @SerializedName("increment")
   private Integer increment = null;
+  @SerializedName("originalValue")
+  private String originalValue = null;
 
   
   /**
@@ -376,6 +378,17 @@ public class Item  implements Serializable {
   }
 
   
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public String getOriginalValue() {
+    return originalValue;
+  }
+  public void setOriginalValue(String originalValue) {
+    this.originalValue = originalValue;
+  }
+
+  
 
   @Override
   public String toString()  {
@@ -410,6 +423,7 @@ public class Item  implements Serializable {
     sb.append("  dayNames: ").append(dayNames).append("\n");
     sb.append("  defaultCountry: ").append(defaultCountry).append("\n");
     sb.append("  increment: ").append(increment).append("\n");
+    sb.append("  originalValue: ").append(originalValue).append("\n");
     sb.append("}\n");
     return sb.toString();
   }

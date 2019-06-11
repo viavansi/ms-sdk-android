@@ -12,7 +12,7 @@ import java.io.Serializable;
 public class Auditory  implements Serializable {
   
   public enum ActionEnum {
-     RECEIVED,   MAIL_SENT,   MAIL_READ,   MAIL_CALLBACK_SENT,   MAIL_CALLBACK_READ,   LOAD_REQUEST, 
+     RECEIVED,   MAIL_SENT,   MAIL_READ,   MAIL_CALLBACK_SENT,   MAIL_CALLBACK_READ,   LOAD_REQUEST,   LOAD_APPROVAL, 
   };
   @SerializedName("action")
   private ActionEnum action = null;

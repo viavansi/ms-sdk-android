@@ -14,10 +14,10 @@ public class AcrofieldPosition  implements Serializable {
   private String id = null;
   @SerializedName("page")
   private Integer page = null;
-  @SerializedName("rectangle")
-  private Rectangle rectangle = null;
   @SerializedName("positionMatchId")
   private String positionMatchId = null;
+  @SerializedName("rectangle")
+  private Rectangle rectangle = null;
 
   
   /**
@@ -44,23 +44,23 @@ public class AcrofieldPosition  implements Serializable {
   
   /**
    **/
-  @ApiModelProperty(required = true, value = "")
-  public Rectangle getRectangle() {
-    return rectangle;
-  }
-  public void setRectangle(Rectangle rectangle) {
-    this.rectangle = rectangle;
-  }
-
-  
-  /**
-   **/
   @ApiModelProperty(required = false, value = "")
   public String getPositionMatchId() {
     return positionMatchId;
   }
   public void setPositionMatchId(String positionMatchId) {
     this.positionMatchId = positionMatchId;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = true, value = "")
+  public Rectangle getRectangle() {
+    return rectangle;
+  }
+  public void setRectangle(Rectangle rectangle) {
+    this.rectangle = rectangle;
   }
 
   
@@ -72,8 +72,8 @@ public class AcrofieldPosition  implements Serializable {
     
     sb.append("  id: ").append(id).append("\n");
     sb.append("  page: ").append(page).append("\n");
-    sb.append("  rectangle: ").append(rectangle).append("\n");
     sb.append("  positionMatchId: ").append(positionMatchId).append("\n");
+    sb.append("  rectangle: ").append(rectangle).append("\n");
     sb.append("}\n");
     return sb.toString();
   }

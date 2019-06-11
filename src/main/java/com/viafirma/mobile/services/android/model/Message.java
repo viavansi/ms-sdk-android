@@ -3,6 +3,7 @@ package com.viafirma.mobile.services.android.model;
 import com.viafirma.mobile.services.android.model.Policy;
 import com.viafirma.mobile.services.android.model.Auditory;
 import com.viafirma.mobile.services.android.model.Param;
+import com.viafirma.mobile.services.android.model.Transfer;
 import com.viafirma.mobile.services.android.model.Workflow;
 import java.util.*;
 import com.viafirma.mobile.services.android.model.Document;
@@ -70,6 +71,8 @@ public class Message  implements Serializable {
   private String callbackResponse = null;
   @SerializedName("auditory")
   private List<Auditory> auditory = new ArrayList<Auditory>() ;
+  @SerializedName("transfers")
+  private List<Transfer> transfers = new ArrayList<Transfer>() ;
 
   
   /**
@@ -358,6 +361,17 @@ public class Message  implements Serializable {
   }
 
   
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public List<Transfer> getTransfers() {
+    return transfers;
+  }
+  public void setTransfers(List<Transfer> transfers) {
+    this.transfers = transfers;
+  }
+
+  
 
   @Override
   public String toString()  {
@@ -390,6 +404,7 @@ public class Message  implements Serializable {
     sb.append("  commentReject: ").append(commentReject).append("\n");
     sb.append("  callbackResponse: ").append(callbackResponse).append("\n");
     sb.append("  auditory: ").append(auditory).append("\n");
+    sb.append("  transfers: ").append(transfers).append("\n");
     sb.append("}\n");
     return sb.toString();
   }
