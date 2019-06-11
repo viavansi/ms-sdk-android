@@ -481,11 +481,8 @@ public class ApiInvoker {
         	responseString = "";
 		} else if(code >= 200 && code < 300) {
  			responseString = response.body().string();
- 			// Fix encoding
-      		responseString = StringEscapeUtils.unescapeHtml3(responseString);
       	} else {
         	responseString = response.body().string();
-        	responseString = StringEscapeUtils.unescapeHtml3(responseString);
             throw new ApiException(code, responseString);
 		}
 		return responseString;		
