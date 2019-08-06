@@ -2,6 +2,7 @@ package com.viafirma.mobile.services.android.model;
 
 import com.viafirma.mobile.services.android.model.Param;
 import java.util.*;
+import java.util.Date;
 
 import com.wordnik.swagger.annotations.*;
 import com.google.gson.annotations.SerializedName;
@@ -12,7 +13,7 @@ import java.io.Serializable;
 public class Attachment  implements Serializable {
   
   public enum TypeEnum {
-     PDF,  JPG,  PNG, 
+     PDF,  IMAGE,  VIDEO,  AUDIO, 
   };
   @SerializedName("type")
   private TypeEnum type = null;
@@ -38,6 +39,10 @@ public class Attachment  implements Serializable {
   private Boolean optional = Boolean.FALSE;
   @SerializedName("metadataList")
   private List<Param> metadataList = new ArrayList<Param>() ;
+  @SerializedName("date")
+  private Date date = null;
+  @SerializedName("hash")
+  private String hash = null;
 
   
   /**
@@ -139,6 +144,28 @@ public class Attachment  implements Serializable {
   }
 
   
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public Date getDate() {
+    return date;
+  }
+  public void setDate(Date date) {
+    this.date = date;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public String getHash() {
+    return hash;
+  }
+  public void setHash(String hash) {
+    this.hash = hash;
+  }
+
+  
 
   @Override
   public String toString()  {
@@ -154,6 +181,8 @@ public class Attachment  implements Serializable {
     sb.append("  helpDetail: ").append(helpDetail).append("\n");
     sb.append("  optional: ").append(optional).append("\n");
     sb.append("  metadataList: ").append(metadataList).append("\n");
+    sb.append("  date: ").append(date).append("\n");
+    sb.append("  hash: ").append(hash).append("\n");
     sb.append("}\n");
     return sb.toString();
   }

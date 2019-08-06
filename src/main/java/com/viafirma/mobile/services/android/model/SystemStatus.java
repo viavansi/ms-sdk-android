@@ -1,5 +1,6 @@
 package com.viafirma.mobile.services.android.model;
 
+import java.util.*;
 
 import com.wordnik.swagger.annotations.*;
 import com.google.gson.annotations.SerializedName;
@@ -13,10 +14,17 @@ public class SystemStatus  implements Serializable {
   private String name = null;
   @SerializedName("description")
   private String description = null;
+  public enum StatusEnum {
+     OK,  FAIL,  UNCONFIGURED,  CHECKING, 
+  };
   @SerializedName("status")
-  private String status = null;
+  private StatusEnum status = null;
   @SerializedName("message")
   private String message = null;
+  @SerializedName("localeKey")
+  private String localeKey = null;
+  @SerializedName("localeParams")
+  private List<String> localeParams = new ArrayList<String>() ;
   @SerializedName("notification")
   private String notification = null;
 
@@ -46,10 +54,10 @@ public class SystemStatus  implements Serializable {
   /**
    **/
   @ApiModelProperty(required = false, value = "")
-  public String getStatus() {
+  public StatusEnum getStatus() {
     return status;
   }
-  public void setStatus(String status) {
+  public void setStatus(StatusEnum status) {
     this.status = status;
   }
 
@@ -62,6 +70,28 @@ public class SystemStatus  implements Serializable {
   }
   public void setMessage(String message) {
     this.message = message;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public String getLocaleKey() {
+    return localeKey;
+  }
+  public void setLocaleKey(String localeKey) {
+    this.localeKey = localeKey;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public List<String> getLocaleParams() {
+    return localeParams;
+  }
+  public void setLocaleParams(List<String> localeParams) {
+    this.localeParams = localeParams;
   }
 
   
@@ -86,6 +116,8 @@ public class SystemStatus  implements Serializable {
     sb.append("  description: ").append(description).append("\n");
     sb.append("  status: ").append(status).append("\n");
     sb.append("  message: ").append(message).append("\n");
+    sb.append("  localeKey: ").append(localeKey).append("\n");
+    sb.append("  localeParams: ").append(localeParams).append("\n");
     sb.append("  notification: ").append(notification).append("\n");
     sb.append("}\n");
     return sb.toString();

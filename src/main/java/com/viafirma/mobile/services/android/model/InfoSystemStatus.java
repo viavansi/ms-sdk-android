@@ -1,7 +1,10 @@
 package com.viafirma.mobile.services.android.model;
 
 import com.viafirma.mobile.services.android.model.SystemStatus;
+import com.viafirma.mobile.services.android.model.SystemInfo;
 import java.util.*;
+import java.util.Map;
+import java.util.Date;
 
 import com.wordnik.swagger.annotations.*;
 import com.google.gson.annotations.SerializedName;
@@ -12,19 +15,41 @@ import java.io.Serializable;
 public class InfoSystemStatus  implements Serializable {
   
   @SerializedName("date")
-  private String date = null;
+  private Date date = null;
+  @SerializedName("name")
+  private String name = null;
   @SerializedName("info")
   private List<SystemStatus> info = new ArrayList<SystemStatus>() ;
+  @SerializedName("system")
+  private SystemInfo system = null;
+  @SerializedName("notifications")
+  private Map<String, Integer> notifications = new HashMap<String, Integer>() ;
+  public enum StatusEnum {
+     OK,  FAIL,  UNCONFIGURED,  CHECKING, 
+  };
+  @SerializedName("status")
+  private StatusEnum status = null;
 
   
   /**
    **/
   @ApiModelProperty(required = false, value = "")
-  public String getDate() {
+  public Date getDate() {
     return date;
   }
-  public void setDate(String date) {
+  public void setDate(Date date) {
     this.date = date;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public String getName() {
+    return name;
+  }
+  public void setName(String name) {
+    this.name = name;
   }
 
   
@@ -39,6 +64,39 @@ public class InfoSystemStatus  implements Serializable {
   }
 
   
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public SystemInfo getSystem() {
+    return system;
+  }
+  public void setSystem(SystemInfo system) {
+    this.system = system;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public Map<String, Integer> getNotifications() {
+    return notifications;
+  }
+  public void setNotifications(Map<String, Integer> notifications) {
+    this.notifications = notifications;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public StatusEnum getStatus() {
+    return status;
+  }
+  public void setStatus(StatusEnum status) {
+    this.status = status;
+  }
+
+  
 
   @Override
   public String toString()  {
@@ -46,7 +104,11 @@ public class InfoSystemStatus  implements Serializable {
     sb.append("class InfoSystemStatus {\n");
     
     sb.append("  date: ").append(date).append("\n");
+    sb.append("  name: ").append(name).append("\n");
     sb.append("  info: ").append(info).append("\n");
+    sb.append("  system: ").append(system).append("\n");
+    sb.append("  notifications: ").append(notifications).append("\n");
+    sb.append("  status: ").append(status).append("\n");
     sb.append("}\n");
     return sb.toString();
   }

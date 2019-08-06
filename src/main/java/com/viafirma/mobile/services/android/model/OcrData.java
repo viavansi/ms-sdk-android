@@ -1,6 +1,6 @@
 package com.viafirma.mobile.services.android.model;
 
-import com.viafirma.mobile.services.android.model.JSOcrFieldExtractionResult;
+import com.viafirma.mobile.services.android.model.OcrFieldExtractionResult;
 import java.util.*;
 
 import com.wordnik.swagger.annotations.*;
@@ -18,7 +18,7 @@ public class OcrData  implements Serializable {
   @SerializedName("offline")
   private Boolean offline = Boolean.FALSE;
   @SerializedName("result")
-  private List<JSOcrFieldExtractionResult> result = new ArrayList<JSOcrFieldExtractionResult>() ;
+  private List<OcrFieldExtractionResult> result = new ArrayList<OcrFieldExtractionResult>() ;
 
   
   /**
@@ -57,10 +57,10 @@ public class OcrData  implements Serializable {
   /**
    **/
   @ApiModelProperty(required = false, value = "")
-  public List<JSOcrFieldExtractionResult> getResult() {
+  public List<OcrFieldExtractionResult> getResult() {
     return result;
   }
-  public void setResult(List<JSOcrFieldExtractionResult> result) {
+  public void setResult(List<OcrFieldExtractionResult> result) {
     this.result = result;
   }
 

@@ -98,7 +98,7 @@ public class Template  implements Serializable {
   
   /**
    **/
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(required = false, value = "")
   public TypeEnum getType() {
     return type;
   }

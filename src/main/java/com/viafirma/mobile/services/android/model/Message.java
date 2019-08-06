@@ -3,8 +3,8 @@ package com.viafirma.mobile.services.android.model;
 import com.viafirma.mobile.services.android.model.Policy;
 import com.viafirma.mobile.services.android.model.Auditory;
 import com.viafirma.mobile.services.android.model.Param;
-import com.viafirma.mobile.services.android.model.Transfer;
 import com.viafirma.mobile.services.android.model.Workflow;
+import com.viafirma.mobile.services.android.model.JSTransfer;
 import java.util.*;
 import com.viafirma.mobile.services.android.model.Document;
 import com.viafirma.mobile.services.android.model.Notification;
@@ -25,6 +25,20 @@ public class Message  implements Serializable {
   private String externalCode = null;
   @SerializedName("externalStatus")
   private String externalStatus = null;
+  @SerializedName("inboxCode")
+  private String inboxCode = null;
+  @SerializedName("inboxStatus")
+  private String inboxStatus = null;
+  @SerializedName("callbackInbox")
+  private String callbackInbox = null;
+  @SerializedName("callbackInboxAuthorization")
+  private String callbackInboxAuthorization = null;
+  @SerializedName("callbackCRM")
+  private String callbackCRM = null;
+  @SerializedName("callbackCRMAuthorization")
+  private String callbackCRMAuthorization = null;
+  @SerializedName("callbackCRMResponse")
+  private String callbackCRMResponse = null;
   @SerializedName("disabled")
   private Boolean disabled = Boolean.FALSE;
   @SerializedName("userCode")
@@ -47,6 +61,8 @@ public class Message  implements Serializable {
   private List<Policy> policies = new ArrayList<Policy>() ;
   @SerializedName("callbackURL")
   private String callbackURL = null;
+  @SerializedName("callbackPhones")
+  private String callbackPhones = null;
   @SerializedName("callbackMails")
   private String callbackMails = null;
   @SerializedName("callbackCheckListMails")
@@ -72,7 +88,11 @@ public class Message  implements Serializable {
   @SerializedName("auditory")
   private List<Auditory> auditory = new ArrayList<Auditory>() ;
   @SerializedName("transfers")
-  private List<Transfer> transfers = new ArrayList<Transfer>() ;
+  private List<JSTransfer> transfers = new ArrayList<JSTransfer>() ;
+  @SerializedName("languageId")
+  private String languageId = null;
+  @SerializedName("timeZoneId")
+  private String timeZoneId = null;
 
   
   /**
@@ -105,6 +125,83 @@ public class Message  implements Serializable {
   }
   public void setExternalStatus(String externalStatus) {
     this.externalStatus = externalStatus;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public String getInboxCode() {
+    return inboxCode;
+  }
+  public void setInboxCode(String inboxCode) {
+    this.inboxCode = inboxCode;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public String getInboxStatus() {
+    return inboxStatus;
+  }
+  public void setInboxStatus(String inboxStatus) {
+    this.inboxStatus = inboxStatus;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public String getCallbackInbox() {
+    return callbackInbox;
+  }
+  public void setCallbackInbox(String callbackInbox) {
+    this.callbackInbox = callbackInbox;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public String getCallbackInboxAuthorization() {
+    return callbackInboxAuthorization;
+  }
+  public void setCallbackInboxAuthorization(String callbackInboxAuthorization) {
+    this.callbackInboxAuthorization = callbackInboxAuthorization;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public String getCallbackCRM() {
+    return callbackCRM;
+  }
+  public void setCallbackCRM(String callbackCRM) {
+    this.callbackCRM = callbackCRM;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public String getCallbackCRMAuthorization() {
+    return callbackCRMAuthorization;
+  }
+  public void setCallbackCRMAuthorization(String callbackCRMAuthorization) {
+    this.callbackCRMAuthorization = callbackCRMAuthorization;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public String getCallbackCRMResponse() {
+    return callbackCRMResponse;
+  }
+  public void setCallbackCRMResponse(String callbackCRMResponse) {
+    this.callbackCRMResponse = callbackCRMResponse;
   }
 
   
@@ -226,6 +323,17 @@ public class Message  implements Serializable {
   }
   public void setCallbackURL(String callbackURL) {
     this.callbackURL = callbackURL;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public String getCallbackPhones() {
+    return callbackPhones;
+  }
+  public void setCallbackPhones(String callbackPhones) {
+    this.callbackPhones = callbackPhones;
   }
 
   
@@ -364,11 +472,33 @@ public class Message  implements Serializable {
   /**
    **/
   @ApiModelProperty(required = false, value = "")
-  public List<Transfer> getTransfers() {
+  public List<JSTransfer> getTransfers() {
     return transfers;
   }
-  public void setTransfers(List<Transfer> transfers) {
+  public void setTransfers(List<JSTransfer> transfers) {
     this.transfers = transfers;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public String getLanguageId() {
+    return languageId;
+  }
+  public void setLanguageId(String languageId) {
+    this.languageId = languageId;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public String getTimeZoneId() {
+    return timeZoneId;
+  }
+  public void setTimeZoneId(String timeZoneId) {
+    this.timeZoneId = timeZoneId;
   }
 
   
@@ -381,6 +511,13 @@ public class Message  implements Serializable {
     sb.append("  code: ").append(code).append("\n");
     sb.append("  externalCode: ").append(externalCode).append("\n");
     sb.append("  externalStatus: ").append(externalStatus).append("\n");
+    sb.append("  inboxCode: ").append(inboxCode).append("\n");
+    sb.append("  inboxStatus: ").append(inboxStatus).append("\n");
+    sb.append("  callbackInbox: ").append(callbackInbox).append("\n");
+    sb.append("  callbackInboxAuthorization: ").append(callbackInboxAuthorization).append("\n");
+    sb.append("  callbackCRM: ").append(callbackCRM).append("\n");
+    sb.append("  callbackCRMAuthorization: ").append(callbackCRMAuthorization).append("\n");
+    sb.append("  callbackCRMResponse: ").append(callbackCRMResponse).append("\n");
     sb.append("  disabled: ").append(disabled).append("\n");
     sb.append("  userCode: ").append(userCode).append("\n");
     sb.append("  groupCode: ").append(groupCode).append("\n");
@@ -392,6 +529,7 @@ public class Message  implements Serializable {
     sb.append("  metadataList: ").append(metadataList).append("\n");
     sb.append("  policies: ").append(policies).append("\n");
     sb.append("  callbackURL: ").append(callbackURL).append("\n");
+    sb.append("  callbackPhones: ").append(callbackPhones).append("\n");
     sb.append("  callbackMails: ").append(callbackMails).append("\n");
     sb.append("  callbackCheckListMails: ").append(callbackCheckListMails).append("\n");
     sb.append("  callbackMailsFormKeys: ").append(callbackMailsFormKeys).append("\n");
@@ -405,6 +543,8 @@ public class Message  implements Serializable {
     sb.append("  callbackResponse: ").append(callbackResponse).append("\n");
     sb.append("  auditory: ").append(auditory).append("\n");
     sb.append("  transfers: ").append(transfers).append("\n");
+    sb.append("  languageId: ").append(languageId).append("\n");
+    sb.append("  timeZoneId: ").append(timeZoneId).append("\n");
     sb.append("}\n");
     return sb.toString();
   }

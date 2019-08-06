@@ -12,7 +12,7 @@ import java.io.Serializable;
 public class Stamper  implements Serializable {
   
   public enum TypeEnum {
-     PDF417,  QR_BARCODE128,  QR,  BARCODE128,  IMAGE,  TEXT,  QR_NO_TEXT,  QR_SCALED,  CUSTOM_TEXT,  QR_REDUCED, 
+     PDF417,  QR_BARCODE128,  QR,  BARCODE128,  IMAGE,  TEXT,  QR_NO_TEXT,  QR_SCALED,  CUSTOM_TEXT,  QR_REDUCED,  CSV, 
   };
   @SerializedName("type")
   private TypeEnum type = null;
@@ -25,10 +25,10 @@ public class Stamper  implements Serializable {
   private Integer width = null;
   @SerializedName("height")
   private Integer height = null;
-  @SerializedName("xAxis")
-  private Integer xAxis = null;
-  @SerializedName("yAxis")
-  private Integer yAxis = null;
+  @SerializedName("getxAxis")
+  private Integer getxAxis = null;
+  @SerializedName("getyAxis")
+  private Integer getyAxis = null;
   @SerializedName("page")
   private Integer page = null;
   @SerializedName("imageBase64")
@@ -41,7 +41,7 @@ public class Stamper  implements Serializable {
   
   /**
    **/
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(required = false, value = "")
   public TypeEnum getType() {
     return type;
   }
@@ -86,22 +86,22 @@ public class Stamper  implements Serializable {
   /**
    **/
   @ApiModelProperty(required = false, value = "")
-  public Integer getXAxis() {
-    return xAxis;
+  public Integer getGetxAxis() {
+    return getxAxis;
   }
-  public void setXAxis(Integer xAxis) {
-    this.xAxis = xAxis;
+  public void setGetxAxis(Integer getxAxis) {
+    this.getxAxis = getxAxis;
   }
 
   
   /**
    **/
   @ApiModelProperty(required = false, value = "")
-  public Integer getYAxis() {
-    return yAxis;
+  public Integer getGetyAxis() {
+    return getyAxis;
   }
-  public void setYAxis(Integer yAxis) {
-    this.yAxis = yAxis;
+  public void setGetyAxis(Integer getyAxis) {
+    this.getyAxis = getyAxis;
   }
 
   
@@ -159,8 +159,8 @@ public class Stamper  implements Serializable {
     sb.append("  rotation: ").append(rotation).append("\n");
     sb.append("  width: ").append(width).append("\n");
     sb.append("  height: ").append(height).append("\n");
-    sb.append("  xAxis: ").append(xAxis).append("\n");
-    sb.append("  yAxis: ").append(yAxis).append("\n");
+    sb.append("  getxAxis: ").append(getxAxis).append("\n");
+    sb.append("  getyAxis: ").append(getyAxis).append("\n");
     sb.append("  page: ").append(page).append("\n");
     sb.append("  imageBase64: ").append(imageBase64).append("\n");
     sb.append("  positionsKey: ").append(positionsKey).append("\n");

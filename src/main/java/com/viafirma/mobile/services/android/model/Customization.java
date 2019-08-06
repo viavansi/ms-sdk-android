@@ -19,6 +19,8 @@ public class Customization  implements Serializable {
   private String requestMailBody = null;
   @SerializedName("requestSmsBody")
   private String requestSmsBody = null;
+  @SerializedName("callbackSmsBody")
+  private String callbackSmsBody = null;
   @SerializedName("callbackMailSuccessSubject")
   private String callbackMailSuccessSubject = null;
   @SerializedName("callbackMailSuccessBody")
@@ -101,6 +103,17 @@ public class Customization  implements Serializable {
   }
   public void setRequestSmsBody(String requestSmsBody) {
     this.requestSmsBody = requestSmsBody;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public String getCallbackSmsBody() {
+    return callbackSmsBody;
+  }
+  public void setCallbackSmsBody(String callbackSmsBody) {
+    this.callbackSmsBody = callbackSmsBody;
   }
 
   
@@ -269,6 +282,7 @@ public class Customization  implements Serializable {
     sb.append("  requestMailSubject: ").append(requestMailSubject).append("\n");
     sb.append("  requestMailBody: ").append(requestMailBody).append("\n");
     sb.append("  requestSmsBody: ").append(requestSmsBody).append("\n");
+    sb.append("  callbackSmsBody: ").append(callbackSmsBody).append("\n");
     sb.append("  callbackMailSuccessSubject: ").append(callbackMailSuccessSubject).append("\n");
     sb.append("  callbackMailSuccessBody: ").append(callbackMailSuccessBody).append("\n");
     sb.append("  callbackMailExpiredSubject: ").append(callbackMailExpiredSubject).append("\n");

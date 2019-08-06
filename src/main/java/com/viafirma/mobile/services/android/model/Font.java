@@ -17,7 +17,7 @@ public class Font  implements Serializable {
   
   /**
    **/
-  @ApiModelProperty(required = false, value = "")
+  @ApiModelProperty(required = true, value = "")
   public String getName() {
     return name;
   }
@@ -28,7 +28,7 @@ public class Font  implements Serializable {
   
   /**
    **/
-  @ApiModelProperty(required = false, value = "")
+  @ApiModelProperty(required = true, value = "")
   public Integer getSize() {
     return size;
   }

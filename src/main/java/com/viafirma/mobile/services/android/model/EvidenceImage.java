@@ -3,6 +3,7 @@ package com.viafirma.mobile.services.android.model;
 import com.viafirma.mobile.services.android.model.Geolocation;
 import com.viafirma.mobile.services.android.model.Position;
 import com.viafirma.mobile.services.android.model.EvidenceDevice;
+import com.viafirma.mobile.services.android.model.Param;
 import java.util.*;
 import com.viafirma.mobile.services.android.model.OcrData;
 
@@ -36,6 +37,8 @@ public class EvidenceImage  implements Serializable {
   private String ocrTemplate = null;
   @SerializedName("ocrFields")
   private String ocrFields = null;
+  @SerializedName("properties")
+  private List<Param> properties = new ArrayList<Param>() ;
 
   
   /**
@@ -159,6 +162,17 @@ public class EvidenceImage  implements Serializable {
   }
 
   
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public List<Param> getProperties() {
+    return properties;
+  }
+  public void setProperties(List<Param> properties) {
+    this.properties = properties;
+  }
+
+  
 
   @Override
   public String toString()  {
@@ -176,6 +190,7 @@ public class EvidenceImage  implements Serializable {
     sb.append("  ocr: ").append(ocr).append("\n");
     sb.append("  ocrTemplate: ").append(ocrTemplate).append("\n");
     sb.append("  ocrFields: ").append(ocrFields).append("\n");
+    sb.append("  properties: ").append(properties).append("\n");
     sb.append("}\n");
     return sb.toString();
   }

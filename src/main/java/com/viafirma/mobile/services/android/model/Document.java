@@ -57,6 +57,8 @@ public class Document  implements Serializable {
   private Boolean deleteSignedDocuments = Boolean.FALSE;
   @SerializedName("watermarkText")
   private String watermarkText = null;
+  @SerializedName("formUpdated")
+  private Boolean formUpdated = Boolean.FALSE;
 
   
   /**
@@ -217,7 +219,7 @@ public class Document  implements Serializable {
   /**
    * (since 3.5.0) code of policy to use
    **/
-  @ApiModelProperty(required = false, value = "(since 3.5.0) code of policy to use")
+  @ApiModelProperty(required = true, value = "(since 3.5.0) code of policy to use")
   public String getPolicyCode() {
     return policyCode;
   }
@@ -293,6 +295,17 @@ public class Document  implements Serializable {
   }
 
   
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public Boolean getFormUpdated() {
+    return formUpdated;
+  }
+  public void setFormUpdated(Boolean formUpdated) {
+    this.formUpdated = formUpdated;
+  }
+
+  
 
   @Override
   public String toString()  {
@@ -320,6 +333,7 @@ public class Document  implements Serializable {
     sb.append("  allowResend: ").append(allowResend).append("\n");
     sb.append("  deleteSignedDocuments: ").append(deleteSignedDocuments).append("\n");
     sb.append("  watermarkText: ").append(watermarkText).append("\n");
+    sb.append("  formUpdated: ").append(formUpdated).append("\n");
     sb.append("}\n");
     return sb.toString();
   }

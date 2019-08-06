@@ -7,7 +7,7 @@ import com.viafirma.mobile.services.android.model.*;
 
 import java.util.*;
 
-import com.viafirma.mobile.services.android.model.GestDocRequest;
+import com.viafirma.mobile.services.android.model.JSGestDocRequest;
 import com.viafirma.mobile.services.android.model.Notification;
 
 import java.io.File;
@@ -28,7 +28,7 @@ public class V3gestdocApi {
   
   
     
-  public List<Notification> sendGestdocTransactionByMsisdn (GestDocRequest body) throws ApiException {
+  public List<Notification> sendGestdocTransactionByMsisdn (JSGestDocRequest body) throws ApiException {
     Object postBody = body;
     
 
@@ -43,7 +43,7 @@ public class V3gestdocApi {
     
     
     String[] contentTypes = {
-      
+      "application/json"
     };
 
     String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";

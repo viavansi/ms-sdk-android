@@ -85,7 +85,7 @@ public class Device  implements Serializable {
   
   /**
    **/
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(required = false, value = "")
   public StatusEnum getStatus() {
     return status;
   }
@@ -118,7 +118,7 @@ public class Device  implements Serializable {
   
   /**
    **/
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(required = false, value = "")
   public TypeEnum getType() {
     return type;
   }

@@ -7,6 +7,7 @@ import com.viafirma.mobile.services.android.model.*;
 
 import java.util.*;
 
+import com.viafirma.mobile.services.android.model.Base64;
 import com.viafirma.mobile.services.android.model.Download;
 
 import java.io.File;
@@ -27,6 +28,48 @@ public class V3documentsApi {
   
   
     
+  public void addCache (Base64 body) throws ApiException {
+    Object postBody = body;
+    
+
+    // create path and map variables
+    String path = "/v3/documents/cache".replaceAll("\\{format\\}","json");
+
+    // query params
+    Map<String, String> queryParams = new HashMap<String, String>();
+    Map<String, String> headerParams = new HashMap<String, String>();
+    Map<String, String> formParams = new HashMap<String, String>();
+
+    
+    
+    String[] contentTypes = {
+      "application/json"
+    };
+
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+
+    if(contentType.startsWith("multipart/form-data")) {
+      boolean hasFields = false;
+      MultipartBody.Builder mp = new MultipartBody.Builder();
+      mp.setType(MultipartBody.FORM);
+      
+      if(hasFields)
+        postBody = mp;
+    }
+    else {
+      
+    }
+
+      String response = ApiInvoker.getInstance().invokeAPI(path, "POST", queryParams, postBody, headerParams, formParams, contentType);
+      if(response != null){
+        return ;
+      } else {
+        return ;
+      }
+    
+  }
+  
+    
   public Download downloadPreview (String messageCode) throws ApiException {
     Object postBody = null;
     
@@ -43,7 +86,7 @@ public class V3documentsApi {
     
     
     String[] contentTypes = {
-      
+      "application/json"
     };
 
     String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
@@ -86,7 +129,7 @@ public class V3documentsApi {
     
     
     String[] contentTypes = {
-      
+      "application/json"
     };
 
     String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
@@ -129,7 +172,7 @@ public class V3documentsApi {
     
     
     String[] contentTypes = {
-      
+      "application/json"
     };
 
     String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
@@ -151,6 +194,51 @@ public class V3documentsApi {
         return (Download) ApiInvoker.deserialize(response, "", Download.class);
       } else {
         return null;
+      }
+    
+  }
+  
+    
+  public void getDocument (String type, String messageCode, String documentCode) throws ApiException {
+    Object postBody = null;
+    
+
+    // create path and map variables
+    String path = "/v3/documents/{type}/{messageCode}/{documentCode}".replaceAll("\\{format\\}","json")
+      .replaceAll("\\{" + "type" + "\\}", ApiInvoker.getInstance().escapeString(type.toString()))
+      .replaceAll("\\{" + "messageCode" + "\\}", ApiInvoker.getInstance().escapeString(messageCode.toString()))
+      .replaceAll("\\{" + "documentCode" + "\\}", ApiInvoker.getInstance().escapeString(documentCode.toString()));
+
+    // query params
+    Map<String, String> queryParams = new HashMap<String, String>();
+    Map<String, String> headerParams = new HashMap<String, String>();
+    Map<String, String> formParams = new HashMap<String, String>();
+
+    
+    
+    String[] contentTypes = {
+      "application/json"
+    };
+
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+
+    if(contentType.startsWith("multipart/form-data")) {
+      boolean hasFields = false;
+      MultipartBody.Builder mp = new MultipartBody.Builder();
+      mp.setType(MultipartBody.FORM);
+      
+      if(hasFields)
+        postBody = mp;
+    }
+    else {
+      
+    }
+
+      String response = ApiInvoker.getInstance().invokeAPI(path, "GET", queryParams, postBody, headerParams, formParams, contentType);
+      if(response != null){
+        return ;
+      } else {
+        return ;
       }
     
   }

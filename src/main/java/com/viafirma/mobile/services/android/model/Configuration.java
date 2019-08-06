@@ -54,8 +54,8 @@ public class Configuration  implements Serializable {
   private List<FinalizeAction> finalizeActions = new ArrayList<FinalizeAction>() ;
   @SerializedName("groups")
   private List<Group> groups = new ArrayList<Group>() ;
-  @SerializedName("sSLPinningEnabled")
-  private Boolean sSLPinningEnabled = Boolean.FALSE;
+  @SerializedName("sslpinningEnabled")
+  private Boolean sslpinningEnabled = Boolean.FALSE;
 
   
   /**
@@ -281,11 +281,11 @@ public class Configuration  implements Serializable {
   /**
    **/
   @ApiModelProperty(required = false, value = "")
-  public Boolean getSSLPinningEnabled() {
-    return sSLPinningEnabled;
+  public Boolean getSslpinningEnabled() {
+    return sslpinningEnabled;
   }
-  public void setSSLPinningEnabled(Boolean sSLPinningEnabled) {
-    this.sSLPinningEnabled = sSLPinningEnabled;
+  public void setSslpinningEnabled(Boolean sslpinningEnabled) {
+    this.sslpinningEnabled = sslpinningEnabled;
   }
 
   
@@ -315,7 +315,7 @@ public class Configuration  implements Serializable {
     sb.append("  clientSignature: ").append(clientSignature).append("\n");
     sb.append("  finalizeActions: ").append(finalizeActions).append("\n");
     sb.append("  groups: ").append(groups).append("\n");
-    sb.append("  sSLPinningEnabled: ").append(sSLPinningEnabled).append("\n");
+    sb.append("  sslpinningEnabled: ").append(sslpinningEnabled).append("\n");
     sb.append("}\n");
     return sb.toString();
   }

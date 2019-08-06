@@ -5,6 +5,7 @@ import com.viafirma.mobile.services.android.model.Param;
 import com.viafirma.mobile.services.android.model.Check;
 import com.viafirma.mobile.services.android.model.Evidence;
 import java.util.*;
+import com.viafirma.mobile.services.android.model.Attachment;
 import com.viafirma.mobile.services.android.model.ErrorResponse;
 
 import com.wordnik.swagger.annotations.*;
@@ -47,6 +48,8 @@ public class Policy  implements Serializable {
   private List<Signature> signatures = new ArrayList<Signature>() ;
   @SerializedName("error")
   private ErrorResponse error = null;
+  @SerializedName("attachments")
+  private List<Attachment> attachments = new ArrayList<Attachment>() ;
   @SerializedName("checklist")
   private List<Check> checklist = new ArrayList<Check>() ;
 
@@ -195,6 +198,17 @@ public class Policy  implements Serializable {
 
   
   /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public List<Attachment> getAttachments() {
+    return attachments;
+  }
+  public void setAttachments(List<Attachment> attachments) {
+    this.attachments = attachments;
+  }
+
+  
+  /**
    * (since 3.4.0) checklist actions
    **/
   @ApiModelProperty(required = false, value = "(since 3.4.0) checklist actions")
@@ -225,6 +239,7 @@ public class Policy  implements Serializable {
     sb.append("  evidences: ").append(evidences).append("\n");
     sb.append("  signatures: ").append(signatures).append("\n");
     sb.append("  error: ").append(error).append("\n");
+    sb.append("  attachments: ").append(attachments).append("\n");
     sb.append("  checklist: ").append(checklist).append("\n");
     sb.append("}\n");
     return sb.toString();

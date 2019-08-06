@@ -174,7 +174,7 @@ public class V3evidencesApi {
     
     
     String[] contentTypes = {
-      
+      "application/json"
     };
 
     String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
@@ -275,7 +275,7 @@ public class V3evidencesApi {
     
     
     String[] contentTypes = {
-      
+      "application/json"
     };
 
     String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
@@ -417,7 +417,7 @@ public class V3evidencesApi {
     
     
     String[] contentTypes = {
-      
+      "application/json"
     };
 
     String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";

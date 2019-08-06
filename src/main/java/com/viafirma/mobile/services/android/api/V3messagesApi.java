@@ -290,7 +290,7 @@ public class V3messagesApi {
   }
   
     
-  public List<MessageList> getMessagesByExternalStatus (String groupCode, String requestAppCode, String templateCode) throws ApiException {
+  public List<MessageList> getMessagesByExternalStatus_1 (String groupCode, String requestAppCode, String templateCode) throws ApiException {
     Object postBody = null;
     
 
@@ -311,7 +311,7 @@ public class V3messagesApi {
     
     
     String[] contentTypes = {
-      
+      "application/json"
     };
 
     String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
@@ -360,7 +360,7 @@ public class V3messagesApi {
     
     
     String[] contentTypes = {
-      
+      "application/json"
     };
 
     String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
@@ -411,7 +411,7 @@ public class V3messagesApi {
     
     
     String[] contentTypes = {
-      
+      "application/json"
     };
 
     String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
@@ -708,7 +708,7 @@ public class V3messagesApi {
     
 
     // create path and map variables
-    String path = "/v3/messages/resend/{code}/".replaceAll("\\{format\\}","json")
+    String path = "/v3/messages/resend/{code}".replaceAll("\\{format\\}","json")
       .replaceAll("\\{" + "code" + "\\}", ApiInvoker.getInstance().escapeString(code.toString()));
 
     // query params
@@ -719,7 +719,7 @@ public class V3messagesApi {
     
     
     String[] contentTypes = {
-      
+      "application/json"
     };
 
     String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
@@ -751,7 +751,7 @@ public class V3messagesApi {
     
 
     // create path and map variables
-    String path = "/v3/messages/restart/{code}/".replaceAll("\\{format\\}","json")
+    String path = "/v3/messages/restart/{code}".replaceAll("\\{format\\}","json")
       .replaceAll("\\{" + "code" + "\\}", ApiInvoker.getInstance().escapeString(code.toString()));
 
     // query params
@@ -762,7 +762,7 @@ public class V3messagesApi {
     
     
     String[] contentTypes = {
-      
+      "application/json"
     };
 
     String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
@@ -805,7 +805,7 @@ public class V3messagesApi {
     
     
     String[] contentTypes = {
-      
+      "application/json"
     };
 
     String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
@@ -891,7 +891,7 @@ public class V3messagesApi {
     
     
     String[] contentTypes = {
-      
+      "application/json"
     };
 
     String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
@@ -923,7 +923,7 @@ public class V3messagesApi {
     
 
     // create path and map variables
-    String path = "/v3/messages/{status}/group/{groupCode}/{index}/{page_size}/".replaceAll("\\{format\\}","json")
+    String path = "/v3/messages/{status}/group/{groupCode}/{index}/{page_size}".replaceAll("\\{format\\}","json")
       .replaceAll("\\{" + "status" + "\\}", ApiInvoker.getInstance().escapeString(status.toString()))
       .replaceAll("\\{" + "groupCode" + "\\}", ApiInvoker.getInstance().escapeString(groupCode.toString()))
       .replaceAll("\\{" + "index" + "\\}", ApiInvoker.getInstance().escapeString(index.toString()))
@@ -937,7 +937,7 @@ public class V3messagesApi {
     
     
     String[] contentTypes = {
-      
+      "application/json"
     };
 
     String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
@@ -969,7 +969,7 @@ public class V3messagesApi {
     
 
     // create path and map variables
-    String path = "/v3/messages/{status}/user/{userCode}/{index}/{page_size}/".replaceAll("\\{format\\}","json")
+    String path = "/v3/messages/{status}/user/{userCode}/{index}/{page_size}".replaceAll("\\{format\\}","json")
       .replaceAll("\\{" + "status" + "\\}", ApiInvoker.getInstance().escapeString(status.toString()))
       .replaceAll("\\{" + "userCode" + "\\}", ApiInvoker.getInstance().escapeString(userCode.toString()))
       .replaceAll("\\{" + "index" + "\\}", ApiInvoker.getInstance().escapeString(index.toString()))
@@ -983,7 +983,7 @@ public class V3messagesApi {
     
     
     String[] contentTypes = {
-      
+      "application/json"
     };
 
     String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";

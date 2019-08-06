@@ -7,7 +7,7 @@ import com.viafirma.mobile.services.android.model.*;
 
 import java.util.*;
 
-import com.viafirma.mobile.services.android.model.Log;
+import com.viafirma.mobile.services.android.model.Item;
 
 import java.io.File;
 import java.util.Map;
@@ -27,7 +27,7 @@ public class V3loggerApi {
   
   
     
-  public Log addLog (Log body) throws ApiException {
+  public Item addLog (Item body) throws ApiException {
     Object postBody = body;
     
 
@@ -42,7 +42,7 @@ public class V3loggerApi {
     
     
     String[] contentTypes = {
-      
+      "application/json"
     };
 
     String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
@@ -61,7 +61,7 @@ public class V3loggerApi {
 
       String response = ApiInvoker.getInstance().invokeAPI(path, "POST", queryParams, postBody, headerParams, formParams, contentType);
       if(response != null){
-        return (Log) ApiInvoker.deserialize(response, "", Log.class);
+        return (Item) ApiInvoker.deserialize(response, "", Item.class);
       } else {
         return null;
       }

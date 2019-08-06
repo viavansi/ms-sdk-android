@@ -8,6 +8,7 @@ import com.viafirma.mobile.services.android.model.*;
 import java.util.*;
 
 import com.viafirma.mobile.services.android.model.Alive;
+import com.viafirma.mobile.services.android.model.GroupUserData;
 import com.viafirma.mobile.services.android.model.Configuration;
 import com.viafirma.mobile.services.android.model.InfoSystemStatus;
 import com.viafirma.mobile.services.android.model.WorkflowManager;
@@ -65,6 +66,48 @@ public class V3systemApi {
       String response = ApiInvoker.getInstance().invokeAPI(path, "GET", queryParams, postBody, headerParams, formParams, contentType);
       if(response != null){
         return (Alive) ApiInvoker.deserialize(response, "", Alive.class);
+      } else {
+        return null;
+      }
+    
+  }
+  
+    
+  public String sendMessageData_1 (GroupUserData body) throws ApiException {
+    Object postBody = body;
+    
+
+    // create path and map variables
+    String path = "/v3/system/app".replaceAll("\\{format\\}","json");
+
+    // query params
+    Map<String, String> queryParams = new HashMap<String, String>();
+    Map<String, String> headerParams = new HashMap<String, String>();
+    Map<String, String> formParams = new HashMap<String, String>();
+
+    
+    
+    String[] contentTypes = {
+      "application/json"
+    };
+
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+
+    if(contentType.startsWith("multipart/form-data")) {
+      boolean hasFields = false;
+      MultipartBody.Builder mp = new MultipartBody.Builder();
+      mp.setType(MultipartBody.FORM);
+      
+      if(hasFields)
+        postBody = mp;
+    }
+    else {
+      
+    }
+
+      String response = ApiInvoker.getInstance().invokeAPI(path, "POST", queryParams, postBody, headerParams, formParams, contentType);
+      if(response != null){
+        return (String) ApiInvoker.deserialize(response, "", String.class);
       } else {
         return null;
       }

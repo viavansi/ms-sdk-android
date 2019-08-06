@@ -32,6 +32,8 @@ public class Setting  implements Serializable {
   private String callbackCheckListMails = null;
   @SerializedName("callbackMails")
   private String callbackMails = null;
+  @SerializedName("callbackPhones")
+  private String callbackPhones = null;
   @SerializedName("callbackMailsFormKeys")
   private List<String> callbackMailsFormKeys = new ArrayList<String>() ;
   @SerializedName("validateCode")
@@ -56,7 +58,7 @@ public class Setting  implements Serializable {
   
   /**
    **/
-  @ApiModelProperty(required = false, value = "")
+  @ApiModelProperty(required = true, value = "")
   public String getTitleKey() {
     return titleKey;
   }
@@ -150,6 +152,17 @@ public class Setting  implements Serializable {
   }
   public void setCallbackMails(String callbackMails) {
     this.callbackMails = callbackMails;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public String getCallbackPhones() {
+    return callbackPhones;
+  }
+  public void setCallbackPhones(String callbackPhones) {
+    this.callbackPhones = callbackPhones;
   }
 
   
@@ -278,6 +291,7 @@ public class Setting  implements Serializable {
     sb.append("  callbackURL: ").append(callbackURL).append("\n");
     sb.append("  callbackCheckListMails: ").append(callbackCheckListMails).append("\n");
     sb.append("  callbackMails: ").append(callbackMails).append("\n");
+    sb.append("  callbackPhones: ").append(callbackPhones).append("\n");
     sb.append("  callbackMailsFormKeys: ").append(callbackMailsFormKeys).append("\n");
     sb.append("  validateCode: ").append(validateCode).append("\n");
     sb.append("  validateCodeFinish: ").append(validateCodeFinish).append("\n");

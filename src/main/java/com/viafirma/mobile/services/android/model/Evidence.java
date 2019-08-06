@@ -71,6 +71,8 @@ public class Evidence  implements Serializable {
   private String encryptionKeyAlias = null;
   @SerializedName("optional")
   private Boolean optional = Boolean.FALSE;
+  @SerializedName("required")
+  private Boolean required = Boolean.FALSE;
   @SerializedName("ratioH")
   private String ratioH = null;
   @SerializedName("ratioW")
@@ -101,6 +103,8 @@ public class Evidence  implements Serializable {
   private OcrData ocr = null;
   @SerializedName("genericData")
   private EvidenceGeneric genericData = null;
+  @SerializedName("phone")
+  private String phone = null;
   @SerializedName("base64Image")
   private String base64Image = null;
   @SerializedName("imageType")
@@ -111,7 +115,7 @@ public class Evidence  implements Serializable {
   
   /**
    **/
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(required = false, value = "")
   public TypeEnum getType() {
     return type;
   }
@@ -365,6 +369,17 @@ public class Evidence  implements Serializable {
   /**
    **/
   @ApiModelProperty(required = false, value = "")
+  public Boolean getRequired() {
+    return required;
+  }
+  public void setRequired(Boolean required) {
+    this.required = required;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
   public String getRatioH() {
     return ratioH;
   }
@@ -463,7 +478,7 @@ public class Evidence  implements Serializable {
   
   /**
    **/
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(required = false, value = "")
   public List<String> getStylus() {
     return stylus;
   }
@@ -533,6 +548,17 @@ public class Evidence  implements Serializable {
   /**
    **/
   @ApiModelProperty(required = false, value = "")
+  public String getPhone() {
+    return phone;
+  }
+  public void setPhone(String phone) {
+    this.phone = phone;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
   public String getBase64Image() {
     return base64Image;
   }
@@ -592,6 +618,7 @@ public class Evidence  implements Serializable {
     sb.append("  metadataCipherPublicKey: ").append(metadataCipherPublicKey).append("\n");
     sb.append("  encryptionKeyAlias: ").append(encryptionKeyAlias).append("\n");
     sb.append("  optional: ").append(optional).append("\n");
+    sb.append("  required: ").append(required).append("\n");
     sb.append("  ratioH: ").append(ratioH).append("\n");
     sb.append("  ratioW: ").append(ratioW).append("\n");
     sb.append("  signatureData: ").append(signatureData).append("\n");
@@ -607,6 +634,7 @@ public class Evidence  implements Serializable {
     sb.append("  imageScaleFactor: ").append(imageScaleFactor).append("\n");
     sb.append("  ocr: ").append(ocr).append("\n");
     sb.append("  genericData: ").append(genericData).append("\n");
+    sb.append("  phone: ").append(phone).append("\n");
     sb.append("  base64Image: ").append(base64Image).append("\n");
     sb.append("  imageType: ").append(imageType).append("\n");
     sb.append("  addLink: ").append(addLink).append("\n");

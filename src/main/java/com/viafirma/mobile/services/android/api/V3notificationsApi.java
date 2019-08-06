@@ -85,7 +85,7 @@ public class V3notificationsApi {
     
     
     String[] contentTypes = {
-      
+      "application/json"
     };
 
     String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
@@ -112,7 +112,7 @@ public class V3notificationsApi {
   }
   
     
-  public Notification changeNotificationStatus (String code, String status) throws ApiException {
+  public Notification changeNotificationStatus_1 (String code, String status) throws ApiException {
     Object postBody = null;
     
 
@@ -129,7 +129,7 @@ public class V3notificationsApi {
     
     
     String[] contentTypes = {
-      
+      "application/json"
     };
 
     String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
@@ -161,7 +161,7 @@ public class V3notificationsApi {
     
 
     // create path and map variables
-    String path = "/v3/notifications/completed/app/{app_code}/user/{user_code}/device/{device_code}/{index}/{page_size}/".replaceAll("\\{format\\}","json")
+    String path = "/v3/notifications/completed/app/{app_code}/user/{user_code}/device/{device_code}/{index}/{page_size}".replaceAll("\\{format\\}","json")
       .replaceAll("\\{" + "app_code" + "\\}", ApiInvoker.getInstance().escapeString(app_code.toString()))
       .replaceAll("\\{" + "user_code" + "\\}", ApiInvoker.getInstance().escapeString(user_code.toString()))
       .replaceAll("\\{" + "device_code" + "\\}", ApiInvoker.getInstance().escapeString(device_code.toString()))
@@ -176,7 +176,7 @@ public class V3notificationsApi {
     
     
     String[] contentTypes = {
-      
+      "application/json"
     };
 
     String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
@@ -208,7 +208,7 @@ public class V3notificationsApi {
     
 
     // create path and map variables
-    String path = "/v3/notifications/completed/app/{app_code}/user/{user_code}/{index}/{page_size}/".replaceAll("\\{format\\}","json")
+    String path = "/v3/notifications/completed/app/{app_code}/user/{user_code}/{index}/{page_size}".replaceAll("\\{format\\}","json")
       .replaceAll("\\{" + "app_code" + "\\}", ApiInvoker.getInstance().escapeString(app_code.toString()))
       .replaceAll("\\{" + "user_code" + "\\}", ApiInvoker.getInstance().escapeString(user_code.toString()))
       .replaceAll("\\{" + "index" + "\\}", ApiInvoker.getInstance().escapeString(index.toString()))
@@ -222,7 +222,7 @@ public class V3notificationsApi {
     
     
     String[] contentTypes = {
-      
+      "application/json"
     };
 
     String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
@@ -254,7 +254,7 @@ public class V3notificationsApi {
     
 
     // create path and map variables
-    String path = "/v3/notifications/inbox/app/{app_code}/user/{user_code}/device/{device_code}/{index}/{page_size}/".replaceAll("\\{format\\}","json")
+    String path = "/v3/notifications/inbox/app/{app_code}/user/{user_code}/device/{device_code}/{index}/{page_size}".replaceAll("\\{format\\}","json")
       .replaceAll("\\{" + "app_code" + "\\}", ApiInvoker.getInstance().escapeString(app_code.toString()))
       .replaceAll("\\{" + "user_code" + "\\}", ApiInvoker.getInstance().escapeString(user_code.toString()))
       .replaceAll("\\{" + "device_code" + "\\}", ApiInvoker.getInstance().escapeString(device_code.toString()))
@@ -269,7 +269,7 @@ public class V3notificationsApi {
     
     
     String[] contentTypes = {
-      
+      "application/json"
     };
 
     String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
@@ -301,7 +301,7 @@ public class V3notificationsApi {
     
 
     // create path and map variables
-    String path = "/v3/notifications/inbox/app/{app_code}/user/{user_code}/{index}/{page_size}/".replaceAll("\\{format\\}","json")
+    String path = "/v3/notifications/inbox/app/{app_code}/user/{user_code}/{index}/{page_size}".replaceAll("\\{format\\}","json")
       .replaceAll("\\{" + "app_code" + "\\}", ApiInvoker.getInstance().escapeString(app_code.toString()))
       .replaceAll("\\{" + "user_code" + "\\}", ApiInvoker.getInstance().escapeString(user_code.toString()))
       .replaceAll("\\{" + "index" + "\\}", ApiInvoker.getInstance().escapeString(index.toString()))
@@ -315,7 +315,7 @@ public class V3notificationsApi {
     
     
     String[] contentTypes = {
-      
+      "application/json"
     };
 
     String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
@@ -358,7 +358,7 @@ public class V3notificationsApi {
     
     
     String[] contentTypes = {
-      
+      "application/json"
     };
 
     String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
@@ -390,7 +390,7 @@ public class V3notificationsApi {
     
 
     // create path and map variables
-    String path = "/v3/notifications/status/{status}/app/{app_code}/user/{user_code}/device/{device_code}/{index}/{page_size}/".replaceAll("\\{format\\}","json")
+    String path = "/v3/notifications/status/{status}/app/{app_code}/user/{user_code}/device/{device_code}/{index}/{page_size}".replaceAll("\\{format\\}","json")
       .replaceAll("\\{" + "status" + "\\}", ApiInvoker.getInstance().escapeString(status.toString()))
       .replaceAll("\\{" + "app_code" + "\\}", ApiInvoker.getInstance().escapeString(app_code.toString()))
       .replaceAll("\\{" + "user_code" + "\\}", ApiInvoker.getInstance().escapeString(user_code.toString()))
@@ -406,7 +406,7 @@ public class V3notificationsApi {
     
     
     String[] contentTypes = {
-      
+      "application/json"
     };
 
     String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
@@ -438,7 +438,7 @@ public class V3notificationsApi {
     
 
     // create path and map variables
-    String path = "/v3/notifications/status/{status}/app/{app_code}/user/{user_code}/{index}/{page_size}/".replaceAll("\\{format\\}","json")
+    String path = "/v3/notifications/status/{status}/app/{app_code}/user/{user_code}/{index}/{page_size}".replaceAll("\\{format\\}","json")
       .replaceAll("\\{" + "status" + "\\}", ApiInvoker.getInstance().escapeString(status.toString()))
       .replaceAll("\\{" + "app_code" + "\\}", ApiInvoker.getInstance().escapeString(app_code.toString()))
       .replaceAll("\\{" + "user_code" + "\\}", ApiInvoker.getInstance().escapeString(user_code.toString()))
@@ -453,7 +453,7 @@ public class V3notificationsApi {
     
     
     String[] contentTypes = {
-      
+      "application/json"
     };
 
     String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
@@ -475,6 +475,93 @@ public class V3notificationsApi {
         return (List<Notification>) ApiInvoker.deserialize(response, "array", Notification.class);
       } else {
         return null;
+      }
+    
+  }
+  
+    
+  public void findNotificationsByToken (String push_token) throws ApiException {
+    Object postBody = null;
+    
+
+    // create path and map variables
+    String path = "/v3/notifications/token/{push_token}".replaceAll("\\{format\\}","json")
+      .replaceAll("\\{" + "push_token" + "\\}", ApiInvoker.getInstance().escapeString(push_token.toString()));
+
+    // query params
+    Map<String, String> queryParams = new HashMap<String, String>();
+    Map<String, String> headerParams = new HashMap<String, String>();
+    Map<String, String> formParams = new HashMap<String, String>();
+
+    
+    
+    String[] contentTypes = {
+      "application/json"
+    };
+
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+
+    if(contentType.startsWith("multipart/form-data")) {
+      boolean hasFields = false;
+      MultipartBody.Builder mp = new MultipartBody.Builder();
+      mp.setType(MultipartBody.FORM);
+      
+      if(hasFields)
+        postBody = mp;
+    }
+    else {
+      
+    }
+
+      String response = ApiInvoker.getInstance().invokeAPI(path, "GET", queryParams, postBody, headerParams, formParams, contentType);
+      if(response != null){
+        return ;
+      } else {
+        return ;
+      }
+    
+  }
+  
+    
+  public void findNotificationsByTokenStatus (String push_token, String status) throws ApiException {
+    Object postBody = null;
+    
+
+    // create path and map variables
+    String path = "/v3/notifications/token/{push_token}/status/{status}".replaceAll("\\{format\\}","json")
+      .replaceAll("\\{" + "push_token" + "\\}", ApiInvoker.getInstance().escapeString(push_token.toString()))
+      .replaceAll("\\{" + "status" + "\\}", ApiInvoker.getInstance().escapeString(status.toString()));
+
+    // query params
+    Map<String, String> queryParams = new HashMap<String, String>();
+    Map<String, String> headerParams = new HashMap<String, String>();
+    Map<String, String> formParams = new HashMap<String, String>();
+
+    
+    
+    String[] contentTypes = {
+      "application/json"
+    };
+
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+
+    if(contentType.startsWith("multipart/form-data")) {
+      boolean hasFields = false;
+      MultipartBody.Builder mp = new MultipartBody.Builder();
+      mp.setType(MultipartBody.FORM);
+      
+      if(hasFields)
+        postBody = mp;
+    }
+    else {
+      
+    }
+
+      String response = ApiInvoker.getInstance().invokeAPI(path, "GET", queryParams, postBody, headerParams, formParams, contentType);
+      if(response != null){
+        return ;
+      } else {
+        return ;
       }
     
   }
