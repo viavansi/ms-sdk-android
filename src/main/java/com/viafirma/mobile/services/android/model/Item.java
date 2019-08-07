@@ -70,6 +70,10 @@ public class Item  implements Serializable {
   private List<String> scanTypes = new ArrayList<String>() ;
   @SerializedName("originalValue")
   private String originalValue = null;
+  @SerializedName("scanHideTextfield")
+  private Boolean scanHideTextfield = Boolean.FALSE;
+  @SerializedName("scanExpression")
+  private String scanExpression = null;
 
   
   /**
@@ -402,6 +406,28 @@ public class Item  implements Serializable {
   }
 
   
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public Boolean getScanHideTextfield() {
+    return scanHideTextfield;
+  }
+  public void setScanHideTextfield(Boolean scanHideTextfield) {
+    this.scanHideTextfield = scanHideTextfield;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public String getScanExpression() {
+    return scanExpression;
+  }
+  public void setScanExpression(String scanExpression) {
+    this.scanExpression = scanExpression;
+  }
+
+  
 
   @Override
   public String toString()  {
@@ -438,6 +464,8 @@ public class Item  implements Serializable {
     sb.append("  increment: ").append(increment).append("\n");
     sb.append("  scanTypes: ").append(scanTypes).append("\n");
     sb.append("  originalValue: ").append(originalValue).append("\n");
+    sb.append("  scanHideTextfield: ").append(scanHideTextfield).append("\n");
+    sb.append("  scanExpression: ").append(scanExpression).append("\n");
     sb.append("}\n");
     return sb.toString();
   }

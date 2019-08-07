@@ -1,4 +1,6 @@
 repositories {
+    maven { url "https://maven.google.com" }
+    jcenter()
     mavenCentral()
     maven { url 'http://repo1.maven.org/maven2' }
     maven { url "http://repositorio.viavansi.com/artifactory/libs-releases-local/" }
@@ -6,11 +8,13 @@ repositories {
 
 buildscript {
     repositories {
+        google()
         mavenCentral()
+        maven { url "https://maven.google.com" }
         jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.3.3'
+        classpath 'com.android.tools.build:gradle:3.4.2'
     }
 }
 
@@ -18,12 +22,12 @@ apply plugin: 'com.android.library'
 apply plugin: 'maven'
 
 android {
-    compileSdkVersion 21
-    buildToolsVersion "25.0.0"
+    compileSdkVersion 28
+    buildToolsVersion "28.0.3"
 
     defaultConfig {
-        minSdkVersion 10
-        targetSdkVersion 21
+        minSdkVersion 15
+        targetSdkVersion 28
         versionCode 1
         versionName "1.0"
     }
@@ -36,6 +40,8 @@ android {
     lintOptions {
 		abortOnError false
 	}
+	
+	useLibrary 'org.apache.http.legacy'
 }
 
 configurations {
@@ -46,14 +52,14 @@ dependencies {
 	// Maven publishing
     deployerJars 'org.apache.maven.wagon:wagon-http:2.2'
     
-    compile 'com.google.code.gson:gson:2.2.+'
+    implementation 'com.google.code.gson:gson:2.2.+'
 
-    compile 'com.wordnik:swagger-annotations:1.5.1-M1'
+    implementation 'com.wordnik:swagger-annotations:1.5.1-M1'
 
-    compile 'com.squareup.okhttp3:okhttp:3.2.0'
-    compile 'se.akerfeldt:okhttp-signpost:1.1.0'
-    compile 'oauth.signpost:signpost-core:1.2.1.2'
-    compile 'org.apache.commons:commons-lang3:3.4'
+    implementation 'com.squareup.okhttp3:okhttp:3.2.0'
+    implementation 'se.akerfeldt:okhttp-signpost:1.1.0'
+    implementation 'oauth.signpost:signpost-core:1.2.1.2'
+    implementation 'org.apache.commons:commons-lang3:3.4'
 }
 
 // For Maven Repository submitting
@@ -64,7 +70,7 @@ task uploadRelease(type: Upload) {
         repository(url: releaseUrl) {
             authentication(userName: repoUsername, password: repoPassword)
         }
-        pom.version = '3.6.0'
+        pom.version = '3.6.1'
         pom.artifactId = "ms-sdk-android"
         pom.groupId = "com.viafirma"
     }
@@ -77,7 +83,7 @@ task uploadSnapshot(type: Upload) {
         snapshotRepository(url: snapshotUrl) {
             authentication(userName: repoUsername, password: repoPassword)
         }
-        pom.version = '3.6.0' + "-SNAPSHOT"
+        pom.version = '3.6.1' + "-SNAPSHOT"
         pom.artifactId = "ms-sdk-android"
         pom.groupId = "com.viafirma"
     }
