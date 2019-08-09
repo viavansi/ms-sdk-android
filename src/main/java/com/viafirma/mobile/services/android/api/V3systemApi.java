@@ -73,7 +73,7 @@ public class V3systemApi {
   }
   
     
-  public String sendMessageData_1 (GroupUserData body) throws ApiException {
+  public String createApp (GroupUserData body) throws ApiException {
     Object postBody = body;
     
 

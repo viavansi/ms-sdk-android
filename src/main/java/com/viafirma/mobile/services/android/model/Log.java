@@ -57,7 +57,7 @@ public class Log  implements Serializable {
   
   /**
    **/
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(required = false, value = "")
   public LevelEnum getLevel() {
     return level;
   }

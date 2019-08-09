@@ -438,7 +438,7 @@ public class V3messagesApi {
   }
   
     
-  public Message changeNotificationStatus (String messageCode, String status) throws ApiException {
+  public Message changeExternalStatus (String messageCode, String status) throws ApiException {
     Object postBody = null;
     
 

@@ -112,7 +112,7 @@ public class V3notificationsApi {
   }
   
     
-  public Notification changeNotificationStatus_1 (String code, String status) throws ApiException {
+  public Notification changeNotificationStatus (String code, String status) throws ApiException {
     Object postBody = null;
     
 
