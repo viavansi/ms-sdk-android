@@ -290,7 +290,7 @@ public class V3messagesApi {
   }
   
     
-  public List<MessageList> getMessagesByExternalStatus_1 (String groupCode, String requestAppCode, String templateCode) throws ApiException {
+  public List<MessageList> getMessagesByExternalStatus (String groupCode, String requestAppCode, String templateCode) throws ApiException {
     Object postBody = null;
     
 
@@ -338,7 +338,7 @@ public class V3messagesApi {
   }
   
     
-  public List<MessageList> getMessagesByExternalStatus (String externalStatus, String groupCode, String requestAppCode, String templateCode) throws ApiException {
+  public List<MessageList> getMessagesByExternalStatus_1 (String externalStatus, String groupCode, String requestAppCode, String templateCode) throws ApiException {
     Object postBody = null;
     
 
@@ -739,6 +739,68 @@ public class V3messagesApi {
       String response = ApiInvoker.getInstance().invokeAPI(path, "GET", queryParams, postBody, headerParams, formParams, contentType);
       if(response != null){
         return (String) ApiInvoker.deserialize(response, "", String.class);
+      } else {
+        return null;
+      }
+    
+  }
+  
+    
+  public Message resendWebNotification (String messageCode, String recipients, String smsText, String mailText) throws ApiException {
+    Object postBody = null;
+    
+
+    // create path and map variables
+    String path = "/v3/messages/resendWeb".replaceAll("\\{format\\}","json");
+
+    // query params
+    Map<String, String> queryParams = new HashMap<String, String>();
+    Map<String, String> headerParams = new HashMap<String, String>();
+    Map<String, String> formParams = new HashMap<String, String>();
+
+    
+    
+    String[] contentTypes = {
+      "application/x-www-form-urlencoded"
+    };
+
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+
+    if(contentType.startsWith("multipart/form-data")) {
+      boolean hasFields = false;
+      MultipartBody.Builder mp = new MultipartBody.Builder();
+      mp.setType(MultipartBody.FORM);
+      
+      hasFields = true;
+      mp.addFormDataPart("messageCode", messageCode);
+      
+      
+      hasFields = true;
+      mp.addFormDataPart("recipients", recipients);
+      
+      
+      hasFields = true;
+      mp.addFormDataPart("smsText", smsText);
+      
+      
+      hasFields = true;
+      mp.addFormDataPart("mailText", mailText);
+      
+      
+      if(hasFields)
+        postBody = mp;
+    }
+    else {
+      formParams.put("messageCode", messageCode);
+      formParams.put("recipients", recipients);
+      formParams.put("smsText", smsText);
+      formParams.put("mailText", mailText);
+      
+    }
+
+      String response = ApiInvoker.getInstance().invokeAPI(path, "POST", queryParams, postBody, headerParams, formParams, contentType);
+      if(response != null){
+        return (Message) ApiInvoker.deserialize(response, "", Message.class);
       } else {
         return null;
       }

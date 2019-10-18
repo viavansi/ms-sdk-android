@@ -2,6 +2,7 @@ package com.viafirma.mobile.services.android.model;
 
 import com.viafirma.mobile.services.android.model.Policy;
 import com.viafirma.mobile.services.android.model.Customization;
+import com.viafirma.mobile.services.android.model.Param;
 import java.util.*;
 import com.viafirma.mobile.services.android.model.AcrofieldPosition;
 import com.viafirma.mobile.services.android.model.Font;
@@ -54,6 +55,10 @@ public class Setting  implements Serializable {
   private Customization customization = null;
   @SerializedName("callbackMailsFromForm")
   private List<String> callbackMailsFromForm = new ArrayList<String>() ;
+  @SerializedName("metadataList")
+  private List<Param> metadataList = new ArrayList<Param>() ;
+  @SerializedName("retryTime")
+  private Long retryTime = null;
 
   
   /**
@@ -276,6 +281,28 @@ public class Setting  implements Serializable {
   }
 
   
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public List<Param> getMetadataList() {
+    return metadataList;
+  }
+  public void setMetadataList(List<Param> metadataList) {
+    this.metadataList = metadataList;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public Long getRetryTime() {
+    return retryTime;
+  }
+  public void setRetryTime(Long retryTime) {
+    this.retryTime = retryTime;
+  }
+
+  
 
   @Override
   public String toString()  {
@@ -302,6 +329,8 @@ public class Setting  implements Serializable {
     sb.append("  allowDocumentResend: ").append(allowDocumentResend).append("\n");
     sb.append("  customization: ").append(customization).append("\n");
     sb.append("  callbackMailsFromForm: ").append(callbackMailsFromForm).append("\n");
+    sb.append("  metadataList: ").append(metadataList).append("\n");
+    sb.append("  retryTime: ").append(retryTime).append("\n");
     sb.append("}\n");
     return sb.toString();
   }

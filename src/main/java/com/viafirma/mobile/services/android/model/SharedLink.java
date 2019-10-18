@@ -1,5 +1,7 @@
 package com.viafirma.mobile.services.android.model;
 
+import com.viafirma.mobile.services.android.model.ClientApp;
+import java.util.*;
 
 import com.wordnik.swagger.annotations.*;
 import com.google.gson.annotations.SerializedName;
@@ -21,6 +23,8 @@ public class SharedLink  implements Serializable {
   private String email = null;
   @SerializedName("subject")
   private String subject = null;
+  @SerializedName("apps")
+  private List<ClientApp> apps = new ArrayList<ClientApp>() ;
   @SerializedName("phone")
   private String phone = null;
 
@@ -94,6 +98,17 @@ public class SharedLink  implements Serializable {
   /**
    **/
   @ApiModelProperty(required = false, value = "")
+  public List<ClientApp> getApps() {
+    return apps;
+  }
+  public void setApps(List<ClientApp> apps) {
+    this.apps = apps;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
   public String getPhone() {
     return phone;
   }
@@ -114,6 +129,7 @@ public class SharedLink  implements Serializable {
     sb.append("  appCode: ").append(appCode).append("\n");
     sb.append("  email: ").append(email).append("\n");
     sb.append("  subject: ").append(subject).append("\n");
+    sb.append("  apps: ").append(apps).append("\n");
     sb.append("  phone: ").append(phone).append("\n");
     sb.append("}\n");
     return sb.toString();

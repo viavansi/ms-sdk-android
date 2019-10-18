@@ -57,6 +57,8 @@ public class Document  implements Serializable {
   private Boolean deleteSignedDocuments = Boolean.FALSE;
   @SerializedName("watermarkText")
   private String watermarkText = null;
+  @SerializedName("extraPages")
+  private Integer extraPages = null;
   @SerializedName("formUpdated")
   private Boolean formUpdated = Boolean.FALSE;
 
@@ -298,6 +300,17 @@ public class Document  implements Serializable {
   /**
    **/
   @ApiModelProperty(required = false, value = "")
+  public Integer getExtraPages() {
+    return extraPages;
+  }
+  public void setExtraPages(Integer extraPages) {
+    this.extraPages = extraPages;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
   public Boolean getFormUpdated() {
     return formUpdated;
   }
@@ -333,6 +346,7 @@ public class Document  implements Serializable {
     sb.append("  allowResend: ").append(allowResend).append("\n");
     sb.append("  deleteSignedDocuments: ").append(deleteSignedDocuments).append("\n");
     sb.append("  watermarkText: ").append(watermarkText).append("\n");
+    sb.append("  extraPages: ").append(extraPages).append("\n");
     sb.append("  formUpdated: ").append(formUpdated).append("\n");
     sb.append("}\n");
     return sb.toString();

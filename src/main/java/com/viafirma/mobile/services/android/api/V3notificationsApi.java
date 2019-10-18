@@ -480,7 +480,7 @@ public class V3notificationsApi {
   }
   
     
-  public void findNotificationsByToken (String push_token) throws ApiException {
+  public String findNotificationsByToken (String push_token) throws ApiException {
     Object postBody = null;
     
 
@@ -515,15 +515,15 @@ public class V3notificationsApi {
 
       String response = ApiInvoker.getInstance().invokeAPI(path, "GET", queryParams, postBody, headerParams, formParams, contentType);
       if(response != null){
-        return ;
+        return (String) ApiInvoker.deserialize(response, "", String.class);
       } else {
-        return ;
+        return null;
       }
     
   }
   
     
-  public void findNotificationsByTokenStatus (String push_token, String status) throws ApiException {
+  public String findNotificationsByTokenStatus (String push_token, String status) throws ApiException {
     Object postBody = null;
     
 
@@ -559,9 +559,9 @@ public class V3notificationsApi {
 
       String response = ApiInvoker.getInstance().invokeAPI(path, "GET", queryParams, postBody, headerParams, formParams, contentType);
       if(response != null){
-        return ;
+        return (String) ApiInvoker.deserialize(response, "", String.class);
       } else {
-        return ;
+        return null;
       }
     
   }

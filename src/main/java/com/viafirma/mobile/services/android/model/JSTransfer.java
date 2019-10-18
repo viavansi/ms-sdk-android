@@ -1,5 +1,7 @@
 package com.viafirma.mobile.services.android.model;
 
+import com.viafirma.mobile.services.android.model.Param;
+import java.util.*;
 import java.util.Date;
 
 import com.wordnik.swagger.annotations.*;
@@ -20,6 +22,8 @@ public class JSTransfer  implements Serializable {
   private String error = null;
   @SerializedName("response")
   private String response = null;
+  @SerializedName("metadataList")
+  private List<Param> metadataList = new ArrayList<Param>() ;
 
   
   /**
@@ -77,6 +81,17 @@ public class JSTransfer  implements Serializable {
   }
 
   
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public List<Param> getMetadataList() {
+    return metadataList;
+  }
+  public void setMetadataList(List<Param> metadataList) {
+    this.metadataList = metadataList;
+  }
+
+  
 
   @Override
   public String toString()  {
@@ -88,6 +103,7 @@ public class JSTransfer  implements Serializable {
     sb.append("  transferDate: ").append(transferDate).append("\n");
     sb.append("  error: ").append(error).append("\n");
     sb.append("  response: ").append(response).append("\n");
+    sb.append("  metadataList: ").append(metadataList).append("\n");
     sb.append("}\n");
     return sb.toString();
   }

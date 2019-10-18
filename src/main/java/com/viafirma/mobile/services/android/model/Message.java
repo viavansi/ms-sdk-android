@@ -93,6 +93,12 @@ public class Message  implements Serializable {
   private String languageId = null;
   @SerializedName("timeZoneId")
   private String timeZoneId = null;
+  @SerializedName("setCode")
+  private String setCode = null;
+  @SerializedName("setStatus")
+  private String setStatus = null;
+  @SerializedName("signPageServer")
+  private String signPageServer = null;
 
   
   /**
@@ -502,6 +508,39 @@ public class Message  implements Serializable {
   }
 
   
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public String getSetCode() {
+    return setCode;
+  }
+  public void setSetCode(String setCode) {
+    this.setCode = setCode;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public String getSetStatus() {
+    return setStatus;
+  }
+  public void setSetStatus(String setStatus) {
+    this.setStatus = setStatus;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public String getSignPageServer() {
+    return signPageServer;
+  }
+  public void setSignPageServer(String signPageServer) {
+    this.signPageServer = signPageServer;
+  }
+
+  
 
   @Override
   public String toString()  {
@@ -545,6 +584,9 @@ public class Message  implements Serializable {
     sb.append("  transfers: ").append(transfers).append("\n");
     sb.append("  languageId: ").append(languageId).append("\n");
     sb.append("  timeZoneId: ").append(timeZoneId).append("\n");
+    sb.append("  setCode: ").append(setCode).append("\n");
+    sb.append("  setStatus: ").append(setStatus).append("\n");
+    sb.append("  signPageServer: ").append(signPageServer).append("\n");
     sb.append("}\n");
     return sb.toString();
   }

@@ -43,6 +43,8 @@ public class Attachment  implements Serializable {
   private Date date = null;
   @SerializedName("hash")
   private String hash = null;
+  @SerializedName("fileName")
+  private String fileName = null;
 
   
   /**
@@ -166,6 +168,17 @@ public class Attachment  implements Serializable {
   }
 
   
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public String getFileName() {
+    return fileName;
+  }
+  public void setFileName(String fileName) {
+    this.fileName = fileName;
+  }
+
+  
 
   @Override
   public String toString()  {
@@ -183,6 +196,7 @@ public class Attachment  implements Serializable {
     sb.append("  metadataList: ").append(metadataList).append("\n");
     sb.append("  date: ").append(date).append("\n");
     sb.append("  hash: ").append(hash).append("\n");
+    sb.append("  fileName: ").append(fileName).append("\n");
     sb.append("}\n");
     return sb.toString();
   }

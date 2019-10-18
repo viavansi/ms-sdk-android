@@ -28,7 +28,7 @@ public class V3documentsApi {
   
   
     
-  public void addCache (Base64 body) throws ApiException {
+  public String addCache (Base64 body) throws ApiException {
     Object postBody = body;
     
 
@@ -62,9 +62,9 @@ public class V3documentsApi {
 
       String response = ApiInvoker.getInstance().invokeAPI(path, "POST", queryParams, postBody, headerParams, formParams, contentType);
       if(response != null){
-        return ;
+        return (String) ApiInvoker.deserialize(response, "", String.class);
       } else {
-        return ;
+        return null;
       }
     
   }
@@ -199,7 +199,7 @@ public class V3documentsApi {
   }
   
     
-  public void getDocument (String type, String messageCode, String documentCode) throws ApiException {
+  public List<String> getDocument (String type, String messageCode, String documentCode) throws ApiException {
     Object postBody = null;
     
 
@@ -236,9 +236,9 @@ public class V3documentsApi {
 
       String response = ApiInvoker.getInstance().invokeAPI(path, "GET", queryParams, postBody, headerParams, formParams, contentType);
       if(response != null){
-        return ;
+        return (List<String>) ApiInvoker.deserialize(response, "array", String.class);
       } else {
-        return ;
+        return null;
       }
     
   }

@@ -25,10 +25,10 @@ public class Stamper  implements Serializable {
   private Integer width = null;
   @SerializedName("height")
   private Integer height = null;
-  @SerializedName("getxAxis")
-  private Integer getxAxis = null;
-  @SerializedName("getyAxis")
-  private Integer getyAxis = null;
+  @SerializedName("xAxis")
+  private Integer xAxis = null;
+  @SerializedName("yAxis")
+  private Integer yAxis = null;
   @SerializedName("page")
   private Integer page = null;
   @SerializedName("imageBase64")
@@ -86,22 +86,22 @@ public class Stamper  implements Serializable {
   /**
    **/
   @ApiModelProperty(required = false, value = "")
-  public Integer getGetxAxis() {
-    return getxAxis;
+  public Integer getXAxis() {
+    return xAxis;
   }
-  public void setGetxAxis(Integer getxAxis) {
-    this.getxAxis = getxAxis;
+  public void setXAxis(Integer xAxis) {
+    this.xAxis = xAxis;
   }
 
   
   /**
    **/
   @ApiModelProperty(required = false, value = "")
-  public Integer getGetyAxis() {
-    return getyAxis;
+  public Integer getYAxis() {
+    return yAxis;
   }
-  public void setGetyAxis(Integer getyAxis) {
-    this.getyAxis = getyAxis;
+  public void setYAxis(Integer yAxis) {
+    this.yAxis = yAxis;
   }
 
   
@@ -159,8 +159,8 @@ public class Stamper  implements Serializable {
     sb.append("  rotation: ").append(rotation).append("\n");
     sb.append("  width: ").append(width).append("\n");
     sb.append("  height: ").append(height).append("\n");
-    sb.append("  getxAxis: ").append(getxAxis).append("\n");
-    sb.append("  getyAxis: ").append(getyAxis).append("\n");
+    sb.append("  xAxis: ").append(xAxis).append("\n");
+    sb.append("  yAxis: ").append(yAxis).append("\n");
     sb.append("  page: ").append(page).append("\n");
     sb.append("  imageBase64: ").append(imageBase64).append("\n");
     sb.append("  positionsKey: ").append(positionsKey).append("\n");

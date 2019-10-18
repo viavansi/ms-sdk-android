@@ -116,7 +116,7 @@ public class V3templateApi {
   }
   
     
-  public void generatePdf (Document body) throws ApiException {
+  public String generatePdf (Document body) throws ApiException {
     Object postBody = body;
     
 
@@ -150,9 +150,9 @@ public class V3templateApi {
 
       String response = ApiInvoker.getInstance().invokeAPI(path, "POST", queryParams, postBody, headerParams, formParams, contentType);
       if(response != null){
-        return ;
+        return (String) ApiInvoker.deserialize(response, "", String.class);
       } else {
-        return ;
+        return null;
       }
     
   }
