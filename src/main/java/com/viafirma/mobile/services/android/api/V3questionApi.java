@@ -30,7 +30,7 @@ public class V3questionApi {
   
   
     
-  public Questionary getQuestionary (String messageCode, String evidenceCode, List<Param> body) throws ApiException {
+  public Questionary requestQuestionary (String messageCode, String evidenceCode, List<Param> body) throws ApiException {
     Object postBody = body;
     
 
@@ -64,7 +64,7 @@ public class V3questionApi {
       
     }
 
-      String response = ApiInvoker.getInstance().invokeAPI(path, "GET", queryParams, postBody, headerParams, formParams, contentType);
+      String response = ApiInvoker.getInstance().invokeAPI(path, "PUT", queryParams, postBody, headerParams, formParams, contentType);
       if(response != null){
         return (Questionary) ApiInvoker.deserialize(response, "", Questionary.class);
       } else {

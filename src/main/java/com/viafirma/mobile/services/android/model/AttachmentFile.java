@@ -11,8 +11,8 @@ public class AttachmentFile  implements Serializable {
   
   @SerializedName("fileName")
   private String fileName = null;
-  @SerializedName("base64")
-  private String base64 = null;
+  @SerializedName("size")
+  private Integer size = null;
 
   
   /**
@@ -29,11 +29,11 @@ public class AttachmentFile  implements Serializable {
   /**
    **/
   @ApiModelProperty(required = false, value = "")
-  public String getBase64() {
-    return base64;
+  public Integer getSize() {
+    return size;
   }
-  public void setBase64(String base64) {
-    this.base64 = base64;
+  public void setSize(Integer size) {
+    this.size = size;
   }
 
   
@@ -44,7 +44,7 @@ public class AttachmentFile  implements Serializable {
     sb.append("class AttachmentFile {\n");
     
     sb.append("  fileName: ").append(fileName).append("\n");
-    sb.append("  base64: ").append(base64).append("\n");
+    sb.append("  size: ").append(size).append("\n");
     sb.append("}\n");
     return sb.toString();
   }

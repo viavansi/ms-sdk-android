@@ -51,6 +51,8 @@ public class Notification  implements Serializable {
   private Customization customization = null;
   @SerializedName("deliveryGroup")
   private String deliveryGroup = null;
+  @SerializedName("deliveryUsers")
+  private String deliveryUsers = null;
   public enum DeliveryTypeEnum {
      ONCE,  ALL, 
   };
@@ -232,6 +234,17 @@ public class Notification  implements Serializable {
   /**
    **/
   @ApiModelProperty(required = false, value = "")
+  public String getDeliveryUsers() {
+    return deliveryUsers;
+  }
+  public void setDeliveryUsers(String deliveryUsers) {
+    this.deliveryUsers = deliveryUsers;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
   public DeliveryTypeEnum getDeliveryType() {
     return deliveryType;
   }
@@ -294,6 +307,7 @@ public class Notification  implements Serializable {
     sb.append("  retryTime: ").append(retryTime).append("\n");
     sb.append("  customization: ").append(customization).append("\n");
     sb.append("  deliveryGroup: ").append(deliveryGroup).append("\n");
+    sb.append("  deliveryUsers: ").append(deliveryUsers).append("\n");
     sb.append("  deliveryType: ").append(deliveryType).append("\n");
     sb.append("  deliveryAppCode: ").append(deliveryAppCode).append("\n");
     sb.append("  metadata: ").append(metadata).append("\n");

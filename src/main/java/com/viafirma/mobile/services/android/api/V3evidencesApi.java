@@ -8,6 +8,7 @@ import com.viafirma.mobile.services.android.model.*;
 import java.util.*;
 
 import com.viafirma.mobile.services.android.model.Attachment;
+import java.io.File;
 import com.viafirma.mobile.services.android.model.AttachmentFile;
 import com.viafirma.mobile.services.android.model.Evidence;
 import com.viafirma.mobile.services.android.model.EvidenceFingerPrint;
@@ -34,7 +35,7 @@ public class V3evidencesApi {
   
   
     
-  public Attachment attach (String messageCode, String attachmentCode, String attachmentFile, String attachmentFilename) throws ApiException {
+  public Attachment attach (String messageCode, String attachmentCode, File attachmentFile, String attachmentFilename) throws ApiException {
     Object postBody = null;
     
 
@@ -49,7 +50,7 @@ public class V3evidencesApi {
     
     
     String[] contentTypes = {
-      "application/x-www-form-urlencoded"
+      "multipart/form-data"
     };
 
     String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
@@ -67,9 +68,9 @@ public class V3evidencesApi {
       mp.addFormDataPart("attachmentCode", attachmentCode);
       
       
-      hasFields = true;
-      mp.addFormDataPart("attachmentFile", attachmentFile);
       
+      hasFields = true;
+      mp.addFormDataPart("attachmentFile", attachmentFile.getName(), RequestBody.create(MediaType.parse("text/plain"), attachmentFile));
       
       hasFields = true;
       mp.addFormDataPart("attachmentFilename", attachmentFilename);
@@ -81,7 +82,7 @@ public class V3evidencesApi {
     else {
       formParams.put("messageCode", messageCode);
       formParams.put("attachmentCode", attachmentCode);
-      formParams.put("attachmentFile", attachmentFile);
+      
       formParams.put("attachmentFilename", attachmentFilename);
       
     }
@@ -133,6 +134,50 @@ public class V3evidencesApi {
       String response = ApiInvoker.getInstance().invokeAPI(path, "GET", queryParams, postBody, headerParams, formParams, contentType);
       if(response != null){
         return (AttachmentFile) ApiInvoker.deserialize(response, "", AttachmentFile.class);
+      } else {
+        return null;
+      }
+    
+  }
+  
+    
+  public List<String> getAttachmentFile (String messageCode, String attachmentCode) throws ApiException {
+    Object postBody = null;
+    
+
+    // create path and map variables
+    String path = "/v3/evidences/attachmentFile/{messageCode}/{attachmentCode}".replaceAll("\\{format\\}","json")
+      .replaceAll("\\{" + "messageCode" + "\\}", ApiInvoker.getInstance().escapeString(messageCode.toString()))
+      .replaceAll("\\{" + "attachmentCode" + "\\}", ApiInvoker.getInstance().escapeString(attachmentCode.toString()));
+
+    // query params
+    Map<String, String> queryParams = new HashMap<String, String>();
+    Map<String, String> headerParams = new HashMap<String, String>();
+    Map<String, String> formParams = new HashMap<String, String>();
+
+    
+    
+    String[] contentTypes = {
+      "application/json"
+    };
+
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+
+    if(contentType.startsWith("multipart/form-data")) {
+      boolean hasFields = false;
+      MultipartBody.Builder mp = new MultipartBody.Builder();
+      mp.setType(MultipartBody.FORM);
+      
+      if(hasFields)
+        postBody = mp;
+    }
+    else {
+      
+    }
+
+      String response = ApiInvoker.getInstance().invokeAPI(path, "GET", queryParams, postBody, headerParams, formParams, contentType);
+      if(response != null){
+        return (List<String>) ApiInvoker.deserialize(response, "array", String.class);
       } else {
         return null;
       }
@@ -226,7 +271,7 @@ public class V3evidencesApi {
   }
   
     
-  public Evidence addGenericAsEvidence (EvidenceGeneric body) throws ApiException {
+  public Evidence addGenericAsEvidence_1 (EvidenceGeneric body) throws ApiException {
     Object postBody = body;
     
 
@@ -268,7 +313,7 @@ public class V3evidencesApi {
   }
   
     
-  public Boolean addGenericAsEvidence_1 (List<EvidenceGeneric> body) throws ApiException {
+  public Boolean addGenericAsEvidence (List<EvidenceGeneric> body) throws ApiException {
     Object postBody = body;
     
 
@@ -598,14 +643,14 @@ public class V3evidencesApi {
   }
   
     
-  public String removeAttachment (String messageCode, String evidenceCode) throws ApiException {
+  public String removeAttachment (String messageCode, String attachmentCode) throws ApiException {
     Object postBody = null;
     
 
     // create path and map variables
     String path = "/v3/evidences/removeAttachment/{messageCode}/{attachmentCode}".replaceAll("\\{format\\}","json")
       .replaceAll("\\{" + "messageCode" + "\\}", ApiInvoker.getInstance().escapeString(messageCode.toString()))
-      .replaceAll("\\{" + "evidenceCode" + "\\}", ApiInvoker.getInstance().escapeString(evidenceCode.toString()));
+      .replaceAll("\\{" + "attachmentCode" + "\\}", ApiInvoker.getInstance().escapeString(attachmentCode.toString()));
 
     // query params
     Map<String, String> queryParams = new HashMap<String, String>();
@@ -720,6 +765,50 @@ public class V3evidencesApi {
       String response = ApiInvoker.getInstance().invokeAPI(path, "GET", queryParams, postBody, headerParams, formParams, contentType);
       if(response != null){
         return (Evidence) ApiInvoker.deserialize(response, "", Evidence.class);
+      } else {
+        return null;
+      }
+    
+  }
+  
+    
+  public String getEvidenceStatus (String messageCode, String evidenceCode) throws ApiException {
+    Object postBody = null;
+    
+
+    // create path and map variables
+    String path = "/v3/evidences/status/{messageCode}/{evidenceCode}".replaceAll("\\{format\\}","json")
+      .replaceAll("\\{" + "messageCode" + "\\}", ApiInvoker.getInstance().escapeString(messageCode.toString()))
+      .replaceAll("\\{" + "evidenceCode" + "\\}", ApiInvoker.getInstance().escapeString(evidenceCode.toString()));
+
+    // query params
+    Map<String, String> queryParams = new HashMap<String, String>();
+    Map<String, String> headerParams = new HashMap<String, String>();
+    Map<String, String> formParams = new HashMap<String, String>();
+
+    
+    
+    String[] contentTypes = {
+      "application/json"
+    };
+
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+
+    if(contentType.startsWith("multipart/form-data")) {
+      boolean hasFields = false;
+      MultipartBody.Builder mp = new MultipartBody.Builder();
+      mp.setType(MultipartBody.FORM);
+      
+      if(hasFields)
+        postBody = mp;
+    }
+    else {
+      
+    }
+
+      String response = ApiInvoker.getInstance().invokeAPI(path, "GET", queryParams, postBody, headerParams, formParams, contentType);
+      if(response != null){
+        return (String) ApiInvoker.deserialize(response, "", String.class);
       } else {
         return null;
       }

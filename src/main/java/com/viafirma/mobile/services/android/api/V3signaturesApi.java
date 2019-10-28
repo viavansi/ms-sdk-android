@@ -211,6 +211,50 @@ public class V3signaturesApi {
   }
   
     
+  public Signature getSignatureByCode (String messageCode, String signatureCode) throws ApiException {
+    Object postBody = null;
+    
+
+    // create path and map variables
+    String path = "/v3/signatures/status/{messageCode}/{signatureCode}".replaceAll("\\{format\\}","json")
+      .replaceAll("\\{" + "messageCode" + "\\}", ApiInvoker.getInstance().escapeString(messageCode.toString()))
+      .replaceAll("\\{" + "signatureCode" + "\\}", ApiInvoker.getInstance().escapeString(signatureCode.toString()));
+
+    // query params
+    Map<String, String> queryParams = new HashMap<String, String>();
+    Map<String, String> headerParams = new HashMap<String, String>();
+    Map<String, String> formParams = new HashMap<String, String>();
+
+    
+    
+    String[] contentTypes = {
+      "application/json"
+    };
+
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+
+    if(contentType.startsWith("multipart/form-data")) {
+      boolean hasFields = false;
+      MultipartBody.Builder mp = new MultipartBody.Builder();
+      mp.setType(MultipartBody.FORM);
+      
+      if(hasFields)
+        postBody = mp;
+    }
+    else {
+      
+    }
+
+      String response = ApiInvoker.getInstance().invokeAPI(path, "GET", queryParams, postBody, headerParams, formParams, contentType);
+      if(response != null){
+        return (Signature) ApiInvoker.deserialize(response, "", Signature.class);
+      } else {
+        return null;
+      }
+    
+  }
+  
+    
   public Message updateSignatureStatus (String messageCode, String signatureCode, String status) throws ApiException {
     Object postBody = null;
     
