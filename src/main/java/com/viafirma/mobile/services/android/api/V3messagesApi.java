@@ -290,7 +290,7 @@ public class V3messagesApi {
   }
   
     
-  public List<MessageList> getMessagesByExternalStatus (String groupCode, String requestAppCode, String templateCode) throws ApiException {
+  public List<MessageList> getMessagesByExternalStatusNew (String groupCode, String requestAppCode, String templateCode) throws ApiException {
     Object postBody = null;
     
 
@@ -338,7 +338,7 @@ public class V3messagesApi {
   }
   
     
-  public List<MessageList> getMessagesByExternalStatus_1 (String externalStatus, String groupCode, String requestAppCode, String templateCode) throws ApiException {
+  public List<MessageList> getMessagesByExternalStatus (String externalStatus, String groupCode, String requestAppCode, String templateCode) throws ApiException {
     Object postBody = null;
     
 

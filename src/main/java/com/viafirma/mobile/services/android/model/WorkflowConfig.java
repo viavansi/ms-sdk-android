@@ -18,7 +18,7 @@ public class WorkflowConfig  implements Serializable {
   @SerializedName("status")
   private List<Status> status = new ArrayList<Status>() ;
   public enum TypeEnum {
-     APP,  WEB,  PRESENTIAL, 
+     APP,  WEB,  PRESENTIAL,  SET, 
   };
   @SerializedName("type")
   private TypeEnum type = null;

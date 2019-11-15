@@ -21,6 +21,8 @@ public class Recipient  implements Serializable {
   private String notificationType = null;
   @SerializedName("userCode")
   private String userCode = null;
+  @SerializedName("id")
+  private String id = null;
 
   
   /**
@@ -89,6 +91,17 @@ public class Recipient  implements Serializable {
   }
 
   
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public String getId() {
+    return id;
+  }
+  public void setId(String id) {
+    this.id = id;
+  }
+
+  
 
   @Override
   public String toString()  {
@@ -101,6 +114,7 @@ public class Recipient  implements Serializable {
     sb.append("  name: ").append(name).append("\n");
     sb.append("  notificationType: ").append(notificationType).append("\n");
     sb.append("  userCode: ").append(userCode).append("\n");
+    sb.append("  id: ").append(id).append("\n");
     sb.append("}\n");
     return sb.toString();
   }

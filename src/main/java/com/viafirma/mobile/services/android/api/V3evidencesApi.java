@@ -271,7 +271,7 @@ public class V3evidencesApi {
   }
   
     
-  public Evidence addGenericAsEvidence_1 (EvidenceGeneric body) throws ApiException {
+  public Evidence addGenericAsEvidence (EvidenceGeneric body) throws ApiException {
     Object postBody = body;
     
 
@@ -313,7 +313,7 @@ public class V3evidencesApi {
   }
   
     
-  public Boolean addGenericAsEvidence (List<EvidenceGeneric> body) throws ApiException {
+  public Boolean addGenericListAsEvidence (List<EvidenceGeneric> body) throws ApiException {
     Object postBody = body;
     
 

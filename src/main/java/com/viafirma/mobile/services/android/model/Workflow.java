@@ -27,7 +27,7 @@ public class Workflow  implements Serializable {
   @SerializedName("expires")
   private Date expires = null;
   public enum TypeEnum {
-     APP,  WEB,  PRESENTIAL, 
+     APP,  WEB,  PRESENTIAL,  SET, 
   };
   @SerializedName("type")
   private TypeEnum type = null;

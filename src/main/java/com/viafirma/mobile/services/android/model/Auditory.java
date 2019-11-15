@@ -37,6 +37,10 @@ public class Auditory  implements Serializable {
   private Geolocation geolocation = null;
   @SerializedName("metadatas")
   private List<AuditoryMetadata> metadatas = new ArrayList<AuditoryMetadata>() ;
+  @SerializedName("internal")
+  private Boolean internal = Boolean.FALSE;
+  @SerializedName("time")
+  private Long time = null;
 
   
   /**
@@ -171,6 +175,28 @@ public class Auditory  implements Serializable {
   }
 
   
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public Boolean getInternal() {
+    return internal;
+  }
+  public void setInternal(Boolean internal) {
+    this.internal = internal;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public Long getTime() {
+    return time;
+  }
+  public void setTime(Long time) {
+    this.time = time;
+  }
+
+  
 
   @Override
   public String toString()  {
@@ -189,6 +215,8 @@ public class Auditory  implements Serializable {
     sb.append("  sessionId: ").append(sessionId).append("\n");
     sb.append("  geolocation: ").append(geolocation).append("\n");
     sb.append("  metadatas: ").append(metadatas).append("\n");
+    sb.append("  internal: ").append(internal).append("\n");
+    sb.append("  time: ").append(time).append("\n");
     sb.append("}\n");
     return sb.toString();
   }
