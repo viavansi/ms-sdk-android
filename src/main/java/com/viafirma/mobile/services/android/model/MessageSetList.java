@@ -19,6 +19,8 @@ public class MessageSetList  implements Serializable {
   private String status = null;
   @SerializedName("recipientStatus")
   private String recipientStatus = null;
+  @SerializedName("auditTrailPage")
+  private String auditTrailPage = null;
 
   
   /**
@@ -76,6 +78,17 @@ public class MessageSetList  implements Serializable {
   }
 
   
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public String getAuditTrailPage() {
+    return auditTrailPage;
+  }
+  public void setAuditTrailPage(String auditTrailPage) {
+    this.auditTrailPage = auditTrailPage;
+  }
+
+  
 
   @Override
   public String toString()  {
@@ -87,6 +100,7 @@ public class MessageSetList  implements Serializable {
     sb.append("  link: ").append(link).append("\n");
     sb.append("  status: ").append(status).append("\n");
     sb.append("  recipientStatus: ").append(recipientStatus).append("\n");
+    sb.append("  auditTrailPage: ").append(auditTrailPage).append("\n");
     sb.append("}\n");
     return sb.toString();
   }

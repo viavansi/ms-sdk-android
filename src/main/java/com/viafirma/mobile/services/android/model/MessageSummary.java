@@ -1,5 +1,6 @@
 package com.viafirma.mobile.services.android.model;
 
+import com.viafirma.mobile.services.android.model.Policy;
 import com.viafirma.mobile.services.android.model.JSTransfer;
 import java.util.*;
 
@@ -18,6 +19,8 @@ public class MessageSummary  implements Serializable {
   };
   @SerializedName("status")
   private StatusEnum status = null;
+  @SerializedName("policies")
+  private List<Policy> policies = new ArrayList<Policy>() ;
   @SerializedName("transfers")
   private List<JSTransfer> transfers = new ArrayList<JSTransfer>() ;
 
@@ -47,6 +50,17 @@ public class MessageSummary  implements Serializable {
   /**
    **/
   @ApiModelProperty(required = false, value = "")
+  public List<Policy> getPolicies() {
+    return policies;
+  }
+  public void setPolicies(List<Policy> policies) {
+    this.policies = policies;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
   public List<JSTransfer> getTransfers() {
     return transfers;
   }
@@ -63,6 +77,7 @@ public class MessageSummary  implements Serializable {
     
     sb.append("  code: ").append(code).append("\n");
     sb.append("  status: ").append(status).append("\n");
+    sb.append("  policies: ").append(policies).append("\n");
     sb.append("  transfers: ").append(transfers).append("\n");
     sb.append("}\n");
     return sb.toString();

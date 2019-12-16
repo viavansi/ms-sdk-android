@@ -2,6 +2,7 @@ package com.viafirma.mobile.services.android.model;
 
 import com.viafirma.mobile.services.android.model.QuestionaryAnswer;
 import java.util.*;
+import java.util.Date;
 
 import com.wordnik.swagger.annotations.*;
 import com.google.gson.annotations.SerializedName;
@@ -19,6 +20,15 @@ public class QuestionaryQuestion  implements Serializable {
   private List<QuestionaryAnswer> answers = new ArrayList<QuestionaryAnswer>() ;
   @SerializedName("selectedAnswerCode")
   private String selectedAnswerCode = null;
+  @SerializedName("answerText")
+  private String answerText = null;
+  @SerializedName("answerDate")
+  private Date answerDate = null;
+  public enum TypeEnum {
+     RADIO,  TEXT,  DATE, 
+  };
+  @SerializedName("type")
+  private TypeEnum type = null;
 
   
   /**
@@ -65,6 +75,39 @@ public class QuestionaryQuestion  implements Serializable {
   }
 
   
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public String getAnswerText() {
+    return answerText;
+  }
+  public void setAnswerText(String answerText) {
+    this.answerText = answerText;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public Date getAnswerDate() {
+    return answerDate;
+  }
+  public void setAnswerDate(Date answerDate) {
+    this.answerDate = answerDate;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public TypeEnum getType() {
+    return type;
+  }
+  public void setType(TypeEnum type) {
+    this.type = type;
+  }
+
+  
 
   @Override
   public String toString()  {
@@ -75,6 +118,9 @@ public class QuestionaryQuestion  implements Serializable {
     sb.append("  text: ").append(text).append("\n");
     sb.append("  answers: ").append(answers).append("\n");
     sb.append("  selectedAnswerCode: ").append(selectedAnswerCode).append("\n");
+    sb.append("  answerText: ").append(answerText).append("\n");
+    sb.append("  answerDate: ").append(answerDate).append("\n");
+    sb.append("  type: ").append(type).append("\n");
     sb.append("}\n");
     return sb.toString();
   }

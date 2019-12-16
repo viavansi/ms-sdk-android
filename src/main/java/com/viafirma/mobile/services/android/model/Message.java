@@ -99,6 +99,8 @@ public class Message  implements Serializable {
   private String setStatus = null;
   @SerializedName("signPageServer")
   private String signPageServer = null;
+  @SerializedName("auditTrailPage")
+  private String auditTrailPage = null;
 
   
   /**
@@ -541,6 +543,17 @@ public class Message  implements Serializable {
   }
 
   
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public String getAuditTrailPage() {
+    return auditTrailPage;
+  }
+  public void setAuditTrailPage(String auditTrailPage) {
+    this.auditTrailPage = auditTrailPage;
+  }
+
+  
 
   @Override
   public String toString()  {
@@ -587,6 +600,7 @@ public class Message  implements Serializable {
     sb.append("  setCode: ").append(setCode).append("\n");
     sb.append("  setStatus: ").append(setStatus).append("\n");
     sb.append("  signPageServer: ").append(signPageServer).append("\n");
+    sb.append("  auditTrailPage: ").append(auditTrailPage).append("\n");
     sb.append("}\n");
     return sb.toString();
   }

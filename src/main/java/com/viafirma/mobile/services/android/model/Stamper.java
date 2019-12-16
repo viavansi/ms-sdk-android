@@ -35,6 +35,8 @@ public class Stamper  implements Serializable {
   private String imageBase64 = null;
   @SerializedName("positionsKey")
   private String positionsKey = null;
+  @SerializedName("timeZoneId")
+  private String timeZoneId = null;
   @SerializedName("positionsMatch")
   private List<PositionsMatch> positionsMatch = new ArrayList<PositionsMatch>() ;
 
@@ -141,6 +143,17 @@ public class Stamper  implements Serializable {
   /**
    **/
   @ApiModelProperty(required = false, value = "")
+  public String getTimeZoneId() {
+    return timeZoneId;
+  }
+  public void setTimeZoneId(String timeZoneId) {
+    this.timeZoneId = timeZoneId;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
   public List<PositionsMatch> getPositionsMatch() {
     return positionsMatch;
   }
@@ -164,6 +177,7 @@ public class Stamper  implements Serializable {
     sb.append("  page: ").append(page).append("\n");
     sb.append("  imageBase64: ").append(imageBase64).append("\n");
     sb.append("  positionsKey: ").append(positionsKey).append("\n");
+    sb.append("  timeZoneId: ").append(timeZoneId).append("\n");
     sb.append("  positionsMatch: ").append(positionsMatch).append("\n");
     sb.append("}\n");
     return sb.toString();
