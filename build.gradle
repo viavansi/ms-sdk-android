@@ -52,14 +52,14 @@ dependencies {
 	// Maven publishing
     deployerJars 'org.apache.maven.wagon:wagon-http:2.2'
     
-    implementation 'com.google.code.gson:gson:2.2.+'
+    api 'com.google.code.gson:gson:2.2.+'
 
-    implementation 'com.wordnik:swagger-annotations:1.5.1-M1'
+    api 'com.wordnik:swagger-annotations:1.5.1-M1'
 
-    implementation 'com.squareup.okhttp3:okhttp:3.2.0'
-    implementation 'se.akerfeldt:okhttp-signpost:1.1.0'
-    implementation 'oauth.signpost:signpost-core:1.2.1.2'
-    implementation 'org.apache.commons:commons-lang3:3.4'
+    api 'com.squareup.okhttp3:okhttp:3.2.0'
+    api 'se.akerfeldt:okhttp-signpost:1.1.0'
+    api 'oauth.signpost:signpost-core:1.2.1.2'
+    api 'org.apache.commons:commons-lang3:3.4'
 }
 
 // For Maven Repository submitting
@@ -70,7 +70,7 @@ task uploadRelease(type: Upload) {
         repository(url: releaseUrl) {
             authentication(userName: repoUsername, password: repoPassword)
         }
-        pom.version = '3.6.6'
+        pom.version = '3.6.9'
         pom.artifactId = "ms-sdk-android"
         pom.groupId = "com.viafirma"
     }
@@ -83,7 +83,7 @@ task uploadSnapshot(type: Upload) {
         snapshotRepository(url: snapshotUrl) {
             authentication(userName: repoUsername, password: repoPassword)
         }
-        pom.version = '3.6.6' + "-SNAPSHOT"
+        pom.version = '3.6.9' + "-SNAPSHOT"
         pom.artifactId = "ms-sdk-android"
         pom.groupId = "com.viafirma"
     }

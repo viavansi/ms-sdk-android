@@ -23,6 +23,8 @@ public class GroupUserData  implements Serializable {
   private String phone = null;
   @SerializedName("templates")
   private String templates = null;
+  @SerializedName("sendMail")
+  private Boolean sendMail = Boolean.FALSE;
 
   
   /**
@@ -102,6 +104,17 @@ public class GroupUserData  implements Serializable {
   }
 
   
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public Boolean getSendMail() {
+    return sendMail;
+  }
+  public void setSendMail(Boolean sendMail) {
+    this.sendMail = sendMail;
+  }
+
+  
 
   @Override
   public String toString()  {
@@ -115,6 +128,7 @@ public class GroupUserData  implements Serializable {
     sb.append("  email: ").append(email).append("\n");
     sb.append("  phone: ").append(phone).append("\n");
     sb.append("  templates: ").append(templates).append("\n");
+    sb.append("  sendMail: ").append(sendMail).append("\n");
     sb.append("}\n");
     return sb.toString();
   }

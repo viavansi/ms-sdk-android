@@ -52,6 +52,8 @@ public class User  implements Serializable {
   private List<Group> groupsInfo = new ArrayList<Group>() ;
   @SerializedName("properties")
   private List<Param> properties = new ArrayList<Param>() ;
+  @SerializedName("roles")
+  private List<String> roles = new ArrayList<String>() ;
   @SerializedName("mobile")
   private String mobile = null;
   @SerializedName("channel")
@@ -281,6 +283,17 @@ public class User  implements Serializable {
   /**
    **/
   @ApiModelProperty(required = false, value = "")
+  public List<String> getRoles() {
+    return roles;
+  }
+  public void setRoles(List<String> roles) {
+    this.roles = roles;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
   public String getMobile() {
     return mobile;
   }
@@ -326,6 +339,7 @@ public class User  implements Serializable {
     sb.append("  groups: ").append(groups).append("\n");
     sb.append("  groupsInfo: ").append(groupsInfo).append("\n");
     sb.append("  properties: ").append(properties).append("\n");
+    sb.append("  roles: ").append(roles).append("\n");
     sb.append("  mobile: ").append(mobile).append("\n");
     sb.append("  channel: ").append(channel).append("\n");
     sb.append("}\n");

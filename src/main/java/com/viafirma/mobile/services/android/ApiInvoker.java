@@ -309,6 +309,33 @@ public class ApiInvoker {
         }
         return response.body().byteStream();
     }
+    
+    public InputStream downloadSecure(String url) throws IOException{
+
+        OkHttpOAuthConsumer consumer = new OkHttpOAuthConsumer(consumerKey, consumerSecret);
+        if (token != null && tokenSecret != null) {
+            consumer.setTokenWithSecret(token, tokenSecret);
+        }
+
+        OkHttpClient.Builder clientBuilder = new OkHttpClient.Builder()
+                .connectTimeout(connectTimeout, TimeUnit.SECONDS)
+                .readTimeout(timeoutSeconds, TimeUnit.SECONDS)
+                .writeTimeout(timeoutSeconds, TimeUnit.SECONDS)
+                .addInterceptor(new SigningInterceptor(consumer));
+
+        if(sslSocketFactory != null){
+            clientBuilder.sslSocketFactory(sslSocketFactory);
+        }
+
+        OkHttpClient client = clientBuilder.build();
+        Request request = new Request.Builder().url(url).build();
+
+        Response response = client.newCall(request).execute();
+        if (!response.isSuccessful()) {
+            throw new IOException();
+        }
+        return response.body().byteStream();
+    }
 
   private String invokeAPI_(String path, String method, Map<String, String> queryParams, Object body, Map<String, String> headerParams, Map<String, String> formParams, String contentType) throws ApiException, IOException {
     
