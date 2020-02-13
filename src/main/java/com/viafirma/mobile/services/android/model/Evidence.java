@@ -37,7 +37,7 @@ public class Evidence  implements Serializable {
   @SerializedName("code")
   private String code = null;
   public enum StatusEnum {
-     PENDING,  RECEIVED,  ADDED, 
+     PENDING,  RECEIVED,  ADDED,  IN_PROGRESS, 
   };
   @SerializedName("status")
   private StatusEnum status = null;
@@ -111,6 +111,8 @@ public class Evidence  implements Serializable {
   private String phone = null;
   @SerializedName("base64Image")
   private String base64Image = null;
+  @SerializedName("imageText")
+  private String imageText = null;
   @SerializedName("imageType")
   private String imageType = null;
   @SerializedName("addLink")
@@ -598,6 +600,17 @@ public class Evidence  implements Serializable {
   /**
    **/
   @ApiModelProperty(required = false, value = "")
+  public String getImageText() {
+    return imageText;
+  }
+  public void setImageText(String imageText) {
+    this.imageText = imageText;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
   public String getImageType() {
     return imageType;
   }
@@ -677,6 +690,7 @@ public class Evidence  implements Serializable {
     sb.append("  genericData: ").append(genericData).append("\n");
     sb.append("  phone: ").append(phone).append("\n");
     sb.append("  base64Image: ").append(base64Image).append("\n");
+    sb.append("  imageText: ").append(imageText).append("\n");
     sb.append("  imageType: ").append(imageType).append("\n");
     sb.append("  addLink: ").append(addLink).append("\n");
     sb.append("  recipientKey: ").append(recipientKey).append("\n");

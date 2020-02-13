@@ -55,10 +55,14 @@ public class Setting  implements Serializable {
   private Customization customization = null;
   @SerializedName("callbackMailsFromForm")
   private List<String> callbackMailsFromForm = new ArrayList<String>() ;
+  @SerializedName("callbackMailFilename")
+  private String callbackMailFilename = null;
   @SerializedName("metadataList")
   private List<Param> metadataList = new ArrayList<Param>() ;
   @SerializedName("retryTime")
   private Long retryTime = null;
+  @SerializedName("workflowReferenceCode")
+  private String workflowReferenceCode = null;
 
   
   /**
@@ -284,6 +288,17 @@ public class Setting  implements Serializable {
   /**
    **/
   @ApiModelProperty(required = false, value = "")
+  public String getCallbackMailFilename() {
+    return callbackMailFilename;
+  }
+  public void setCallbackMailFilename(String callbackMailFilename) {
+    this.callbackMailFilename = callbackMailFilename;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
   public List<Param> getMetadataList() {
     return metadataList;
   }
@@ -300,6 +315,17 @@ public class Setting  implements Serializable {
   }
   public void setRetryTime(Long retryTime) {
     this.retryTime = retryTime;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public String getWorkflowReferenceCode() {
+    return workflowReferenceCode;
+  }
+  public void setWorkflowReferenceCode(String workflowReferenceCode) {
+    this.workflowReferenceCode = workflowReferenceCode;
   }
 
   
@@ -329,8 +355,10 @@ public class Setting  implements Serializable {
     sb.append("  allowDocumentResend: ").append(allowDocumentResend).append("\n");
     sb.append("  customization: ").append(customization).append("\n");
     sb.append("  callbackMailsFromForm: ").append(callbackMailsFromForm).append("\n");
+    sb.append("  callbackMailFilename: ").append(callbackMailFilename).append("\n");
     sb.append("  metadataList: ").append(metadataList).append("\n");
     sb.append("  retryTime: ").append(retryTime).append("\n");
+    sb.append("  workflowReferenceCode: ").append(workflowReferenceCode).append("\n");
     sb.append("}\n");
     return sb.toString();
   }

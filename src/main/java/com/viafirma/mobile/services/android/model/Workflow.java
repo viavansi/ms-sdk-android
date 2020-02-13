@@ -31,6 +31,10 @@ public class Workflow  implements Serializable {
   };
   @SerializedName("type")
   private TypeEnum type = null;
+  @SerializedName("referenceCode")
+  private String referenceCode = null;
+  @SerializedName("step")
+  private Integer step = null;
 
   
   /**
@@ -121,6 +125,28 @@ public class Workflow  implements Serializable {
   }
 
   
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public String getReferenceCode() {
+    return referenceCode;
+  }
+  public void setReferenceCode(String referenceCode) {
+    this.referenceCode = referenceCode;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public Integer getStep() {
+    return step;
+  }
+  public void setStep(Integer step) {
+    this.step = step;
+  }
+
+  
 
   @Override
   public String toString()  {
@@ -135,6 +161,8 @@ public class Workflow  implements Serializable {
     sb.append("  lastUpdated: ").append(lastUpdated).append("\n");
     sb.append("  expires: ").append(expires).append("\n");
     sb.append("  type: ").append(type).append("\n");
+    sb.append("  referenceCode: ").append(referenceCode).append("\n");
+    sb.append("  step: ").append(step).append("\n");
     sb.append("}\n");
     return sb.toString();
   }

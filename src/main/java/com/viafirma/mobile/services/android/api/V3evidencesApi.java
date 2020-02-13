@@ -16,6 +16,7 @@ import com.viafirma.mobile.services.android.model.EvidenceGeneric;
 import java.util.*;
 import com.viafirma.mobile.services.android.model.EvidenceImage;
 import com.viafirma.mobile.services.android.model.EvidenceSignature;
+import com.viafirma.mobile.services.android.model.Message;
 
 import java.io.File;
 import java.util.Map;
@@ -809,6 +810,63 @@ public class V3evidencesApi {
       String response = ApiInvoker.getInstance().invokeAPI(path, "GET", queryParams, postBody, headerParams, formParams, contentType);
       if(response != null){
         return (String) ApiInvoker.deserialize(response, "", String.class);
+      } else {
+        return null;
+      }
+    
+  }
+  
+    
+  public Message updateEvidenceStatus (String messageCode, String evidenceCode, String status) throws ApiException {
+    Object postBody = null;
+    
+
+    // create path and map variables
+    String path = "/v3/evidences/update/status".replaceAll("\\{format\\}","json");
+
+    // query params
+    Map<String, String> queryParams = new HashMap<String, String>();
+    Map<String, String> headerParams = new HashMap<String, String>();
+    Map<String, String> formParams = new HashMap<String, String>();
+
+    
+    
+    String[] contentTypes = {
+      "application/x-www-form-urlencoded"
+    };
+
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+
+    if(contentType.startsWith("multipart/form-data")) {
+      boolean hasFields = false;
+      MultipartBody.Builder mp = new MultipartBody.Builder();
+      mp.setType(MultipartBody.FORM);
+      
+      hasFields = true;
+      mp.addFormDataPart("messageCode", messageCode);
+      
+      
+      hasFields = true;
+      mp.addFormDataPart("evidenceCode", evidenceCode);
+      
+      
+      hasFields = true;
+      mp.addFormDataPart("status", status);
+      
+      
+      if(hasFields)
+        postBody = mp;
+    }
+    else {
+      formParams.put("messageCode", messageCode);
+      formParams.put("evidenceCode", evidenceCode);
+      formParams.put("status", status);
+      
+    }
+
+      String response = ApiInvoker.getInstance().invokeAPI(path, "POST", queryParams, postBody, headerParams, formParams, contentType);
+      if(response != null){
+        return (Message) ApiInvoker.deserialize(response, "", Message.class);
       } else {
         return null;
       }

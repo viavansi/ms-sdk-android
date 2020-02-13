@@ -2,6 +2,7 @@ package com.viafirma.mobile.services.android.model;
 
 import com.viafirma.mobile.services.android.model.Item;
 import com.viafirma.mobile.services.android.model.EvidenceSignature;
+import com.viafirma.mobile.services.android.model.Param;
 import com.viafirma.mobile.services.android.model.EvidenceFingerPrint;
 import com.viafirma.mobile.services.android.model.EvidenceGeneric;
 import java.util.*;
@@ -27,6 +28,8 @@ public class MessageData  implements Serializable {
   private List<EvidenceImage> imagesData = new ArrayList<EvidenceImage>() ;
   @SerializedName("genericData")
   private List<EvidenceGeneric> genericData = new ArrayList<EvidenceGeneric>() ;
+  @SerializedName("metadataList")
+  private List<Param> metadataList = new ArrayList<Param>() ;
 
   
   /**
@@ -95,6 +98,17 @@ public class MessageData  implements Serializable {
   }
 
   
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public List<Param> getMetadataList() {
+    return metadataList;
+  }
+  public void setMetadataList(List<Param> metadataList) {
+    this.metadataList = metadataList;
+  }
+
+  
 
   @Override
   public String toString()  {
@@ -107,6 +121,7 @@ public class MessageData  implements Serializable {
     sb.append("  fingerPrintsData: ").append(fingerPrintsData).append("\n");
     sb.append("  imagesData: ").append(imagesData).append("\n");
     sb.append("  genericData: ").append(genericData).append("\n");
+    sb.append("  metadataList: ").append(metadataList).append("\n");
     sb.append("}\n");
     return sb.toString();
   }

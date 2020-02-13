@@ -13,6 +13,8 @@ public class Param  implements Serializable {
   private String key = null;
   @SerializedName("value")
   private String value = null;
+  @SerializedName("internal")
+  private Boolean internal = Boolean.FALSE;
 
   
   /**
@@ -37,6 +39,17 @@ public class Param  implements Serializable {
   }
 
   
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public Boolean getInternal() {
+    return internal;
+  }
+  public void setInternal(Boolean internal) {
+    this.internal = internal;
+  }
+
+  
 
   @Override
   public String toString()  {
@@ -45,6 +58,7 @@ public class Param  implements Serializable {
     
     sb.append("  key: ").append(key).append("\n");
     sb.append("  value: ").append(value).append("\n");
+    sb.append("  internal: ").append(internal).append("\n");
     sb.append("}\n");
     return sb.toString();
   }
