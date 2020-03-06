@@ -53,6 +53,8 @@ public class Document  implements Serializable {
   private Integer numPages = null;
   @SerializedName("allowResend")
   private Boolean allowResend = Boolean.FALSE;
+  @SerializedName("autoFinalize")
+  private Boolean autoFinalize = Boolean.FALSE;
   @SerializedName("deleteSignedDocuments")
   private Boolean deleteSignedDocuments = Boolean.FALSE;
   @SerializedName("watermarkText")
@@ -278,6 +280,17 @@ public class Document  implements Serializable {
   /**
    **/
   @ApiModelProperty(required = false, value = "")
+  public Boolean getAutoFinalize() {
+    return autoFinalize;
+  }
+  public void setAutoFinalize(Boolean autoFinalize) {
+    this.autoFinalize = autoFinalize;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
   public Boolean getDeleteSignedDocuments() {
     return deleteSignedDocuments;
   }
@@ -344,6 +357,7 @@ public class Document  implements Serializable {
     sb.append("  readRequired: ").append(readRequired).append("\n");
     sb.append("  numPages: ").append(numPages).append("\n");
     sb.append("  allowResend: ").append(allowResend).append("\n");
+    sb.append("  autoFinalize: ").append(autoFinalize).append("\n");
     sb.append("  deleteSignedDocuments: ").append(deleteSignedDocuments).append("\n");
     sb.append("  watermarkText: ").append(watermarkText).append("\n");
     sb.append("  extraPages: ").append(extraPages).append("\n");

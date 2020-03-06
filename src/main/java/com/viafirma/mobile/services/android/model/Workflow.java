@@ -35,6 +35,12 @@ public class Workflow  implements Serializable {
   private String referenceCode = null;
   @SerializedName("step")
   private Integer step = null;
+  @SerializedName("steps")
+  private Integer steps = null;
+  @SerializedName("nextMessageCode")
+  private String nextMessageCode = null;
+  @SerializedName("previousMessageCode")
+  private String previousMessageCode = null;
 
   
   /**
@@ -147,6 +153,39 @@ public class Workflow  implements Serializable {
   }
 
   
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public Integer getSteps() {
+    return steps;
+  }
+  public void setSteps(Integer steps) {
+    this.steps = steps;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public String getNextMessageCode() {
+    return nextMessageCode;
+  }
+  public void setNextMessageCode(String nextMessageCode) {
+    this.nextMessageCode = nextMessageCode;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public String getPreviousMessageCode() {
+    return previousMessageCode;
+  }
+  public void setPreviousMessageCode(String previousMessageCode) {
+    this.previousMessageCode = previousMessageCode;
+  }
+
+  
 
   @Override
   public String toString()  {
@@ -163,6 +202,9 @@ public class Workflow  implements Serializable {
     sb.append("  type: ").append(type).append("\n");
     sb.append("  referenceCode: ").append(referenceCode).append("\n");
     sb.append("  step: ").append(step).append("\n");
+    sb.append("  steps: ").append(steps).append("\n");
+    sb.append("  nextMessageCode: ").append(nextMessageCode).append("\n");
+    sb.append("  previousMessageCode: ").append(previousMessageCode).append("\n");
     sb.append("}\n");
     return sb.toString();
   }

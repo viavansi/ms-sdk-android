@@ -51,6 +51,8 @@ public class Setting  implements Serializable {
   private Boolean readDocumentRequired = Boolean.FALSE;
   @SerializedName("allowDocumentResend")
   private Boolean allowDocumentResend = Boolean.FALSE;
+  @SerializedName("autoFinalize")
+  private String autoFinalize = null;
   @SerializedName("customization")
   private Customization customization = null;
   @SerializedName("callbackMailsFromForm")
@@ -266,6 +268,17 @@ public class Setting  implements Serializable {
   /**
    **/
   @ApiModelProperty(required = false, value = "")
+  public String getAutoFinalize() {
+    return autoFinalize;
+  }
+  public void setAutoFinalize(String autoFinalize) {
+    this.autoFinalize = autoFinalize;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
   public Customization getCustomization() {
     return customization;
   }
@@ -353,6 +366,7 @@ public class Setting  implements Serializable {
     sb.append("  acrofieldsPositions: ").append(acrofieldsPositions).append("\n");
     sb.append("  readDocumentRequired: ").append(readDocumentRequired).append("\n");
     sb.append("  allowDocumentResend: ").append(allowDocumentResend).append("\n");
+    sb.append("  autoFinalize: ").append(autoFinalize).append("\n");
     sb.append("  customization: ").append(customization).append("\n");
     sb.append("  callbackMailsFromForm: ").append(callbackMailsFromForm).append("\n");
     sb.append("  callbackMailFilename: ").append(callbackMailFilename).append("\n");

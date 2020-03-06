@@ -3,8 +3,9 @@ package com.viafirma.mobile.services.android.model;
 import com.viafirma.mobile.services.android.model.Policy;
 import com.viafirma.mobile.services.android.model.Auditory;
 import com.viafirma.mobile.services.android.model.Param;
+import com.viafirma.mobile.services.android.model.Transfer;
 import com.viafirma.mobile.services.android.model.Workflow;
-import com.viafirma.mobile.services.android.model.JSTransfer;
+import com.viafirma.mobile.services.android.model.Recipient;
 import java.util.*;
 import com.viafirma.mobile.services.android.model.Document;
 import com.viafirma.mobile.services.android.model.Notification;
@@ -39,6 +40,8 @@ public class Message  implements Serializable {
   private String callbackCRMAuthorization = null;
   @SerializedName("callbackCRMResponse")
   private String callbackCRMResponse = null;
+  @SerializedName("callbackRedirectURL")
+  private String callbackRedirectURL = null;
   @SerializedName("disabled")
   private Boolean disabled = Boolean.FALSE;
   @SerializedName("userCode")
@@ -51,6 +54,8 @@ public class Message  implements Serializable {
   private String version = null;
   @SerializedName("workflow")
   private Workflow workflow = null;
+  @SerializedName("recipients")
+  private List<Recipient> recipients = new ArrayList<Recipient>() ;
   @SerializedName("notification")
   private Notification notification = null;
   @SerializedName("document")
@@ -88,7 +93,7 @@ public class Message  implements Serializable {
   @SerializedName("auditory")
   private List<Auditory> auditory = new ArrayList<Auditory>() ;
   @SerializedName("transfers")
-  private List<JSTransfer> transfers = new ArrayList<JSTransfer>() ;
+  private List<Transfer> transfers = new ArrayList<Transfer>() ;
   @SerializedName("languageId")
   private String languageId = null;
   @SerializedName("timeZoneId")
@@ -216,6 +221,17 @@ public class Message  implements Serializable {
   /**
    **/
   @ApiModelProperty(required = false, value = "")
+  public String getCallbackRedirectURL() {
+    return callbackRedirectURL;
+  }
+  public void setCallbackRedirectURL(String callbackRedirectURL) {
+    this.callbackRedirectURL = callbackRedirectURL;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
   public Boolean getDisabled() {
     return disabled;
   }
@@ -276,6 +292,17 @@ public class Message  implements Serializable {
   }
   public void setWorkflow(Workflow workflow) {
     this.workflow = workflow;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public List<Recipient> getRecipients() {
+    return recipients;
+  }
+  public void setRecipients(List<Recipient> recipients) {
+    this.recipients = recipients;
   }
 
   
@@ -480,10 +507,10 @@ public class Message  implements Serializable {
   /**
    **/
   @ApiModelProperty(required = false, value = "")
-  public List<JSTransfer> getTransfers() {
+  public List<Transfer> getTransfers() {
     return transfers;
   }
-  public void setTransfers(List<JSTransfer> transfers) {
+  public void setTransfers(List<Transfer> transfers) {
     this.transfers = transfers;
   }
 
@@ -570,12 +597,14 @@ public class Message  implements Serializable {
     sb.append("  callbackCRM: ").append(callbackCRM).append("\n");
     sb.append("  callbackCRMAuthorization: ").append(callbackCRMAuthorization).append("\n");
     sb.append("  callbackCRMResponse: ").append(callbackCRMResponse).append("\n");
+    sb.append("  callbackRedirectURL: ").append(callbackRedirectURL).append("\n");
     sb.append("  disabled: ").append(disabled).append("\n");
     sb.append("  userCode: ").append(userCode).append("\n");
     sb.append("  groupCode: ").append(groupCode).append("\n");
     sb.append("  appCode: ").append(appCode).append("\n");
     sb.append("  version: ").append(version).append("\n");
     sb.append("  workflow: ").append(workflow).append("\n");
+    sb.append("  recipients: ").append(recipients).append("\n");
     sb.append("  notification: ").append(notification).append("\n");
     sb.append("  document: ").append(document).append("\n");
     sb.append("  metadataList: ").append(metadataList).append("\n");

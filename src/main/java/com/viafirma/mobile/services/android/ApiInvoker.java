@@ -63,6 +63,7 @@ public class ApiInvoker {
   long connectTimeout = 30;
   int timeoutRetryAttempts = 0;
   SSLSocketFactory sslSocketFactory;
+  Gson gsonSerializer;
   
   public void setReadTimeout(long timeoutSeconds) {
     this.timeoutSeconds = timeoutSeconds;
@@ -131,6 +132,14 @@ public class ApiInvoker {
   public void enableDebug() {
     isDebug = true;
   }
+  
+	public Gson getGsonSerializer() {
+	    return gsonSerializer;
+	}
+	
+	public void setGsonSerializer(Gson gsonSerializer) {
+	    this.gsonSerializer = gsonSerializer;
+	}
 
   public ApiInvoker() {
     
@@ -251,12 +260,17 @@ public class ApiInvoker {
     }
   }
 
-  public static String serialize(Object obj) throws ApiException {
+  public String serialize(Object obj) throws ApiException {
     try {
-      if (obj != null)
-        return new Gson().toJson(obj);
-      else
+      if (obj != null) {
+        if (gsonSerializer != null) {
+              return gsonSerializer.toJson(obj);
+          } else {
+              return new Gson().toJson(obj);
+          }
+      } else {
         return null;
+      }
     }
     catch (Exception e) {
       if (e instanceof ApiException) {

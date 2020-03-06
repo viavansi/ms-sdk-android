@@ -1,7 +1,7 @@
 package com.viafirma.mobile.services.android.model;
 
 import com.viafirma.mobile.services.android.model.Policy;
-import com.viafirma.mobile.services.android.model.JSTransfer;
+import com.viafirma.mobile.services.android.model.Transfer;
 import java.util.*;
 
 import com.wordnik.swagger.annotations.*;
@@ -15,14 +15,14 @@ public class MessageSummary  implements Serializable {
   @SerializedName("code")
   private String code = null;
   public enum StatusEnum {
-     DELETED,  EXPIRED,  ERROR,  REJECTED,  TRANSFERRED,  RESPONSED,  SERVER_SIGN,  SENT,  SIGNED,  WAITING,  COMMITTED,  RECEIVED,  TEMPORAL_STORED,  STAND_BY,  WAITING_CHECK,  APPROVED,  FINISHED,  WAITING_OCR,  WAITING_CLIENT_SIGNATURE,  MAX_ERROR_REACHED,  ATTACHMENT_VERIFICATION,  TRANSFER_CANCELED,  SAVED,  INVALID,  WAITING_EXTERNAL_APPROVAL, 
+     DELETED,  EXPIRED,  ERROR,  REJECTED,  TRANSFERRED,  RESPONSED,  SERVER_SIGN,  SENT,  SIGNED,  WAITING,  COMMITTED,  RECEIVED,  TEMPORAL_STORED,  STAND_BY,  WAITING_CHECK,  APPROVED,  FINISHED,  WAITING_OCR,  WAITING_CLIENT_SIGNATURE,  MAX_ERROR_REACHED,  ATTACHMENT_VERIFICATION,  TRANSFER_CANCELED,  SAVED,  INVALID,  WAITING_EXTERNAL_APPROVAL,  WORKFLOW_PROCESS, 
   };
   @SerializedName("status")
   private StatusEnum status = null;
   @SerializedName("policies")
   private List<Policy> policies = new ArrayList<Policy>() ;
   @SerializedName("transfers")
-  private List<JSTransfer> transfers = new ArrayList<JSTransfer>() ;
+  private List<Transfer> transfers = new ArrayList<Transfer>() ;
 
   
   /**
@@ -61,10 +61,10 @@ public class MessageSummary  implements Serializable {
   /**
    **/
   @ApiModelProperty(required = false, value = "")
-  public List<JSTransfer> getTransfers() {
+  public List<Transfer> getTransfers() {
     return transfers;
   }
-  public void setTransfers(List<JSTransfer> transfers) {
+  public void setTransfers(List<Transfer> transfers) {
     this.transfers = transfers;
   }
 

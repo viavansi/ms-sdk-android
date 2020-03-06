@@ -482,7 +482,7 @@ public class V3messagesApi {
   }
   
     
-  public Message finalizeMessage (String messageCode) throws ApiException {
+  public Message finalizeMessage (String messageCode, String recipientKey) throws ApiException {
     Object postBody = null;
     
 
@@ -511,11 +511,16 @@ public class V3messagesApi {
       mp.addFormDataPart("messageCode", messageCode);
       
       
+      hasFields = true;
+      mp.addFormDataPart("recipientKey", recipientKey);
+      
+      
       if(hasFields)
         postBody = mp;
     }
     else {
       formParams.put("messageCode", messageCode);
+      formParams.put("recipientKey", recipientKey);
       
     }
 

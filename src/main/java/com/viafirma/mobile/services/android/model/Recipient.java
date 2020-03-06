@@ -23,6 +23,11 @@ public class Recipient  implements Serializable {
   private String userCode = null;
   @SerializedName("id")
   private String id = null;
+  public enum StatusEnum {
+     PENDING,  RECEIVED, 
+  };
+  @SerializedName("status")
+  private StatusEnum status = null;
 
   
   /**
@@ -102,6 +107,17 @@ public class Recipient  implements Serializable {
   }
 
   
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public StatusEnum getStatus() {
+    return status;
+  }
+  public void setStatus(StatusEnum status) {
+    this.status = status;
+  }
+
+  
 
   @Override
   public String toString()  {
@@ -115,6 +131,7 @@ public class Recipient  implements Serializable {
     sb.append("  notificationType: ").append(notificationType).append("\n");
     sb.append("  userCode: ").append(userCode).append("\n");
     sb.append("  id: ").append(id).append("\n");
+    sb.append("  status: ").append(status).append("\n");
     sb.append("}\n");
     return sb.toString();
   }

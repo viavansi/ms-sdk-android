@@ -5,6 +5,7 @@ import com.viafirma.mobile.services.android.model.Customization;
 import com.viafirma.mobile.services.android.model.Param;
 import com.viafirma.mobile.services.android.model.Recipient;
 import java.util.*;
+import java.util.Date;
 
 import com.wordnik.swagger.annotations.*;
 import com.google.gson.annotations.SerializedName;
@@ -16,6 +17,8 @@ public class MessageSet  implements Serializable {
   
   @SerializedName("groupCode")
   private String groupCode = null;
+  @SerializedName("expires")
+  private Date expires = null;
   @SerializedName("recipients")
   private List<Recipient> recipients = new ArrayList<Recipient>() ;
   @SerializedName("customization")
@@ -34,6 +37,17 @@ public class MessageSet  implements Serializable {
   }
   public void setGroupCode(String groupCode) {
     this.groupCode = groupCode;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public Date getExpires() {
+    return expires;
+  }
+  public void setExpires(Date expires) {
+    this.expires = expires;
   }
 
   
@@ -88,6 +102,7 @@ public class MessageSet  implements Serializable {
     sb.append("class MessageSet {\n");
     
     sb.append("  groupCode: ").append(groupCode).append("\n");
+    sb.append("  expires: ").append(expires).append("\n");
     sb.append("  recipients: ").append(recipients).append("\n");
     sb.append("  customization: ").append(customization).append("\n");
     sb.append("  messages: ").append(messages).append("\n");

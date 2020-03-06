@@ -20,6 +20,10 @@ public class Download  implements Serializable {
   private Date expires = null;
   @SerializedName("base64")
   private String base64 = null;
+  @SerializedName("code")
+  private String code = null;
+  @SerializedName("signedID")
+  private String signedID = null;
 
   
   /**
@@ -77,6 +81,28 @@ public class Download  implements Serializable {
   }
 
   
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public String getCode() {
+    return code;
+  }
+  public void setCode(String code) {
+    this.code = code;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public String getSignedID() {
+    return signedID;
+  }
+  public void setSignedID(String signedID) {
+    this.signedID = signedID;
+  }
+
+  
 
   @Override
   public String toString()  {
@@ -88,6 +114,8 @@ public class Download  implements Serializable {
     sb.append("  fileName: ").append(fileName).append("\n");
     sb.append("  expires: ").append(expires).append("\n");
     sb.append("  base64: ").append(base64).append("\n");
+    sb.append("  code: ").append(code).append("\n");
+    sb.append("  signedID: ").append(signedID).append("\n");
     sb.append("}\n");
     return sb.toString();
   }

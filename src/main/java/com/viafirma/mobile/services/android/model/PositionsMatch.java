@@ -21,6 +21,8 @@ public class PositionsMatch  implements Serializable {
   private Integer width = null;
   @SerializedName("height")
   private Integer height = null;
+  @SerializedName("forEvidence")
+  private Boolean forEvidence = Boolean.FALSE;
 
   
   /**
@@ -89,6 +91,17 @@ public class PositionsMatch  implements Serializable {
   }
 
   
+  /**
+   **/
+  @ApiModelProperty(required = true, value = "")
+  public Boolean getForEvidence() {
+    return forEvidence;
+  }
+  public void setForEvidence(Boolean forEvidence) {
+    this.forEvidence = forEvidence;
+  }
+
+  
 
   @Override
   public String toString()  {
@@ -101,6 +114,7 @@ public class PositionsMatch  implements Serializable {
     sb.append("  yoffset: ").append(yoffset).append("\n");
     sb.append("  width: ").append(width).append("\n");
     sb.append("  height: ").append(height).append("\n");
+    sb.append("  forEvidence: ").append(forEvidence).append("\n");
     sb.append("}\n");
     return sb.toString();
   }
