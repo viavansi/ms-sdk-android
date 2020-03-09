@@ -182,7 +182,6 @@ public class ApiInvoker {
 			TrustManager compositeTrustManager = new CompositeX509TrustManager(trustManager, defaultTrustManager);
             sslContext.init(null, new TrustManager[] {compositeTrustManager}, new SecureRandom());
             sslSocketFactory = sslContext.getSocketFactory();
-            sslSocketFactory = sslContext.getSocketFactory();
         } else if (trustManager != null) {
             sslContext.init(null, new TrustManager[] {trustManager}, new SecureRandom());
             sslSocketFactory = sslContext.getSocketFactory();
