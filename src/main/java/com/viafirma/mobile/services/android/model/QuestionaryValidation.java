@@ -15,6 +15,10 @@ public class QuestionaryValidation  implements Serializable {
   private Boolean valid = Boolean.FALSE;
   @SerializedName("responseXML")
   private String responseXML = null;
+  @SerializedName("respCurrentAttempt")
+  private Long respCurrentAttempt = null;
+  @SerializedName("respMaxAttempts")
+  private Long respMaxAttempts = null;
 
   
   /**
@@ -50,6 +54,28 @@ public class QuestionaryValidation  implements Serializable {
   }
 
   
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public Long getRespCurrentAttempt() {
+    return respCurrentAttempt;
+  }
+  public void setRespCurrentAttempt(Long respCurrentAttempt) {
+    this.respCurrentAttempt = respCurrentAttempt;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public Long getRespMaxAttempts() {
+    return respMaxAttempts;
+  }
+  public void setRespMaxAttempts(Long respMaxAttempts) {
+    this.respMaxAttempts = respMaxAttempts;
+  }
+
+  
 
   @Override
   public String toString()  {
@@ -59,6 +85,8 @@ public class QuestionaryValidation  implements Serializable {
     sb.append("  appId: ").append(appId).append("\n");
     sb.append("  valid: ").append(valid).append("\n");
     sb.append("  responseXML: ").append(responseXML).append("\n");
+    sb.append("  respCurrentAttempt: ").append(respCurrentAttempt).append("\n");
+    sb.append("  respMaxAttempts: ").append(respMaxAttempts).append("\n");
     sb.append("}\n");
     return sb.toString();
   }
