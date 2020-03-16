@@ -41,6 +41,8 @@ public class Workflow  implements Serializable {
   private String nextMessageCode = null;
   @SerializedName("previousMessageCode")
   private String previousMessageCode = null;
+  @SerializedName("workflowFinished")
+  private Boolean workflowFinished = Boolean.FALSE;
 
   
   /**
@@ -186,6 +188,17 @@ public class Workflow  implements Serializable {
   }
 
   
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public Boolean getWorkflowFinished() {
+    return workflowFinished;
+  }
+  public void setWorkflowFinished(Boolean workflowFinished) {
+    this.workflowFinished = workflowFinished;
+  }
+
+  
 
   @Override
   public String toString()  {
@@ -205,6 +218,7 @@ public class Workflow  implements Serializable {
     sb.append("  steps: ").append(steps).append("\n");
     sb.append("  nextMessageCode: ").append(nextMessageCode).append("\n");
     sb.append("  previousMessageCode: ").append(previousMessageCode).append("\n");
+    sb.append("  workflowFinished: ").append(workflowFinished).append("\n");
     sb.append("}\n");
     return sb.toString();
   }
