@@ -342,7 +342,7 @@ public class V3notificationsApi {
   }
   
     
-  public Notification findNotificationsByMessageCode (String code) throws ApiException {
+  public List<Notification> findNotificationsByMessageCode (String code) throws ApiException {
     Object postBody = null;
     
 
@@ -377,7 +377,7 @@ public class V3notificationsApi {
 
       String response = ApiInvoker.getInstance().invokeAPI(path, "GET", queryParams, postBody, headerParams, formParams, contentType);
       if(response != null){
-        return (Notification) ApiInvoker.deserialize(response, "", Notification.class);
+        return (List<Notification>) ApiInvoker.deserialize(response, "array", Notification.class);
       } else {
         return null;
       }

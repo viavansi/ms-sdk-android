@@ -19,6 +19,8 @@ public class MessageSummary  implements Serializable {
   };
   @SerializedName("status")
   private StatusEnum status = null;
+  @SerializedName("templateCode")
+  private String templateCode = null;
   @SerializedName("policies")
   private List<Policy> policies = new ArrayList<Policy>() ;
   @SerializedName("transfers")
@@ -44,6 +46,17 @@ public class MessageSummary  implements Serializable {
   }
   public void setStatus(StatusEnum status) {
     this.status = status;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public String getTemplateCode() {
+    return templateCode;
+  }
+  public void setTemplateCode(String templateCode) {
+    this.templateCode = templateCode;
   }
 
   
@@ -77,6 +90,7 @@ public class MessageSummary  implements Serializable {
     
     sb.append("  code: ").append(code).append("\n");
     sb.append("  status: ").append(status).append("\n");
+    sb.append("  templateCode: ").append(templateCode).append("\n");
     sb.append("  policies: ").append(policies).append("\n");
     sb.append("  transfers: ").append(transfers).append("\n");
     sb.append("}\n");

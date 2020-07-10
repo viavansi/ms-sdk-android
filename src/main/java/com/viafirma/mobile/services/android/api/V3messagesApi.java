@@ -871,7 +871,7 @@ public class V3messagesApi {
     
     
     String[] contentTypes = {
-      "application/json"
+      "text/plain"
     };
 
     String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
