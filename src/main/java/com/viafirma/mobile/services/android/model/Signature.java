@@ -29,6 +29,10 @@ public class Signature  implements Serializable {
   private String certificateAlias = null;
   @SerializedName("certificatePassword")
   private String certificatePassword = null;
+  @SerializedName("certificateId")
+  private String certificateId = null;
+  @SerializedName("userId")
+  private String userId = null;
   public enum TypeFormatSignEnum {
      PADES_B,  PADES_T,  PADES_LT,  PADES_LTA, 
   };
@@ -114,6 +118,28 @@ public class Signature  implements Serializable {
   }
   public void setCertificatePassword(String certificatePassword) {
     this.certificatePassword = certificatePassword;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public String getCertificateId() {
+    return certificateId;
+  }
+  public void setCertificateId(String certificateId) {
+    this.certificateId = certificateId;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public String getUserId() {
+    return userId;
+  }
+  public void setUserId(String userId) {
+    this.userId = userId;
   }
 
   
@@ -206,6 +232,8 @@ public class Signature  implements Serializable {
     sb.append("  helpText: ").append(helpText).append("\n");
     sb.append("  certificateAlias: ").append(certificateAlias).append("\n");
     sb.append("  certificatePassword: ").append(certificatePassword).append("\n");
+    sb.append("  certificateId: ").append(certificateId).append("\n");
+    sb.append("  userId: ").append(userId).append("\n");
     sb.append("  typeFormatSign: ").append(typeFormatSign).append("\n");
     sb.append("  dataToSign: ").append(dataToSign).append("\n");
     sb.append("  idSign: ").append(idSign).append("\n");

@@ -69,6 +69,8 @@ public class Evidence  implements Serializable {
   private String certificateAlias = null;
   @SerializedName("certificatePassword")
   private String certificatePassword = null;
+  @SerializedName("certificateId")
+  private String certificateId = null;
   @SerializedName("metadataCipherPublicKey")
   private String metadataCipherPublicKey = null;
   @SerializedName("encryptionKeyAlias")
@@ -360,6 +362,17 @@ public class Evidence  implements Serializable {
   }
   public void setCertificatePassword(String certificatePassword) {
     this.certificatePassword = certificatePassword;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public String getCertificateId() {
+    return certificateId;
+  }
+  public void setCertificateId(String certificateId) {
+    this.certificateId = certificateId;
   }
 
   
@@ -669,6 +682,7 @@ public class Evidence  implements Serializable {
     sb.append("  typeFormatSign: ").append(typeFormatSign).append("\n");
     sb.append("  certificateAlias: ").append(certificateAlias).append("\n");
     sb.append("  certificatePassword: ").append(certificatePassword).append("\n");
+    sb.append("  certificateId: ").append(certificateId).append("\n");
     sb.append("  metadataCipherPublicKey: ").append(metadataCipherPublicKey).append("\n");
     sb.append("  encryptionKeyAlias: ").append(encryptionKeyAlias).append("\n");
     sb.append("  optional: ").append(optional).append("\n");
