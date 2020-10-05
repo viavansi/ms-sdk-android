@@ -39,6 +39,12 @@ public class EvidenceImage  implements Serializable {
   private String ocrFields = null;
   @SerializedName("properties")
   private List<Param> properties = new ArrayList<Param>() ;
+  @SerializedName("clientTimestamp")
+  private Long clientTimestamp = null;
+  @SerializedName("serviceTimestamp")
+  private Long serviceTimestamp = null;
+  @SerializedName("serviceTimestampType")
+  private String serviceTimestampType = null;
 
   
   /**
@@ -173,6 +179,39 @@ public class EvidenceImage  implements Serializable {
   }
 
   
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public Long getClientTimestamp() {
+    return clientTimestamp;
+  }
+  public void setClientTimestamp(Long clientTimestamp) {
+    this.clientTimestamp = clientTimestamp;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public Long getServiceTimestamp() {
+    return serviceTimestamp;
+  }
+  public void setServiceTimestamp(Long serviceTimestamp) {
+    this.serviceTimestamp = serviceTimestamp;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public String getServiceTimestampType() {
+    return serviceTimestampType;
+  }
+  public void setServiceTimestampType(String serviceTimestampType) {
+    this.serviceTimestampType = serviceTimestampType;
+  }
+
+  
 
   @Override
   public String toString()  {
@@ -191,6 +230,9 @@ public class EvidenceImage  implements Serializable {
     sb.append("  ocrTemplate: ").append(ocrTemplate).append("\n");
     sb.append("  ocrFields: ").append(ocrFields).append("\n");
     sb.append("  properties: ").append(properties).append("\n");
+    sb.append("  clientTimestamp: ").append(clientTimestamp).append("\n");
+    sb.append("  serviceTimestamp: ").append(serviceTimestamp).append("\n");
+    sb.append("  serviceTimestampType: ").append(serviceTimestampType).append("\n");
     sb.append("}\n");
     return sb.toString();
   }

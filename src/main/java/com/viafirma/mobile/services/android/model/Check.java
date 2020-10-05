@@ -1,7 +1,6 @@
 package com.viafirma.mobile.services.android.model;
 
 import com.viafirma.mobile.services.android.model.Signature;
-import java.util.Date;
 
 import com.wordnik.swagger.annotations.*;
 import com.google.gson.annotations.SerializedName;
@@ -25,9 +24,9 @@ public class Check  implements Serializable {
   @SerializedName("validateCode")
   private String validateCode = null;
   @SerializedName("expires")
-  private Date expires = null;
+  private Long expires = null;
   @SerializedName("date")
-  private Date date = null;
+  private Long date = null;
   @SerializedName("commentReject")
   private String commentReject = null;
 
@@ -93,25 +92,25 @@ public class Check  implements Serializable {
 
   
   /**
-   * (since 3.4.0) maximum date on which the petition can be approved
+   * epoch timestamp in milliseconds
    **/
-  @ApiModelProperty(required = false, value = "(since 3.4.0) maximum date on which the petition can be approved")
-  public Date getExpires() {
+  @ApiModelProperty(required = false, value = "epoch timestamp in milliseconds")
+  public Long getExpires() {
     return expires;
   }
-  public void setExpires(Date expires) {
+  public void setExpires(Long expires) {
     this.expires = expires;
   }
 
   
   /**
-   * (since 3.4.0) date on which the petition was approved or rejected
+   * epoch timestamp in milliseconds
    **/
-  @ApiModelProperty(required = false, value = "(since 3.4.0) date on which the petition was approved or rejected")
-  public Date getDate() {
+  @ApiModelProperty(required = false, value = "epoch timestamp in milliseconds")
+  public Long getDate() {
     return date;
   }
-  public void setDate(Date date) {
+  public void setDate(Long date) {
     this.date = date;
   }
 

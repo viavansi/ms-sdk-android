@@ -25,6 +25,8 @@ public class MessageSummary  implements Serializable {
   private List<Policy> policies = new ArrayList<Policy>() ;
   @SerializedName("transfers")
   private List<Transfer> transfers = new ArrayList<Transfer>() ;
+  @SerializedName("languageId")
+  private String languageId = null;
 
   
   /**
@@ -82,6 +84,17 @@ public class MessageSummary  implements Serializable {
   }
 
   
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public String getLanguageId() {
+    return languageId;
+  }
+  public void setLanguageId(String languageId) {
+    this.languageId = languageId;
+  }
+
+  
 
   @Override
   public String toString()  {
@@ -93,6 +106,7 @@ public class MessageSummary  implements Serializable {
     sb.append("  templateCode: ").append(templateCode).append("\n");
     sb.append("  policies: ").append(policies).append("\n");
     sb.append("  transfers: ").append(transfers).append("\n");
+    sb.append("  languageId: ").append(languageId).append("\n");
     sb.append("}\n");
     return sb.toString();
   }

@@ -38,6 +38,12 @@ public class EvidenceSignature  implements Serializable {
   private Integer imageQuality = null;
   @SerializedName("imageScaleFactor")
   private Integer imageScaleFactor = null;
+  @SerializedName("clientTimestamp")
+  private Long clientTimestamp = null;
+  @SerializedName("serviceTimestamp")
+  private Long serviceTimestamp = null;
+  @SerializedName("serviceTimestampType")
+  private String serviceTimestampType = null;
 
   
   /**
@@ -172,6 +178,39 @@ public class EvidenceSignature  implements Serializable {
   }
 
   
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public Long getClientTimestamp() {
+    return clientTimestamp;
+  }
+  public void setClientTimestamp(Long clientTimestamp) {
+    this.clientTimestamp = clientTimestamp;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public Long getServiceTimestamp() {
+    return serviceTimestamp;
+  }
+  public void setServiceTimestamp(Long serviceTimestamp) {
+    this.serviceTimestamp = serviceTimestamp;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public String getServiceTimestampType() {
+    return serviceTimestampType;
+  }
+  public void setServiceTimestampType(String serviceTimestampType) {
+    this.serviceTimestampType = serviceTimestampType;
+  }
+
+  
 
   @Override
   public String toString()  {
@@ -190,6 +229,9 @@ public class EvidenceSignature  implements Serializable {
     sb.append("  positions: ").append(positions).append("\n");
     sb.append("  imageQuality: ").append(imageQuality).append("\n");
     sb.append("  imageScaleFactor: ").append(imageScaleFactor).append("\n");
+    sb.append("  clientTimestamp: ").append(clientTimestamp).append("\n");
+    sb.append("  serviceTimestamp: ").append(serviceTimestamp).append("\n");
+    sb.append("  serviceTimestampType: ").append(serviceTimestampType).append("\n");
     sb.append("}\n");
     return sb.toString();
   }

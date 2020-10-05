@@ -1,6 +1,5 @@
 package com.viafirma.mobile.services.android.model;
 
-import java.util.Date;
 import com.viafirma.mobile.services.android.model.ErrorResponse;
 
 import com.wordnik.swagger.annotations.*;
@@ -12,9 +11,9 @@ import java.io.Serializable;
 public class EventHistory  implements Serializable {
   
   @SerializedName("start")
-  private Date start = null;
+  private Long start = null;
   @SerializedName("ends")
-  private Date ends = null;
+  private Long ends = null;
   @SerializedName("taskName")
   private String taskName = null;
   @SerializedName("order")
@@ -24,23 +23,25 @@ public class EventHistory  implements Serializable {
 
   
   /**
+   * epoch timestamp in milliseconds
    **/
-  @ApiModelProperty(required = true, value = "")
-  public Date getStart() {
+  @ApiModelProperty(required = false, value = "epoch timestamp in milliseconds")
+  public Long getStart() {
     return start;
   }
-  public void setStart(Date start) {
+  public void setStart(Long start) {
     this.start = start;
   }
 
   
   /**
+   * epoch timestamp in milliseconds
    **/
-  @ApiModelProperty(required = false, value = "")
-  public Date getEnds() {
+  @ApiModelProperty(required = false, value = "epoch timestamp in milliseconds")
+  public Long getEnds() {
     return ends;
   }
-  public void setEnds(Date ends) {
+  public void setEnds(Long ends) {
     this.ends = ends;
   }
 

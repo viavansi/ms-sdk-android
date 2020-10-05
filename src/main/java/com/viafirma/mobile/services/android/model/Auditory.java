@@ -3,7 +3,6 @@ package com.viafirma.mobile.services.android.model;
 import com.viafirma.mobile.services.android.model.Geolocation;
 import com.viafirma.mobile.services.android.model.AuditoryMetadata;
 import java.util.*;
-import java.util.Date;
 
 import com.wordnik.swagger.annotations.*;
 import com.google.gson.annotations.SerializedName;
@@ -18,7 +17,7 @@ public class Auditory  implements Serializable {
   @SerializedName("code")
   private String code = null;
   @SerializedName("date")
-  private Date date = null;
+  private Long date = null;
   @SerializedName("app")
   private String app = null;
   @SerializedName("user")
@@ -66,12 +65,13 @@ public class Auditory  implements Serializable {
 
   
   /**
+   * epoch timestamp in milliseconds
    **/
-  @ApiModelProperty(required = false, value = "")
-  public Date getDate() {
+  @ApiModelProperty(required = false, value = "epoch timestamp in milliseconds")
+  public Long getDate() {
     return date;
   }
-  public void setDate(Date date) {
+  public void setDate(Long date) {
     this.date = date;
   }
 

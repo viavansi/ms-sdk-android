@@ -2,7 +2,6 @@ package com.viafirma.mobile.services.android.model;
 
 import com.viafirma.mobile.services.android.model.QuestionaryAnswer;
 import java.util.*;
-import java.util.Date;
 
 import com.wordnik.swagger.annotations.*;
 import com.google.gson.annotations.SerializedName;
@@ -23,7 +22,7 @@ public class QuestionaryQuestion  implements Serializable {
   @SerializedName("answerText")
   private String answerText = null;
   @SerializedName("answerDate")
-  private Date answerDate = null;
+  private Long answerDate = null;
   public enum TypeEnum {
      RADIO,  TEXT,  DATE, 
   };
@@ -87,12 +86,13 @@ public class QuestionaryQuestion  implements Serializable {
 
   
   /**
+   * epoch timestamp in milliseconds
    **/
-  @ApiModelProperty(required = false, value = "")
-  public Date getAnswerDate() {
+  @ApiModelProperty(required = false, value = "epoch timestamp in milliseconds")
+  public Long getAnswerDate() {
     return answerDate;
   }
-  public void setAnswerDate(Date answerDate) {
+  public void setAnswerDate(Long answerDate) {
     this.answerDate = answerDate;
   }
 

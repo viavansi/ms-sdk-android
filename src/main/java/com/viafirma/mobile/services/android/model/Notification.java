@@ -5,7 +5,6 @@ import com.viafirma.mobile.services.android.model.Device;
 import com.viafirma.mobile.services.android.model.Param;
 import java.util.*;
 import com.viafirma.mobile.services.android.model.SharedLink;
-import java.util.Date;
 
 import com.wordnik.swagger.annotations.*;
 import com.google.gson.annotations.SerializedName;
@@ -44,7 +43,7 @@ public class Notification  implements Serializable {
   @SerializedName("sharedLink")
   private SharedLink sharedLink = null;
   @SerializedName("updateDate")
-  private Date updateDate = null;
+  private Long updateDate = null;
   @SerializedName("retryTime")
   private Long retryTime = null;
   @SerializedName("customization")
@@ -188,12 +187,13 @@ public class Notification  implements Serializable {
 
   
   /**
+   * epoch timestamp in milliseconds
    **/
-  @ApiModelProperty(required = false, value = "")
-  public Date getUpdateDate() {
+  @ApiModelProperty(required = false, value = "epoch timestamp in milliseconds")
+  public Long getUpdateDate() {
     return updateDate;
   }
-  public void setUpdateDate(Date updateDate) {
+  public void setUpdateDate(Long updateDate) {
     this.updateDate = updateDate;
   }
 

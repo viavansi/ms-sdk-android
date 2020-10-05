@@ -1,6 +1,5 @@
 package com.viafirma.mobile.services.android.model;
 
-import java.util.Date;
 
 import com.wordnik.swagger.annotations.*;
 import com.google.gson.annotations.SerializedName;
@@ -16,7 +15,7 @@ public class MessageStatus  implements Serializable {
   @SerializedName("status")
   private StatusEnum status = null;
   @SerializedName("lastUpdated")
-  private Date lastUpdated = null;
+  private Long lastUpdated = null;
 
   
   /**
@@ -31,12 +30,13 @@ public class MessageStatus  implements Serializable {
 
   
   /**
+   * epoch timestamp in milliseconds
    **/
-  @ApiModelProperty(required = false, value = "")
-  public Date getLastUpdated() {
+  @ApiModelProperty(required = false, value = "epoch timestamp in milliseconds")
+  public Long getLastUpdated() {
     return lastUpdated;
   }
-  public void setLastUpdated(Date lastUpdated) {
+  public void setLastUpdated(Long lastUpdated) {
     this.lastUpdated = lastUpdated;
   }
 

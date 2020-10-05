@@ -2,7 +2,6 @@ package com.viafirma.mobile.services.android.model;
 
 import com.viafirma.mobile.services.android.model.Param;
 import java.util.*;
-import java.util.Date;
 
 import com.wordnik.swagger.annotations.*;
 import com.google.gson.annotations.SerializedName;
@@ -40,7 +39,7 @@ public class Attachment  implements Serializable {
   @SerializedName("metadataList")
   private List<Param> metadataList = new ArrayList<Param>() ;
   @SerializedName("date")
-  private Date date = null;
+  private Long date = null;
   @SerializedName("hash")
   private String hash = null;
   @SerializedName("fileName")
@@ -149,12 +148,13 @@ public class Attachment  implements Serializable {
 
   
   /**
+   * epoch timestamp in milliseconds
    **/
-  @ApiModelProperty(required = false, value = "")
-  public Date getDate() {
+  @ApiModelProperty(required = false, value = "epoch timestamp in milliseconds")
+  public Long getDate() {
     return date;
   }
-  public void setDate(Date date) {
+  public void setDate(Long date) {
     this.date = date;
   }
 

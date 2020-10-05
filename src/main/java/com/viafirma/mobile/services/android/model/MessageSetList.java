@@ -21,6 +21,8 @@ public class MessageSetList  implements Serializable {
   private String recipientStatus = null;
   @SerializedName("auditTrailPage")
   private String auditTrailPage = null;
+  @SerializedName("languageId")
+  private String languageId = null;
 
   
   /**
@@ -89,6 +91,17 @@ public class MessageSetList  implements Serializable {
   }
 
   
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public String getLanguageId() {
+    return languageId;
+  }
+  public void setLanguageId(String languageId) {
+    this.languageId = languageId;
+  }
+
+  
 
   @Override
   public String toString()  {
@@ -101,6 +114,7 @@ public class MessageSetList  implements Serializable {
     sb.append("  status: ").append(status).append("\n");
     sb.append("  recipientStatus: ").append(recipientStatus).append("\n");
     sb.append("  auditTrailPage: ").append(auditTrailPage).append("\n");
+    sb.append("  languageId: ").append(languageId).append("\n");
     sb.append("}\n");
     return sb.toString();
   }

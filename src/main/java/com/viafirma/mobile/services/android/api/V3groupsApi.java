@@ -9,7 +9,7 @@ import java.util.*;
 
 import com.viafirma.mobile.services.android.model.Group;
 import com.viafirma.mobile.services.android.model.User;
-import com.viafirma.mobile.services.android.model.Message;
+import com.viafirma.mobile.services.android.model.SignPageStyle;
 import com.viafirma.mobile.services.android.model.GroupInfo;
 
 import java.io.File;
@@ -115,7 +115,7 @@ public class V3groupsApi {
   }
   
     
-  public Message getSignPageStyle (String groupCode) throws ApiException {
+  public SignPageStyle getSignPageStyle (String groupCode) throws ApiException {
     Object postBody = null;
     
 
@@ -150,7 +150,7 @@ public class V3groupsApi {
 
       String response = ApiInvoker.getInstance().invokeAPI(path, "GET", queryParams, postBody, headerParams, formParams, contentType);
       if(response != null){
-        return (Message) ApiInvoker.deserialize(response, "", Message.class);
+        return (SignPageStyle) ApiInvoker.deserialize(response, "", SignPageStyle.class);
       } else {
         return null;
       }

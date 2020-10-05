@@ -1,6 +1,5 @@
 package com.viafirma.mobile.services.android.model;
 
-import java.util.Date;
 
 import com.wordnik.swagger.annotations.*;
 import com.google.gson.annotations.SerializedName;
@@ -24,7 +23,7 @@ public class MessageList  implements Serializable {
   @SerializedName("templateCode")
   private String templateCode = null;
   @SerializedName("creationDate")
-  private Date creationDate = null;
+  private Long creationDate = null;
   @SerializedName("externalCode")
   private String externalCode = null;
   @SerializedName("externalStatus")
@@ -92,13 +91,13 @@ public class MessageList  implements Serializable {
 
   
   /**
-   * (since 3.4.8, internal) creation date
+   * epoch timestamp in milliseconds
    **/
-  @ApiModelProperty(required = true, value = "(since 3.4.8, internal) creation date")
-  public Date getCreationDate() {
+  @ApiModelProperty(required = false, value = "epoch timestamp in milliseconds")
+  public Long getCreationDate() {
     return creationDate;
   }
-  public void setCreationDate(Date creationDate) {
+  public void setCreationDate(Long creationDate) {
     this.creationDate = creationDate;
   }
 

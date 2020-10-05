@@ -4,7 +4,6 @@ import com.viafirma.mobile.services.android.model.SystemStatus;
 import com.viafirma.mobile.services.android.model.SystemInfo;
 import java.util.*;
 import java.util.Map;
-import java.util.Date;
 
 import com.wordnik.swagger.annotations.*;
 import com.google.gson.annotations.SerializedName;
@@ -15,7 +14,7 @@ import java.io.Serializable;
 public class InfoSystemStatus  implements Serializable {
   
   @SerializedName("date")
-  private Date date = null;
+  private Long date = null;
   @SerializedName("name")
   private String name = null;
   @SerializedName("info")
@@ -32,12 +31,13 @@ public class InfoSystemStatus  implements Serializable {
 
   
   /**
+   * epoch timestamp in milliseconds
    **/
-  @ApiModelProperty(required = false, value = "")
-  public Date getDate() {
+  @ApiModelProperty(required = false, value = "epoch timestamp in milliseconds")
+  public Long getDate() {
     return date;
   }
-  public void setDate(Date date) {
+  public void setDate(Long date) {
     this.date = date;
   }
 

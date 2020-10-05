@@ -2,7 +2,6 @@ package com.viafirma.mobile.services.android.model;
 
 import com.viafirma.mobile.services.android.model.EventHistory;
 import java.util.*;
-import java.util.Date;
 
 import com.wordnik.swagger.annotations.*;
 import com.google.gson.annotations.SerializedName;
@@ -21,11 +20,11 @@ public class Workflow  implements Serializable {
   @SerializedName("history")
   private List<EventHistory> history = new ArrayList<EventHistory>() ;
   @SerializedName("initiate")
-  private Date initiate = null;
+  private Long initiate = null;
   @SerializedName("lastUpdated")
-  private Date lastUpdated = null;
+  private Long lastUpdated = null;
   @SerializedName("expires")
-  private Date expires = null;
+  private Long expires = null;
   public enum TypeEnum {
      APP,  WEB,  PRESENTIAL,  SET, 
   };
@@ -90,34 +89,37 @@ public class Workflow  implements Serializable {
 
   
   /**
+   * epoch timestamp in milliseconds
    **/
-  @ApiModelProperty(required = false, value = "")
-  public Date getInitiate() {
+  @ApiModelProperty(required = false, value = "epoch timestamp in milliseconds")
+  public Long getInitiate() {
     return initiate;
   }
-  public void setInitiate(Date initiate) {
+  public void setInitiate(Long initiate) {
     this.initiate = initiate;
   }
 
   
   /**
+   * epoch timestamp in milliseconds
    **/
-  @ApiModelProperty(required = false, value = "")
-  public Date getLastUpdated() {
+  @ApiModelProperty(required = false, value = "epoch timestamp in milliseconds")
+  public Long getLastUpdated() {
     return lastUpdated;
   }
-  public void setLastUpdated(Date lastUpdated) {
+  public void setLastUpdated(Long lastUpdated) {
     this.lastUpdated = lastUpdated;
   }
 
   
   /**
+   * epoch timestamp in milliseconds
    **/
-  @ApiModelProperty(required = false, value = "")
-  public Date getExpires() {
+  @ApiModelProperty(required = false, value = "epoch timestamp in milliseconds")
+  public Long getExpires() {
     return expires;
   }
-  public void setExpires(Date expires) {
+  public void setExpires(Long expires) {
     this.expires = expires;
   }
 

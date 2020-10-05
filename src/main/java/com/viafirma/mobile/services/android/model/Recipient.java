@@ -28,6 +28,8 @@ public class Recipient  implements Serializable {
   };
   @SerializedName("status")
   private StatusEnum status = null;
+  @SerializedName("order")
+  private Integer order = null;
 
   
   /**
@@ -118,6 +120,17 @@ public class Recipient  implements Serializable {
   }
 
   
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public Integer getOrder() {
+    return order;
+  }
+  public void setOrder(Integer order) {
+    this.order = order;
+  }
+
+  
 
   @Override
   public String toString()  {
@@ -132,6 +145,7 @@ public class Recipient  implements Serializable {
     sb.append("  userCode: ").append(userCode).append("\n");
     sb.append("  id: ").append(id).append("\n");
     sb.append("  status: ").append(status).append("\n");
+    sb.append("  order: ").append(order).append("\n");
     sb.append("}\n");
     return sb.toString();
   }

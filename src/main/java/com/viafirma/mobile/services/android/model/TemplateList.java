@@ -1,6 +1,5 @@
 package com.viafirma.mobile.services.android.model;
 
-import java.util.Date;
 
 import com.wordnik.swagger.annotations.*;
 import com.google.gson.annotations.SerializedName;
@@ -17,7 +16,7 @@ public class TemplateList  implements Serializable {
   @SerializedName("description")
   private String description = null;
   @SerializedName("creationDate")
-  private Date creationDate = null;
+  private Long creationDate = null;
   @SerializedName("groups")
   private String groups = null;
   @SerializedName("onlyWacom")
@@ -60,12 +59,13 @@ public class TemplateList  implements Serializable {
 
   
   /**
+   * epoch timestamp in milliseconds
    **/
-  @ApiModelProperty(required = false, value = "")
-  public Date getCreationDate() {
+  @ApiModelProperty(required = false, value = "epoch timestamp in milliseconds")
+  public Long getCreationDate() {
     return creationDate;
   }
-  public void setCreationDate(Date creationDate) {
+  public void setCreationDate(Long creationDate) {
     this.creationDate = creationDate;
   }
 

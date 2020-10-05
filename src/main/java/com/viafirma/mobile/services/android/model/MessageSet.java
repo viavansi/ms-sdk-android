@@ -5,7 +5,6 @@ import com.viafirma.mobile.services.android.model.Customization;
 import com.viafirma.mobile.services.android.model.Param;
 import com.viafirma.mobile.services.android.model.Recipient;
 import java.util.*;
-import java.util.Date;
 
 import com.wordnik.swagger.annotations.*;
 import com.google.gson.annotations.SerializedName;
@@ -18,7 +17,9 @@ public class MessageSet  implements Serializable {
   @SerializedName("groupCode")
   private String groupCode = null;
   @SerializedName("expires")
-  private Date expires = null;
+  private Long expires = null;
+  @SerializedName("retryTime")
+  private Long retryTime = null;
   @SerializedName("recipients")
   private List<Recipient> recipients = new ArrayList<Recipient>() ;
   @SerializedName("customization")
@@ -27,6 +28,8 @@ public class MessageSet  implements Serializable {
   private List<Message> messages = new ArrayList<Message>() ;
   @SerializedName("metadataList")
   private List<Param> metadataList = new ArrayList<Param>() ;
+  @SerializedName("messagesStep")
+  private Integer messagesStep = null;
 
   
   /**
@@ -41,13 +44,25 @@ public class MessageSet  implements Serializable {
 
   
   /**
+   * epoch timestamp in milliseconds
    **/
-  @ApiModelProperty(required = false, value = "")
-  public Date getExpires() {
+  @ApiModelProperty(required = false, value = "epoch timestamp in milliseconds")
+  public Long getExpires() {
     return expires;
   }
-  public void setExpires(Date expires) {
+  public void setExpires(Long expires) {
     this.expires = expires;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public Long getRetryTime() {
+    return retryTime;
+  }
+  public void setRetryTime(Long retryTime) {
+    this.retryTime = retryTime;
   }
 
   
@@ -95,6 +110,17 @@ public class MessageSet  implements Serializable {
   }
 
   
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public Integer getMessagesStep() {
+    return messagesStep;
+  }
+  public void setMessagesStep(Integer messagesStep) {
+    this.messagesStep = messagesStep;
+  }
+
+  
 
   @Override
   public String toString()  {
@@ -103,10 +129,12 @@ public class MessageSet  implements Serializable {
     
     sb.append("  groupCode: ").append(groupCode).append("\n");
     sb.append("  expires: ").append(expires).append("\n");
+    sb.append("  retryTime: ").append(retryTime).append("\n");
     sb.append("  recipients: ").append(recipients).append("\n");
     sb.append("  customization: ").append(customization).append("\n");
     sb.append("  messages: ").append(messages).append("\n");
     sb.append("  metadataList: ").append(metadataList).append("\n");
+    sb.append("  messagesStep: ").append(messagesStep).append("\n");
     sb.append("}\n");
     return sb.toString();
   }

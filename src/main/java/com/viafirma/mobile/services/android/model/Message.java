@@ -9,7 +9,6 @@ import com.viafirma.mobile.services.android.model.Recipient;
 import java.util.*;
 import com.viafirma.mobile.services.android.model.Document;
 import com.viafirma.mobile.services.android.model.Notification;
-import java.util.Date;
 import com.viafirma.mobile.services.android.model.ErrorResponse;
 
 import com.wordnik.swagger.annotations.*;
@@ -56,6 +55,8 @@ public class Message  implements Serializable {
   private Workflow workflow = null;
   @SerializedName("recipients")
   private List<Recipient> recipients = new ArrayList<Recipient>() ;
+  @SerializedName("recipientStep")
+  private Integer recipientStep = null;
   @SerializedName("notification")
   private Notification notification = null;
   @SerializedName("document")
@@ -85,7 +86,7 @@ public class Message  implements Serializable {
   @SerializedName("server")
   private String server = null;
   @SerializedName("processTimeExpired")
-  private Date processTimeExpired = null;
+  private Long processTimeExpired = null;
   @SerializedName("commentReject")
   private String commentReject = null;
   @SerializedName("callbackResponse")
@@ -106,6 +107,8 @@ public class Message  implements Serializable {
   private String signPageServer = null;
   @SerializedName("auditTrailPage")
   private String auditTrailPage = null;
+  @SerializedName("order")
+  private Integer order = null;
 
   
   /**
@@ -309,6 +312,17 @@ public class Message  implements Serializable {
   /**
    **/
   @ApiModelProperty(required = false, value = "")
+  public Integer getRecipientStep() {
+    return recipientStep;
+  }
+  public void setRecipientStep(Integer recipientStep) {
+    this.recipientStep = recipientStep;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
   public Notification getNotification() {
     return notification;
   }
@@ -461,12 +475,13 @@ public class Message  implements Serializable {
 
   
   /**
+   * epoch timestamp in milliseconds
    **/
-  @ApiModelProperty(required = false, value = "")
-  public Date getProcessTimeExpired() {
+  @ApiModelProperty(required = false, value = "epoch timestamp in milliseconds")
+  public Long getProcessTimeExpired() {
     return processTimeExpired;
   }
-  public void setProcessTimeExpired(Date processTimeExpired) {
+  public void setProcessTimeExpired(Long processTimeExpired) {
     this.processTimeExpired = processTimeExpired;
   }
 
@@ -581,6 +596,17 @@ public class Message  implements Serializable {
   }
 
   
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public Integer getOrder() {
+    return order;
+  }
+  public void setOrder(Integer order) {
+    this.order = order;
+  }
+
+  
 
   @Override
   public String toString()  {
@@ -605,6 +631,7 @@ public class Message  implements Serializable {
     sb.append("  version: ").append(version).append("\n");
     sb.append("  workflow: ").append(workflow).append("\n");
     sb.append("  recipients: ").append(recipients).append("\n");
+    sb.append("  recipientStep: ").append(recipientStep).append("\n");
     sb.append("  notification: ").append(notification).append("\n");
     sb.append("  document: ").append(document).append("\n");
     sb.append("  metadataList: ").append(metadataList).append("\n");
@@ -630,6 +657,7 @@ public class Message  implements Serializable {
     sb.append("  setStatus: ").append(setStatus).append("\n");
     sb.append("  signPageServer: ").append(signPageServer).append("\n");
     sb.append("  auditTrailPage: ").append(auditTrailPage).append("\n");
+    sb.append("  order: ").append(order).append("\n");
     sb.append("}\n");
     return sb.toString();
   }

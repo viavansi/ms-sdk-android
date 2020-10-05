@@ -1,6 +1,5 @@
 package com.viafirma.mobile.services.android.model;
 
-import java.util.Date;
 
 import com.wordnik.swagger.annotations.*;
 import com.google.gson.annotations.SerializedName;
@@ -17,7 +16,7 @@ public class Download  implements Serializable {
   @SerializedName("fileName")
   private String fileName = null;
   @SerializedName("expires")
-  private Date expires = null;
+  private Long expires = null;
   @SerializedName("base64")
   private String base64 = null;
   @SerializedName("code")
@@ -60,12 +59,13 @@ public class Download  implements Serializable {
 
   
   /**
+   * epoch timestamp in milliseconds
    **/
-  @ApiModelProperty(required = false, value = "")
-  public Date getExpires() {
+  @ApiModelProperty(required = false, value = "epoch timestamp in milliseconds")
+  public Long getExpires() {
     return expires;
   }
-  public void setExpires(Date expires) {
+  public void setExpires(Long expires) {
     this.expires = expires;
   }
 

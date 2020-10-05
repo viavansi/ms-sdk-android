@@ -70,7 +70,7 @@ task uploadRelease(type: Upload) {
         repository(url: releaseUrl) {
             authentication(userName: repoUsername, password: repoPassword)
         }
-        pom.version = '3.6.38'
+        pom.version = '3.6.39'
         pom.artifactId = "ms-sdk-android"
         pom.groupId = "com.viafirma"
     }
@@ -83,7 +83,7 @@ task uploadSnapshot(type: Upload) {
         snapshotRepository(url: snapshotUrl) {
             authentication(userName: repoUsername, password: repoPassword)
         }
-        pom.version = '3.6.38' + "-SNAPSHOT"
+        pom.version = '3.6.39' + "-SNAPSHOT"
         pom.artifactId = "ms-sdk-android"
         pom.groupId = "com.viafirma"
     }

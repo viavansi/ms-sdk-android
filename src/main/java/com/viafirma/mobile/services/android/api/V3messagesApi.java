@@ -13,8 +13,10 @@ import com.viafirma.mobile.services.android.model.MessageData;
 import com.viafirma.mobile.services.android.model.Download;
 import com.viafirma.mobile.services.android.model.MessageList;
 import com.viafirma.mobile.services.android.model.CallbackUrl;
+import com.viafirma.mobile.services.android.model.CallbackMail;
 import com.viafirma.mobile.services.android.model.NotificationResend;
 import com.viafirma.mobile.services.android.model.Notification;
+import com.viafirma.mobile.services.android.model.MessageRestart;
 import com.viafirma.mobile.services.android.model.MessageStatus;
 import com.viafirma.mobile.services.android.model.Document;
 import com.viafirma.mobile.services.android.model.MessagePaginatedList;
@@ -708,6 +710,48 @@ public class V3messagesApi {
   }
   
     
+  public Message sendCallback (CallbackMail body) throws ApiException {
+    Object postBody = body;
+    
+
+    // create path and map variables
+    String path = "/v3/messages/resend/callbackMail".replaceAll("\\{format\\}","json");
+
+    // query params
+    Map<String, String> queryParams = new HashMap<String, String>();
+    Map<String, String> headerParams = new HashMap<String, String>();
+    Map<String, String> formParams = new HashMap<String, String>();
+
+    
+    
+    String[] contentTypes = {
+      "application/json"
+    };
+
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+
+    if(contentType.startsWith("multipart/form-data")) {
+      boolean hasFields = false;
+      MultipartBody.Builder mp = new MultipartBody.Builder();
+      mp.setType(MultipartBody.FORM);
+      
+      if(hasFields)
+        postBody = mp;
+    }
+    else {
+      
+    }
+
+      String response = ApiInvoker.getInstance().invokeAPI(path, "PUT", queryParams, postBody, headerParams, formParams, contentType);
+      if(response != null){
+        return (Message) ApiInvoker.deserialize(response, "", Message.class);
+      } else {
+        return null;
+      }
+    
+  }
+  
+    
   public Notification resendNotification (NotificationResend body) throws ApiException {
     Object postBody = body;
     
@@ -855,7 +899,49 @@ public class V3messagesApi {
   }
   
     
-  public String resendMessage (String code) throws ApiException {
+  public String resendMessage (MessageRestart body) throws ApiException {
+    Object postBody = body;
+    
+
+    // create path and map variables
+    String path = "/v3/messages/restart".replaceAll("\\{format\\}","json");
+
+    // query params
+    Map<String, String> queryParams = new HashMap<String, String>();
+    Map<String, String> headerParams = new HashMap<String, String>();
+    Map<String, String> formParams = new HashMap<String, String>();
+
+    
+    
+    String[] contentTypes = {
+      "application/json"
+    };
+
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+
+    if(contentType.startsWith("multipart/form-data")) {
+      boolean hasFields = false;
+      MultipartBody.Builder mp = new MultipartBody.Builder();
+      mp.setType(MultipartBody.FORM);
+      
+      if(hasFields)
+        postBody = mp;
+    }
+    else {
+      
+    }
+
+      String response = ApiInvoker.getInstance().invokeAPI(path, "PUT", queryParams, postBody, headerParams, formParams, contentType);
+      if(response != null){
+        return (String) ApiInvoker.deserialize(response, "", String.class);
+      } else {
+        return null;
+      }
+    
+  }
+  
+    
+  public void resendMessageOld (String code) throws ApiException {
     Object postBody = null;
     
 
@@ -890,9 +976,9 @@ public class V3messagesApi {
 
       String response = ApiInvoker.getInstance().invokeAPI(path, "PUT", queryParams, postBody, headerParams, formParams, contentType);
       if(response != null){
-        return (String) ApiInvoker.deserialize(response, "", String.class);
+        return ;
       } else {
-        return null;
+        return ;
       }
     
   }

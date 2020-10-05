@@ -2,7 +2,6 @@ package com.viafirma.mobile.services.android.model;
 
 import com.viafirma.mobile.services.android.model.Param;
 import java.util.*;
-import java.util.Date;
 
 import com.wordnik.swagger.annotations.*;
 import com.google.gson.annotations.SerializedName;
@@ -17,7 +16,7 @@ public class Transfer  implements Serializable {
   @SerializedName("status")
   private String status = null;
   @SerializedName("transferDate")
-  private Date transferDate = null;
+  private Long transferDate = null;
   @SerializedName("error")
   private String error = null;
   @SerializedName("response")
@@ -49,12 +48,13 @@ public class Transfer  implements Serializable {
 
   
   /**
+   * epoch timestamp in milliseconds
    **/
-  @ApiModelProperty(required = true, value = "")
-  public Date getTransferDate() {
+  @ApiModelProperty(required = false, value = "epoch timestamp in milliseconds")
+  public Long getTransferDate() {
     return transferDate;
   }
-  public void setTransferDate(Date transferDate) {
+  public void setTransferDate(Long transferDate) {
     this.transferDate = transferDate;
   }
 
