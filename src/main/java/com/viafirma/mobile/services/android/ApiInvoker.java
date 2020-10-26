@@ -39,6 +39,7 @@ import javax.net.ssl.TrustManager;
 import javax.net.ssl.TrustManagerFactory;
 import javax.net.ssl.X509TrustManager;
 
+import okhttp3.ConnectionPool;
 import okhttp3.FormBody;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
@@ -54,6 +55,7 @@ public class ApiInvoker {
   private Map<String, String> defaultHeaderMap = new HashMap<String, String>();
   private boolean isDebug = false;
 
+  ConnectionPool connectionPool = null;
   String basePath = null;
   String consumerKey = null;
   String consumerSecret = null;
@@ -142,7 +144,7 @@ public class ApiInvoker {
 	}
 
   public ApiInvoker() {
-    
+    connectionPool = new ConnectionPool(10, 5, TimeUnit.MINUTES);
   }
 
   public static ApiInvoker getInstance() {
@@ -301,6 +303,7 @@ public class ApiInvoker {
         OkHttpClient.Builder clientBuilder = new OkHttpClient.Builder()
                 .connectTimeout(connectTimeout, TimeUnit.SECONDS)
                 .readTimeout(timeoutSeconds, TimeUnit.SECONDS)
+                .connectionPool(connectionPool)
                 .writeTimeout(timeoutSeconds, TimeUnit.SECONDS);
 
         if(sslSocketFactory != null){
@@ -328,6 +331,7 @@ public class ApiInvoker {
                 .connectTimeout(connectTimeout, TimeUnit.SECONDS)
                 .readTimeout(timeoutSeconds, TimeUnit.SECONDS)
                 .writeTimeout(timeoutSeconds, TimeUnit.SECONDS)
+                .connectionPool(connectionPool)
                 .addInterceptor(new SigningInterceptor(consumer));
 
         if(sslSocketFactory != null){
@@ -355,6 +359,7 @@ public class ApiInvoker {
             .connectTimeout(connectTimeout, TimeUnit.SECONDS)
             .readTimeout(timeoutSeconds, TimeUnit.SECONDS)
             .writeTimeout(timeoutSeconds, TimeUnit.SECONDS)
+            .connectionPool(connectionPool)
             .addInterceptor(new SigningInterceptor(consumer));
 
     if(sslSocketFactory != null){
