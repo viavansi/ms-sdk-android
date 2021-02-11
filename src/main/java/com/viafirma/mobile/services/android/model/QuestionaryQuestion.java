@@ -24,7 +24,7 @@ public class QuestionaryQuestion  implements Serializable {
   @SerializedName("answerDate")
   private Long answerDate = null;
   public enum TypeEnum {
-     RADIO,  TEXT,  DATE, 
+     RADIO,  TEXT,  DATE,  HTML, 
   };
   @SerializedName("type")
   private TypeEnum type = null;

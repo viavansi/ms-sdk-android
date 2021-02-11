@@ -2,6 +2,7 @@ package com.viafirma.mobile.services.android.model;
 
 import com.viafirma.mobile.services.android.model.Item;
 import java.util.*;
+import java.util.Date;
 import com.viafirma.mobile.services.android.model.Font;
 
 import com.wordnik.swagger.annotations.*;
@@ -28,6 +29,8 @@ public class Document  implements Serializable {
   private String signedID = null;
   @SerializedName("signedReference")
   private String signedReference = null;
+  @SerializedName("signingDate")
+  private Date signingDate = null;
   public enum TemplateTypeEnum {
      docx,  odt,  url,  pdf,  base64,  message, 
   };
@@ -63,6 +66,8 @@ public class Document  implements Serializable {
   private Integer extraPages = null;
   @SerializedName("formUpdated")
   private Boolean formUpdated = Boolean.FALSE;
+  @SerializedName("hideDocumentBeforeStart")
+  private Boolean hideDocumentBeforeStart = Boolean.FALSE;
 
   
   /**
@@ -155,7 +160,18 @@ public class Document  implements Serializable {
   
   /**
    **/
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(required = false, value = "")
+  public Date getSigningDate() {
+    return signingDate;
+  }
+  public void setSigningDate(Date signingDate) {
+    this.signingDate = signingDate;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
   public TemplateTypeEnum getTemplateType() {
     return templateType;
   }
@@ -223,7 +239,7 @@ public class Document  implements Serializable {
   /**
    * (since 3.5.0) code of policy to use
    **/
-  @ApiModelProperty(required = true, value = "(since 3.5.0) code of policy to use")
+  @ApiModelProperty(required = false, value = "(since 3.5.0) code of policy to use")
   public String getPolicyCode() {
     return policyCode;
   }
@@ -332,6 +348,17 @@ public class Document  implements Serializable {
   }
 
   
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public Boolean getHideDocumentBeforeStart() {
+    return hideDocumentBeforeStart;
+  }
+  public void setHideDocumentBeforeStart(Boolean hideDocumentBeforeStart) {
+    this.hideDocumentBeforeStart = hideDocumentBeforeStart;
+  }
+
+  
 
   @Override
   public String toString()  {
@@ -346,6 +373,7 @@ public class Document  implements Serializable {
     sb.append("  signedCode: ").append(signedCode).append("\n");
     sb.append("  signedID: ").append(signedID).append("\n");
     sb.append("  signedReference: ").append(signedReference).append("\n");
+    sb.append("  signingDate: ").append(signingDate).append("\n");
     sb.append("  templateType: ").append(templateType).append("\n");
     sb.append("  formRequired: ").append(formRequired).append("\n");
     sb.append("  formDisabled: ").append(formDisabled).append("\n");
@@ -362,6 +390,7 @@ public class Document  implements Serializable {
     sb.append("  watermarkText: ").append(watermarkText).append("\n");
     sb.append("  extraPages: ").append(extraPages).append("\n");
     sb.append("  formUpdated: ").append(formUpdated).append("\n");
+    sb.append("  hideDocumentBeforeStart: ").append(hideDocumentBeforeStart).append("\n");
     sb.append("}\n");
     return sb.toString();
   }

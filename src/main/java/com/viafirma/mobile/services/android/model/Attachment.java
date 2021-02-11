@@ -46,6 +46,8 @@ public class Attachment  implements Serializable {
   private String fileName = null;
   @SerializedName("readOnly")
   private Boolean readOnly = Boolean.FALSE;
+  @SerializedName("recipientKey")
+  private String recipientKey = null;
 
   
   /**
@@ -192,6 +194,17 @@ public class Attachment  implements Serializable {
   }
 
   
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public String getRecipientKey() {
+    return recipientKey;
+  }
+  public void setRecipientKey(String recipientKey) {
+    this.recipientKey = recipientKey;
+  }
+
+  
 
   @Override
   public String toString()  {
@@ -211,6 +224,7 @@ public class Attachment  implements Serializable {
     sb.append("  hash: ").append(hash).append("\n");
     sb.append("  fileName: ").append(fileName).append("\n");
     sb.append("  readOnly: ").append(readOnly).append("\n");
+    sb.append("  recipientKey: ").append(recipientKey).append("\n");
     sb.append("}\n");
     return sb.toString();
   }

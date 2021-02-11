@@ -3,6 +3,7 @@ package com.viafirma.mobile.services.android.model;
 import com.viafirma.mobile.services.android.model.AuditTrailImage;
 import com.viafirma.mobile.services.android.model.AuditTrailLabelValueInfo;
 import java.util.*;
+import com.viafirma.mobile.services.android.model.AuditTrailInformationLabel;
 
 import com.wordnik.swagger.annotations.*;
 import com.google.gson.annotations.SerializedName;
@@ -18,6 +19,8 @@ public class AuditTrailHighlightedItem  implements Serializable {
   private AuditTrailImage logo = null;
   @SerializedName("labelValueInfoList")
   private List<AuditTrailLabelValueInfo> labelValueInfoList = new ArrayList<AuditTrailLabelValueInfo>() ;
+  @SerializedName("informationLabelList")
+  private List<AuditTrailInformationLabel> informationLabelList = new ArrayList<AuditTrailInformationLabel>() ;
 
   
   /**
@@ -53,6 +56,17 @@ public class AuditTrailHighlightedItem  implements Serializable {
   }
 
   
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public List<AuditTrailInformationLabel> getInformationLabelList() {
+    return informationLabelList;
+  }
+  public void setInformationLabelList(List<AuditTrailInformationLabel> informationLabelList) {
+    this.informationLabelList = informationLabelList;
+  }
+
+  
 
   @Override
   public String toString()  {
@@ -62,6 +76,7 @@ public class AuditTrailHighlightedItem  implements Serializable {
     sb.append("  title: ").append(title).append("\n");
     sb.append("  logo: ").append(logo).append("\n");
     sb.append("  labelValueInfoList: ").append(labelValueInfoList).append("\n");
+    sb.append("  informationLabelList: ").append(informationLabelList).append("\n");
     sb.append("}\n");
     return sb.toString();
   }

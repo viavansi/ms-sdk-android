@@ -69,7 +69,7 @@ public class Setting  implements Serializable {
   
   /**
    **/
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(required = false, value = "")
   public String getTitleKey() {
     return titleKey;
   }

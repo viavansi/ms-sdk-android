@@ -1,5 +1,7 @@
 package com.viafirma.mobile.services.android.model;
 
+import com.viafirma.mobile.services.android.model.AuditTrailLabelValueInfo;
+import java.util.*;
 
 import com.wordnik.swagger.annotations.*;
 import com.google.gson.annotations.SerializedName;
@@ -21,6 +23,8 @@ public class AuditTrailTableRow  implements Serializable {
   private String pdfLinkURL = null;
   @SerializedName("includeModalPopup")
   private Boolean includeModalPopup = Boolean.FALSE;
+  @SerializedName("labelValueInfoList")
+  private List<AuditTrailLabelValueInfo> labelValueInfoList = new ArrayList<AuditTrailLabelValueInfo>() ;
 
   
   /**
@@ -89,6 +93,17 @@ public class AuditTrailTableRow  implements Serializable {
   }
 
   
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public List<AuditTrailLabelValueInfo> getLabelValueInfoList() {
+    return labelValueInfoList;
+  }
+  public void setLabelValueInfoList(List<AuditTrailLabelValueInfo> labelValueInfoList) {
+    this.labelValueInfoList = labelValueInfoList;
+  }
+
+  
 
   @Override
   public String toString()  {
@@ -101,6 +116,7 @@ public class AuditTrailTableRow  implements Serializable {
     sb.append("  includePDFLink: ").append(includePDFLink).append("\n");
     sb.append("  pdfLinkURL: ").append(pdfLinkURL).append("\n");
     sb.append("  includeModalPopup: ").append(includeModalPopup).append("\n");
+    sb.append("  labelValueInfoList: ").append(labelValueInfoList).append("\n");
     sb.append("}\n");
     return sb.toString();
   }

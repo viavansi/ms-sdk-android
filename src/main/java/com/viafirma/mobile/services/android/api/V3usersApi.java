@@ -8,6 +8,7 @@ import com.viafirma.mobile.services.android.model.*;
 import java.util.*;
 
 import com.viafirma.mobile.services.android.model.User;
+import com.viafirma.mobile.services.android.model.AutoRegister;
 
 import java.io.File;
 import java.util.Map;
@@ -104,6 +105,92 @@ public class V3usersApi {
       String response = ApiInvoker.getInstance().invokeAPI(path, "POST", queryParams, postBody, headerParams, formParams, contentType);
       if(response != null){
         return (User) ApiInvoker.deserialize(response, "", User.class);
+      } else {
+        return null;
+      }
+    
+  }
+  
+    
+  public List<User> getAllUsers (String index, String page_size) throws ApiException {
+    Object postBody = null;
+    
+
+    // create path and map variables
+    String path = "/v3/users/all/{index}/{page_size}".replaceAll("\\{format\\}","json")
+      .replaceAll("\\{" + "index" + "\\}", ApiInvoker.getInstance().escapeString(index.toString()))
+      .replaceAll("\\{" + "page_size" + "\\}", ApiInvoker.getInstance().escapeString(page_size.toString()));
+
+    // query params
+    Map<String, String> queryParams = new HashMap<String, String>();
+    Map<String, String> headerParams = new HashMap<String, String>();
+    Map<String, String> formParams = new HashMap<String, String>();
+
+    
+    
+    String[] contentTypes = {
+      
+    };
+
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+
+    if(contentType.startsWith("multipart/form-data")) {
+      boolean hasFields = false;
+      MultipartBody.Builder mp = new MultipartBody.Builder();
+      mp.setType(MultipartBody.FORM);
+      
+      if(hasFields)
+        postBody = mp;
+    }
+    else {
+      
+    }
+
+      String response = ApiInvoker.getInstance().invokeAPI(path, "GET", queryParams, postBody, headerParams, formParams, contentType);
+      if(response != null){
+        return (List<User>) ApiInvoker.deserialize(response, "array", User.class);
+      } else {
+        return null;
+      }
+    
+  }
+  
+    
+  public AutoRegister autoRegisterUser (AutoRegister body) throws ApiException {
+    Object postBody = body;
+    
+
+    // create path and map variables
+    String path = "/v3/users/auto/register".replaceAll("\\{format\\}","json");
+
+    // query params
+    Map<String, String> queryParams = new HashMap<String, String>();
+    Map<String, String> headerParams = new HashMap<String, String>();
+    Map<String, String> formParams = new HashMap<String, String>();
+
+    
+    
+    String[] contentTypes = {
+      "application/json"
+    };
+
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+
+    if(contentType.startsWith("multipart/form-data")) {
+      boolean hasFields = false;
+      MultipartBody.Builder mp = new MultipartBody.Builder();
+      mp.setType(MultipartBody.FORM);
+      
+      if(hasFields)
+        postBody = mp;
+    }
+    else {
+      
+    }
+
+      String response = ApiInvoker.getInstance().invokeAPI(path, "POST", queryParams, postBody, headerParams, formParams, contentType);
+      if(response != null){
+        return (AutoRegister) ApiInvoker.deserialize(response, "", AutoRegister.class);
       } else {
         return null;
       }
@@ -248,6 +335,105 @@ public class V3usersApi {
     // create path and map variables
     String path = "/v3/users/sendresetpassemail/{userCode}".replaceAll("\\{format\\}","json")
       .replaceAll("\\{" + "userCode" + "\\}", ApiInvoker.getInstance().escapeString(userCode.toString()));
+
+    // query params
+    Map<String, String> queryParams = new HashMap<String, String>();
+    Map<String, String> headerParams = new HashMap<String, String>();
+    Map<String, String> formParams = new HashMap<String, String>();
+
+    
+    
+    String[] contentTypes = {
+      
+    };
+
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+
+    if(contentType.startsWith("multipart/form-data")) {
+      boolean hasFields = false;
+      MultipartBody.Builder mp = new MultipartBody.Builder();
+      mp.setType(MultipartBody.FORM);
+      
+      if(hasFields)
+        postBody = mp;
+    }
+    else {
+      
+    }
+
+      String response = ApiInvoker.getInstance().invokeAPI(path, "GET", queryParams, postBody, headerParams, formParams, contentType);
+      if(response != null){
+        return (User) ApiInvoker.deserialize(response, "", User.class);
+      } else {
+        return null;
+      }
+    
+  }
+  
+    
+  public AutoRegister updatePassword (String token, String pass, String captchaId) throws ApiException {
+    Object postBody = null;
+    
+
+    // create path and map variables
+    String path = "/v3/users/update/password".replaceAll("\\{format\\}","json");
+
+    // query params
+    Map<String, String> queryParams = new HashMap<String, String>();
+    Map<String, String> headerParams = new HashMap<String, String>();
+    Map<String, String> formParams = new HashMap<String, String>();
+
+    
+    
+    String[] contentTypes = {
+      "application/x-www-form-urlencoded"
+    };
+
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+
+    if(contentType.startsWith("multipart/form-data")) {
+      boolean hasFields = false;
+      MultipartBody.Builder mp = new MultipartBody.Builder();
+      mp.setType(MultipartBody.FORM);
+      
+      hasFields = true;
+      mp.addFormDataPart("token", token);
+      
+      
+      hasFields = true;
+      mp.addFormDataPart("pass", pass);
+      
+      
+      hasFields = true;
+      mp.addFormDataPart("captchaId", captchaId);
+      
+      
+      if(hasFields)
+        postBody = mp;
+    }
+    else {
+      formParams.put("token", token);
+      formParams.put("pass", pass);
+      formParams.put("captchaId", captchaId);
+      
+    }
+
+      String response = ApiInvoker.getInstance().invokeAPI(path, "PUT", queryParams, postBody, headerParams, formParams, contentType);
+      if(response != null){
+        return (AutoRegister) ApiInvoker.deserialize(response, "", AutoRegister.class);
+      } else {
+        return null;
+      }
+    
+  }
+  
+    
+  public User whoIam () throws ApiException {
+    Object postBody = null;
+    
+
+    // create path and map variables
+    String path = "/v3/users/whoiam".replaceAll("\\{format\\}","json");
 
     // query params
     Map<String, String> queryParams = new HashMap<String, String>();

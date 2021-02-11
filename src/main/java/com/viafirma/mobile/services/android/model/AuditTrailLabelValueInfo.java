@@ -13,6 +13,8 @@ public class AuditTrailLabelValueInfo  implements Serializable {
   private String label = null;
   @SerializedName("value")
   private String value = null;
+  @SerializedName("type")
+  private String type = null;
 
   
   /**
@@ -37,6 +39,17 @@ public class AuditTrailLabelValueInfo  implements Serializable {
   }
 
   
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public String getType() {
+    return type;
+  }
+  public void setType(String type) {
+    this.type = type;
+  }
+
+  
 
   @Override
   public String toString()  {
@@ -45,6 +58,7 @@ public class AuditTrailLabelValueInfo  implements Serializable {
     
     sb.append("  label: ").append(label).append("\n");
     sb.append("  value: ").append(value).append("\n");
+    sb.append("  type: ").append(type).append("\n");
     sb.append("}\n");
     return sb.toString();
   }

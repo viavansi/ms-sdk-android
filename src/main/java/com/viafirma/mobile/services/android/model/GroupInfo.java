@@ -5,6 +5,7 @@ import com.viafirma.mobile.services.android.model.Configuration;
 import com.viafirma.mobile.services.android.model.Style;
 import java.util.*;
 import com.viafirma.mobile.services.android.model.Property;
+import java.util.Date;
 import com.viafirma.mobile.services.android.model.Template;
 
 import com.wordnik.swagger.annotations.*;
@@ -59,6 +60,20 @@ public class GroupInfo  implements Serializable {
   private String description = null;
   @SerializedName("style")
   private Style style = null;
+  @SerializedName("extensionOid")
+  private String extensionOid = null;
+  @SerializedName("extensionValue")
+  private String extensionValue = null;
+  @SerializedName("creationDate")
+  private Date creationDate = null;
+  @SerializedName("startDate")
+  private Date startDate = null;
+  @SerializedName("endDate")
+  private Date endDate = null;
+  @SerializedName("renovationDate")
+  private Date renovationDate = null;
+  @SerializedName("active")
+  private Boolean active = Boolean.FALSE;
   @SerializedName("properties")
   private List<Property> properties = new ArrayList<Property>() ;
   @SerializedName("apps")
@@ -314,6 +329,83 @@ public class GroupInfo  implements Serializable {
   /**
    **/
   @ApiModelProperty(required = false, value = "")
+  public String getExtensionOid() {
+    return extensionOid;
+  }
+  public void setExtensionOid(String extensionOid) {
+    this.extensionOid = extensionOid;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public String getExtensionValue() {
+    return extensionValue;
+  }
+  public void setExtensionValue(String extensionValue) {
+    this.extensionValue = extensionValue;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public Date getCreationDate() {
+    return creationDate;
+  }
+  public void setCreationDate(Date creationDate) {
+    this.creationDate = creationDate;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public Date getStartDate() {
+    return startDate;
+  }
+  public void setStartDate(Date startDate) {
+    this.startDate = startDate;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public Date getEndDate() {
+    return endDate;
+  }
+  public void setEndDate(Date endDate) {
+    this.endDate = endDate;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public Date getRenovationDate() {
+    return renovationDate;
+  }
+  public void setRenovationDate(Date renovationDate) {
+    this.renovationDate = renovationDate;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public Boolean getActive() {
+    return active;
+  }
+  public void setActive(Boolean active) {
+    this.active = active;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
   public List<Property> getProperties() {
     return properties;
   }
@@ -383,6 +475,13 @@ public class GroupInfo  implements Serializable {
     sb.append("  referenceCode: ").append(referenceCode).append("\n");
     sb.append("  description: ").append(description).append("\n");
     sb.append("  style: ").append(style).append("\n");
+    sb.append("  extensionOid: ").append(extensionOid).append("\n");
+    sb.append("  extensionValue: ").append(extensionValue).append("\n");
+    sb.append("  creationDate: ").append(creationDate).append("\n");
+    sb.append("  startDate: ").append(startDate).append("\n");
+    sb.append("  endDate: ").append(endDate).append("\n");
+    sb.append("  renovationDate: ").append(renovationDate).append("\n");
+    sb.append("  active: ").append(active).append("\n");
     sb.append("  properties: ").append(properties).append("\n");
     sb.append("  apps: ").append(apps).append("\n");
     sb.append("  templates: ").append(templates).append("\n");

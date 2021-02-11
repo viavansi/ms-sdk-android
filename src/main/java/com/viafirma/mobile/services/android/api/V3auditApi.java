@@ -7,6 +7,7 @@ import com.viafirma.mobile.services.android.model.*;
 
 import java.util.*;
 
+import com.viafirma.mobile.services.android.model.AuditoryInfo;
 import com.viafirma.mobile.services.android.model.AuditTrail;
 
 import java.io.File;
@@ -25,6 +26,49 @@ public class V3auditApi {
     return INSTANCE;
   }
   
+  
+    
+  public AuditoryInfo getSignatureAuditById (String signatureCode) throws ApiException {
+    Object postBody = null;
+    
+
+    // create path and map variables
+    String path = "/v3/audit/signature/{signatureCode}".replaceAll("\\{format\\}","json")
+      .replaceAll("\\{" + "signatureCode" + "\\}", ApiInvoker.getInstance().escapeString(signatureCode.toString()));
+
+    // query params
+    Map<String, String> queryParams = new HashMap<String, String>();
+    Map<String, String> headerParams = new HashMap<String, String>();
+    Map<String, String> formParams = new HashMap<String, String>();
+
+    
+    
+    String[] contentTypes = {
+      "application/json"
+    };
+
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+
+    if(contentType.startsWith("multipart/form-data")) {
+      boolean hasFields = false;
+      MultipartBody.Builder mp = new MultipartBody.Builder();
+      mp.setType(MultipartBody.FORM);
+      
+      if(hasFields)
+        postBody = mp;
+    }
+    else {
+      
+    }
+
+      String response = ApiInvoker.getInstance().invokeAPI(path, "GET", queryParams, postBody, headerParams, formParams, contentType);
+      if(response != null){
+        return (AuditoryInfo) ApiInvoker.deserialize(response, "", AuditoryInfo.class);
+      } else {
+        return null;
+      }
+    
+  }
   
     
   public AuditTrail getAuditTrailByCode (String messageCode) throws ApiException {

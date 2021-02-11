@@ -48,6 +48,8 @@ public class Signature  implements Serializable {
   private List<Stamper> stampers = new ArrayList<Stamper>() ;
   @SerializedName("lastUpdated")
   private Long lastUpdated = null;
+  @SerializedName("recipientKey")
+  private String recipientKey = null;
   public enum CertificationLevelEnum {
      NOT_CERTIFIED,  CERTIFIED_NO_CHANGES_ALLOWED,  CERTIFIED_FORM_FILLING,  CERTIFIED_FORM_FILLING_AND_ANNOTATIONS, 
   };
@@ -212,6 +214,17 @@ public class Signature  implements Serializable {
   /**
    **/
   @ApiModelProperty(required = false, value = "")
+  public String getRecipientKey() {
+    return recipientKey;
+  }
+  public void setRecipientKey(String recipientKey) {
+    this.recipientKey = recipientKey;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
   public CertificationLevelEnum getCertificationLevel() {
     return certificationLevel;
   }
@@ -240,6 +253,7 @@ public class Signature  implements Serializable {
     sb.append("  custodyDisabled: ").append(custodyDisabled).append("\n");
     sb.append("  stampers: ").append(stampers).append("\n");
     sb.append("  lastUpdated: ").append(lastUpdated).append("\n");
+    sb.append("  recipientKey: ").append(recipientKey).append("\n");
     sb.append("  certificationLevel: ").append(certificationLevel).append("\n");
     sb.append("}\n");
     return sb.toString();

@@ -28,6 +28,8 @@ public class MessageList  implements Serializable {
   private String externalCode = null;
   @SerializedName("externalStatus")
   private String externalStatus = null;
+  @SerializedName("setCode")
+  private String setCode = null;
 
   
   /**
@@ -126,6 +128,18 @@ public class MessageList  implements Serializable {
   }
 
   
+  /**
+   * (since 3.6.43, internal) external code
+   **/
+  @ApiModelProperty(required = true, value = "(since 3.6.43, internal) external code")
+  public String getSetCode() {
+    return setCode;
+  }
+  public void setSetCode(String setCode) {
+    this.setCode = setCode;
+  }
+
+  
 
   @Override
   public String toString()  {
@@ -140,6 +154,7 @@ public class MessageList  implements Serializable {
     sb.append("  creationDate: ").append(creationDate).append("\n");
     sb.append("  externalCode: ").append(externalCode).append("\n");
     sb.append("  externalStatus: ").append(externalStatus).append("\n");
+    sb.append("  setCode: ").append(setCode).append("\n");
     sb.append("}\n");
     return sb.toString();
   }

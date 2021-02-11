@@ -1027,6 +1027,105 @@ public class V3messagesApi {
   }
   
     
+  public Message transfer (String messageCode) throws ApiException {
+    Object postBody = null;
+    
+
+    // create path and map variables
+    String path = "/v3/messages/transfer".replaceAll("\\{format\\}","json");
+
+    // query params
+    Map<String, String> queryParams = new HashMap<String, String>();
+    Map<String, String> headerParams = new HashMap<String, String>();
+    Map<String, String> formParams = new HashMap<String, String>();
+
+    
+    
+    String[] contentTypes = {
+      "application/x-www-form-urlencoded"
+    };
+
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+
+    if(contentType.startsWith("multipart/form-data")) {
+      boolean hasFields = false;
+      MultipartBody.Builder mp = new MultipartBody.Builder();
+      mp.setType(MultipartBody.FORM);
+      
+      hasFields = true;
+      mp.addFormDataPart("messageCode", messageCode);
+      
+      
+      if(hasFields)
+        postBody = mp;
+    }
+    else {
+      formParams.put("messageCode", messageCode);
+      
+    }
+
+      String response = ApiInvoker.getInstance().invokeAPI(path, "POST", queryParams, postBody, headerParams, formParams, contentType);
+      if(response != null){
+        return (Message) ApiInvoker.deserialize(response, "", Message.class);
+      } else {
+        return null;
+      }
+    
+  }
+  
+    
+  public String resendTransfer (String messageCode, String transferSystem) throws ApiException {
+    Object postBody = null;
+    
+
+    // create path and map variables
+    String path = "/v3/messages/transfer/resend".replaceAll("\\{format\\}","json");
+
+    // query params
+    Map<String, String> queryParams = new HashMap<String, String>();
+    Map<String, String> headerParams = new HashMap<String, String>();
+    Map<String, String> formParams = new HashMap<String, String>();
+
+    
+    
+    String[] contentTypes = {
+      "application/x-www-form-urlencoded"
+    };
+
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+
+    if(contentType.startsWith("multipart/form-data")) {
+      boolean hasFields = false;
+      MultipartBody.Builder mp = new MultipartBody.Builder();
+      mp.setType(MultipartBody.FORM);
+      
+      hasFields = true;
+      mp.addFormDataPart("messageCode", messageCode);
+      
+      
+      hasFields = true;
+      mp.addFormDataPart("transferSystem", transferSystem);
+      
+      
+      if(hasFields)
+        postBody = mp;
+    }
+    else {
+      formParams.put("messageCode", messageCode);
+      formParams.put("transferSystem", transferSystem);
+      
+    }
+
+      String response = ApiInvoker.getInstance().invokeAPI(path, "PUT", queryParams, postBody, headerParams, formParams, contentType);
+      if(response != null){
+        return (String) ApiInvoker.deserialize(response, "", String.class);
+      } else {
+        return null;
+      }
+    
+  }
+  
+    
   public Message updateDocument (String messageCode, Document body) throws ApiException {
     Object postBody = body;
     

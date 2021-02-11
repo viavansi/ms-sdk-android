@@ -13,10 +13,10 @@ public class Questionary  implements Serializable {
   
   @SerializedName("regCuestionario")
   private String regCuestionario = null;
-  @SerializedName("getiDCuestionario")
-  private String getiDCuestionario = null;
   @SerializedName("questions")
   private List<QuestionaryQuestion> questions = new ArrayList<QuestionaryQuestion>() ;
+  @SerializedName("idcuestionario")
+  private String idcuestionario = null;
 
   
   /**
@@ -33,22 +33,22 @@ public class Questionary  implements Serializable {
   /**
    **/
   @ApiModelProperty(required = false, value = "")
-  public String getGetiDCuestionario() {
-    return getiDCuestionario;
+  public List<QuestionaryQuestion> getQuestions() {
+    return questions;
   }
-  public void setGetiDCuestionario(String getiDCuestionario) {
-    this.getiDCuestionario = getiDCuestionario;
+  public void setQuestions(List<QuestionaryQuestion> questions) {
+    this.questions = questions;
   }
 
   
   /**
    **/
   @ApiModelProperty(required = false, value = "")
-  public List<QuestionaryQuestion> getQuestions() {
-    return questions;
+  public String getIdcuestionario() {
+    return idcuestionario;
   }
-  public void setQuestions(List<QuestionaryQuestion> questions) {
-    this.questions = questions;
+  public void setIdcuestionario(String idcuestionario) {
+    this.idcuestionario = idcuestionario;
   }
 
   
@@ -59,8 +59,8 @@ public class Questionary  implements Serializable {
     sb.append("class Questionary {\n");
     
     sb.append("  regCuestionario: ").append(regCuestionario).append("\n");
-    sb.append("  getiDCuestionario: ").append(getiDCuestionario).append("\n");
     sb.append("  questions: ").append(questions).append("\n");
+    sb.append("  idcuestionario: ").append(idcuestionario).append("\n");
     sb.append("}\n");
     return sb.toString();
   }

@@ -27,6 +27,10 @@ public class Style  implements Serializable {
   private String identicaImage = null;
   @SerializedName("questionImage")
   private String questionImage = null;
+  @SerializedName("experianImage")
+  private String experianImage = null;
+  @SerializedName("lisimImage")
+  private String lisimImage = null;
   @SerializedName("jsonStyleFile")
   private String jsonStyleFile = null;
 
@@ -133,6 +137,28 @@ public class Style  implements Serializable {
   /**
    **/
   @ApiModelProperty(required = false, value = "")
+  public String getExperianImage() {
+    return experianImage;
+  }
+  public void setExperianImage(String experianImage) {
+    this.experianImage = experianImage;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public String getLisimImage() {
+    return lisimImage;
+  }
+  public void setLisimImage(String lisimImage) {
+    this.lisimImage = lisimImage;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
   public String getJsonStyleFile() {
     return jsonStyleFile;
   }
@@ -156,6 +182,8 @@ public class Style  implements Serializable {
     sb.append("  fingerprintImage: ").append(fingerprintImage).append("\n");
     sb.append("  identicaImage: ").append(identicaImage).append("\n");
     sb.append("  questionImage: ").append(questionImage).append("\n");
+    sb.append("  experianImage: ").append(experianImage).append("\n");
+    sb.append("  lisimImage: ").append(lisimImage).append("\n");
     sb.append("  jsonStyleFile: ").append(jsonStyleFile).append("\n");
     sb.append("}\n");
     return sb.toString();

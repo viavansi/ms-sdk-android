@@ -2,6 +2,7 @@ package com.viafirma.mobile.services.android.model;
 
 import java.util.*;
 import com.viafirma.mobile.services.android.model.MessageSummary;
+import com.viafirma.mobile.services.android.model.RecipientLink;
 
 import com.wordnik.swagger.annotations.*;
 import com.google.gson.annotations.SerializedName;
@@ -15,6 +16,8 @@ public class MessageSetResponse  implements Serializable {
   private String code = null;
   @SerializedName("status")
   private String status = null;
+  @SerializedName("links")
+  private List<RecipientLink> links = new ArrayList<RecipientLink>() ;
   @SerializedName("messages")
   private List<MessageSummary> messages = new ArrayList<MessageSummary>() ;
 
@@ -44,6 +47,17 @@ public class MessageSetResponse  implements Serializable {
   /**
    **/
   @ApiModelProperty(required = false, value = "")
+  public List<RecipientLink> getLinks() {
+    return links;
+  }
+  public void setLinks(List<RecipientLink> links) {
+    this.links = links;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
   public List<MessageSummary> getMessages() {
     return messages;
   }
@@ -60,6 +74,7 @@ public class MessageSetResponse  implements Serializable {
     
     sb.append("  code: ").append(code).append("\n");
     sb.append("  status: ").append(status).append("\n");
+    sb.append("  links: ").append(links).append("\n");
     sb.append("  messages: ").append(messages).append("\n");
     sb.append("}\n");
     return sb.toString();
