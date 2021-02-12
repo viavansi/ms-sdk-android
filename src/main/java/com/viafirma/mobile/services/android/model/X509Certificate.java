@@ -45,7 +45,7 @@ public class X509Certificate  implements Serializable {
   @SerializedName("version")
   private Integer version = null;
   @SerializedName("issuerAlternativeNames")
-  private List<List<Object>> issuerAlternativeNames = new ArrayList<>();
+  private List<List<Object>> issuerAlternativeNames = new ArrayList<>() ;
   @SerializedName("issuerUniqueID")
   private List<Boolean> issuerUniqueID = new ArrayList<Boolean>() ;
   @SerializedName("sigAlgOID")

@@ -51,7 +51,7 @@
 		}
 		...
 		dependencies {
-			compile 'com.viafirma:ms-sdk-android:2.5.+'
+			compile 'com.viafirma:ms-sdk-android:3.6.+'
 			...
 		}
 
@@ -64,8 +64,13 @@
 3. From the command line, in the path where you have the source, run the following command:
 
 ```
-gradle clean assemble
-gradle uploadArchives
+gradle releaseVersion
+```
+
+or 
+
+```
+gradle snapshotVersion
 ```
 
 4. This will generate all the files and upload the AAR to the repository specified on `gradle.properties`
