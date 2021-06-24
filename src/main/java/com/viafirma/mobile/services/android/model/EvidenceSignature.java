@@ -44,6 +44,8 @@ public class EvidenceSignature  implements Serializable {
   private Long serviceTimestamp = null;
   @SerializedName("serviceTimestampType")
   private String serviceTimestampType = null;
+  @SerializedName("imageDataType")
+  private String imageDataType = null;
 
   
   /**
@@ -211,6 +213,17 @@ public class EvidenceSignature  implements Serializable {
   }
 
   
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public String getImageDataType() {
+    return imageDataType;
+  }
+  public void setImageDataType(String imageDataType) {
+    this.imageDataType = imageDataType;
+  }
+
+  
 
   @Override
   public String toString()  {
@@ -232,6 +245,7 @@ public class EvidenceSignature  implements Serializable {
     sb.append("  clientTimestamp: ").append(clientTimestamp).append("\n");
     sb.append("  serviceTimestamp: ").append(serviceTimestamp).append("\n");
     sb.append("  serviceTimestampType: ").append(serviceTimestampType).append("\n");
+    sb.append("  imageDataType: ").append(imageDataType).append("\n");
     sb.append("}\n");
     return sb.toString();
   }

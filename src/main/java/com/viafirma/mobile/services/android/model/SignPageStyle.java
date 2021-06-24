@@ -57,6 +57,18 @@ public class SignPageStyle  implements Serializable {
   private Boolean hideIntro = Boolean.FALSE;
   @SerializedName("hideAuditTrailLink")
   private Boolean hideAuditTrailLink = Boolean.FALSE;
+  @SerializedName("showUploadSignature")
+  private Boolean showUploadSignature = Boolean.FALSE;
+  @SerializedName("languageId")
+  private String languageId = null;
+  @SerializedName("hideSidebar")
+  private Boolean hideSidebar = Boolean.FALSE;
+  @SerializedName("hideHeader")
+  private Boolean hideHeader = Boolean.FALSE;
+  @SerializedName("favicon")
+  private String favicon = null;
+  @SerializedName("tabTitle")
+  private String tabTitle = null;
 
   
   /**
@@ -323,6 +335,72 @@ public class SignPageStyle  implements Serializable {
   }
 
   
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public Boolean getShowUploadSignature() {
+    return showUploadSignature;
+  }
+  public void setShowUploadSignature(Boolean showUploadSignature) {
+    this.showUploadSignature = showUploadSignature;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public String getLanguageId() {
+    return languageId;
+  }
+  public void setLanguageId(String languageId) {
+    this.languageId = languageId;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public Boolean getHideSidebar() {
+    return hideSidebar;
+  }
+  public void setHideSidebar(Boolean hideSidebar) {
+    this.hideSidebar = hideSidebar;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public Boolean getHideHeader() {
+    return hideHeader;
+  }
+  public void setHideHeader(Boolean hideHeader) {
+    this.hideHeader = hideHeader;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public String getFavicon() {
+    return favicon;
+  }
+  public void setFavicon(String favicon) {
+    this.favicon = favicon;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public String getTabTitle() {
+    return tabTitle;
+  }
+  public void setTabTitle(String tabTitle) {
+    this.tabTitle = tabTitle;
+  }
+
+  
 
   @Override
   public String toString()  {
@@ -353,6 +431,12 @@ public class SignPageStyle  implements Serializable {
     sb.append("  hideOpenInApp: ").append(hideOpenInApp).append("\n");
     sb.append("  hideIntro: ").append(hideIntro).append("\n");
     sb.append("  hideAuditTrailLink: ").append(hideAuditTrailLink).append("\n");
+    sb.append("  showUploadSignature: ").append(showUploadSignature).append("\n");
+    sb.append("  languageId: ").append(languageId).append("\n");
+    sb.append("  hideSidebar: ").append(hideSidebar).append("\n");
+    sb.append("  hideHeader: ").append(hideHeader).append("\n");
+    sb.append("  favicon: ").append(favicon).append("\n");
+    sb.append("  tabTitle: ").append(tabTitle).append("\n");
     sb.append("}\n");
     return sb.toString();
   }

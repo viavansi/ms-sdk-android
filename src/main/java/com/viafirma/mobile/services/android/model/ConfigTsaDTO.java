@@ -1,6 +1,5 @@
 package com.viafirma.mobile.services.android.model;
 
-import com.viafirma.mobile.services.android.model.CertificateDTO;
 
 import com.wordnik.swagger.annotations.*;
 import com.google.gson.annotations.SerializedName;
@@ -23,8 +22,6 @@ public class ConfigTsaDTO  implements Serializable {
   private String password = null;
   @SerializedName("policyId")
   private String policyId = null;
-  @SerializedName("localCert")
-  private CertificateDTO localCert = null;
   public enum TimestampAlgorithmEnum {
      SHA1,  SHA224,  SHA256,  SHA384,  SHA512,  RIPEMD160,  MD2,  MD5, 
   };
@@ -94,17 +91,6 @@ public class ConfigTsaDTO  implements Serializable {
   /**
    **/
   @ApiModelProperty(required = false, value = "")
-  public CertificateDTO getLocalCert() {
-    return localCert;
-  }
-  public void setLocalCert(CertificateDTO localCert) {
-    this.localCert = localCert;
-  }
-
-  
-  /**
-   **/
-  @ApiModelProperty(required = false, value = "")
   public TimestampAlgorithmEnum getTimestampAlgorithm() {
     return timestampAlgorithm;
   }
@@ -146,7 +132,6 @@ public class ConfigTsaDTO  implements Serializable {
     sb.append("  user: ").append(user).append("\n");
     sb.append("  password: ").append(password).append("\n");
     sb.append("  policyId: ").append(policyId).append("\n");
-    sb.append("  localCert: ").append(localCert).append("\n");
     sb.append("  timestampAlgorithm: ").append(timestampAlgorithm).append("\n");
     sb.append("  extensionOid: ").append(extensionOid).append("\n");
     sb.append("  extensionValue: ").append(extensionValue).append("\n");

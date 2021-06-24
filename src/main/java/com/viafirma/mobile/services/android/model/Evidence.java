@@ -121,6 +121,8 @@ public class Evidence  implements Serializable {
   private Boolean addLink = Boolean.FALSE;
   @SerializedName("recipientKey")
   private String recipientKey = null;
+  @SerializedName("imageDataType")
+  private String imageDataType = null;
 
   
   /**
@@ -654,6 +656,17 @@ public class Evidence  implements Serializable {
   }
 
   
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public String getImageDataType() {
+    return imageDataType;
+  }
+  public void setImageDataType(String imageDataType) {
+    this.imageDataType = imageDataType;
+  }
+
+  
 
   @Override
   public String toString()  {
@@ -708,6 +721,7 @@ public class Evidence  implements Serializable {
     sb.append("  imageType: ").append(imageType).append("\n");
     sb.append("  addLink: ").append(addLink).append("\n");
     sb.append("  recipientKey: ").append(recipientKey).append("\n");
+    sb.append("  imageDataType: ").append(imageDataType).append("\n");
     sb.append("}\n");
     return sb.toString();
   }

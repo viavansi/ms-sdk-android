@@ -21,6 +21,8 @@ public class MessageSetList  implements Serializable {
   private String recipientStatus = null;
   @SerializedName("auditTrailPage")
   private String auditTrailPage = null;
+  @SerializedName("recipientKey")
+  private String recipientKey = null;
   @SerializedName("languageId")
   private String languageId = null;
 
@@ -94,6 +96,17 @@ public class MessageSetList  implements Serializable {
   /**
    **/
   @ApiModelProperty(required = false, value = "")
+  public String getRecipientKey() {
+    return recipientKey;
+  }
+  public void setRecipientKey(String recipientKey) {
+    this.recipientKey = recipientKey;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
   public String getLanguageId() {
     return languageId;
   }
@@ -114,6 +127,7 @@ public class MessageSetList  implements Serializable {
     sb.append("  status: ").append(status).append("\n");
     sb.append("  recipientStatus: ").append(recipientStatus).append("\n");
     sb.append("  auditTrailPage: ").append(auditTrailPage).append("\n");
+    sb.append("  recipientKey: ").append(recipientKey).append("\n");
     sb.append("  languageId: ").append(languageId).append("\n");
     sb.append("}\n");
     return sb.toString();

@@ -3,7 +3,6 @@ package com.viafirma.mobile.services.android.model;
 import com.viafirma.mobile.services.android.model.SystemStatus;
 import com.viafirma.mobile.services.android.model.SystemInfo;
 import java.util.*;
-import java.util.Map;
 
 import com.wordnik.swagger.annotations.*;
 import com.google.gson.annotations.SerializedName;
@@ -21,8 +20,6 @@ public class InfoSystemStatus  implements Serializable {
   private List<SystemStatus> info = new ArrayList<SystemStatus>() ;
   @SerializedName("system")
   private SystemInfo system = null;
-  @SerializedName("notifications")
-  private Map<String, Integer> notifications = new HashMap<String, Integer>() ;
   public enum StatusEnum {
      OK,  FAIL,  UNCONFIGURED,  CHECKING, 
   };
@@ -78,17 +75,6 @@ public class InfoSystemStatus  implements Serializable {
   /**
    **/
   @ApiModelProperty(required = false, value = "")
-  public Map<String, Integer> getNotifications() {
-    return notifications;
-  }
-  public void setNotifications(Map<String, Integer> notifications) {
-    this.notifications = notifications;
-  }
-
-  
-  /**
-   **/
-  @ApiModelProperty(required = false, value = "")
   public StatusEnum getStatus() {
     return status;
   }
@@ -107,7 +93,6 @@ public class InfoSystemStatus  implements Serializable {
     sb.append("  name: ").append(name).append("\n");
     sb.append("  info: ").append(info).append("\n");
     sb.append("  system: ").append(system).append("\n");
-    sb.append("  notifications: ").append(notifications).append("\n");
     sb.append("  status: ").append(status).append("\n");
     sb.append("}\n");
     return sb.toString();

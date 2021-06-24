@@ -27,6 +27,8 @@ public class MessageSummary  implements Serializable {
   private List<Transfer> transfers = new ArrayList<Transfer>() ;
   @SerializedName("languageId")
   private String languageId = null;
+  @SerializedName("externalCode")
+  private String externalCode = null;
 
   
   /**
@@ -95,6 +97,17 @@ public class MessageSummary  implements Serializable {
   }
 
   
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public String getExternalCode() {
+    return externalCode;
+  }
+  public void setExternalCode(String externalCode) {
+    this.externalCode = externalCode;
+  }
+
+  
 
   @Override
   public String toString()  {
@@ -107,6 +120,7 @@ public class MessageSummary  implements Serializable {
     sb.append("  policies: ").append(policies).append("\n");
     sb.append("  transfers: ").append(transfers).append("\n");
     sb.append("  languageId: ").append(languageId).append("\n");
+    sb.append("  externalCode: ").append(externalCode).append("\n");
     sb.append("}\n");
     return sb.toString();
   }

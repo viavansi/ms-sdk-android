@@ -15,6 +15,8 @@ public class AuditoryInfo  implements Serializable {
   private AuditoryActions actions = null;
   @SerializedName("info")
   private VerifierDocumentDTO info = null;
+  @SerializedName("messageCode")
+  private String messageCode = null;
 
   
   /**
@@ -39,6 +41,17 @@ public class AuditoryInfo  implements Serializable {
   }
 
   
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public String getMessageCode() {
+    return messageCode;
+  }
+  public void setMessageCode(String messageCode) {
+    this.messageCode = messageCode;
+  }
+
+  
 
   @Override
   public String toString()  {
@@ -47,6 +60,7 @@ public class AuditoryInfo  implements Serializable {
     
     sb.append("  actions: ").append(actions).append("\n");
     sb.append("  info: ").append(info).append("\n");
+    sb.append("  messageCode: ").append(messageCode).append("\n");
     sb.append("}\n");
     return sb.toString();
   }

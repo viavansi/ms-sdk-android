@@ -17,6 +17,8 @@ public class AuditTrailConfig  implements Serializable {
   private Boolean addPdfLinks = Boolean.FALSE;
   @SerializedName("signPDF")
   private Boolean signPDF = Boolean.FALSE;
+  @SerializedName("customizationUrl")
+  private String customizationUrl = null;
 
   
   /**
@@ -63,6 +65,17 @@ public class AuditTrailConfig  implements Serializable {
   }
 
   
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public String getCustomizationUrl() {
+    return customizationUrl;
+  }
+  public void setCustomizationUrl(String customizationUrl) {
+    this.customizationUrl = customizationUrl;
+  }
+
+  
 
   @Override
   public String toString()  {
@@ -73,6 +86,7 @@ public class AuditTrailConfig  implements Serializable {
     sb.append("  timeZone: ").append(timeZone).append("\n");
     sb.append("  addPdfLinks: ").append(addPdfLinks).append("\n");
     sb.append("  signPDF: ").append(signPDF).append("\n");
+    sb.append("  customizationUrl: ").append(customizationUrl).append("\n");
     sb.append("}\n");
     return sb.toString();
   }

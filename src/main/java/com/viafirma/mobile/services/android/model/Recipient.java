@@ -24,14 +24,20 @@ public class Recipient  implements Serializable {
   @SerializedName("id")
   private String id = null;
   public enum StatusEnum {
-     PENDING,  RECEIVED, 
+     PENDING,  RECEIVED,  WAITING, 
   };
   @SerializedName("status")
   private StatusEnum status = null;
   @SerializedName("order")
   private Integer order = null;
+  @SerializedName("deviceCode")
+  private String deviceCode = null;
   @SerializedName("presential")
   private Boolean presential = Boolean.FALSE;
+  @SerializedName("label")
+  private String label = null;
+  @SerializedName("optional")
+  private Boolean optional = Boolean.FALSE;
 
   
   /**
@@ -136,11 +142,44 @@ public class Recipient  implements Serializable {
   /**
    **/
   @ApiModelProperty(required = false, value = "")
+  public String getDeviceCode() {
+    return deviceCode;
+  }
+  public void setDeviceCode(String deviceCode) {
+    this.deviceCode = deviceCode;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
   public Boolean getPresential() {
     return presential;
   }
   public void setPresential(Boolean presential) {
     this.presential = presential;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public String getLabel() {
+    return label;
+  }
+  public void setLabel(String label) {
+    this.label = label;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public Boolean getOptional() {
+    return optional;
+  }
+  public void setOptional(Boolean optional) {
+    this.optional = optional;
   }
 
   
@@ -159,7 +198,10 @@ public class Recipient  implements Serializable {
     sb.append("  id: ").append(id).append("\n");
     sb.append("  status: ").append(status).append("\n");
     sb.append("  order: ").append(order).append("\n");
+    sb.append("  deviceCode: ").append(deviceCode).append("\n");
     sb.append("  presential: ").append(presential).append("\n");
+    sb.append("  label: ").append(label).append("\n");
+    sb.append("  optional: ").append(optional).append("\n");
     sb.append("}\n");
     return sb.toString();
   }

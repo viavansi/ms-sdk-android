@@ -26,6 +26,8 @@ public class ConfigXadesDTO  implements Serializable {
   private String dssReferenceUri = null;
   @SerializedName("useSigningCertificateV2")
   private Boolean useSigningCertificateV2 = Boolean.FALSE;
+  @SerializedName("toCounterSignSignatureValueId")
+  private String toCounterSignSignatureValueId = null;
   @SerializedName("xpathLocationString")
   private String xpathLocationString = null;
 
@@ -121,6 +123,17 @@ public class ConfigXadesDTO  implements Serializable {
   /**
    **/
   @ApiModelProperty(required = false, value = "")
+  public String getToCounterSignSignatureValueId() {
+    return toCounterSignSignatureValueId;
+  }
+  public void setToCounterSignSignatureValueId(String toCounterSignSignatureValueId) {
+    this.toCounterSignSignatureValueId = toCounterSignSignatureValueId;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
   public String getXpathLocationString() {
     return xpathLocationString;
   }
@@ -143,6 +156,7 @@ public class ConfigXadesDTO  implements Serializable {
     sb.append("  transformAlgorithms: ").append(transformAlgorithms).append("\n");
     sb.append("  dssReferenceUri: ").append(dssReferenceUri).append("\n");
     sb.append("  useSigningCertificateV2: ").append(useSigningCertificateV2).append("\n");
+    sb.append("  toCounterSignSignatureValueId: ").append(toCounterSignSignatureValueId).append("\n");
     sb.append("  xpathLocationString: ").append(xpathLocationString).append("\n");
     sb.append("}\n");
     return sb.toString();

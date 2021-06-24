@@ -1,6 +1,7 @@
 package com.viafirma.mobile.services.android.model;
 
 import com.viafirma.mobile.services.android.model.Number;
+import com.viafirma.mobile.services.android.model.JSMatiStepError;
 import com.viafirma.mobile.services.android.model.JSMatiVerifData;
 
 import com.wordnik.swagger.annotations.*;
@@ -18,7 +19,7 @@ public class JSMatiStep  implements Serializable {
   @SerializedName("data")
   private JSMatiVerifData data = null;
   @SerializedName("error")
-  private String error = null;
+  private JSMatiStepError error = null;
 
   
   /**
@@ -57,10 +58,10 @@ public class JSMatiStep  implements Serializable {
   /**
    **/
   @ApiModelProperty(required = false, value = "")
-  public String getError() {
+  public JSMatiStepError getError() {
     return error;
   }
-  public void setError(String error) {
+  public void setError(JSMatiStepError error) {
     this.error = error;
   }
 

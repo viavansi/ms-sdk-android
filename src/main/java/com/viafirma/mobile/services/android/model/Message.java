@@ -109,6 +109,8 @@ public class Message  implements Serializable {
   private String auditTrailPage = null;
   @SerializedName("order")
   private Integer order = null;
+  @SerializedName("callbackRedirectURLTargetWindow")
+  private String callbackRedirectURLTargetWindow = null;
 
   
   /**
@@ -607,6 +609,17 @@ public class Message  implements Serializable {
   }
 
   
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public String getCallbackRedirectURLTargetWindow() {
+    return callbackRedirectURLTargetWindow;
+  }
+  public void setCallbackRedirectURLTargetWindow(String callbackRedirectURLTargetWindow) {
+    this.callbackRedirectURLTargetWindow = callbackRedirectURLTargetWindow;
+  }
+
+  
 
   @Override
   public String toString()  {
@@ -658,6 +671,7 @@ public class Message  implements Serializable {
     sb.append("  signPageServer: ").append(signPageServer).append("\n");
     sb.append("  auditTrailPage: ").append(auditTrailPage).append("\n");
     sb.append("  order: ").append(order).append("\n");
+    sb.append("  callbackRedirectURLTargetWindow: ").append(callbackRedirectURLTargetWindow).append("\n");
     sb.append("}\n");
     return sb.toString();
   }

@@ -13,6 +13,8 @@ public class AuditTrailTemporalInfo  implements Serializable {
   private String formattedDate = null;
   @SerializedName("text")
   private String text = null;
+  @SerializedName("status")
+  private String status = null;
 
   
   /**
@@ -37,6 +39,17 @@ public class AuditTrailTemporalInfo  implements Serializable {
   }
 
   
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public String getStatus() {
+    return status;
+  }
+  public void setStatus(String status) {
+    this.status = status;
+  }
+
+  
 
   @Override
   public String toString()  {
@@ -45,6 +58,7 @@ public class AuditTrailTemporalInfo  implements Serializable {
     
     sb.append("  formattedDate: ").append(formattedDate).append("\n");
     sb.append("  text: ").append(text).append("\n");
+    sb.append("  status: ").append(status).append("\n");
     sb.append("}\n");
     return sb.toString();
   }

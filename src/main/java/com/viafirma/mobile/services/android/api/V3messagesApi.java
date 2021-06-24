@@ -11,7 +11,9 @@ import com.viafirma.mobile.services.android.model.Message;
 import com.viafirma.mobile.services.android.model.MessageBuild;
 import com.viafirma.mobile.services.android.model.MessageData;
 import com.viafirma.mobile.services.android.model.Download;
+import com.viafirma.mobile.services.android.model.ExtendPeriod;
 import com.viafirma.mobile.services.android.model.MessageList;
+import com.viafirma.mobile.services.android.model.MessagePaginatedList;
 import com.viafirma.mobile.services.android.model.CallbackUrl;
 import com.viafirma.mobile.services.android.model.CallbackMail;
 import com.viafirma.mobile.services.android.model.NotificationResend;
@@ -19,7 +21,6 @@ import com.viafirma.mobile.services.android.model.Notification;
 import com.viafirma.mobile.services.android.model.MessageRestart;
 import com.viafirma.mobile.services.android.model.MessageStatus;
 import com.viafirma.mobile.services.android.model.Document;
-import com.viafirma.mobile.services.android.model.MessagePaginatedList;
 
 import java.io.File;
 import java.util.Map;
@@ -292,6 +293,48 @@ public class V3messagesApi {
   }
   
     
+  public String extendSignaturePeriod (ExtendPeriod body) throws ApiException {
+    Object postBody = body;
+    
+
+    // create path and map variables
+    String path = "/v3/messages/extendSignaturePeriod".replaceAll("\\{format\\}","json");
+
+    // query params
+    Map<String, String> queryParams = new HashMap<String, String>();
+    Map<String, String> headerParams = new HashMap<String, String>();
+    Map<String, String> formParams = new HashMap<String, String>();
+
+    
+    
+    String[] contentTypes = {
+      "application/json"
+    };
+
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+
+    if(contentType.startsWith("multipart/form-data")) {
+      boolean hasFields = false;
+      MultipartBody.Builder mp = new MultipartBody.Builder();
+      mp.setType(MultipartBody.FORM);
+      
+      if(hasFields)
+        postBody = mp;
+    }
+    else {
+      
+    }
+
+      String response = ApiInvoker.getInstance().invokeAPI(path, "PUT", queryParams, postBody, headerParams, formParams, contentType);
+      if(response != null){
+        return (String) ApiInvoker.deserialize(response, "", String.class);
+      } else {
+        return null;
+      }
+    
+  }
+  
+    
   public List<MessageList> getMessagesByExternalStatusNew (String groupCode, String requestAppCode, String templateCode) throws ApiException {
     Object postBody = null;
     
@@ -440,6 +483,50 @@ public class V3messagesApi {
   }
   
     
+  public Message changeExternalCode (String messageCode, String code) throws ApiException {
+    Object postBody = null;
+    
+
+    // create path and map variables
+    String path = "/v3/messages/external/{messageCode}/code/{code}".replaceAll("\\{format\\}","json")
+      .replaceAll("\\{" + "messageCode" + "\\}", ApiInvoker.getInstance().escapeString(messageCode.toString()))
+      .replaceAll("\\{" + "code" + "\\}", ApiInvoker.getInstance().escapeString(code.toString()));
+
+    // query params
+    Map<String, String> queryParams = new HashMap<String, String>();
+    Map<String, String> headerParams = new HashMap<String, String>();
+    Map<String, String> formParams = new HashMap<String, String>();
+
+    
+    
+    String[] contentTypes = {
+      "application/x-www-form-urlencoded"
+    };
+
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+
+    if(contentType.startsWith("multipart/form-data")) {
+      boolean hasFields = false;
+      MultipartBody.Builder mp = new MultipartBody.Builder();
+      mp.setType(MultipartBody.FORM);
+      
+      if(hasFields)
+        postBody = mp;
+    }
+    else {
+      
+    }
+
+      String response = ApiInvoker.getInstance().invokeAPI(path, "PUT", queryParams, postBody, headerParams, formParams, contentType);
+      if(response != null){
+        return (Message) ApiInvoker.deserialize(response, "", Message.class);
+      } else {
+        return null;
+      }
+    
+  }
+  
+    
   public Message changeExternalStatus (String messageCode, String status) throws ApiException {
     Object postBody = null;
     
@@ -571,6 +658,95 @@ public class V3messagesApi {
       String response = ApiInvoker.getInstance().invokeAPI(path, "POST", queryParams, postBody, headerParams, formParams, contentType);
       if(response != null){
         return (String) ApiInvoker.deserialize(response, "", String.class);
+      } else {
+        return null;
+      }
+    
+  }
+  
+    
+  public Boolean isFinalizable (String messageCode, String recipientKey) throws ApiException {
+    Object postBody = null;
+    
+
+    // create path and map variables
+    String path = "/v3/messages/isFinalizable/{messageCode}".replaceAll("\\{format\\}","json")
+      .replaceAll("\\{" + "messageCode" + "\\}", ApiInvoker.getInstance().escapeString(messageCode.toString()));
+
+    // query params
+    Map<String, String> queryParams = new HashMap<String, String>();
+    Map<String, String> headerParams = new HashMap<String, String>();
+    Map<String, String> formParams = new HashMap<String, String>();
+
+    if(!"null".equals(String.valueOf(recipientKey)))
+      queryParams.put("recipientKey", String.valueOf(recipientKey));
+    
+    
+    String[] contentTypes = {
+      "application/json"
+    };
+
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+
+    if(contentType.startsWith("multipart/form-data")) {
+      boolean hasFields = false;
+      MultipartBody.Builder mp = new MultipartBody.Builder();
+      mp.setType(MultipartBody.FORM);
+      
+      if(hasFields)
+        postBody = mp;
+    }
+    else {
+      
+    }
+
+      String response = ApiInvoker.getInstance().invokeAPI(path, "GET", queryParams, postBody, headerParams, formParams, contentType);
+      if(response != null){
+        return (Boolean) ApiInvoker.deserialize(response, "", Boolean.class);
+      } else {
+        return null;
+      }
+    
+  }
+  
+    
+  public List<MessagePaginatedList> getMessagesByUser (String index, String page_size) throws ApiException {
+    Object postBody = null;
+    
+
+    // create path and map variables
+    String path = "/v3/messages/list/my/user/{index}/{page_size}".replaceAll("\\{format\\}","json")
+      .replaceAll("\\{" + "index" + "\\}", ApiInvoker.getInstance().escapeString(index.toString()))
+      .replaceAll("\\{" + "page_size" + "\\}", ApiInvoker.getInstance().escapeString(page_size.toString()));
+
+    // query params
+    Map<String, String> queryParams = new HashMap<String, String>();
+    Map<String, String> headerParams = new HashMap<String, String>();
+    Map<String, String> formParams = new HashMap<String, String>();
+
+    
+    
+    String[] contentTypes = {
+      "application/json"
+    };
+
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+
+    if(contentType.startsWith("multipart/form-data")) {
+      boolean hasFields = false;
+      MultipartBody.Builder mp = new MultipartBody.Builder();
+      mp.setType(MultipartBody.FORM);
+      
+      if(hasFields)
+        postBody = mp;
+    }
+    else {
+      
+    }
+
+      String response = ApiInvoker.getInstance().invokeAPI(path, "GET", queryParams, postBody, headerParams, formParams, contentType);
+      if(response != null){
+        return (List<MessagePaginatedList>) ApiInvoker.deserialize(response, "array", MessagePaginatedList.class);
       } else {
         return null;
       }

@@ -30,6 +30,12 @@ public class MessageList  implements Serializable {
   private String externalStatus = null;
   @SerializedName("setCode")
   private String setCode = null;
+  @SerializedName("title")
+  private String title = null;
+  @SerializedName("description")
+  private String description = null;
+  @SerializedName("auditTrailUrl")
+  private String auditTrailUrl = null;
 
   
   /**
@@ -131,12 +137,48 @@ public class MessageList  implements Serializable {
   /**
    * (since 3.6.43, internal) external code
    **/
-  @ApiModelProperty(required = true, value = "(since 3.6.43, internal) external code")
+  @ApiModelProperty(required = false, value = "(since 3.6.43, internal) external code")
   public String getSetCode() {
     return setCode;
   }
   public void setSetCode(String setCode) {
     this.setCode = setCode;
+  }
+
+  
+  /**
+   * (since 3.7.0, internal) title
+   **/
+  @ApiModelProperty(required = false, value = "(since 3.7.0, internal) title")
+  public String getTitle() {
+    return title;
+  }
+  public void setTitle(String title) {
+    this.title = title;
+  }
+
+  
+  /**
+   * (since 3.7.0, internal) description
+   **/
+  @ApiModelProperty(required = false, value = "(since 3.7.0, internal) description")
+  public String getDescription() {
+    return description;
+  }
+  public void setDescription(String description) {
+    this.description = description;
+  }
+
+  
+  /**
+   * (since 3.7.0, internal) audit trail url
+   **/
+  @ApiModelProperty(required = false, value = "(since 3.7.0, internal) audit trail url")
+  public String getAuditTrailUrl() {
+    return auditTrailUrl;
+  }
+  public void setAuditTrailUrl(String auditTrailUrl) {
+    this.auditTrailUrl = auditTrailUrl;
   }
 
   
@@ -155,6 +197,9 @@ public class MessageList  implements Serializable {
     sb.append("  externalCode: ").append(externalCode).append("\n");
     sb.append("  externalStatus: ").append(externalStatus).append("\n");
     sb.append("  setCode: ").append(setCode).append("\n");
+    sb.append("  title: ").append(title).append("\n");
+    sb.append("  description: ").append(description).append("\n");
+    sb.append("  auditTrailUrl: ").append(auditTrailUrl).append("\n");
     sb.append("}\n");
     return sb.toString();
   }

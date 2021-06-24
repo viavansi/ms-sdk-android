@@ -30,6 +30,10 @@ public class MessageSet  implements Serializable {
   private List<Param> metadataList = new ArrayList<Param>() ;
   @SerializedName("messagesStep")
   private Integer messagesStep = null;
+  @SerializedName("title")
+  private String title = null;
+  @SerializedName("description")
+  private String description = null;
 
   
   /**
@@ -121,6 +125,28 @@ public class MessageSet  implements Serializable {
   }
 
   
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public String getTitle() {
+    return title;
+  }
+  public void setTitle(String title) {
+    this.title = title;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public String getDescription() {
+    return description;
+  }
+  public void setDescription(String description) {
+    this.description = description;
+  }
+
+  
 
   @Override
   public String toString()  {
@@ -135,6 +161,8 @@ public class MessageSet  implements Serializable {
     sb.append("  messages: ").append(messages).append("\n");
     sb.append("  metadataList: ").append(metadataList).append("\n");
     sb.append("  messagesStep: ").append(messagesStep).append("\n");
+    sb.append("  title: ").append(title).append("\n");
+    sb.append("  description: ").append(description).append("\n");
     sb.append("}\n");
     return sb.toString();
   }

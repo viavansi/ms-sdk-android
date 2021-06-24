@@ -24,6 +24,8 @@ public class AuditTrailImage  implements Serializable {
   };
   @SerializedName("imageFormat")
   private ImageFormatEnum imageFormat = null;
+  @SerializedName("url")
+  private String url = null;
 
   
   /**
@@ -92,6 +94,17 @@ public class AuditTrailImage  implements Serializable {
   }
 
   
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public String getUrl() {
+    return url;
+  }
+  public void setUrl(String url) {
+    this.url = url;
+  }
+
+  
 
   @Override
   public String toString()  {
@@ -104,6 +117,7 @@ public class AuditTrailImage  implements Serializable {
     sb.append("  height: ").append(height).append("\n");
     sb.append("  width: ").append(width).append("\n");
     sb.append("  imageFormat: ").append(imageFormat).append("\n");
+    sb.append("  url: ").append(url).append("\n");
     sb.append("}\n");
     return sb.toString();
   }

@@ -27,12 +27,13 @@ public class V3matiApi {
   
   
     
-  public String webhook (JSMati body) throws ApiException {
+  public String webhook (String token, JSMati body) throws ApiException {
     Object postBody = body;
     
 
     // create path and map variables
-    String path = "/v3/mati/webhook".replaceAll("\\{format\\}","json");
+    String path = "/v3/mati/webhook/{token}".replaceAll("\\{format\\}","json")
+      .replaceAll("\\{" + "token" + "\\}", ApiInvoker.getInstance().escapeString(token.toString()));
 
     // query params
     Map<String, String> queryParams = new HashMap<String, String>();

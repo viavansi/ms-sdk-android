@@ -23,6 +23,14 @@ public class Version  implements Serializable {
   private String installMessage = null;
   @SerializedName("iconURL")
   private String iconURL = null;
+  @SerializedName("teamId")
+  private String teamId = null;
+  @SerializedName("keyId")
+  private String keyId = null;
+  @SerializedName("authKey")
+  private String authKey = null;
+  @SerializedName("tokenGCM")
+  private String tokenGCM = null;
 
   
   /**
@@ -102,6 +110,50 @@ public class Version  implements Serializable {
   }
 
   
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public String getTeamId() {
+    return teamId;
+  }
+  public void setTeamId(String teamId) {
+    this.teamId = teamId;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public String getKeyId() {
+    return keyId;
+  }
+  public void setKeyId(String keyId) {
+    this.keyId = keyId;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public String getAuthKey() {
+    return authKey;
+  }
+  public void setAuthKey(String authKey) {
+    this.authKey = authKey;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public String getTokenGCM() {
+    return tokenGCM;
+  }
+  public void setTokenGCM(String tokenGCM) {
+    this.tokenGCM = tokenGCM;
+  }
+
+  
 
   @Override
   public String toString()  {
@@ -115,6 +167,10 @@ public class Version  implements Serializable {
     sb.append("  installURL: ").append(installURL).append("\n");
     sb.append("  installMessage: ").append(installMessage).append("\n");
     sb.append("  iconURL: ").append(iconURL).append("\n");
+    sb.append("  teamId: ").append(teamId).append("\n");
+    sb.append("  keyId: ").append(keyId).append("\n");
+    sb.append("  authKey: ").append(authKey).append("\n");
+    sb.append("  tokenGCM: ").append(tokenGCM).append("\n");
     sb.append("}\n");
     return sb.toString();
   }
