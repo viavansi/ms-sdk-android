@@ -9,8 +9,12 @@ import java.util.*;
 
 import com.viafirma.mobile.services.android.model.WrapSignature;
 import com.viafirma.mobile.services.android.model.Signature;
+import com.viafirma.mobile.services.android.model.SignatureBatch;
+import com.viafirma.mobile.services.android.model.WrapSignatureBatch;
 import com.viafirma.mobile.services.android.model.DataToSign;
 import com.viafirma.mobile.services.android.model.PrepareSignature;
+import com.viafirma.mobile.services.android.model.PrepareSignatureBatch;
+import com.viafirma.mobile.services.android.model.DataToSignBatch;
 import com.viafirma.mobile.services.android.model.Policy;
 import com.viafirma.mobile.services.android.model.EvidenceSignature;
 import com.viafirma.mobile.services.android.model.FortressSignature;
@@ -77,6 +81,48 @@ public class V3signaturesApi {
   }
   
     
+  public SignatureBatch finalizeClientSignatureBatch (WrapSignatureBatch body) throws ApiException {
+    Object postBody = body;
+    
+
+    // create path and map variables
+    String path = "/v3/signatures/client/finalize/batch".replaceAll("\\{format\\}","json");
+
+    // query params
+    Map<String, String> queryParams = new HashMap<String, String>();
+    Map<String, String> headerParams = new HashMap<String, String>();
+    Map<String, String> formParams = new HashMap<String, String>();
+
+    
+    
+    String[] contentTypes = {
+      "application/json"
+    };
+
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+
+    if(contentType.startsWith("multipart/form-data")) {
+      boolean hasFields = false;
+      MultipartBody.Builder mp = new MultipartBody.Builder();
+      mp.setType(MultipartBody.FORM);
+      
+      if(hasFields)
+        postBody = mp;
+    }
+    else {
+      
+    }
+
+      String response = ApiInvoker.getInstance().invokeAPI(path, "POST", queryParams, postBody, headerParams, formParams, contentType);
+      if(response != null){
+        return (SignatureBatch) ApiInvoker.deserialize(response, "", SignatureBatch.class);
+      } else {
+        return null;
+      }
+    
+  }
+  
+    
   public DataToSign prepareClientSignature (PrepareSignature body) throws ApiException {
     Object postBody = body;
     
@@ -112,6 +158,48 @@ public class V3signaturesApi {
       String response = ApiInvoker.getInstance().invokeAPI(path, "POST", queryParams, postBody, headerParams, formParams, contentType);
       if(response != null){
         return (DataToSign) ApiInvoker.deserialize(response, "", DataToSign.class);
+      } else {
+        return null;
+      }
+    
+  }
+  
+    
+  public DataToSignBatch prepareClientSignatureBatch (PrepareSignatureBatch body) throws ApiException {
+    Object postBody = body;
+    
+
+    // create path and map variables
+    String path = "/v3/signatures/client/prepare/batch".replaceAll("\\{format\\}","json");
+
+    // query params
+    Map<String, String> queryParams = new HashMap<String, String>();
+    Map<String, String> headerParams = new HashMap<String, String>();
+    Map<String, String> formParams = new HashMap<String, String>();
+
+    
+    
+    String[] contentTypes = {
+      "application/json"
+    };
+
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+
+    if(contentType.startsWith("multipart/form-data")) {
+      boolean hasFields = false;
+      MultipartBody.Builder mp = new MultipartBody.Builder();
+      mp.setType(MultipartBody.FORM);
+      
+      if(hasFields)
+        postBody = mp;
+    }
+    else {
+      
+    }
+
+      String response = ApiInvoker.getInstance().invokeAPI(path, "POST", queryParams, postBody, headerParams, formParams, contentType);
+      if(response != null){
+        return (DataToSignBatch) ApiInvoker.deserialize(response, "", DataToSignBatch.class);
       } else {
         return null;
       }

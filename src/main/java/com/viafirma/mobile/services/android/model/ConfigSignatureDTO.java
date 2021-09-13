@@ -76,7 +76,7 @@ public class ConfigSignatureDTO  implements Serializable {
   @SerializedName("autoVerifyDisabled")
   private Boolean autoVerifyDisabled = Boolean.FALSE;
   public enum RevocationRequestTypeEnum {
-     DEFAULT,  ONLINE,  ONLINE_WITH_CACHE,  CRL,  CRL_CACHE,  OCSP,  OFFLINE, 
+     ONLINE,  ONLINE_WITH_CACHE,  CRL,  CRL_CACHE,  OCSP, 
   };
   @SerializedName("revocationRequestType")
   private RevocationRequestTypeEnum revocationRequestType = null;

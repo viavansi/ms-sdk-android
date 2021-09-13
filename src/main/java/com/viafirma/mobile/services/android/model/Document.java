@@ -32,7 +32,7 @@ public class Document  implements Serializable {
   @SerializedName("signingDate")
   private Date signingDate = null;
   public enum TemplateTypeEnum {
-     docx,  odt,  url,  pdf,  base64,  message, 
+     docx,  odt,  url,  pdf,  base64,  message,  uploaded, 
   };
   @SerializedName("templateType")
   private TemplateTypeEnum templateType = null;

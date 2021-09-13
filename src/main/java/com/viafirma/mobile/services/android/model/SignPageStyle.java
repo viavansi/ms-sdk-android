@@ -69,6 +69,8 @@ public class SignPageStyle  implements Serializable {
   private String favicon = null;
   @SerializedName("tabTitle")
   private String tabTitle = null;
+  @SerializedName("panelAttachmentsFirst")
+  private Boolean panelAttachmentsFirst = Boolean.FALSE;
 
   
   /**
@@ -401,6 +403,17 @@ public class SignPageStyle  implements Serializable {
   }
 
   
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public Boolean getPanelAttachmentsFirst() {
+    return panelAttachmentsFirst;
+  }
+  public void setPanelAttachmentsFirst(Boolean panelAttachmentsFirst) {
+    this.panelAttachmentsFirst = panelAttachmentsFirst;
+  }
+
+  
 
   @Override
   public String toString()  {
@@ -437,6 +450,7 @@ public class SignPageStyle  implements Serializable {
     sb.append("  hideHeader: ").append(hideHeader).append("\n");
     sb.append("  favicon: ").append(favicon).append("\n");
     sb.append("  tabTitle: ").append(tabTitle).append("\n");
+    sb.append("  panelAttachmentsFirst: ").append(panelAttachmentsFirst).append("\n");
     sb.append("}\n");
     return sb.toString();
   }

@@ -74,6 +74,8 @@ public class Item  implements Serializable {
   private Boolean scanHideTextfield = Boolean.FALSE;
   @SerializedName("scanExpression")
   private String scanExpression = null;
+  @SerializedName("fillRequired")
+  private String fillRequired = null;
 
   
   /**
@@ -428,6 +430,17 @@ public class Item  implements Serializable {
   }
 
   
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public String getFillRequired() {
+    return fillRequired;
+  }
+  public void setFillRequired(String fillRequired) {
+    this.fillRequired = fillRequired;
+  }
+
+  
 
   @Override
   public String toString()  {
@@ -466,6 +479,7 @@ public class Item  implements Serializable {
     sb.append("  originalValue: ").append(originalValue).append("\n");
     sb.append("  scanHideTextfield: ").append(scanHideTextfield).append("\n");
     sb.append("  scanExpression: ").append(scanExpression).append("\n");
+    sb.append("  fillRequired: ").append(fillRequired).append("\n");
     sb.append("}\n");
     return sb.toString();
   }

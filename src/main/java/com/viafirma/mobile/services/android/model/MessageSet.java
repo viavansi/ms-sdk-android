@@ -20,6 +20,14 @@ public class MessageSet  implements Serializable {
   private Long expires = null;
   @SerializedName("retryTime")
   private Long retryTime = null;
+  @SerializedName("retryCount")
+  private Long retryCount = null;
+  @SerializedName("externalCode")
+  private String externalCode = null;
+  @SerializedName("externalStatus")
+  private String externalStatus = null;
+  @SerializedName("userCode")
+  private String userCode = null;
   @SerializedName("recipients")
   private List<Recipient> recipients = new ArrayList<Recipient>() ;
   @SerializedName("customization")
@@ -67,6 +75,50 @@ public class MessageSet  implements Serializable {
   }
   public void setRetryTime(Long retryTime) {
     this.retryTime = retryTime;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public Long getRetryCount() {
+    return retryCount;
+  }
+  public void setRetryCount(Long retryCount) {
+    this.retryCount = retryCount;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public String getExternalCode() {
+    return externalCode;
+  }
+  public void setExternalCode(String externalCode) {
+    this.externalCode = externalCode;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public String getExternalStatus() {
+    return externalStatus;
+  }
+  public void setExternalStatus(String externalStatus) {
+    this.externalStatus = externalStatus;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public String getUserCode() {
+    return userCode;
+  }
+  public void setUserCode(String userCode) {
+    this.userCode = userCode;
   }
 
   
@@ -156,6 +208,10 @@ public class MessageSet  implements Serializable {
     sb.append("  groupCode: ").append(groupCode).append("\n");
     sb.append("  expires: ").append(expires).append("\n");
     sb.append("  retryTime: ").append(retryTime).append("\n");
+    sb.append("  retryCount: ").append(retryCount).append("\n");
+    sb.append("  externalCode: ").append(externalCode).append("\n");
+    sb.append("  externalStatus: ").append(externalStatus).append("\n");
+    sb.append("  userCode: ").append(userCode).append("\n");
     sb.append("  recipients: ").append(recipients).append("\n");
     sb.append("  customization: ").append(customization).append("\n");
     sb.append("  messages: ").append(messages).append("\n");

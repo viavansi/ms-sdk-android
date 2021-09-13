@@ -29,7 +29,7 @@ public class Notification  implements Serializable {
   @SerializedName("sound")
   private String sound = null;
   public enum StatusEnum {
-     SENT,  RECEIVED,  READ,  ERROR,  REJECTED,  EXPIRED,  RESENT,  DISPATCHED,  DISPOSED,  COMPLETED,  WAITING,  INVALID, 
+     SENT,  RECEIVED,  READ,  ERROR,  REJECTED,  EXPIRED,  RESENT,  DISPATCHED,  DISPOSED,  COMPLETED,  WAITING,  INVALID,  WAITING_CLIENT_SIGNATURE, 
   };
   @SerializedName("status")
   private StatusEnum status = null;
@@ -46,6 +46,8 @@ public class Notification  implements Serializable {
   private Long updateDate = null;
   @SerializedName("retryTime")
   private Long retryTime = null;
+  @SerializedName("retryCount")
+  private Long retryCount = null;
   @SerializedName("customization")
   private Customization customization = null;
   @SerializedName("deliveryGroup")
@@ -63,6 +65,8 @@ public class Notification  implements Serializable {
   private List<Param> metadata = new ArrayList<Param>() ;
   @SerializedName("devices")
   private List<Device> devices = new ArrayList<Device>() ;
+  @SerializedName("recipientKey")
+  private String recipientKey = null;
 
   
   /**
@@ -212,6 +216,17 @@ public class Notification  implements Serializable {
   /**
    **/
   @ApiModelProperty(required = false, value = "")
+  public Long getRetryCount() {
+    return retryCount;
+  }
+  public void setRetryCount(Long retryCount) {
+    this.retryCount = retryCount;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
   public Customization getCustomization() {
     return customization;
   }
@@ -286,6 +301,17 @@ public class Notification  implements Serializable {
   }
 
   
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public String getRecipientKey() {
+    return recipientKey;
+  }
+  public void setRecipientKey(String recipientKey) {
+    this.recipientKey = recipientKey;
+  }
+
+  
 
   @Override
   public String toString()  {
@@ -305,6 +331,7 @@ public class Notification  implements Serializable {
     sb.append("  sharedLink: ").append(sharedLink).append("\n");
     sb.append("  updateDate: ").append(updateDate).append("\n");
     sb.append("  retryTime: ").append(retryTime).append("\n");
+    sb.append("  retryCount: ").append(retryCount).append("\n");
     sb.append("  customization: ").append(customization).append("\n");
     sb.append("  deliveryGroup: ").append(deliveryGroup).append("\n");
     sb.append("  deliveryUsers: ").append(deliveryUsers).append("\n");
@@ -312,6 +339,7 @@ public class Notification  implements Serializable {
     sb.append("  deliveryAppCode: ").append(deliveryAppCode).append("\n");
     sb.append("  metadata: ").append(metadata).append("\n");
     sb.append("  devices: ").append(devices).append("\n");
+    sb.append("  recipientKey: ").append(recipientKey).append("\n");
     sb.append("}\n");
     return sb.toString();
   }

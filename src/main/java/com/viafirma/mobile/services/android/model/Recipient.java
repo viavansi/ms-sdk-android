@@ -32,6 +32,8 @@ public class Recipient  implements Serializable {
   private Integer order = null;
   @SerializedName("deviceCode")
   private String deviceCode = null;
+  @SerializedName("appCode")
+  private String appCode = null;
   @SerializedName("presential")
   private Boolean presential = Boolean.FALSE;
   @SerializedName("label")
@@ -153,6 +155,17 @@ public class Recipient  implements Serializable {
   /**
    **/
   @ApiModelProperty(required = false, value = "")
+  public String getAppCode() {
+    return appCode;
+  }
+  public void setAppCode(String appCode) {
+    this.appCode = appCode;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
   public Boolean getPresential() {
     return presential;
   }
@@ -199,6 +212,7 @@ public class Recipient  implements Serializable {
     sb.append("  status: ").append(status).append("\n");
     sb.append("  order: ").append(order).append("\n");
     sb.append("  deviceCode: ").append(deviceCode).append("\n");
+    sb.append("  appCode: ").append(appCode).append("\n");
     sb.append("  presential: ").append(presential).append("\n");
     sb.append("  label: ").append(label).append("\n");
     sb.append("  optional: ").append(optional).append("\n");

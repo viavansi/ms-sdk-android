@@ -23,7 +23,7 @@ public class Template  implements Serializable {
   @SerializedName("version")
   private String version = null;
   public enum TypeEnum {
-     docx,  odt,  url,  pdf,  base64,  message, 
+     docx,  odt,  url,  pdf,  base64,  message,  uploaded, 
   };
   @SerializedName("type")
   private TypeEnum type = null;

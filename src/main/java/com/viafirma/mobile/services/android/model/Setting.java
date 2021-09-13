@@ -63,6 +63,8 @@ public class Setting  implements Serializable {
   private List<Param> metadataList = new ArrayList<Param>() ;
   @SerializedName("retryTime")
   private Long retryTime = null;
+  @SerializedName("retryCount")
+  private Long retryCount = null;
   @SerializedName("workflowReferenceCode")
   private String workflowReferenceCode = null;
 
@@ -334,6 +336,17 @@ public class Setting  implements Serializable {
   /**
    **/
   @ApiModelProperty(required = false, value = "")
+  public Long getRetryCount() {
+    return retryCount;
+  }
+  public void setRetryCount(Long retryCount) {
+    this.retryCount = retryCount;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
   public String getWorkflowReferenceCode() {
     return workflowReferenceCode;
   }
@@ -372,6 +385,7 @@ public class Setting  implements Serializable {
     sb.append("  callbackMailFilename: ").append(callbackMailFilename).append("\n");
     sb.append("  metadataList: ").append(metadataList).append("\n");
     sb.append("  retryTime: ").append(retryTime).append("\n");
+    sb.append("  retryCount: ").append(retryCount).append("\n");
     sb.append("  workflowReferenceCode: ").append(workflowReferenceCode).append("\n");
     sb.append("}\n");
     return sb.toString();

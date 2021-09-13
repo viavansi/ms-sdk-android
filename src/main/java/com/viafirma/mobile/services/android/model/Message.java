@@ -111,6 +111,8 @@ public class Message  implements Serializable {
   private Integer order = null;
   @SerializedName("callbackRedirectURLTargetWindow")
   private String callbackRedirectURLTargetWindow = null;
+  @SerializedName("callbackProcessMessage")
+  private String callbackProcessMessage = null;
 
   
   /**
@@ -620,6 +622,17 @@ public class Message  implements Serializable {
   }
 
   
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public String getCallbackProcessMessage() {
+    return callbackProcessMessage;
+  }
+  public void setCallbackProcessMessage(String callbackProcessMessage) {
+    this.callbackProcessMessage = callbackProcessMessage;
+  }
+
+  
 
   @Override
   public String toString()  {
@@ -672,6 +685,7 @@ public class Message  implements Serializable {
     sb.append("  auditTrailPage: ").append(auditTrailPage).append("\n");
     sb.append("  order: ").append(order).append("\n");
     sb.append("  callbackRedirectURLTargetWindow: ").append(callbackRedirectURLTargetWindow).append("\n");
+    sb.append("  callbackProcessMessage: ").append(callbackProcessMessage).append("\n");
     sb.append("}\n");
     return sb.toString();
   }
