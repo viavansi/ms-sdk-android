@@ -128,6 +128,8 @@ public class Evidence  implements Serializable {
   };
   @SerializedName("imageTextLocation")
   private ImageTextLocationEnum imageTextLocation = null;
+  @SerializedName("imageTextSize")
+  private Integer imageTextSize = null;
 
   
   /**
@@ -683,6 +685,17 @@ public class Evidence  implements Serializable {
   }
 
   
+  /**
+   **/
+  @ApiModelProperty(required = true, value = "")
+  public Integer getImageTextSize() {
+    return imageTextSize;
+  }
+  public void setImageTextSize(Integer imageTextSize) {
+    this.imageTextSize = imageTextSize;
+  }
+
+  
 
   @Override
   public String toString()  {
@@ -739,6 +752,7 @@ public class Evidence  implements Serializable {
     sb.append("  recipientKey: ").append(recipientKey).append("\n");
     sb.append("  imageDataType: ").append(imageDataType).append("\n");
     sb.append("  imageTextLocation: ").append(imageTextLocation).append("\n");
+    sb.append("  imageTextSize: ").append(imageTextSize).append("\n");
     sb.append("}\n");
     return sb.toString();
   }
