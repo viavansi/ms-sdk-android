@@ -1,5 +1,6 @@
 package com.viafirma.mobile.services.android.model;
 
+import com.viafirma.mobile.services.android.model.PdfText;
 import java.util.*;
 
 import com.wordnik.swagger.annotations.*;
@@ -76,6 +77,8 @@ public class Item  implements Serializable {
   private String scanExpression = null;
   @SerializedName("fillRequired")
   private String fillRequired = null;
+  @SerializedName("pdfText")
+  private PdfText pdfText = null;
 
   
   /**
@@ -441,6 +444,17 @@ public class Item  implements Serializable {
   }
 
   
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public PdfText getPdfText() {
+    return pdfText;
+  }
+  public void setPdfText(PdfText pdfText) {
+    this.pdfText = pdfText;
+  }
+
+  
 
   @Override
   public String toString()  {
@@ -480,6 +494,7 @@ public class Item  implements Serializable {
     sb.append("  scanHideTextfield: ").append(scanHideTextfield).append("\n");
     sb.append("  scanExpression: ").append(scanExpression).append("\n");
     sb.append("  fillRequired: ").append(fillRequired).append("\n");
+    sb.append("  pdfText: ").append(pdfText).append("\n");
     sb.append("}\n");
     return sb.toString();
   }

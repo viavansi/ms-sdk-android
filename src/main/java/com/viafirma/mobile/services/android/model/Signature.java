@@ -55,6 +55,10 @@ public class Signature  implements Serializable {
   };
   @SerializedName("certificationLevel")
   private CertificationLevelEnum certificationLevel = null;
+  @SerializedName("reason")
+  private String reason = null;
+  @SerializedName("location")
+  private String location = null;
 
   
   /**
@@ -233,6 +237,28 @@ public class Signature  implements Serializable {
   }
 
   
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public String getReason() {
+    return reason;
+  }
+  public void setReason(String reason) {
+    this.reason = reason;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public String getLocation() {
+    return location;
+  }
+  public void setLocation(String location) {
+    this.location = location;
+  }
+
+  
 
   @Override
   public String toString()  {
@@ -255,6 +281,8 @@ public class Signature  implements Serializable {
     sb.append("  lastUpdated: ").append(lastUpdated).append("\n");
     sb.append("  recipientKey: ").append(recipientKey).append("\n");
     sb.append("  certificationLevel: ").append(certificationLevel).append("\n");
+    sb.append("  reason: ").append(reason).append("\n");
+    sb.append("  location: ").append(location).append("\n");
     sb.append("}\n");
     return sb.toString();
   }

@@ -21,7 +21,7 @@ public class NotificationResponse  implements Serializable {
   @SerializedName("status")
   private StatusEnum status = null;
   public enum TypeEnum {
-     PUSH_IOS,  PUSH_ANDROID,  CALLBACK,  CALLBACK_MAIL,  CALLBACK_SMS,  CALLBACK_INBOX,  MAIL,  SMS,  MAIL_SMS,  CALLBACK_CRM,  WORKFLOW_STEP, 
+     PUSH_IOS,  PUSH_ANDROID,  CALLBACK,  CALLBACK_MAIL,  CALLBACK_SMS,  CALLBACK_INBOX,  MAIL,  SMS,  MAIL_SMS,  CALLBACK_CRM,  WORKFLOW_STEP,  NONE, 
   };
   @SerializedName("type")
   private TypeEnum type = null;

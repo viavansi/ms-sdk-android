@@ -2,6 +2,7 @@ package com.viafirma.mobile.services.android.model;
 
 import com.viafirma.mobile.services.android.model.AuditTrailSummaryBlock;
 import com.viafirma.mobile.services.android.model.AuditTrailConfig;
+import com.viafirma.mobile.services.android.model.AuditTrailDownload;
 import java.util.*;
 import com.viafirma.mobile.services.android.model.AuditTrailHeader;
 import com.viafirma.mobile.services.android.model.AuditTrailTableBlock;
@@ -28,6 +29,8 @@ public class AuditTrail  implements Serializable {
   private AuditTrailFooter footer = null;
   @SerializedName("config")
   private AuditTrailConfig config = null;
+  @SerializedName("downloads")
+  private AuditTrailDownload downloads = null;
 
   
   /**
@@ -96,6 +99,17 @@ public class AuditTrail  implements Serializable {
   }
 
   
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public AuditTrailDownload getDownloads() {
+    return downloads;
+  }
+  public void setDownloads(AuditTrailDownload downloads) {
+    this.downloads = downloads;
+  }
+
+  
 
   @Override
   public String toString()  {
@@ -108,6 +122,7 @@ public class AuditTrail  implements Serializable {
     sb.append("  tableBlocks: ").append(tableBlocks).append("\n");
     sb.append("  footer: ").append(footer).append("\n");
     sb.append("  config: ").append(config).append("\n");
+    sb.append("  downloads: ").append(downloads).append("\n");
     sb.append("}\n");
     return sb.toString();
   }

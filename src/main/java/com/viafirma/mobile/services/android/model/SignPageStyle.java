@@ -71,6 +71,12 @@ public class SignPageStyle  implements Serializable {
   private String tabTitle = null;
   @SerializedName("panelAttachmentsFirst")
   private Boolean panelAttachmentsFirst = Boolean.FALSE;
+  @SerializedName("hideImageUpload")
+  private Boolean hideImageUpload = Boolean.FALSE;
+  @SerializedName("hideImageCapture")
+  private Boolean hideImageCapture = Boolean.FALSE;
+  @SerializedName("hidePoweredByViafirma")
+  private Boolean hidePoweredByViafirma = Boolean.FALSE;
 
   
   /**
@@ -414,6 +420,39 @@ public class SignPageStyle  implements Serializable {
   }
 
   
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public Boolean getHideImageUpload() {
+    return hideImageUpload;
+  }
+  public void setHideImageUpload(Boolean hideImageUpload) {
+    this.hideImageUpload = hideImageUpload;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public Boolean getHideImageCapture() {
+    return hideImageCapture;
+  }
+  public void setHideImageCapture(Boolean hideImageCapture) {
+    this.hideImageCapture = hideImageCapture;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public Boolean getHidePoweredByViafirma() {
+    return hidePoweredByViafirma;
+  }
+  public void setHidePoweredByViafirma(Boolean hidePoweredByViafirma) {
+    this.hidePoweredByViafirma = hidePoweredByViafirma;
+  }
+
+  
 
   @Override
   public String toString()  {
@@ -451,6 +490,9 @@ public class SignPageStyle  implements Serializable {
     sb.append("  favicon: ").append(favicon).append("\n");
     sb.append("  tabTitle: ").append(tabTitle).append("\n");
     sb.append("  panelAttachmentsFirst: ").append(panelAttachmentsFirst).append("\n");
+    sb.append("  hideImageUpload: ").append(hideImageUpload).append("\n");
+    sb.append("  hideImageCapture: ").append(hideImageCapture).append("\n");
+    sb.append("  hidePoweredByViafirma: ").append(hidePoweredByViafirma).append("\n");
     sb.append("}\n");
     return sb.toString();
   }

@@ -15,6 +15,10 @@ public class OtpInfo  implements Serializable {
   private String type = null;
   @SerializedName("recipient")
   private String recipient = null;
+  @SerializedName("groupTitle")
+  private String groupTitle = null;
+  @SerializedName("groupDesc")
+  private String groupDesc = null;
 
   
   /**
@@ -50,6 +54,28 @@ public class OtpInfo  implements Serializable {
   }
 
   
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public String getGroupTitle() {
+    return groupTitle;
+  }
+  public void setGroupTitle(String groupTitle) {
+    this.groupTitle = groupTitle;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public String getGroupDesc() {
+    return groupDesc;
+  }
+  public void setGroupDesc(String groupDesc) {
+    this.groupDesc = groupDesc;
+  }
+
+  
 
   @Override
   public String toString()  {
@@ -59,6 +85,8 @@ public class OtpInfo  implements Serializable {
     sb.append("  groupCode: ").append(groupCode).append("\n");
     sb.append("  type: ").append(type).append("\n");
     sb.append("  recipient: ").append(recipient).append("\n");
+    sb.append("  groupTitle: ").append(groupTitle).append("\n");
+    sb.append("  groupDesc: ").append(groupDesc).append("\n");
     sb.append("}\n");
     return sb.toString();
   }

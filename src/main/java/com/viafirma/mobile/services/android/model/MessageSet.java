@@ -42,6 +42,8 @@ public class MessageSet  implements Serializable {
   private String title = null;
   @SerializedName("description")
   private String description = null;
+  @SerializedName("autoFinalize")
+  private Boolean autoFinalize = Boolean.FALSE;
 
   
   /**
@@ -199,6 +201,17 @@ public class MessageSet  implements Serializable {
   }
 
   
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public Boolean getAutoFinalize() {
+    return autoFinalize;
+  }
+  public void setAutoFinalize(Boolean autoFinalize) {
+    this.autoFinalize = autoFinalize;
+  }
+
+  
 
   @Override
   public String toString()  {
@@ -219,6 +232,7 @@ public class MessageSet  implements Serializable {
     sb.append("  messagesStep: ").append(messagesStep).append("\n");
     sb.append("  title: ").append(title).append("\n");
     sb.append("  description: ").append(description).append("\n");
+    sb.append("  autoFinalize: ").append(autoFinalize).append("\n");
     sb.append("}\n");
     return sb.toString();
   }

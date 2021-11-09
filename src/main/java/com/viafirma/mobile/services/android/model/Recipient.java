@@ -40,6 +40,8 @@ public class Recipient  implements Serializable {
   private String label = null;
   @SerializedName("optional")
   private Boolean optional = Boolean.FALSE;
+  @SerializedName("callbackType")
+  private String callbackType = null;
 
   
   /**
@@ -196,6 +198,17 @@ public class Recipient  implements Serializable {
   }
 
   
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public String getCallbackType() {
+    return callbackType;
+  }
+  public void setCallbackType(String callbackType) {
+    this.callbackType = callbackType;
+  }
+
+  
 
   @Override
   public String toString()  {
@@ -216,6 +229,7 @@ public class Recipient  implements Serializable {
     sb.append("  presential: ").append(presential).append("\n");
     sb.append("  label: ").append(label).append("\n");
     sb.append("  optional: ").append(optional).append("\n");
+    sb.append("  callbackType: ").append(callbackType).append("\n");
     sb.append("}\n");
     return sb.toString();
   }

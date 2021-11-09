@@ -40,6 +40,8 @@ public class Document  implements Serializable {
   private Boolean formRequired = Boolean.FALSE;
   @SerializedName("formDisabled")
   private Boolean formDisabled = Boolean.FALSE;
+  @SerializedName("formRecipientKey")
+  private String formRecipientKey = null;
   @SerializedName("items")
   private List<Item> items = new ArrayList<Item>() ;
   @SerializedName("pdfaCompliant")
@@ -199,6 +201,17 @@ public class Document  implements Serializable {
   }
   public void setFormDisabled(Boolean formDisabled) {
     this.formDisabled = formDisabled;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public String getFormRecipientKey() {
+    return formRecipientKey;
+  }
+  public void setFormRecipientKey(String formRecipientKey) {
+    this.formRecipientKey = formRecipientKey;
   }
 
   
@@ -377,6 +390,7 @@ public class Document  implements Serializable {
     sb.append("  templateType: ").append(templateType).append("\n");
     sb.append("  formRequired: ").append(formRequired).append("\n");
     sb.append("  formDisabled: ").append(formDisabled).append("\n");
+    sb.append("  formRecipientKey: ").append(formRecipientKey).append("\n");
     sb.append("  items: ").append(items).append("\n");
     sb.append("  pdfaCompliant: ").append(pdfaCompliant).append("\n");
     sb.append("  font: ").append(font).append("\n");

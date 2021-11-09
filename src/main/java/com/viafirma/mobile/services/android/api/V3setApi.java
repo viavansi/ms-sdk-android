@@ -71,6 +71,58 @@ public class V3setApi {
   }
   
     
+  public String finalizeMessage_1 (String setCode, String recipientKey) throws ApiException {
+    Object postBody = null;
+    
+
+    // create path and map variables
+    String path = "/v3/set/finalize".replaceAll("\\{format\\}","json");
+
+    // query params
+    Map<String, String> queryParams = new HashMap<String, String>();
+    Map<String, String> headerParams = new HashMap<String, String>();
+    Map<String, String> formParams = new HashMap<String, String>();
+
+    
+    
+    String[] contentTypes = {
+      "application/x-www-form-urlencoded"
+    };
+
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+
+    if(contentType.startsWith("multipart/form-data")) {
+      boolean hasFields = false;
+      MultipartBody.Builder mp = new MultipartBody.Builder();
+      mp.setType(MultipartBody.FORM);
+      
+      hasFields = true;
+      mp.addFormDataPart("setCode", setCode);
+      
+      
+      hasFields = true;
+      mp.addFormDataPart("recipientKey", recipientKey);
+      
+      
+      if(hasFields)
+        postBody = mp;
+    }
+    else {
+      formParams.put("setCode", setCode);
+      formParams.put("recipientKey", recipientKey);
+      
+    }
+
+      String response = ApiInvoker.getInstance().invokeAPI(path, "POST", queryParams, postBody, headerParams, formParams, contentType);
+      if(response != null){
+        return (String) ApiInvoker.deserialize(response, "", String.class);
+      } else {
+        return null;
+      }
+    
+  }
+  
+    
   public MessageSetInfo getInfoSetByRecipient (String setCode, String recipientKey) throws ApiException {
     Object postBody = null;
     
@@ -108,6 +160,51 @@ public class V3setApi {
       String response = ApiInvoker.getInstance().invokeAPI(path, "GET", queryParams, postBody, headerParams, formParams, contentType);
       if(response != null){
         return (MessageSetInfo) ApiInvoker.deserialize(response, "", MessageSetInfo.class);
+      } else {
+        return null;
+      }
+    
+  }
+  
+    
+  public Boolean isFinalizable_1 (String setCode, String recipientKey) throws ApiException {
+    Object postBody = null;
+    
+
+    // create path and map variables
+    String path = "/v3/set/isFinalizable/{setCode}".replaceAll("\\{format\\}","json")
+      .replaceAll("\\{" + "setCode" + "\\}", ApiInvoker.getInstance().escapeString(setCode.toString()));
+
+    // query params
+    Map<String, String> queryParams = new HashMap<String, String>();
+    Map<String, String> headerParams = new HashMap<String, String>();
+    Map<String, String> formParams = new HashMap<String, String>();
+
+    if(!"null".equals(String.valueOf(recipientKey)))
+      queryParams.put("recipientKey", String.valueOf(recipientKey));
+    
+    
+    String[] contentTypes = {
+      "application/json"
+    };
+
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+
+    if(contentType.startsWith("multipart/form-data")) {
+      boolean hasFields = false;
+      MultipartBody.Builder mp = new MultipartBody.Builder();
+      mp.setType(MultipartBody.FORM);
+      
+      if(hasFields)
+        postBody = mp;
+    }
+    else {
+      
+    }
+
+      String response = ApiInvoker.getInstance().invokeAPI(path, "GET", queryParams, postBody, headerParams, formParams, contentType);
+      if(response != null){
+        return (Boolean) ApiInvoker.deserialize(response, "", Boolean.class);
       } else {
         return null;
       }
