@@ -46,6 +46,8 @@ public class User  implements Serializable {
   private Boolean logDevice = Boolean.FALSE;
   @SerializedName("status")
   private String status = null;
+  @SerializedName("showLastLogin")
+  private Long showLastLogin = null;
   @SerializedName("groups")
   private List<String> groups = new ArrayList<String>() ;
   @SerializedName("groupsInfo")
@@ -248,6 +250,18 @@ public class User  implements Serializable {
 
   
   /**
+   * epoch timestamp in milliseconds
+   **/
+  @ApiModelProperty(required = false, value = "epoch timestamp in milliseconds")
+  public Long getShowLastLogin() {
+    return showLastLogin;
+  }
+  public void setShowLastLogin(Long showLastLogin) {
+    this.showLastLogin = showLastLogin;
+  }
+
+  
+  /**
    **/
   @ApiModelProperty(required = false, value = "")
   public List<String> getGroups() {
@@ -336,6 +350,7 @@ public class User  implements Serializable {
     sb.append("  changePassToken: ").append(changePassToken).append("\n");
     sb.append("  logDevice: ").append(logDevice).append("\n");
     sb.append("  status: ").append(status).append("\n");
+    sb.append("  showLastLogin: ").append(showLastLogin).append("\n");
     sb.append("  groups: ").append(groups).append("\n");
     sb.append("  groupsInfo: ").append(groupsInfo).append("\n");
     sb.append("  properties: ").append(properties).append("\n");

@@ -44,6 +44,10 @@ public class MessageSet  implements Serializable {
   private String description = null;
   @SerializedName("autoFinalize")
   private Boolean autoFinalize = Boolean.FALSE;
+  @SerializedName("callbackURL")
+  private String callbackURL = null;
+  @SerializedName("callbackAuthorization")
+  private String callbackAuthorization = null;
 
   
   /**
@@ -212,6 +216,28 @@ public class MessageSet  implements Serializable {
   }
 
   
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public String getCallbackURL() {
+    return callbackURL;
+  }
+  public void setCallbackURL(String callbackURL) {
+    this.callbackURL = callbackURL;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public String getCallbackAuthorization() {
+    return callbackAuthorization;
+  }
+  public void setCallbackAuthorization(String callbackAuthorization) {
+    this.callbackAuthorization = callbackAuthorization;
+  }
+
+  
 
   @Override
   public String toString()  {
@@ -233,6 +259,8 @@ public class MessageSet  implements Serializable {
     sb.append("  title: ").append(title).append("\n");
     sb.append("  description: ").append(description).append("\n");
     sb.append("  autoFinalize: ").append(autoFinalize).append("\n");
+    sb.append("  callbackURL: ").append(callbackURL).append("\n");
+    sb.append("  callbackAuthorization: ").append(callbackAuthorization).append("\n");
     sb.append("}\n");
     return sb.toString();
   }

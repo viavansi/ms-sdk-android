@@ -16,6 +16,11 @@ public class Signature  implements Serializable {
   };
   @SerializedName("type")
   private TypeEnum type = null;
+  public enum SubTypeEnum {
+     FORTRESS,  CERTIFICATE,  OTP_SMS,  OTP_MAIL, 
+  };
+  @SerializedName("subType")
+  private SubTypeEnum subType = null;
   @SerializedName("code")
   private String code = null;
   public enum StatusEnum {
@@ -69,6 +74,17 @@ public class Signature  implements Serializable {
   }
   public void setType(TypeEnum type) {
     this.type = type;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public SubTypeEnum getSubType() {
+    return subType;
+  }
+  public void setSubType(SubTypeEnum subType) {
+    this.subType = subType;
   }
 
   
@@ -266,6 +282,7 @@ public class Signature  implements Serializable {
     sb.append("class Signature {\n");
     
     sb.append("  type: ").append(type).append("\n");
+    sb.append("  subType: ").append(subType).append("\n");
     sb.append("  code: ").append(code).append("\n");
     sb.append("  status: ").append(status).append("\n");
     sb.append("  helpText: ").append(helpText).append("\n");

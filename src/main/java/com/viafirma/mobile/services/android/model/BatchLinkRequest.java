@@ -15,10 +15,14 @@ public class BatchLinkRequest  implements Serializable {
   private String groupCode = null;
   @SerializedName("redirectURL")
   private String redirectURL = null;
+  @SerializedName("otpRecipient")
+  private String otpRecipient = null;
   @SerializedName("index")
   private Integer index = null;
   @SerializedName("max")
   private Integer max = null;
+  @SerializedName("signType")
+  private String signType = null;
 
   
   /**
@@ -57,6 +61,17 @@ public class BatchLinkRequest  implements Serializable {
   /**
    **/
   @ApiModelProperty(required = false, value = "")
+  public String getOtpRecipient() {
+    return otpRecipient;
+  }
+  public void setOtpRecipient(String otpRecipient) {
+    this.otpRecipient = otpRecipient;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
   public Integer getIndex() {
     return index;
   }
@@ -76,6 +91,17 @@ public class BatchLinkRequest  implements Serializable {
   }
 
   
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public String getSignType() {
+    return signType;
+  }
+  public void setSignType(String signType) {
+    this.signType = signType;
+  }
+
+  
 
   @Override
   public String toString()  {
@@ -85,8 +111,10 @@ public class BatchLinkRequest  implements Serializable {
     sb.append("  userCode: ").append(userCode).append("\n");
     sb.append("  groupCode: ").append(groupCode).append("\n");
     sb.append("  redirectURL: ").append(redirectURL).append("\n");
+    sb.append("  otpRecipient: ").append(otpRecipient).append("\n");
     sb.append("  index: ").append(index).append("\n");
     sb.append("  max: ").append(max).append("\n");
+    sb.append("  signType: ").append(signType).append("\n");
     sb.append("}\n");
     return sb.toString();
   }

@@ -18,6 +18,7 @@ import com.viafirma.mobile.services.android.model.DataToSignBatch;
 import com.viafirma.mobile.services.android.model.Policy;
 import com.viafirma.mobile.services.android.model.EvidenceSignature;
 import com.viafirma.mobile.services.android.model.FortressSignature;
+import com.viafirma.mobile.services.android.model.OtpBatchPrepare;
 import com.viafirma.mobile.services.android.model.TimestampResponse;
 import com.viafirma.mobile.services.android.model.Message;
 
@@ -329,6 +330,206 @@ public class V3signaturesApi {
       String response = ApiInvoker.getInstance().invokeAPI(path, "GET", queryParams, postBody, headerParams, formParams, contentType);
       if(response != null){
         return (FortressSignature) ApiInvoker.deserialize(response, "", FortressSignature.class);
+      } else {
+        return null;
+      }
+    
+  }
+  
+    
+  public OtpBatchPrepare prepareBatchOtpMailEvidence_1 (String token) throws ApiException {
+    Object postBody = null;
+    
+
+    // create path and map variables
+    String path = "/v3/signatures/otp/mail/prepare/{token}".replaceAll("\\{format\\}","json")
+      .replaceAll("\\{" + "token" + "\\}", ApiInvoker.getInstance().escapeString(token.toString()));
+
+    // query params
+    Map<String, String> queryParams = new HashMap<String, String>();
+    Map<String, String> headerParams = new HashMap<String, String>();
+    Map<String, String> formParams = new HashMap<String, String>();
+
+    
+    
+    String[] contentTypes = {
+      "application/json"
+    };
+
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+
+    if(contentType.startsWith("multipart/form-data")) {
+      boolean hasFields = false;
+      MultipartBody.Builder mp = new MultipartBody.Builder();
+      mp.setType(MultipartBody.FORM);
+      
+      if(hasFields)
+        postBody = mp;
+    }
+    else {
+      
+    }
+
+      String response = ApiInvoker.getInstance().invokeAPI(path, "GET", queryParams, postBody, headerParams, formParams, contentType);
+      if(response != null){
+        return (OtpBatchPrepare) ApiInvoker.deserialize(response, "", OtpBatchPrepare.class);
+      } else {
+        return null;
+      }
+    
+  }
+  
+    
+  public String validateBatchOtpMailEvidence_1 (String token, String operationCode, String value) throws ApiException {
+    Object postBody = null;
+    
+
+    // create path and map variables
+    String path = "/v3/signatures/otp/mail/validate/batch".replaceAll("\\{format\\}","json");
+
+    // query params
+    Map<String, String> queryParams = new HashMap<String, String>();
+    Map<String, String> headerParams = new HashMap<String, String>();
+    Map<String, String> formParams = new HashMap<String, String>();
+
+    
+    
+    String[] contentTypes = {
+      "application/x-www-form-urlencoded"
+    };
+
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+
+    if(contentType.startsWith("multipart/form-data")) {
+      boolean hasFields = false;
+      MultipartBody.Builder mp = new MultipartBody.Builder();
+      mp.setType(MultipartBody.FORM);
+      
+      hasFields = true;
+      mp.addFormDataPart("token", token);
+      
+      
+      hasFields = true;
+      mp.addFormDataPart("operationCode", operationCode);
+      
+      
+      hasFields = true;
+      mp.addFormDataPart("value", value);
+      
+      
+      if(hasFields)
+        postBody = mp;
+    }
+    else {
+      formParams.put("token", token);
+      formParams.put("operationCode", operationCode);
+      formParams.put("value", value);
+      
+    }
+
+      String response = ApiInvoker.getInstance().invokeAPI(path, "POST", queryParams, postBody, headerParams, formParams, contentType);
+      if(response != null){
+        return (String) ApiInvoker.deserialize(response, "", String.class);
+      } else {
+        return null;
+      }
+    
+  }
+  
+    
+  public OtpBatchPrepare prepareBatchOtpSmsEvidence_1 (String token) throws ApiException {
+    Object postBody = null;
+    
+
+    // create path and map variables
+    String path = "/v3/signatures/otp/sms/prepare/{token}".replaceAll("\\{format\\}","json")
+      .replaceAll("\\{" + "token" + "\\}", ApiInvoker.getInstance().escapeString(token.toString()));
+
+    // query params
+    Map<String, String> queryParams = new HashMap<String, String>();
+    Map<String, String> headerParams = new HashMap<String, String>();
+    Map<String, String> formParams = new HashMap<String, String>();
+
+    
+    
+    String[] contentTypes = {
+      "application/json"
+    };
+
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+
+    if(contentType.startsWith("multipart/form-data")) {
+      boolean hasFields = false;
+      MultipartBody.Builder mp = new MultipartBody.Builder();
+      mp.setType(MultipartBody.FORM);
+      
+      if(hasFields)
+        postBody = mp;
+    }
+    else {
+      
+    }
+
+      String response = ApiInvoker.getInstance().invokeAPI(path, "GET", queryParams, postBody, headerParams, formParams, contentType);
+      if(response != null){
+        return (OtpBatchPrepare) ApiInvoker.deserialize(response, "", OtpBatchPrepare.class);
+      } else {
+        return null;
+      }
+    
+  }
+  
+    
+  public String validateBatchOtpSmsEvidence_1 (String token, String operationCode, String value) throws ApiException {
+    Object postBody = null;
+    
+
+    // create path and map variables
+    String path = "/v3/signatures/otp/sms/validate/batch".replaceAll("\\{format\\}","json");
+
+    // query params
+    Map<String, String> queryParams = new HashMap<String, String>();
+    Map<String, String> headerParams = new HashMap<String, String>();
+    Map<String, String> formParams = new HashMap<String, String>();
+
+    
+    
+    String[] contentTypes = {
+      "application/x-www-form-urlencoded"
+    };
+
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+
+    if(contentType.startsWith("multipart/form-data")) {
+      boolean hasFields = false;
+      MultipartBody.Builder mp = new MultipartBody.Builder();
+      mp.setType(MultipartBody.FORM);
+      
+      hasFields = true;
+      mp.addFormDataPart("token", token);
+      
+      
+      hasFields = true;
+      mp.addFormDataPart("operationCode", operationCode);
+      
+      
+      hasFields = true;
+      mp.addFormDataPart("value", value);
+      
+      
+      if(hasFields)
+        postBody = mp;
+    }
+    else {
+      formParams.put("token", token);
+      formParams.put("operationCode", operationCode);
+      formParams.put("value", value);
+      
+    }
+
+      String response = ApiInvoker.getInstance().invokeAPI(path, "POST", queryParams, postBody, headerParams, formParams, contentType);
+      if(response != null){
+        return (String) ApiInvoker.deserialize(response, "", String.class);
       } else {
         return null;
       }

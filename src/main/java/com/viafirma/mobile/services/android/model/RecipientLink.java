@@ -13,6 +13,8 @@ public class RecipientLink  implements Serializable {
   private String key = null;
   @SerializedName("link")
   private String link = null;
+  @SerializedName("token")
+  private String token = null;
 
   
   /**
@@ -37,6 +39,17 @@ public class RecipientLink  implements Serializable {
   }
 
   
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public String getToken() {
+    return token;
+  }
+  public void setToken(String token) {
+    this.token = token;
+  }
+
+  
 
   @Override
   public String toString()  {
@@ -45,6 +58,7 @@ public class RecipientLink  implements Serializable {
     
     sb.append("  key: ").append(key).append("\n");
     sb.append("  link: ").append(link).append("\n");
+    sb.append("  token: ").append(token).append("\n");
     sb.append("}\n");
     return sb.toString();
   }

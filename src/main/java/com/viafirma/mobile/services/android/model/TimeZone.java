@@ -9,25 +9,14 @@ import java.io.Serializable;
 @ApiModel(description = "")
 public class TimeZone  implements Serializable {
   
-  @SerializedName("id")
-  private String id = null;
   @SerializedName("displayName")
   private String displayName = null;
+  @SerializedName("id")
+  private String id = null;
   @SerializedName("dstsavings")
   private Integer dstsavings = null;
   @SerializedName("rawOffset")
   private Integer rawOffset = null;
-
-  
-  /**
-   **/
-  @ApiModelProperty(required = false, value = "")
-  public String getId() {
-    return id;
-  }
-  public void setId(String id) {
-    this.id = id;
-  }
 
   
   /**
@@ -38,6 +27,17 @@ public class TimeZone  implements Serializable {
   }
   public void setDisplayName(String displayName) {
     this.displayName = displayName;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public String getId() {
+    return id;
+  }
+  public void setId(String id) {
+    this.id = id;
   }
 
   
@@ -69,8 +69,8 @@ public class TimeZone  implements Serializable {
     StringBuilder sb = new StringBuilder();
     sb.append("class TimeZone {\n");
     
-    sb.append("  id: ").append(id).append("\n");
     sb.append("  displayName: ").append(displayName).append("\n");
+    sb.append("  id: ").append(id).append("\n");
     sb.append("  dstsavings: ").append(dstsavings).append("\n");
     sb.append("  rawOffset: ").append(rawOffset).append("\n");
     sb.append("}\n");
