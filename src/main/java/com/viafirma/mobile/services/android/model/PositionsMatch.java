@@ -23,6 +23,8 @@ public class PositionsMatch  implements Serializable {
   private Integer height = null;
   @SerializedName("forEvidence")
   private Boolean forEvidence = Boolean.FALSE;
+  @SerializedName("breakLines")
+  private Boolean breakLines = Boolean.FALSE;
 
   
   /**
@@ -102,6 +104,17 @@ public class PositionsMatch  implements Serializable {
   }
 
   
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public Boolean getBreakLines() {
+    return breakLines;
+  }
+  public void setBreakLines(Boolean breakLines) {
+    this.breakLines = breakLines;
+  }
+
+  
 
   @Override
   public String toString()  {
@@ -115,6 +128,7 @@ public class PositionsMatch  implements Serializable {
     sb.append("  width: ").append(width).append("\n");
     sb.append("  height: ").append(height).append("\n");
     sb.append("  forEvidence: ").append(forEvidence).append("\n");
+    sb.append("  breakLines: ").append(breakLines).append("\n");
     sb.append("}\n");
     return sb.toString();
   }

@@ -33,6 +33,8 @@ public class Style  implements Serializable {
   private String lisimImage = null;
   @SerializedName("jsonStyleFile")
   private String jsonStyleFile = null;
+  @SerializedName("customLogo")
+  private String customLogo = null;
 
   
   /**
@@ -167,6 +169,17 @@ public class Style  implements Serializable {
   }
 
   
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public String getCustomLogo() {
+    return customLogo;
+  }
+  public void setCustomLogo(String customLogo) {
+    this.customLogo = customLogo;
+  }
+
+  
 
   @Override
   public String toString()  {
@@ -185,6 +198,7 @@ public class Style  implements Serializable {
     sb.append("  experianImage: ").append(experianImage).append("\n");
     sb.append("  lisimImage: ").append(lisimImage).append("\n");
     sb.append("  jsonStyleFile: ").append(jsonStyleFile).append("\n");
+    sb.append("  customLogo: ").append(customLogo).append("\n");
     sb.append("}\n");
     return sb.toString();
   }

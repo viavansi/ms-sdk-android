@@ -39,7 +39,7 @@ public class Signature  implements Serializable {
   @SerializedName("userId")
   private String userId = null;
   public enum TypeFormatSignEnum {
-     PADES_B,  PADES_T,  PADES_LT,  PADES_LTA, 
+     PADES_B,  PADES_T,  PADES_LT,  PADES_LTA,  XADES_B,  XADES_T,  XADES_LT,  XADES_LTA, 
   };
   @SerializedName("typeFormatSign")
   private TypeFormatSignEnum typeFormatSign = null;

@@ -67,6 +67,8 @@ public class Message  implements Serializable {
   private List<Policy> policies = new ArrayList<Policy>() ;
   @SerializedName("callbackURL")
   private String callbackURL = null;
+  @SerializedName("callbackURLType")
+  private String callbackURLType = null;
   @SerializedName("callbackPhones")
   private String callbackPhones = null;
   @SerializedName("callbackMails")
@@ -382,6 +384,17 @@ public class Message  implements Serializable {
   /**
    **/
   @ApiModelProperty(required = false, value = "")
+  public String getCallbackURLType() {
+    return callbackURLType;
+  }
+  public void setCallbackURLType(String callbackURLType) {
+    this.callbackURLType = callbackURLType;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
   public String getCallbackPhones() {
     return callbackPhones;
   }
@@ -663,6 +676,7 @@ public class Message  implements Serializable {
     sb.append("  metadataList: ").append(metadataList).append("\n");
     sb.append("  policies: ").append(policies).append("\n");
     sb.append("  callbackURL: ").append(callbackURL).append("\n");
+    sb.append("  callbackURLType: ").append(callbackURLType).append("\n");
     sb.append("  callbackPhones: ").append(callbackPhones).append("\n");
     sb.append("  callbackMails: ").append(callbackMails).append("\n");
     sb.append("  callbackCheckListMails: ").append(callbackCheckListMails).append("\n");

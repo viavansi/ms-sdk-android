@@ -10,8 +10,6 @@ import java.io.Serializable;
 @ApiModel(description = "")
 public class MenuOption  implements Serializable {
   
-  @SerializedName("className")
-  private String className = null;
   @SerializedName("automatic")
   private Boolean automatic = Boolean.FALSE;
   @SerializedName("name")
@@ -24,17 +22,8 @@ public class MenuOption  implements Serializable {
   private String password = null;
   @SerializedName("email")
   private Mail email = null;
-
-  
-  /**
-   **/
-  @ApiModelProperty(required = false, value = "")
-  public String getClassName() {
-    return className;
-  }
-  public void setClassName(String className) {
-    this.className = className;
-  }
+  @SerializedName("className")
+  private String className = null;
 
   
   /**
@@ -103,19 +92,30 @@ public class MenuOption  implements Serializable {
   }
 
   
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public String getClassName() {
+    return className;
+  }
+  public void setClassName(String className) {
+    this.className = className;
+  }
+
+  
 
   @Override
   public String toString()  {
     StringBuilder sb = new StringBuilder();
     sb.append("class MenuOption {\n");
     
-    sb.append("  className: ").append(className).append("\n");
     sb.append("  automatic: ").append(automatic).append("\n");
     sb.append("  name: ").append(name).append("\n");
     sb.append("  icon: ").append(icon).append("\n");
     sb.append("  username: ").append(username).append("\n");
     sb.append("  password: ").append(password).append("\n");
     sb.append("  email: ").append(email).append("\n");
+    sb.append("  className: ").append(className).append("\n");
     sb.append("}\n");
     return sb.toString();
   }

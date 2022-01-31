@@ -77,8 +77,6 @@ public class Evidence  implements Serializable {
   private String encryptionKeyAlias = null;
   @SerializedName("optional")
   private Boolean optional = Boolean.FALSE;
-  @SerializedName("required")
-  private Boolean required = Boolean.FALSE;
   @SerializedName("ratioH")
   private String ratioH = null;
   @SerializedName("ratioW")
@@ -421,17 +419,6 @@ public class Evidence  implements Serializable {
   /**
    **/
   @ApiModelProperty(required = false, value = "")
-  public Boolean getRequired() {
-    return required;
-  }
-  public void setRequired(Boolean required) {
-    this.required = required;
-  }
-
-  
-  /**
-   **/
-  @ApiModelProperty(required = false, value = "")
   public String getRatioH() {
     return ratioH;
   }
@@ -728,7 +715,6 @@ public class Evidence  implements Serializable {
     sb.append("  metadataCipherPublicKey: ").append(metadataCipherPublicKey).append("\n");
     sb.append("  encryptionKeyAlias: ").append(encryptionKeyAlias).append("\n");
     sb.append("  optional: ").append(optional).append("\n");
-    sb.append("  required: ").append(required).append("\n");
     sb.append("  ratioH: ").append(ratioH).append("\n");
     sb.append("  ratioW: ").append(ratioW).append("\n");
     sb.append("  signatureData: ").append(signatureData).append("\n");

@@ -54,8 +54,10 @@ public class Configuration  implements Serializable {
   private List<FinalizeAction> finalizeActions = new ArrayList<FinalizeAction>() ;
   @SerializedName("groups")
   private List<Group> groups = new ArrayList<Group>() ;
-  @SerializedName("sslpinningEnabled")
-  private Boolean sslpinningEnabled = Boolean.FALSE;
+  @SerializedName("termsUrl")
+  private String termsUrl = null;
+  @SerializedName("SSLPinningEnabled")
+  private Boolean SSLPinningEnabled = Boolean.FALSE;
 
   
   /**
@@ -281,11 +283,22 @@ public class Configuration  implements Serializable {
   /**
    **/
   @ApiModelProperty(required = false, value = "")
-  public Boolean getSslpinningEnabled() {
-    return sslpinningEnabled;
+  public String getTermsUrl() {
+    return termsUrl;
   }
-  public void setSslpinningEnabled(Boolean sslpinningEnabled) {
-    this.sslpinningEnabled = sslpinningEnabled;
+  public void setTermsUrl(String termsUrl) {
+    this.termsUrl = termsUrl;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public Boolean getSSLPinningEnabled() {
+    return SSLPinningEnabled;
+  }
+  public void setSSLPinningEnabled(Boolean SSLPinningEnabled) {
+    this.SSLPinningEnabled = SSLPinningEnabled;
   }
 
   
@@ -315,7 +328,8 @@ public class Configuration  implements Serializable {
     sb.append("  clientSignature: ").append(clientSignature).append("\n");
     sb.append("  finalizeActions: ").append(finalizeActions).append("\n");
     sb.append("  groups: ").append(groups).append("\n");
-    sb.append("  sslpinningEnabled: ").append(sslpinningEnabled).append("\n");
+    sb.append("  termsUrl: ").append(termsUrl).append("\n");
+    sb.append("  SSLPinningEnabled: ").append(SSLPinningEnabled).append("\n");
     sb.append("}\n");
     return sb.toString();
   }

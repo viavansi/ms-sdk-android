@@ -77,8 +77,8 @@ public class SignPageStyle  implements Serializable {
   private Boolean hideImageCapture = Boolean.FALSE;
   @SerializedName("hidePoweredByViafirma")
   private Boolean hidePoweredByViafirma = Boolean.FALSE;
-  @SerializedName("showSignOtpSms")
-  private Boolean showSignOtpSms = Boolean.FALSE;
+  @SerializedName("allowedSignType")
+  private String allowedSignType = null;
 
   
   /**
@@ -458,11 +458,11 @@ public class SignPageStyle  implements Serializable {
   /**
    **/
   @ApiModelProperty(required = false, value = "")
-  public Boolean getShowSignOtpSms() {
-    return showSignOtpSms;
+  public String getAllowedSignType() {
+    return allowedSignType;
   }
-  public void setShowSignOtpSms(Boolean showSignOtpSms) {
-    this.showSignOtpSms = showSignOtpSms;
+  public void setAllowedSignType(String allowedSignType) {
+    this.allowedSignType = allowedSignType;
   }
 
   
@@ -506,7 +506,7 @@ public class SignPageStyle  implements Serializable {
     sb.append("  hideImageUpload: ").append(hideImageUpload).append("\n");
     sb.append("  hideImageCapture: ").append(hideImageCapture).append("\n");
     sb.append("  hidePoweredByViafirma: ").append(hidePoweredByViafirma).append("\n");
-    sb.append("  showSignOtpSms: ").append(showSignOtpSms).append("\n");
+    sb.append("  allowedSignType: ").append(allowedSignType).append("\n");
     sb.append("}\n");
     return sb.toString();
   }
