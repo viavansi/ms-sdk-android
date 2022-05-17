@@ -17,7 +17,7 @@ public class Signature  implements Serializable {
   @SerializedName("type")
   private TypeEnum type = null;
   public enum SubTypeEnum {
-     FORTRESS,  CERTIFICATE,  OTP_SMS,  OTP_MAIL, 
+     FORTRESS,  CERTIFICATE,  ANDES,  OTP_SMS,  OTP_MAIL, 
   };
   @SerializedName("subType")
   private SubTypeEnum subType = null;

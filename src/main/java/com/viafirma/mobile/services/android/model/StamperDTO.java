@@ -13,7 +13,7 @@ import java.io.Serializable;
 public class StamperDTO  implements Serializable {
   
   public enum TypeEnum {
-     PDF417,  QR_BARCODE128,  QR,  BARCODE128,  IMAGE,  TEXT,  QR_NO_TEXT,  QR_SCALED,  CUSTOM_TEXT,  QR_REDUCED,  CSV,  CSV_QR,  IMAGE_TEXT, 
+     PDF417,  QR_BARCODE128,  QR,  BARCODE128,  IMAGE,  TEXT,  QR_NO_TEXT,  QR_SCALED,  CUSTOM_TEXT,  QR_REDUCED,  CSV,  CSV_QR,  IMAGE_TEXT,  DEFAULT, 
   };
   @SerializedName("type")
   private TypeEnum type = null;

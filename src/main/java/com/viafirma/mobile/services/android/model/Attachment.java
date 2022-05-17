@@ -1,6 +1,7 @@
 package com.viafirma.mobile.services.android.model;
 
 import com.viafirma.mobile.services.android.model.Param;
+import com.viafirma.mobile.services.android.model.Transfer;
 import java.util.*;
 
 import com.wordnik.swagger.annotations.*;
@@ -48,6 +49,8 @@ public class Attachment  implements Serializable {
   private Boolean readOnly = Boolean.FALSE;
   @SerializedName("recipientKey")
   private String recipientKey = null;
+  @SerializedName("transfers")
+  private List<Transfer> transfers = new ArrayList<Transfer>() ;
 
   
   /**
@@ -205,6 +208,17 @@ public class Attachment  implements Serializable {
   }
 
   
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public List<Transfer> getTransfers() {
+    return transfers;
+  }
+  public void setTransfers(List<Transfer> transfers) {
+    this.transfers = transfers;
+  }
+
+  
 
   @Override
   public String toString()  {
@@ -225,6 +239,7 @@ public class Attachment  implements Serializable {
     sb.append("  fileName: ").append(fileName).append("\n");
     sb.append("  readOnly: ").append(readOnly).append("\n");
     sb.append("  recipientKey: ").append(recipientKey).append("\n");
+    sb.append("  transfers: ").append(transfers).append("\n");
     sb.append("}\n");
     return sb.toString();
   }

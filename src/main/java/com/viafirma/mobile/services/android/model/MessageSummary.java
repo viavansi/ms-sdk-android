@@ -15,7 +15,7 @@ public class MessageSummary  implements Serializable {
   @SerializedName("code")
   private String code = null;
   public enum StatusEnum {
-     DELETED,  EXPIRED,  ERROR,  REJECTED,  TRANSFERRED,  RESPONSED,  SERVER_SIGN,  SENT,  SIGNED,  WAITING,  COMMITTED,  RECEIVED,  TEMPORAL_STORED,  STAND_BY,  WAITING_CHECK,  APPROVED,  FINISHED,  WAITING_OCR,  WAITING_CLIENT_SIGNATURE,  MAX_ERROR_REACHED,  ATTACHMENT_VERIFICATION,  TRANSFER_CANCELED,  SAVED,  INVALID,  WAITING_EXTERNAL_APPROVAL,  WORKFLOW_PROCESS, 
+     DELETED,  EXPIRED,  ERROR,  REJECTED,  TRANSFERRED,  RESPONSED,  SERVER_SIGN,  SENT,  SIGNED,  WAITING,  COMMITTED,  RECEIVED,  TEMPORAL_STORED,  STAND_BY,  WAITING_CHECK,  APPROVED,  FINISHED,  WAITING_OCR,  WAITING_CLIENT_SIGNATURE,  WAITING_WRAP_SIGNATURE,  MAX_ERROR_REACHED,  ATTACHMENT_VERIFICATION,  TRANSFER_CANCELED,  SAVED,  INVALID,  WAITING_EXTERNAL_APPROVAL,  WORKFLOW_PROCESS, 
   };
   @SerializedName("status")
   private StatusEnum status = null;
@@ -29,6 +29,8 @@ public class MessageSummary  implements Serializable {
   private String languageId = null;
   @SerializedName("externalCode")
   private String externalCode = null;
+  @SerializedName("commentReject")
+  private String commentReject = null;
 
   
   /**
@@ -108,6 +110,17 @@ public class MessageSummary  implements Serializable {
   }
 
   
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public String getCommentReject() {
+    return commentReject;
+  }
+  public void setCommentReject(String commentReject) {
+    this.commentReject = commentReject;
+  }
+
+  
 
   @Override
   public String toString()  {
@@ -121,6 +134,7 @@ public class MessageSummary  implements Serializable {
     sb.append("  transfers: ").append(transfers).append("\n");
     sb.append("  languageId: ").append(languageId).append("\n");
     sb.append("  externalCode: ").append(externalCode).append("\n");
+    sb.append("  commentReject: ").append(commentReject).append("\n");
     sb.append("}\n");
     return sb.toString();
   }

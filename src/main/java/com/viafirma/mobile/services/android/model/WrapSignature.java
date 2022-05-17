@@ -20,9 +20,9 @@ public class WrapSignature  implements Serializable {
 
   
   /**
-   * (since 3.5.0) signature code
+   * (since 3.7.36) signature code
    **/
-  @ApiModelProperty(required = true, value = "(since 3.5.0) signature code")
+  @ApiModelProperty(required = false, value = "(since 3.7.36) signature code")
   public String getSignatureCode() {
     return signatureCode;
   }

@@ -15,6 +15,14 @@ public class SystemInfo  implements Serializable {
   private String memory = null;
   @SerializedName("cpu")
   private String cpu = null;
+  @SerializedName("memoryLimit")
+  private String memoryLimit = null;
+  @SerializedName("cpuLimit")
+  private String cpuLimit = null;
+  @SerializedName("threadsCount")
+  private Long threadsCount = null;
+  @SerializedName("tasksCount")
+  private Long tasksCount = null;
 
   
   /**
@@ -50,6 +58,50 @@ public class SystemInfo  implements Serializable {
   }
 
   
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public String getMemoryLimit() {
+    return memoryLimit;
+  }
+  public void setMemoryLimit(String memoryLimit) {
+    this.memoryLimit = memoryLimit;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public String getCpuLimit() {
+    return cpuLimit;
+  }
+  public void setCpuLimit(String cpuLimit) {
+    this.cpuLimit = cpuLimit;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public Long getThreadsCount() {
+    return threadsCount;
+  }
+  public void setThreadsCount(Long threadsCount) {
+    this.threadsCount = threadsCount;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public Long getTasksCount() {
+    return tasksCount;
+  }
+  public void setTasksCount(Long tasksCount) {
+    this.tasksCount = tasksCount;
+  }
+
+  
 
   @Override
   public String toString()  {
@@ -59,6 +111,10 @@ public class SystemInfo  implements Serializable {
     sb.append("  loadAverage: ").append(loadAverage).append("\n");
     sb.append("  memory: ").append(memory).append("\n");
     sb.append("  cpu: ").append(cpu).append("\n");
+    sb.append("  memoryLimit: ").append(memoryLimit).append("\n");
+    sb.append("  cpuLimit: ").append(cpuLimit).append("\n");
+    sb.append("  threadsCount: ").append(threadsCount).append("\n");
+    sb.append("  tasksCount: ").append(tasksCount).append("\n");
     sb.append("}\n");
     return sb.toString();
   }

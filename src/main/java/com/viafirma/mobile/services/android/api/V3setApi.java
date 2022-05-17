@@ -9,6 +9,7 @@ import java.util.*;
 
 import com.viafirma.mobile.services.android.model.MessageSet;
 import com.viafirma.mobile.services.android.model.MessageSetResponse;
+import com.viafirma.mobile.services.android.model.SetExtendPeriod;
 import com.viafirma.mobile.services.android.model.MessageSetInfo;
 
 import java.io.File;
@@ -64,6 +65,48 @@ public class V3setApi {
       String response = ApiInvoker.getInstance().invokeAPI(path, "POST", queryParams, postBody, headerParams, formParams, contentType);
       if(response != null){
         return (MessageSetResponse) ApiInvoker.deserialize(response, "", MessageSetResponse.class);
+      } else {
+        return null;
+      }
+    
+  }
+  
+    
+  public String extendSignaturePeriod_1 (SetExtendPeriod body) throws ApiException {
+    Object postBody = body;
+    
+
+    // create path and map variables
+    String path = "/v3/set/extendSignaturePeriod".replaceAll("\\{format\\}","json");
+
+    // query params
+    Map<String, String> queryParams = new HashMap<String, String>();
+    Map<String, String> headerParams = new HashMap<String, String>();
+    Map<String, String> formParams = new HashMap<String, String>();
+
+    
+    
+    String[] contentTypes = {
+      "application/json"
+    };
+
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+
+    if(contentType.startsWith("multipart/form-data")) {
+      boolean hasFields = false;
+      MultipartBody.Builder mp = new MultipartBody.Builder();
+      mp.setType(MultipartBody.FORM);
+      
+      if(hasFields)
+        postBody = mp;
+    }
+    else {
+      
+    }
+
+      String response = ApiInvoker.getInstance().invokeAPI(path, "PUT", queryParams, postBody, headerParams, formParams, contentType);
+      if(response != null){
+        return (String) ApiInvoker.deserialize(response, "", String.class);
       } else {
         return null;
       }

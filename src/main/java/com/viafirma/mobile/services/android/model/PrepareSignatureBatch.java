@@ -13,6 +13,10 @@ public class PrepareSignatureBatch  implements Serializable {
   
   @SerializedName("prepareSignatures")
   private List<PrepareSignature> prepareSignatures = new ArrayList<PrepareSignature>() ;
+  @SerializedName("recipientKey")
+  private String recipientKey = null;
+  @SerializedName("publicKey")
+  private String publicKey = null;
 
   
   /**
@@ -27,6 +31,30 @@ public class PrepareSignatureBatch  implements Serializable {
   }
 
   
+  /**
+   * (since 3.7.35) recipientKey
+   **/
+  @ApiModelProperty(required = true, value = "(since 3.7.35) recipientKey")
+  public String getRecipientKey() {
+    return recipientKey;
+  }
+  public void setRecipientKey(String recipientKey) {
+    this.recipientKey = recipientKey;
+  }
+
+  
+  /**
+   * (since 3.7.35) publicKey
+   **/
+  @ApiModelProperty(required = false, value = "(since 3.7.35) publicKey")
+  public String getPublicKey() {
+    return publicKey;
+  }
+  public void setPublicKey(String publicKey) {
+    this.publicKey = publicKey;
+  }
+
+  
 
   @Override
   public String toString()  {
@@ -34,6 +62,8 @@ public class PrepareSignatureBatch  implements Serializable {
     sb.append("class PrepareSignatureBatch {\n");
     
     sb.append("  prepareSignatures: ").append(prepareSignatures).append("\n");
+    sb.append("  recipientKey: ").append(recipientKey).append("\n");
+    sb.append("  publicKey: ").append(publicKey).append("\n");
     sb.append("}\n");
     return sb.toString();
   }

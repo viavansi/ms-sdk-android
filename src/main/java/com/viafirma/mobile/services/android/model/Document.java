@@ -70,6 +70,8 @@ public class Document  implements Serializable {
   private Boolean formUpdated = Boolean.FALSE;
   @SerializedName("hideDocumentBeforeStart")
   private Boolean hideDocumentBeforeStart = Boolean.FALSE;
+  @SerializedName("custodyDays")
+  private Integer custodyDays = null;
 
   
   /**
@@ -372,6 +374,17 @@ public class Document  implements Serializable {
   }
 
   
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public Integer getCustodyDays() {
+    return custodyDays;
+  }
+  public void setCustodyDays(Integer custodyDays) {
+    this.custodyDays = custodyDays;
+  }
+
+  
 
   @Override
   public String toString()  {
@@ -405,6 +418,7 @@ public class Document  implements Serializable {
     sb.append("  extraPages: ").append(extraPages).append("\n");
     sb.append("  formUpdated: ").append(formUpdated).append("\n");
     sb.append("  hideDocumentBeforeStart: ").append(hideDocumentBeforeStart).append("\n");
+    sb.append("  custodyDays: ").append(custodyDays).append("\n");
     sb.append("}\n");
     return sb.toString();
   }

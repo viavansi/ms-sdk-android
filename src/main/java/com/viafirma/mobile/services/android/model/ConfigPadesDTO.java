@@ -17,6 +17,8 @@ public class ConfigPadesDTO  implements Serializable {
   };
   @SerializedName("certificationLevel")
   private CertificationLevelEnum certificationLevel = null;
+  @SerializedName("externalPkcs7Signature")
+  private Boolean externalPkcs7Signature = Boolean.FALSE;
   @SerializedName("password")
   private String password = null;
 
@@ -46,6 +48,17 @@ public class ConfigPadesDTO  implements Serializable {
   /**
    **/
   @ApiModelProperty(required = false, value = "")
+  public Boolean getExternalPkcs7Signature() {
+    return externalPkcs7Signature;
+  }
+  public void setExternalPkcs7Signature(Boolean externalPkcs7Signature) {
+    this.externalPkcs7Signature = externalPkcs7Signature;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
   public String getPassword() {
     return password;
   }
@@ -62,6 +75,7 @@ public class ConfigPadesDTO  implements Serializable {
     
     sb.append("  stamper: ").append(stamper).append("\n");
     sb.append("  certificationLevel: ").append(certificationLevel).append("\n");
+    sb.append("  externalPkcs7Signature: ").append(externalPkcs7Signature).append("\n");
     sb.append("  password: ").append(password).append("\n");
     sb.append("}\n");
     return sb.toString();

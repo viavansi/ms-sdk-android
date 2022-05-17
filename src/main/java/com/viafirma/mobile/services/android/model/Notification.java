@@ -20,6 +20,12 @@ public class Notification  implements Serializable {
   private String messageCode = null;
   @SerializedName("validateCode")
   private String validateCode = null;
+  @SerializedName("validateCodeType")
+  private String validateCodeType = null;
+  @SerializedName("validateOperationId")
+  private String validateOperationId = null;
+  @SerializedName("validateOtpStatus")
+  private String validateOtpStatus = null;
   @SerializedName("validateCodeFinish")
   private String validateCodeFinish = null;
   @SerializedName("text")
@@ -99,6 +105,39 @@ public class Notification  implements Serializable {
   }
   public void setValidateCode(String validateCode) {
     this.validateCode = validateCode;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public String getValidateCodeType() {
+    return validateCodeType;
+  }
+  public void setValidateCodeType(String validateCodeType) {
+    this.validateCodeType = validateCodeType;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public String getValidateOperationId() {
+    return validateOperationId;
+  }
+  public void setValidateOperationId(String validateOperationId) {
+    this.validateOperationId = validateOperationId;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public String getValidateOtpStatus() {
+    return validateOtpStatus;
+  }
+  public void setValidateOtpStatus(String validateOtpStatus) {
+    this.validateOtpStatus = validateOtpStatus;
   }
 
   
@@ -321,6 +360,9 @@ public class Notification  implements Serializable {
     sb.append("  code: ").append(code).append("\n");
     sb.append("  messageCode: ").append(messageCode).append("\n");
     sb.append("  validateCode: ").append(validateCode).append("\n");
+    sb.append("  validateCodeType: ").append(validateCodeType).append("\n");
+    sb.append("  validateOperationId: ").append(validateOperationId).append("\n");
+    sb.append("  validateOtpStatus: ").append(validateOtpStatus).append("\n");
     sb.append("  validateCodeFinish: ").append(validateCodeFinish).append("\n");
     sb.append("  text: ").append(text).append("\n");
     sb.append("  detail: ").append(detail).append("\n");

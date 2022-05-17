@@ -15,6 +15,10 @@ public class DataToSign  implements Serializable {
   private String hash = null;
   @SerializedName("idSign")
   private String idSign = null;
+  @SerializedName("messageCode")
+  private String messageCode = null;
+  @SerializedName("signatureCode")
+  private String signatureCode = null;
 
   
   /**
@@ -52,6 +56,29 @@ public class DataToSign  implements Serializable {
   }
 
   
+  /**
+   * (since 3.7.35) message code
+   **/
+  @ApiModelProperty(required = false, value = "(since 3.7.35) message code")
+  public String getMessageCode() {
+    return messageCode;
+  }
+  public void setMessageCode(String messageCode) {
+    this.messageCode = messageCode;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public String getSignatureCode() {
+    return signatureCode;
+  }
+  public void setSignatureCode(String signatureCode) {
+    this.signatureCode = signatureCode;
+  }
+
+  
 
   @Override
   public String toString()  {
@@ -61,6 +88,8 @@ public class DataToSign  implements Serializable {
     sb.append("  algorithm: ").append(algorithm).append("\n");
     sb.append("  hash: ").append(hash).append("\n");
     sb.append("  idSign: ").append(idSign).append("\n");
+    sb.append("  messageCode: ").append(messageCode).append("\n");
+    sb.append("  signatureCode: ").append(signatureCode).append("\n");
     sb.append("}\n");
     return sb.toString();
   }
