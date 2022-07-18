@@ -1,5 +1,6 @@
 package com.viafirma.mobile.services.android.model;
 
+import com.viafirma.mobile.services.android.model.Signature;
 import com.viafirma.mobile.services.android.model.Param;
 import com.viafirma.mobile.services.android.model.Transfer;
 import java.util.*;
@@ -51,6 +52,8 @@ public class Attachment  implements Serializable {
   private String recipientKey = null;
   @SerializedName("transfers")
   private List<Transfer> transfers = new ArrayList<Transfer>() ;
+  @SerializedName("signature")
+  private Signature signature = null;
 
   
   /**
@@ -219,6 +222,17 @@ public class Attachment  implements Serializable {
   }
 
   
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public Signature getSignature() {
+    return signature;
+  }
+  public void setSignature(Signature signature) {
+    this.signature = signature;
+  }
+
+  
 
   @Override
   public String toString()  {
@@ -240,6 +254,7 @@ public class Attachment  implements Serializable {
     sb.append("  readOnly: ").append(readOnly).append("\n");
     sb.append("  recipientKey: ").append(recipientKey).append("\n");
     sb.append("  transfers: ").append(transfers).append("\n");
+    sb.append("  signature: ").append(signature).append("\n");
     sb.append("}\n");
     return sb.toString();
   }

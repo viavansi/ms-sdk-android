@@ -15,6 +15,10 @@ public class MessageSetInfo  implements Serializable {
   private String code = null;
   @SerializedName("status")
   private String status = null;
+  @SerializedName("callbackRedirectURL")
+  private String callbackRedirectURL = null;
+  @SerializedName("callbackRedirectURLTargetWindow")
+  private String callbackRedirectURLTargetWindow = null;
   @SerializedName("messages")
   private List<MessageSetList> messages = new ArrayList<MessageSetList>() ;
 
@@ -44,6 +48,28 @@ public class MessageSetInfo  implements Serializable {
   /**
    **/
   @ApiModelProperty(required = false, value = "")
+  public String getCallbackRedirectURL() {
+    return callbackRedirectURL;
+  }
+  public void setCallbackRedirectURL(String callbackRedirectURL) {
+    this.callbackRedirectURL = callbackRedirectURL;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public String getCallbackRedirectURLTargetWindow() {
+    return callbackRedirectURLTargetWindow;
+  }
+  public void setCallbackRedirectURLTargetWindow(String callbackRedirectURLTargetWindow) {
+    this.callbackRedirectURLTargetWindow = callbackRedirectURLTargetWindow;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
   public List<MessageSetList> getMessages() {
     return messages;
   }
@@ -60,6 +86,8 @@ public class MessageSetInfo  implements Serializable {
     
     sb.append("  code: ").append(code).append("\n");
     sb.append("  status: ").append(status).append("\n");
+    sb.append("  callbackRedirectURL: ").append(callbackRedirectURL).append("\n");
+    sb.append("  callbackRedirectURLTargetWindow: ").append(callbackRedirectURLTargetWindow).append("\n");
     sb.append("  messages: ").append(messages).append("\n");
     sb.append("}\n");
     return sb.toString();

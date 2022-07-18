@@ -9,26 +9,37 @@ import java.io.Serializable;
 @ApiModel(description = "")
 public class NotificationResend  implements Serializable {
   
-  @SerializedName("messageCode")
-  private String messageCode = null;
+  @SerializedName("setCode")
+  private String setCode = null;
+  @SerializedName("recipientKey")
+  private String recipientKey = null;
   @SerializedName("email")
   private String email = null;
   @SerializedName("phone")
   private String phone = null;
-  @SerializedName("userCode")
-  private String userCode = null;
-  @SerializedName("deviceCode")
-  private String deviceCode = null;
+  @SerializedName("notificationType")
+  private String notificationType = null;
 
   
   /**
    **/
   @ApiModelProperty(required = false, value = "")
-  public String getMessageCode() {
-    return messageCode;
+  public String getSetCode() {
+    return setCode;
   }
-  public void setMessageCode(String messageCode) {
-    this.messageCode = messageCode;
+  public void setSetCode(String setCode) {
+    this.setCode = setCode;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public String getRecipientKey() {
+    return recipientKey;
+  }
+  public void setRecipientKey(String recipientKey) {
+    this.recipientKey = recipientKey;
   }
 
   
@@ -57,22 +68,11 @@ public class NotificationResend  implements Serializable {
   /**
    **/
   @ApiModelProperty(required = false, value = "")
-  public String getUserCode() {
-    return userCode;
+  public String getNotificationType() {
+    return notificationType;
   }
-  public void setUserCode(String userCode) {
-    this.userCode = userCode;
-  }
-
-  
-  /**
-   **/
-  @ApiModelProperty(required = false, value = "")
-  public String getDeviceCode() {
-    return deviceCode;
-  }
-  public void setDeviceCode(String deviceCode) {
-    this.deviceCode = deviceCode;
+  public void setNotificationType(String notificationType) {
+    this.notificationType = notificationType;
   }
 
   
@@ -82,11 +82,11 @@ public class NotificationResend  implements Serializable {
     StringBuilder sb = new StringBuilder();
     sb.append("class NotificationResend {\n");
     
-    sb.append("  messageCode: ").append(messageCode).append("\n");
+    sb.append("  setCode: ").append(setCode).append("\n");
+    sb.append("  recipientKey: ").append(recipientKey).append("\n");
     sb.append("  email: ").append(email).append("\n");
     sb.append("  phone: ").append(phone).append("\n");
-    sb.append("  userCode: ").append(userCode).append("\n");
-    sb.append("  deviceCode: ").append(deviceCode).append("\n");
+    sb.append("  notificationType: ").append(notificationType).append("\n");
     sb.append("}\n");
     return sb.toString();
   }

@@ -64,6 +64,8 @@ public class Signature  implements Serializable {
   private String reason = null;
   @SerializedName("location")
   private String location = null;
+  @SerializedName("ip")
+  private String ip = null;
 
   
   /**
@@ -275,6 +277,17 @@ public class Signature  implements Serializable {
   }
 
   
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public String getIp() {
+    return ip;
+  }
+  public void setIp(String ip) {
+    this.ip = ip;
+  }
+
+  
 
   @Override
   public String toString()  {
@@ -300,6 +313,7 @@ public class Signature  implements Serializable {
     sb.append("  certificationLevel: ").append(certificationLevel).append("\n");
     sb.append("  reason: ").append(reason).append("\n");
     sb.append("  location: ").append(location).append("\n");
+    sb.append("  ip: ").append(ip).append("\n");
     sb.append("}\n");
     return sb.toString();
   }

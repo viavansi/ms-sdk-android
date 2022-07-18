@@ -18,6 +18,10 @@ public class MessageSetResponse  implements Serializable {
   private String status = null;
   @SerializedName("links")
   private List<RecipientLink> links = new ArrayList<RecipientLink>() ;
+  @SerializedName("externalCode")
+  private String externalCode = null;
+  @SerializedName("externalStatus")
+  private String externalStatus = null;
   @SerializedName("messages")
   private List<MessageSummary> messages = new ArrayList<MessageSummary>() ;
 
@@ -58,6 +62,28 @@ public class MessageSetResponse  implements Serializable {
   /**
    **/
   @ApiModelProperty(required = false, value = "")
+  public String getExternalCode() {
+    return externalCode;
+  }
+  public void setExternalCode(String externalCode) {
+    this.externalCode = externalCode;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public String getExternalStatus() {
+    return externalStatus;
+  }
+  public void setExternalStatus(String externalStatus) {
+    this.externalStatus = externalStatus;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
   public List<MessageSummary> getMessages() {
     return messages;
   }
@@ -75,6 +101,8 @@ public class MessageSetResponse  implements Serializable {
     sb.append("  code: ").append(code).append("\n");
     sb.append("  status: ").append(status).append("\n");
     sb.append("  links: ").append(links).append("\n");
+    sb.append("  externalCode: ").append(externalCode).append("\n");
+    sb.append("  externalStatus: ").append(externalStatus).append("\n");
     sb.append("  messages: ").append(messages).append("\n");
     sb.append("}\n");
     return sb.toString();

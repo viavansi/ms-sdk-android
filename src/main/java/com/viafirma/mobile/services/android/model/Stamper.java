@@ -12,7 +12,7 @@ import java.io.Serializable;
 public class Stamper  implements Serializable {
   
   public enum TypeEnum {
-     PDF417,  QR_BARCODE128,  QR,  BARCODE128,  IMAGE,  TEXT,  QR_NO_TEXT,  QR_SCALED,  CUSTOM_TEXT,  QR_REDUCED,  CSV, 
+     PDF417,  QR_BARCODE128,  QR,  BARCODE128,  IMAGE,  TEXT,  QR_NO_TEXT,  QR_SCALED,  CUSTOM_TEXT,  QR_REDUCED,  CSV,  DEFAULT, 
   };
   @SerializedName("type")
   private TypeEnum type = null;
@@ -37,6 +37,12 @@ public class Stamper  implements Serializable {
   private String positionsKey = null;
   @SerializedName("timeZoneId")
   private String timeZoneId = null;
+  @SerializedName("textLine1")
+  private String textLine1 = null;
+  @SerializedName("textLine2")
+  private String textLine2 = null;
+  @SerializedName("textLine3")
+  private String textLine3 = null;
   @SerializedName("positionsMatch")
   private List<PositionsMatch> positionsMatch = new ArrayList<PositionsMatch>() ;
 
@@ -154,6 +160,39 @@ public class Stamper  implements Serializable {
   /**
    **/
   @ApiModelProperty(required = false, value = "")
+  public String getTextLine1() {
+    return textLine1;
+  }
+  public void setTextLine1(String textLine1) {
+    this.textLine1 = textLine1;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public String getTextLine2() {
+    return textLine2;
+  }
+  public void setTextLine2(String textLine2) {
+    this.textLine2 = textLine2;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public String getTextLine3() {
+    return textLine3;
+  }
+  public void setTextLine3(String textLine3) {
+    this.textLine3 = textLine3;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
   public List<PositionsMatch> getPositionsMatch() {
     return positionsMatch;
   }
@@ -178,6 +217,9 @@ public class Stamper  implements Serializable {
     sb.append("  imageBase64: ").append(imageBase64).append("\n");
     sb.append("  positionsKey: ").append(positionsKey).append("\n");
     sb.append("  timeZoneId: ").append(timeZoneId).append("\n");
+    sb.append("  textLine1: ").append(textLine1).append("\n");
+    sb.append("  textLine2: ").append(textLine2).append("\n");
+    sb.append("  textLine3: ").append(textLine3).append("\n");
     sb.append("  positionsMatch: ").append(positionsMatch).append("\n");
     sb.append("}\n");
     return sb.toString();

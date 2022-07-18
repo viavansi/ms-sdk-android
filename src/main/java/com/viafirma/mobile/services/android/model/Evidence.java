@@ -99,6 +99,8 @@ public class Evidence  implements Serializable {
   private List<String> stylus = new ArrayList<String>() ;
   @SerializedName("geolocation")
   private Geolocation geolocation = null;
+  @SerializedName("ip")
+  private String ip = null;
   @SerializedName("imageQuality")
   private Integer imageQuality = null;
   @SerializedName("imageScaleFactor")
@@ -539,6 +541,18 @@ public class Evidence  implements Serializable {
 
   
   /**
+   * (since 3.7.42, internal) ip info
+   **/
+  @ApiModelProperty(required = false, value = "(since 3.7.42, internal) ip info")
+  public String getIp() {
+    return ip;
+  }
+  public void setIp(String ip) {
+    this.ip = ip;
+  }
+
+  
+  /**
    * (since 3.5.0) calidad de la imagen donde 100 representa el máximo de calidad y 0 el máximo nivel de compresión
    **/
   @ApiModelProperty(required = false, value = "(since 3.5.0) calidad de la imagen donde 100 representa el máximo de calidad y 0 el máximo nivel de compresión")
@@ -726,6 +740,7 @@ public class Evidence  implements Serializable {
     sb.append("  stampsPolicy: ").append(stampsPolicy).append("\n");
     sb.append("  stylus: ").append(stylus).append("\n");
     sb.append("  geolocation: ").append(geolocation).append("\n");
+    sb.append("  ip: ").append(ip).append("\n");
     sb.append("  imageQuality: ").append(imageQuality).append("\n");
     sb.append("  imageScaleFactor: ").append(imageScaleFactor).append("\n");
     sb.append("  ocr: ").append(ocr).append("\n");

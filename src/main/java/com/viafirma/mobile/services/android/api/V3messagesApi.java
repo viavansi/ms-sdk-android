@@ -16,6 +16,7 @@ import com.viafirma.mobile.services.android.model.Download;
 import com.viafirma.mobile.services.android.model.ExtendPeriod;
 import com.viafirma.mobile.services.android.model.MessageList;
 import com.viafirma.mobile.services.android.model.MessagePaginatedList;
+import com.viafirma.mobile.services.android.model.OtpInfo;
 import com.viafirma.mobile.services.android.model.CallbackUrl;
 import com.viafirma.mobile.services.android.model.CallbackMail;
 import com.viafirma.mobile.services.android.model.NotificationResend;
@@ -798,13 +799,59 @@ public class V3messagesApi {
   }
   
     
-  public Message prepareOtpMail (String messageCode) throws ApiException {
+  public String callbackForm (String message) throws ApiException {
     Object postBody = null;
     
 
     // create path and map variables
-    String path = "/v3/messages/otp/mail/prepare/{messageCode}".replaceAll("\\{format\\}","json")
-      .replaceAll("\\{" + "messageCode" + "\\}", ApiInvoker.getInstance().escapeString(messageCode.toString()));
+    String path = "/v3/messages/mock/callbackForm".replaceAll("\\{format\\}","json");
+
+    // query params
+    Map<String, String> queryParams = new HashMap<String, String>();
+    Map<String, String> headerParams = new HashMap<String, String>();
+    Map<String, String> formParams = new HashMap<String, String>();
+
+    
+    
+    String[] contentTypes = {
+      "application/x-www-form-urlencoded"
+    };
+
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+
+    if(contentType.startsWith("multipart/form-data")) {
+      boolean hasFields = false;
+      MultipartBody.Builder mp = new MultipartBody.Builder();
+      mp.setType(MultipartBody.FORM);
+      
+      hasFields = true;
+      mp.addFormDataPart("message", message);
+      
+      
+      if(hasFields)
+        postBody = mp;
+    }
+    else {
+      formParams.put("message", message);
+      
+    }
+
+      String response = ApiInvoker.getInstance().invokeAPI(path, "POST", queryParams, postBody, headerParams, formParams, contentType);
+      if(response != null){
+        return (String) ApiInvoker.deserialize(response, "", String.class);
+      } else {
+        return null;
+      }
+    
+  }
+  
+    
+  public String callbackJSON (Message body) throws ApiException {
+    Object postBody = body;
+    
+
+    // create path and map variables
+    String path = "/v3/messages/mock/callbackJSON".replaceAll("\\{format\\}","json");
 
     // query params
     Map<String, String> queryParams = new HashMap<String, String>();
@@ -831,9 +878,9 @@ public class V3messagesApi {
       
     }
 
-      String response = ApiInvoker.getInstance().invokeAPI(path, "GET", queryParams, postBody, headerParams, formParams, contentType);
+      String response = ApiInvoker.getInstance().invokeAPI(path, "POST", queryParams, postBody, headerParams, formParams, contentType);
       if(response != null){
-        return (Message) ApiInvoker.deserialize(response, "", Message.class);
+        return (String) ApiInvoker.deserialize(response, "", String.class);
       } else {
         return null;
       }
@@ -841,7 +888,54 @@ public class V3messagesApi {
   }
   
     
-  public Message validateOtpMail (String messageCode, String token) throws ApiException {
+  public OtpInfo prepareOtpMail (String messageCode, String setCode, String recipientKey) throws ApiException {
+    Object postBody = null;
+    
+
+    // create path and map variables
+    String path = "/v3/messages/otp/mail/prepare/{messageCode}".replaceAll("\\{format\\}","json")
+      .replaceAll("\\{" + "messageCode" + "\\}", ApiInvoker.getInstance().escapeString(messageCode.toString()));
+
+    // query params
+    Map<String, String> queryParams = new HashMap<String, String>();
+    Map<String, String> headerParams = new HashMap<String, String>();
+    Map<String, String> formParams = new HashMap<String, String>();
+
+    if(!"null".equals(String.valueOf(setCode)))
+      queryParams.put("setCode", String.valueOf(setCode));
+    if(!"null".equals(String.valueOf(recipientKey)))
+      queryParams.put("recipientKey", String.valueOf(recipientKey));
+    
+    
+    String[] contentTypes = {
+      "application/json"
+    };
+
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+
+    if(contentType.startsWith("multipart/form-data")) {
+      boolean hasFields = false;
+      MultipartBody.Builder mp = new MultipartBody.Builder();
+      mp.setType(MultipartBody.FORM);
+      
+      if(hasFields)
+        postBody = mp;
+    }
+    else {
+      
+    }
+
+      String response = ApiInvoker.getInstance().invokeAPI(path, "GET", queryParams, postBody, headerParams, formParams, contentType);
+      if(response != null){
+        return (OtpInfo) ApiInvoker.deserialize(response, "", OtpInfo.class);
+      } else {
+        return null;
+      }
+    
+  }
+  
+    
+  public Message validateOtpMail (String messageCode, String token, String setCode, String recipientKey) throws ApiException {
     Object postBody = null;
     
 
@@ -874,12 +968,22 @@ public class V3messagesApi {
       mp.addFormDataPart("token", token);
       
       
+      hasFields = true;
+      mp.addFormDataPart("setCode", setCode);
+      
+      
+      hasFields = true;
+      mp.addFormDataPart("recipientKey", recipientKey);
+      
+      
       if(hasFields)
         postBody = mp;
     }
     else {
       formParams.put("messageCode", messageCode);
       formParams.put("token", token);
+      formParams.put("setCode", setCode);
+      formParams.put("recipientKey", recipientKey);
       
     }
 
@@ -893,7 +997,7 @@ public class V3messagesApi {
   }
   
     
-  public Message prepareOtpSms (String messageCode) throws ApiException {
+  public OtpInfo prepareOtpSms (String messageCode, String setCode, String recipientKey) throws ApiException {
     Object postBody = null;
     
 
@@ -906,6 +1010,10 @@ public class V3messagesApi {
     Map<String, String> headerParams = new HashMap<String, String>();
     Map<String, String> formParams = new HashMap<String, String>();
 
+    if(!"null".equals(String.valueOf(setCode)))
+      queryParams.put("setCode", String.valueOf(setCode));
+    if(!"null".equals(String.valueOf(recipientKey)))
+      queryParams.put("recipientKey", String.valueOf(recipientKey));
     
     
     String[] contentTypes = {
@@ -928,7 +1036,7 @@ public class V3messagesApi {
 
       String response = ApiInvoker.getInstance().invokeAPI(path, "GET", queryParams, postBody, headerParams, formParams, contentType);
       if(response != null){
-        return (Message) ApiInvoker.deserialize(response, "", Message.class);
+        return (OtpInfo) ApiInvoker.deserialize(response, "", OtpInfo.class);
       } else {
         return null;
       }
@@ -936,7 +1044,7 @@ public class V3messagesApi {
   }
   
     
-  public Message validateOtpSms (String messageCode, String token) throws ApiException {
+  public Message validateOtpSms (String messageCode, String token, String setCode, String recipientKey) throws ApiException {
     Object postBody = null;
     
 
@@ -969,12 +1077,22 @@ public class V3messagesApi {
       mp.addFormDataPart("token", token);
       
       
+      hasFields = true;
+      mp.addFormDataPart("setCode", setCode);
+      
+      
+      hasFields = true;
+      mp.addFormDataPart("recipientKey", recipientKey);
+      
+      
       if(hasFields)
         postBody = mp;
     }
     else {
       formParams.put("messageCode", messageCode);
       formParams.put("token", token);
+      formParams.put("setCode", setCode);
+      formParams.put("recipientKey", recipientKey);
       
     }
 

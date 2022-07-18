@@ -40,7 +40,7 @@ public class V3signaturesApi {
   
   
     
-  public String signWithAndesCertificate (String messageCode, String signatureCode, String nationalId, String pin) throws ApiException {
+  public String signWithAndesCertificate (String messageCode, String signatureCode, String nationalId, String pin, String docType, String ip) throws ApiException {
     Object postBody = null;
     
 
@@ -75,12 +75,22 @@ public class V3signaturesApi {
       mp.addFormDataPart("pin", pin);
       
       
+      hasFields = true;
+      mp.addFormDataPart("docType", docType);
+      
+      
+      hasFields = true;
+      mp.addFormDataPart("ip", ip);
+      
+      
       if(hasFields)
         postBody = mp;
     }
     else {
       formParams.put("nationalId", nationalId);
       formParams.put("pin", pin);
+      formParams.put("docType", docType);
+      formParams.put("ip", ip);
       
     }
 

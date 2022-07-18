@@ -41,6 +41,12 @@ public class Setting  implements Serializable {
   private String validateCode = null;
   @SerializedName("validateCodeFinish")
   private String validateCodeFinish = null;
+  @SerializedName("validateCodeType")
+  private String validateCodeType = null;
+  @SerializedName("validateOtpText")
+  private String validateOtpText = null;
+  @SerializedName("validateOtpSubject")
+  private String validateOtpSubject = null;
   @SerializedName("workflow")
   private String workflow = null;
   @SerializedName("font")
@@ -215,6 +221,39 @@ public class Setting  implements Serializable {
   /**
    **/
   @ApiModelProperty(required = false, value = "")
+  public String getValidateCodeType() {
+    return validateCodeType;
+  }
+  public void setValidateCodeType(String validateCodeType) {
+    this.validateCodeType = validateCodeType;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public String getValidateOtpText() {
+    return validateOtpText;
+  }
+  public void setValidateOtpText(String validateOtpText) {
+    this.validateOtpText = validateOtpText;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public String getValidateOtpSubject() {
+    return validateOtpSubject;
+  }
+  public void setValidateOtpSubject(String validateOtpSubject) {
+    this.validateOtpSubject = validateOtpSubject;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
   public String getWorkflow() {
     return workflow;
   }
@@ -374,6 +413,9 @@ public class Setting  implements Serializable {
     sb.append("  callbackMailsFormKeys: ").append(callbackMailsFormKeys).append("\n");
     sb.append("  validateCode: ").append(validateCode).append("\n");
     sb.append("  validateCodeFinish: ").append(validateCodeFinish).append("\n");
+    sb.append("  validateCodeType: ").append(validateCodeType).append("\n");
+    sb.append("  validateOtpText: ").append(validateOtpText).append("\n");
+    sb.append("  validateOtpSubject: ").append(validateOtpSubject).append("\n");
     sb.append("  workflow: ").append(workflow).append("\n");
     sb.append("  font: ").append(font).append("\n");
     sb.append("  acrofieldsPositions: ").append(acrofieldsPositions).append("\n");

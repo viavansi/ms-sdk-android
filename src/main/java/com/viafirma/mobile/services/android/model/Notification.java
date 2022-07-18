@@ -26,6 +26,10 @@ public class Notification  implements Serializable {
   private String validateOperationId = null;
   @SerializedName("validateOtpStatus")
   private String validateOtpStatus = null;
+  @SerializedName("validateOtpText")
+  private String validateOtpText = null;
+  @SerializedName("validateOtpSubject")
+  private String validateOtpSubject = null;
   @SerializedName("validateCodeFinish")
   private String validateCodeFinish = null;
   @SerializedName("text")
@@ -138,6 +142,28 @@ public class Notification  implements Serializable {
   }
   public void setValidateOtpStatus(String validateOtpStatus) {
     this.validateOtpStatus = validateOtpStatus;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public String getValidateOtpText() {
+    return validateOtpText;
+  }
+  public void setValidateOtpText(String validateOtpText) {
+    this.validateOtpText = validateOtpText;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public String getValidateOtpSubject() {
+    return validateOtpSubject;
+  }
+  public void setValidateOtpSubject(String validateOtpSubject) {
+    this.validateOtpSubject = validateOtpSubject;
   }
 
   
@@ -363,6 +389,8 @@ public class Notification  implements Serializable {
     sb.append("  validateCodeType: ").append(validateCodeType).append("\n");
     sb.append("  validateOperationId: ").append(validateOperationId).append("\n");
     sb.append("  validateOtpStatus: ").append(validateOtpStatus).append("\n");
+    sb.append("  validateOtpText: ").append(validateOtpText).append("\n");
+    sb.append("  validateOtpSubject: ").append(validateOtpSubject).append("\n");
     sb.append("  validateCodeFinish: ").append(validateCodeFinish).append("\n");
     sb.append("  text: ").append(text).append("\n");
     sb.append("  detail: ").append(detail).append("\n");

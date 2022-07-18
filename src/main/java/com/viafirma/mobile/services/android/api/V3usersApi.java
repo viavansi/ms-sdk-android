@@ -8,7 +8,9 @@ import com.viafirma.mobile.services.android.model.*;
 import java.util.*;
 
 import com.viafirma.mobile.services.android.model.User;
+import com.viafirma.mobile.services.android.model.UserSimple;
 import com.viafirma.mobile.services.android.model.AutoRegister;
+import com.viafirma.mobile.services.android.model.UserInfo;
 import com.viafirma.mobile.services.android.model.ResetPassword;
 
 import java.io.File;
@@ -113,7 +115,7 @@ public class V3usersApi {
   }
   
     
-  public List<User> getAllUsers (String index, String page_size) throws ApiException {
+  public List<UserSimple> getAllUsers (String index, String page_size) throws ApiException {
     Object postBody = null;
     
 
@@ -149,7 +151,7 @@ public class V3usersApi {
 
       String response = ApiInvoker.getInstance().invokeAPI(path, "GET", queryParams, postBody, headerParams, formParams, contentType);
       if(response != null){
-        return (List<User>) ApiInvoker.deserialize(response, "array", User.class);
+        return (List<UserSimple>) ApiInvoker.deserialize(response, "array", UserSimple.class);
       } else {
         return null;
       }
@@ -235,6 +237,49 @@ public class V3usersApi {
       String response = ApiInvoker.getInstance().invokeAPI(path, "GET", queryParams, postBody, headerParams, formParams, contentType);
       if(response != null){
         return (User) ApiInvoker.deserialize(response, "", User.class);
+      } else {
+        return null;
+      }
+    
+  }
+  
+    
+  public List<UserInfo> getUsersByGroup (String groupCode) throws ApiException {
+    Object postBody = null;
+    
+
+    // create path and map variables
+    String path = "/v3/users/group/{groupCode}".replaceAll("\\{format\\}","json")
+      .replaceAll("\\{" + "groupCode" + "\\}", ApiInvoker.getInstance().escapeString(groupCode.toString()));
+
+    // query params
+    Map<String, String> queryParams = new HashMap<String, String>();
+    Map<String, String> headerParams = new HashMap<String, String>();
+    Map<String, String> formParams = new HashMap<String, String>();
+
+    
+    
+    String[] contentTypes = {
+      
+    };
+
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+
+    if(contentType.startsWith("multipart/form-data")) {
+      boolean hasFields = false;
+      MultipartBody.Builder mp = new MultipartBody.Builder();
+      mp.setType(MultipartBody.FORM);
+      
+      if(hasFields)
+        postBody = mp;
+    }
+    else {
+      
+    }
+
+      String response = ApiInvoker.getInstance().invokeAPI(path, "GET", queryParams, postBody, headerParams, formParams, contentType);
+      if(response != null){
+        return (List<UserInfo>) ApiInvoker.deserialize(response, "array", UserInfo.class);
       } else {
         return null;
       }
