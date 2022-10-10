@@ -13,6 +13,8 @@ public class Download  implements Serializable {
   private String link = null;
   @SerializedName("md5")
   private String md5 = null;
+  @SerializedName("hash")
+  private String hash = null;
   @SerializedName("fileName")
   private String fileName = null;
   @SerializedName("expires")
@@ -44,6 +46,17 @@ public class Download  implements Serializable {
   }
   public void setMd5(String md5) {
     this.md5 = md5;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public String getHash() {
+    return hash;
+  }
+  public void setHash(String hash) {
+    this.hash = hash;
   }
 
   
@@ -111,6 +124,7 @@ public class Download  implements Serializable {
     
     sb.append("  link: ").append(link).append("\n");
     sb.append("  md5: ").append(md5).append("\n");
+    sb.append("  hash: ").append(hash).append("\n");
     sb.append("  fileName: ").append(fileName).append("\n");
     sb.append("  expires: ").append(expires).append("\n");
     sb.append("  base64: ").append(base64).append("\n");

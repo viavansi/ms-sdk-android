@@ -15,6 +15,8 @@ public class VerifierSignatureDTO  implements Serializable {
   
   @SerializedName("format")
   private String format = null;
+  @SerializedName("requestedFormat")
+  private String requestedFormat = null;
   @SerializedName("encryptionAlgorithm")
   private String encryptionAlgorithm = null;
   @SerializedName("digestAlgorithm")
@@ -23,6 +25,8 @@ public class VerifierSignatureDTO  implements Serializable {
   private String level = null;
   @SerializedName("signingTime")
   private Date signingTime = null;
+  @SerializedName("validationDisabled")
+  private Boolean validationDisabled = Boolean.FALSE;
   public enum ValidationStatusEnum {
      VALID,  UNKNOWN,  INVALID, 
   };
@@ -56,6 +60,17 @@ public class VerifierSignatureDTO  implements Serializable {
   }
   public void setFormat(String format) {
     this.format = format;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public String getRequestedFormat() {
+    return requestedFormat;
+  }
+  public void setRequestedFormat(String requestedFormat) {
+    this.requestedFormat = requestedFormat;
   }
 
   
@@ -100,6 +115,17 @@ public class VerifierSignatureDTO  implements Serializable {
   }
   public void setSigningTime(Date signingTime) {
     this.signingTime = signingTime;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public Boolean getValidationDisabled() {
+    return validationDisabled;
+  }
+  public void setValidationDisabled(Boolean validationDisabled) {
+    this.validationDisabled = validationDisabled;
   }
 
   
@@ -220,10 +246,12 @@ public class VerifierSignatureDTO  implements Serializable {
     sb.append("class VerifierSignatureDTO {\n");
     
     sb.append("  format: ").append(format).append("\n");
+    sb.append("  requestedFormat: ").append(requestedFormat).append("\n");
     sb.append("  encryptionAlgorithm: ").append(encryptionAlgorithm).append("\n");
     sb.append("  digestAlgorithm: ").append(digestAlgorithm).append("\n");
     sb.append("  level: ").append(level).append("\n");
     sb.append("  signingTime: ").append(signingTime).append("\n");
+    sb.append("  validationDisabled: ").append(validationDisabled).append("\n");
     sb.append("  validationStatus: ").append(validationStatus).append("\n");
     sb.append("  indication: ").append(indication).append("\n");
     sb.append("  subIndication: ").append(subIndication).append("\n");

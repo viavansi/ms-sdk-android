@@ -32,6 +32,10 @@ public class VerifierDocumentDTO  implements Serializable {
   private List<VerifierEvidenceDTO> evidences = new ArrayList<VerifierEvidenceDTO>() ;
   @SerializedName("pagesHashes")
   private List<String> pagesHashes = new ArrayList<String>() ;
+  @SerializedName("hashPdfContent")
+  private String hashPdfContent = null;
+  @SerializedName("hash")
+  private String hash = null;
 
   
   /**
@@ -133,6 +137,28 @@ public class VerifierDocumentDTO  implements Serializable {
   }
 
   
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public String getHashPdfContent() {
+    return hashPdfContent;
+  }
+  public void setHashPdfContent(String hashPdfContent) {
+    this.hashPdfContent = hashPdfContent;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public String getHash() {
+    return hash;
+  }
+  public void setHash(String hash) {
+    this.hash = hash;
+  }
+
+  
 
   @Override
   public String toString()  {
@@ -148,6 +174,8 @@ public class VerifierDocumentDTO  implements Serializable {
     sb.append("  signatures: ").append(signatures).append("\n");
     sb.append("  evidences: ").append(evidences).append("\n");
     sb.append("  pagesHashes: ").append(pagesHashes).append("\n");
+    sb.append("  hashPdfContent: ").append(hashPdfContent).append("\n");
+    sb.append("  hash: ").append(hash).append("\n");
     sb.append("}\n");
     return sb.toString();
   }

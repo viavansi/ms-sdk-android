@@ -10,6 +10,7 @@ import java.util.*;
 import com.viafirma.mobile.services.android.model.Group;
 import com.viafirma.mobile.services.android.model.AppCustomization;
 import com.viafirma.mobile.services.android.model.User;
+import com.viafirma.mobile.services.android.model.Customization;
 import com.viafirma.mobile.services.android.model.SignPageStyle;
 import com.viafirma.mobile.services.android.model.GroupInfo;
 
@@ -194,6 +195,134 @@ public class V3groupsApi {
       String response = ApiInvoker.getInstance().invokeAPI(path, "POST", queryParams, postBody, headerParams, formParams, contentType);
       if(response != null){
         return (User) ApiInvoker.deserialize(response, "", User.class);
+      } else {
+        return null;
+      }
+    
+  }
+  
+    
+  public void getGroupCustomizationNotification (String groupCode) throws ApiException {
+    Object postBody = null;
+    
+
+    // create path and map variables
+    String path = "/v3/groups/notifications/{groupCode}".replaceAll("\\{format\\}","json")
+      .replaceAll("\\{" + "groupCode" + "\\}", ApiInvoker.getInstance().escapeString(groupCode.toString()));
+
+    // query params
+    Map<String, String> queryParams = new HashMap<String, String>();
+    Map<String, String> headerParams = new HashMap<String, String>();
+    Map<String, String> formParams = new HashMap<String, String>();
+
+    
+    
+    String[] contentTypes = {
+      "application/json"
+    };
+
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+
+    if(contentType.startsWith("multipart/form-data")) {
+      boolean hasFields = false;
+      MultipartBody.Builder mp = new MultipartBody.Builder();
+      mp.setType(MultipartBody.FORM);
+      
+      if(hasFields)
+        postBody = mp;
+    }
+    else {
+      
+    }
+
+      String response = ApiInvoker.getInstance().invokeAPI(path, "GET", queryParams, postBody, headerParams, formParams, contentType);
+      if(response != null){
+        return ;
+      } else {
+        return ;
+      }
+    
+  }
+  
+    
+  public void updateGroupCustomizationNotification (String groupCode, Customization body) throws ApiException {
+    Object postBody = body;
+    
+
+    // create path and map variables
+    String path = "/v3/groups/notifications/{groupCode}".replaceAll("\\{format\\}","json")
+      .replaceAll("\\{" + "groupCode" + "\\}", ApiInvoker.getInstance().escapeString(groupCode.toString()));
+
+    // query params
+    Map<String, String> queryParams = new HashMap<String, String>();
+    Map<String, String> headerParams = new HashMap<String, String>();
+    Map<String, String> formParams = new HashMap<String, String>();
+
+    
+    
+    String[] contentTypes = {
+      "application/json"
+    };
+
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+
+    if(contentType.startsWith("multipart/form-data")) {
+      boolean hasFields = false;
+      MultipartBody.Builder mp = new MultipartBody.Builder();
+      mp.setType(MultipartBody.FORM);
+      
+      if(hasFields)
+        postBody = mp;
+    }
+    else {
+      
+    }
+
+      String response = ApiInvoker.getInstance().invokeAPI(path, "PUT", queryParams, postBody, headerParams, formParams, contentType);
+      if(response != null){
+        return ;
+      } else {
+        return ;
+      }
+    
+  }
+  
+    
+  public SignPageStyle getSignPageStyleDefault () throws ApiException {
+    Object postBody = null;
+    
+
+    // create path and map variables
+    String path = "/v3/groups/style".replaceAll("\\{format\\}","json");
+
+    // query params
+    Map<String, String> queryParams = new HashMap<String, String>();
+    Map<String, String> headerParams = new HashMap<String, String>();
+    Map<String, String> formParams = new HashMap<String, String>();
+
+    
+    
+    String[] contentTypes = {
+      "application/json"
+    };
+
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+
+    if(contentType.startsWith("multipart/form-data")) {
+      boolean hasFields = false;
+      MultipartBody.Builder mp = new MultipartBody.Builder();
+      mp.setType(MultipartBody.FORM);
+      
+      if(hasFields)
+        postBody = mp;
+    }
+    else {
+      
+    }
+
+      String response = ApiInvoker.getInstance().invokeAPI(path, "GET", queryParams, postBody, headerParams, formParams, contentType);
+      if(response != null){
+        return (SignPageStyle) ApiInvoker.deserialize(response, "", SignPageStyle.class);
       } else {
         return null;
       }

@@ -77,6 +77,11 @@ public class Evidence  implements Serializable {
   private String encryptionKeyAlias = null;
   @SerializedName("optional")
   private Boolean optional = Boolean.FALSE;
+  public enum RotationEnum {
+     ROTATE_90,  ROTATE_270, 
+  };
+  @SerializedName("rotation")
+  private RotationEnum rotation = null;
   @SerializedName("ratioH")
   private String ratioH = null;
   @SerializedName("ratioW")
@@ -421,6 +426,17 @@ public class Evidence  implements Serializable {
   /**
    **/
   @ApiModelProperty(required = false, value = "")
+  public RotationEnum getRotation() {
+    return rotation;
+  }
+  public void setRotation(RotationEnum rotation) {
+    this.rotation = rotation;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
   public String getRatioH() {
     return ratioH;
   }
@@ -729,6 +745,7 @@ public class Evidence  implements Serializable {
     sb.append("  metadataCipherPublicKey: ").append(metadataCipherPublicKey).append("\n");
     sb.append("  encryptionKeyAlias: ").append(encryptionKeyAlias).append("\n");
     sb.append("  optional: ").append(optional).append("\n");
+    sb.append("  rotation: ").append(rotation).append("\n");
     sb.append("  ratioH: ").append(ratioH).append("\n");
     sb.append("  ratioW: ").append(ratioW).append("\n");
     sb.append("  signatureData: ").append(signatureData).append("\n");

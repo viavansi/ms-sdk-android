@@ -38,7 +38,7 @@ public class V3evidencesApi {
   
   
     
-  public Attachment attach (String messageCode, String attachmentCode, File attachmentFile, String attachmentFilename) throws ApiException {
+  public Attachment attach (String messageCode, String attachmentCode, File attachmentFile, String attachmentFilename, String helpText, String attachmentType) throws ApiException {
     Object postBody = null;
     
 
@@ -79,6 +79,14 @@ public class V3evidencesApi {
       mp.addFormDataPart("attachmentFilename", attachmentFilename);
       
       
+      hasFields = true;
+      mp.addFormDataPart("helpText", helpText);
+      
+      
+      hasFields = true;
+      mp.addFormDataPart("attachmentType", attachmentType);
+      
+      
       if(hasFields)
         postBody = mp;
     }
@@ -87,6 +95,8 @@ public class V3evidencesApi {
       formParams.put("attachmentCode", attachmentCode);
       
       formParams.put("attachmentFilename", attachmentFilename);
+      formParams.put("helpText", helpText);
+      formParams.put("attachmentType", attachmentType);
       
     }
 

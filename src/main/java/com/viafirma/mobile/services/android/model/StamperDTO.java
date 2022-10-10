@@ -50,6 +50,8 @@ public class StamperDTO  implements Serializable {
   private Boolean transparent = Boolean.FALSE;
   @SerializedName("timeZone")
   private TimeZone timeZone = null;
+  @SerializedName("addCsvLink")
+  private Boolean addCsvLink = Boolean.FALSE;
 
   
   /**
@@ -228,6 +230,17 @@ public class StamperDTO  implements Serializable {
   }
 
   
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public Boolean getAddCsvLink() {
+    return addCsvLink;
+  }
+  public void setAddCsvLink(Boolean addCsvLink) {
+    this.addCsvLink = addCsvLink;
+  }
+
+  
 
   @Override
   public String toString()  {
@@ -250,6 +263,7 @@ public class StamperDTO  implements Serializable {
     sb.append("  signingDate: ").append(signingDate).append("\n");
     sb.append("  transparent: ").append(transparent).append("\n");
     sb.append("  timeZone: ").append(timeZone).append("\n");
+    sb.append("  addCsvLink: ").append(addCsvLink).append("\n");
     sb.append("}\n");
     return sb.toString();
   }

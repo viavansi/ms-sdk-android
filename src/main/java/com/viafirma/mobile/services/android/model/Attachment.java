@@ -54,6 +54,10 @@ public class Attachment  implements Serializable {
   private List<Transfer> transfers = new ArrayList<Transfer>() ;
   @SerializedName("signature")
   private Signature signature = null;
+  @SerializedName("fileReference")
+  private String fileReference = null;
+  @SerializedName("inMail")
+  private Boolean inMail = Boolean.FALSE;
 
   
   /**
@@ -233,6 +237,28 @@ public class Attachment  implements Serializable {
   }
 
   
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public String getFileReference() {
+    return fileReference;
+  }
+  public void setFileReference(String fileReference) {
+    this.fileReference = fileReference;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public Boolean getInMail() {
+    return inMail;
+  }
+  public void setInMail(Boolean inMail) {
+    this.inMail = inMail;
+  }
+
+  
 
   @Override
   public String toString()  {
@@ -255,6 +281,8 @@ public class Attachment  implements Serializable {
     sb.append("  recipientKey: ").append(recipientKey).append("\n");
     sb.append("  transfers: ").append(transfers).append("\n");
     sb.append("  signature: ").append(signature).append("\n");
+    sb.append("  fileReference: ").append(fileReference).append("\n");
+    sb.append("  inMail: ").append(inMail).append("\n");
     sb.append("}\n");
     return sb.toString();
   }

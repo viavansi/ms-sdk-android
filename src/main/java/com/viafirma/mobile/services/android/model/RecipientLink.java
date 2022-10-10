@@ -11,6 +11,8 @@ public class RecipientLink  implements Serializable {
   
   @SerializedName("key")
   private String key = null;
+  @SerializedName("messageCode")
+  private String messageCode = null;
   @SerializedName("link")
   private String link = null;
   @SerializedName("token")
@@ -27,6 +29,17 @@ public class RecipientLink  implements Serializable {
   }
   public void setKey(String key) {
     this.key = key;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public String getMessageCode() {
+    return messageCode;
+  }
+  public void setMessageCode(String messageCode) {
+    this.messageCode = messageCode;
   }
 
   
@@ -70,6 +83,7 @@ public class RecipientLink  implements Serializable {
     sb.append("class RecipientLink {\n");
     
     sb.append("  key: ").append(key).append("\n");
+    sb.append("  messageCode: ").append(messageCode).append("\n");
     sb.append("  link: ").append(link).append("\n");
     sb.append("  token: ").append(token).append("\n");
     sb.append("  status: ").append(status).append("\n");

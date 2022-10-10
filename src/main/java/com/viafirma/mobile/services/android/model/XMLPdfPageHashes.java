@@ -13,6 +13,8 @@ public class XMLPdfPageHashes  implements Serializable {
   
   @SerializedName("pages")
   private List<XMLPdfPageHash> pages = new ArrayList<XMLPdfPageHash>() ;
+  @SerializedName("hash")
+  private String hash = null;
 
   
   /**
@@ -26,6 +28,17 @@ public class XMLPdfPageHashes  implements Serializable {
   }
 
   
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public String getHash() {
+    return hash;
+  }
+  public void setHash(String hash) {
+    this.hash = hash;
+  }
+
+  
 
   @Override
   public String toString()  {
@@ -33,6 +46,7 @@ public class XMLPdfPageHashes  implements Serializable {
     sb.append("class XMLPdfPageHashes {\n");
     
     sb.append("  pages: ").append(pages).append("\n");
+    sb.append("  hash: ").append(hash).append("\n");
     sb.append("}\n");
     return sb.toString();
   }

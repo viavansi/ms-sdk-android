@@ -31,6 +31,8 @@ public class VerifierDTO  implements Serializable {
   private List<String> info = new ArrayList<String>() ;
   @SerializedName("revoked")
   private Boolean revoked = Boolean.FALSE;
+  @SerializedName("disabled")
+  private Boolean disabled = Boolean.FALSE;
 
   
   /**
@@ -132,6 +134,17 @@ public class VerifierDTO  implements Serializable {
   }
 
   
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public Boolean getDisabled() {
+    return disabled;
+  }
+  public void setDisabled(Boolean disabled) {
+    this.disabled = disabled;
+  }
+
+  
 
   @Override
   public String toString()  {
@@ -147,6 +160,7 @@ public class VerifierDTO  implements Serializable {
     sb.append("  url: ").append(url).append("\n");
     sb.append("  info: ").append(info).append("\n");
     sb.append("  revoked: ").append(revoked).append("\n");
+    sb.append("  disabled: ").append(disabled).append("\n");
     sb.append("}\n");
     return sb.toString();
   }

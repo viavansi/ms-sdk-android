@@ -22,6 +22,10 @@ public class MessageSetResponse  implements Serializable {
   private String externalCode = null;
   @SerializedName("externalStatus")
   private String externalStatus = null;
+  @SerializedName("groupCode")
+  private String groupCode = null;
+  @SerializedName("commentReject")
+  private String commentReject = null;
   @SerializedName("messages")
   private List<MessageSummary> messages = new ArrayList<MessageSummary>() ;
 
@@ -84,6 +88,28 @@ public class MessageSetResponse  implements Serializable {
   /**
    **/
   @ApiModelProperty(required = false, value = "")
+  public String getGroupCode() {
+    return groupCode;
+  }
+  public void setGroupCode(String groupCode) {
+    this.groupCode = groupCode;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public String getCommentReject() {
+    return commentReject;
+  }
+  public void setCommentReject(String commentReject) {
+    this.commentReject = commentReject;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
   public List<MessageSummary> getMessages() {
     return messages;
   }
@@ -103,6 +129,8 @@ public class MessageSetResponse  implements Serializable {
     sb.append("  links: ").append(links).append("\n");
     sb.append("  externalCode: ").append(externalCode).append("\n");
     sb.append("  externalStatus: ").append(externalStatus).append("\n");
+    sb.append("  groupCode: ").append(groupCode).append("\n");
+    sb.append("  commentReject: ").append(commentReject).append("\n");
     sb.append("  messages: ").append(messages).append("\n");
     sb.append("}\n");
     return sb.toString();

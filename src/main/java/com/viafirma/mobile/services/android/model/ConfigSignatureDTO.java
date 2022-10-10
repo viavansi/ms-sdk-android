@@ -75,6 +75,8 @@ public class ConfigSignatureDTO  implements Serializable {
   private TimestampAlgorithmEnum timestampAlgorithm = null;
   @SerializedName("autoVerifyDisabled")
   private Boolean autoVerifyDisabled = Boolean.FALSE;
+  @SerializedName("autoVerifyError")
+  private Boolean autoVerifyError = Boolean.FALSE;
   public enum RevocationRequestTypeEnum {
      ONLINE,  ONLINE_WITH_CACHE,  CRL,  CRL_CACHE,  OCSP,  NONE, 
   };
@@ -349,6 +351,17 @@ public class ConfigSignatureDTO  implements Serializable {
   /**
    **/
   @ApiModelProperty(required = false, value = "")
+  public Boolean getAutoVerifyError() {
+    return autoVerifyError;
+  }
+  public void setAutoVerifyError(Boolean autoVerifyError) {
+    this.autoVerifyError = autoVerifyError;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
   public RevocationRequestTypeEnum getRevocationRequestType() {
     return revocationRequestType;
   }
@@ -387,6 +400,7 @@ public class ConfigSignatureDTO  implements Serializable {
     sb.append("  operationServer: ").append(operationServer).append("\n");
     sb.append("  timestampAlgorithm: ").append(timestampAlgorithm).append("\n");
     sb.append("  autoVerifyDisabled: ").append(autoVerifyDisabled).append("\n");
+    sb.append("  autoVerifyError: ").append(autoVerifyError).append("\n");
     sb.append("  revocationRequestType: ").append(revocationRequestType).append("\n");
     sb.append("}\n");
     return sb.toString();

@@ -73,6 +73,10 @@ public class Message  implements Serializable {
   private String callbackPhones = null;
   @SerializedName("callbackMails")
   private String callbackMails = null;
+  @SerializedName("callbackMailsCc")
+  private String callbackMailsCc = null;
+  @SerializedName("callbackMailsBcc")
+  private String callbackMailsBcc = null;
   @SerializedName("callbackCheckListMails")
   private String callbackCheckListMails = null;
   @SerializedName("callbackMailsFormKeys")
@@ -417,6 +421,28 @@ public class Message  implements Serializable {
   /**
    **/
   @ApiModelProperty(required = false, value = "")
+  public String getCallbackMailsCc() {
+    return callbackMailsCc;
+  }
+  public void setCallbackMailsCc(String callbackMailsCc) {
+    this.callbackMailsCc = callbackMailsCc;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public String getCallbackMailsBcc() {
+    return callbackMailsBcc;
+  }
+  public void setCallbackMailsBcc(String callbackMailsBcc) {
+    this.callbackMailsBcc = callbackMailsBcc;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
   public String getCallbackCheckListMails() {
     return callbackCheckListMails;
   }
@@ -679,6 +705,8 @@ public class Message  implements Serializable {
     sb.append("  callbackURLType: ").append(callbackURLType).append("\n");
     sb.append("  callbackPhones: ").append(callbackPhones).append("\n");
     sb.append("  callbackMails: ").append(callbackMails).append("\n");
+    sb.append("  callbackMailsCc: ").append(callbackMailsCc).append("\n");
+    sb.append("  callbackMailsBcc: ").append(callbackMailsBcc).append("\n");
     sb.append("  callbackCheckListMails: ").append(callbackCheckListMails).append("\n");
     sb.append("  callbackMailsFormKeys: ").append(callbackMailsFormKeys).append("\n");
     sb.append("  callbackMailFilename: ").append(callbackMailFilename).append("\n");

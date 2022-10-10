@@ -72,6 +72,10 @@ public class Document  implements Serializable {
   private Boolean hideDocumentBeforeStart = Boolean.FALSE;
   @SerializedName("custodyDays")
   private Integer custodyDays = null;
+  @SerializedName("signedHash")
+  private String signedHash = null;
+  @SerializedName("hashContent")
+  private String hashContent = null;
 
   
   /**
@@ -385,6 +389,28 @@ public class Document  implements Serializable {
   }
 
   
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public String getSignedHash() {
+    return signedHash;
+  }
+  public void setSignedHash(String signedHash) {
+    this.signedHash = signedHash;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public String getHashContent() {
+    return hashContent;
+  }
+  public void setHashContent(String hashContent) {
+    this.hashContent = hashContent;
+  }
+
+  
 
   @Override
   public String toString()  {
@@ -419,6 +445,8 @@ public class Document  implements Serializable {
     sb.append("  formUpdated: ").append(formUpdated).append("\n");
     sb.append("  hideDocumentBeforeStart: ").append(hideDocumentBeforeStart).append("\n");
     sb.append("  custodyDays: ").append(custodyDays).append("\n");
+    sb.append("  signedHash: ").append(signedHash).append("\n");
+    sb.append("  hashContent: ").append(hashContent).append("\n");
     sb.append("}\n");
     return sb.toString();
   }
