@@ -1,5 +1,6 @@
 package com.viafirma.mobile.services.android.model;
 
+import com.viafirma.mobile.services.android.model.FortressAccessToken;
 
 import com.wordnik.swagger.annotations.*;
 import com.google.gson.annotations.SerializedName;
@@ -17,6 +18,8 @@ public class WrapSignature  implements Serializable {
   private String messageCode = null;
   @SerializedName("signedDataBase64")
   private String signedDataBase64 = null;
+  @SerializedName("fortressAccessToken")
+  private FortressAccessToken fortressAccessToken = null;
 
   
   /**
@@ -67,6 +70,17 @@ public class WrapSignature  implements Serializable {
   }
 
   
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public FortressAccessToken getFortressAccessToken() {
+    return fortressAccessToken;
+  }
+  public void setFortressAccessToken(FortressAccessToken fortressAccessToken) {
+    this.fortressAccessToken = fortressAccessToken;
+  }
+
+  
 
   @Override
   public String toString()  {
@@ -77,6 +91,7 @@ public class WrapSignature  implements Serializable {
     sb.append("  publicKey: ").append(publicKey).append("\n");
     sb.append("  messageCode: ").append(messageCode).append("\n");
     sb.append("  signedDataBase64: ").append(signedDataBase64).append("\n");
+    sb.append("  fortressAccessToken: ").append(fortressAccessToken).append("\n");
     sb.append("}\n");
     return sb.toString();
   }

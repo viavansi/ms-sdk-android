@@ -42,6 +42,8 @@ public class VerifierSignatureDTO  implements Serializable {
   private String errorMessage = null;
   @SerializedName("signedBy")
   private String signedBy = null;
+  @SerializedName("issuerBy")
+  private String issuerBy = null;
   @SerializedName("code")
   private String code = null;
   @SerializedName("certificate")
@@ -50,6 +52,10 @@ public class VerifierSignatureDTO  implements Serializable {
   private List<VerifierTimeStampDTO> timeStamps = new ArrayList<VerifierTimeStampDTO>() ;
   @SerializedName("unsignedChanges")
   private Boolean unsignedChanges = Boolean.FALSE;
+  @SerializedName("reason")
+  private String reason = null;
+  @SerializedName("location")
+  private String location = null;
 
   
   /**
@@ -198,6 +204,17 @@ public class VerifierSignatureDTO  implements Serializable {
   /**
    **/
   @ApiModelProperty(required = false, value = "")
+  public String getIssuerBy() {
+    return issuerBy;
+  }
+  public void setIssuerBy(String issuerBy) {
+    this.issuerBy = issuerBy;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
   public String getCode() {
     return code;
   }
@@ -239,6 +256,28 @@ public class VerifierSignatureDTO  implements Serializable {
   }
 
   
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public String getReason() {
+    return reason;
+  }
+  public void setReason(String reason) {
+    this.reason = reason;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public String getLocation() {
+    return location;
+  }
+  public void setLocation(String location) {
+    this.location = location;
+  }
+
+  
 
   @Override
   public String toString()  {
@@ -258,10 +297,13 @@ public class VerifierSignatureDTO  implements Serializable {
     sb.append("  policyId: ").append(policyId).append("\n");
     sb.append("  errorMessage: ").append(errorMessage).append("\n");
     sb.append("  signedBy: ").append(signedBy).append("\n");
+    sb.append("  issuerBy: ").append(issuerBy).append("\n");
     sb.append("  code: ").append(code).append("\n");
     sb.append("  certificate: ").append(certificate).append("\n");
     sb.append("  timeStamps: ").append(timeStamps).append("\n");
     sb.append("  unsignedChanges: ").append(unsignedChanges).append("\n");
+    sb.append("  reason: ").append(reason).append("\n");
+    sb.append("  location: ").append(location).append("\n");
     sb.append("}\n");
     return sb.toString();
   }

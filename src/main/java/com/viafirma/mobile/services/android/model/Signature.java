@@ -1,6 +1,7 @@
 package com.viafirma.mobile.services.android.model;
 
 import com.viafirma.mobile.services.android.model.Stamper;
+import com.viafirma.mobile.services.android.model.SignaturePolicy;
 import java.util.*;
 
 import com.wordnik.swagger.annotations.*;
@@ -66,6 +67,8 @@ public class Signature  implements Serializable {
   private String location = null;
   @SerializedName("ip")
   private String ip = null;
+  @SerializedName("signaturePolicy")
+  private SignaturePolicy signaturePolicy = null;
 
   
   /**
@@ -288,6 +291,17 @@ public class Signature  implements Serializable {
   }
 
   
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public SignaturePolicy getSignaturePolicy() {
+    return signaturePolicy;
+  }
+  public void setSignaturePolicy(SignaturePolicy signaturePolicy) {
+    this.signaturePolicy = signaturePolicy;
+  }
+
+  
 
   @Override
   public String toString()  {
@@ -314,6 +328,7 @@ public class Signature  implements Serializable {
     sb.append("  reason: ").append(reason).append("\n");
     sb.append("  location: ").append(location).append("\n");
     sb.append("  ip: ").append(ip).append("\n");
+    sb.append("  signaturePolicy: ").append(signaturePolicy).append("\n");
     sb.append("}\n");
     return sb.toString();
   }

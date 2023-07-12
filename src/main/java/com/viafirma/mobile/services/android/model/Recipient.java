@@ -19,6 +19,8 @@ public class Recipient  implements Serializable {
   private String name = null;
   @SerializedName("notificationType")
   private String notificationType = null;
+  @SerializedName("smsType")
+  private String smsType = null;
   @SerializedName("userCode")
   private String userCode = null;
   @SerializedName("id")
@@ -96,6 +98,17 @@ public class Recipient  implements Serializable {
   }
   public void setNotificationType(String notificationType) {
     this.notificationType = notificationType;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public String getSmsType() {
+    return smsType;
+  }
+  public void setSmsType(String smsType) {
+    this.smsType = smsType;
   }
 
   
@@ -220,6 +233,7 @@ public class Recipient  implements Serializable {
     sb.append("  mail: ").append(mail).append("\n");
     sb.append("  name: ").append(name).append("\n");
     sb.append("  notificationType: ").append(notificationType).append("\n");
+    sb.append("  smsType: ").append(smsType).append("\n");
     sb.append("  userCode: ").append(userCode).append("\n");
     sb.append("  id: ").append(id).append("\n");
     sb.append("  status: ").append(status).append("\n");

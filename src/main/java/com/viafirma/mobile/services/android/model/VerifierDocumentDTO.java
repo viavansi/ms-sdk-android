@@ -36,6 +36,8 @@ public class VerifierDocumentDTO  implements Serializable {
   private String hashPdfContent = null;
   @SerializedName("hash")
   private String hash = null;
+  @SerializedName("lastSignatureCode")
+  private String lastSignatureCode = null;
 
   
   /**
@@ -159,6 +161,17 @@ public class VerifierDocumentDTO  implements Serializable {
   }
 
   
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public String getLastSignatureCode() {
+    return lastSignatureCode;
+  }
+  public void setLastSignatureCode(String lastSignatureCode) {
+    this.lastSignatureCode = lastSignatureCode;
+  }
+
+  
 
   @Override
   public String toString()  {
@@ -176,6 +189,7 @@ public class VerifierDocumentDTO  implements Serializable {
     sb.append("  pagesHashes: ").append(pagesHashes).append("\n");
     sb.append("  hashPdfContent: ").append(hashPdfContent).append("\n");
     sb.append("  hash: ").append(hash).append("\n");
+    sb.append("  lastSignatureCode: ").append(lastSignatureCode).append("\n");
     sb.append("}\n");
     return sb.toString();
   }

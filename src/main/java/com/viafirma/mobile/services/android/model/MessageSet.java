@@ -14,6 +14,8 @@ import java.io.Serializable;
 @ApiModel(description = "")
 public class MessageSet  implements Serializable {
   
+  @SerializedName("code")
+  private String code = null;
   @SerializedName("groupCode")
   private String groupCode = null;
   @SerializedName("expires")
@@ -54,6 +56,17 @@ public class MessageSet  implements Serializable {
   private String callbackRedirectURL = null;
   @SerializedName("callbackRedirectURLTargetWindow")
   private String callbackRedirectURLTargetWindow = null;
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public String getCode() {
+    return code;
+  }
+  public void setCode(String code) {
+    this.code = code;
+  }
 
   
   /**
@@ -283,6 +296,7 @@ public class MessageSet  implements Serializable {
     StringBuilder sb = new StringBuilder();
     sb.append("class MessageSet {\n");
     
+    sb.append("  code: ").append(code).append("\n");
     sb.append("  groupCode: ").append(groupCode).append("\n");
     sb.append("  expires: ").append(expires).append("\n");
     sb.append("  retryTime: ").append(retryTime).append("\n");

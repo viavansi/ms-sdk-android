@@ -7,8 +7,8 @@ import com.viafirma.mobile.services.android.model.*;
 
 import java.util.*;
 
-import com.viafirma.mobile.services.android.model.Notification;
 import com.viafirma.mobile.services.android.model.NotificationResponse;
+import com.viafirma.mobile.services.android.model.Notification;
 
 import java.io.File;
 import java.util.Map;
@@ -28,7 +28,7 @@ public class V3notificationsApi {
   
   
     
-  public Notification sendNotification (Notification body) throws ApiException {
+  public NotificationResponse sendNotification (Notification body) throws ApiException {
     Object postBody = body;
     
 
@@ -62,7 +62,7 @@ public class V3notificationsApi {
 
       String response = ApiInvoker.getInstance().invokeAPI(path, "POST", queryParams, postBody, headerParams, formParams, contentType);
       if(response != null){
-        return (Notification) ApiInvoker.deserialize(response, "", Notification.class);
+        return (NotificationResponse) ApiInvoker.deserialize(response, "", NotificationResponse.class);
       } else {
         return null;
       }
@@ -214,6 +214,51 @@ public class V3notificationsApi {
       .replaceAll("\\{" + "user_code" + "\\}", ApiInvoker.getInstance().escapeString(user_code.toString()))
       .replaceAll("\\{" + "index" + "\\}", ApiInvoker.getInstance().escapeString(index.toString()))
       .replaceAll("\\{" + "page_size" + "\\}", ApiInvoker.getInstance().escapeString(page_size.toString()));
+
+    // query params
+    Map<String, String> queryParams = new HashMap<String, String>();
+    Map<String, String> headerParams = new HashMap<String, String>();
+    Map<String, String> formParams = new HashMap<String, String>();
+
+    
+    
+    String[] contentTypes = {
+      "application/json"
+    };
+
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+
+    if(contentType.startsWith("multipart/form-data")) {
+      boolean hasFields = false;
+      MultipartBody.Builder mp = new MultipartBody.Builder();
+      mp.setType(MultipartBody.FORM);
+      
+      if(hasFields)
+        postBody = mp;
+    }
+    else {
+      
+    }
+
+      String response = ApiInvoker.getInstance().invokeAPI(path, "GET", queryParams, postBody, headerParams, formParams, contentType);
+      if(response != null){
+        return (List<Notification>) ApiInvoker.deserialize(response, "array", Notification.class);
+      } else {
+        return null;
+      }
+    
+  }
+  
+    
+  public List<Notification> findCallbackErrors (String groupCode, String type, String status) throws ApiException {
+    Object postBody = null;
+    
+
+    // create path and map variables
+    String path = "/v3/notifications/group/{groupCode}/type/{type}/status/{status}".replaceAll("\\{format\\}","json")
+      .replaceAll("\\{" + "groupCode" + "\\}", ApiInvoker.getInstance().escapeString(groupCode.toString()))
+      .replaceAll("\\{" + "type" + "\\}", ApiInvoker.getInstance().escapeString(type.toString()))
+      .replaceAll("\\{" + "status" + "\\}", ApiInvoker.getInstance().escapeString(status.toString()));
 
     // query params
     Map<String, String> queryParams = new HashMap<String, String>();

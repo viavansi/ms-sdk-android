@@ -16,7 +16,7 @@ public class NotificationResponse  implements Serializable {
   @SerializedName("setCode")
   private String setCode = null;
   public enum StatusEnum {
-     SENT,  RECEIVED,  READ,  ERROR,  REJECTED,  EXPIRED,  RESENT,  DISPATCHED,  DISPOSED,  COMPLETED,  WAITING,  INVALID,  WAITING_CLIENT_SIGNATURE, 
+     SENT,  RECEIVED,  READ,  ERROR,  REJECTED,  EXPIRED,  RESENT,  DISPATCHED,  DISPOSED,  COMPLETED,  WAITING,  INVALID,  WAITING_CLIENT_SIGNATURE,  BLOCKED,  NO_PROVIDER,  DELIVERED,  BOUNCED,  RELAYED,  DEFERRED, 
   };
   @SerializedName("status")
   private StatusEnum status = null;

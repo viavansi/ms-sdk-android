@@ -10,6 +10,8 @@ import java.util.*;
 import com.viafirma.mobile.services.android.model.Attachment;
 import java.io.File;
 import com.viafirma.mobile.services.android.model.AttachmentFile;
+import com.viafirma.mobile.services.android.model.Message;
+import com.viafirma.mobile.services.android.model.EvidenceEdit;
 import com.viafirma.mobile.services.android.model.Evidence;
 import com.viafirma.mobile.services.android.model.EvidenceFingerPrint;
 import com.viafirma.mobile.services.android.model.EvidenceGeneric;
@@ -18,7 +20,6 @@ import com.viafirma.mobile.services.android.model.EvidenceImage;
 import com.viafirma.mobile.services.android.model.OtpList;
 import com.viafirma.mobile.services.android.model.OtpBatchPrepare;
 import com.viafirma.mobile.services.android.model.EvidenceSignature;
-import com.viafirma.mobile.services.android.model.Message;
 
 import java.io.File;
 import java.util.Map;
@@ -235,6 +236,48 @@ public class V3evidencesApi {
       String response = ApiInvoker.getInstance().invokeAPI(path, "GET", queryParams, postBody, headerParams, formParams, contentType);
       if(response != null){
         return (String) ApiInvoker.deserialize(response, "", String.class);
+      } else {
+        return null;
+      }
+    
+  }
+  
+    
+  public Message editEvidence (EvidenceEdit body) throws ApiException {
+    Object postBody = body;
+    
+
+    // create path and map variables
+    String path = "/v3/evidences/edit".replaceAll("\\{format\\}","json");
+
+    // query params
+    Map<String, String> queryParams = new HashMap<String, String>();
+    Map<String, String> headerParams = new HashMap<String, String>();
+    Map<String, String> formParams = new HashMap<String, String>();
+
+    
+    
+    String[] contentTypes = {
+      "application/json"
+    };
+
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+
+    if(contentType.startsWith("multipart/form-data")) {
+      boolean hasFields = false;
+      MultipartBody.Builder mp = new MultipartBody.Builder();
+      mp.setType(MultipartBody.FORM);
+      
+      if(hasFields)
+        postBody = mp;
+    }
+    else {
+      
+    }
+
+      String response = ApiInvoker.getInstance().invokeAPI(path, "PUT", queryParams, postBody, headerParams, formParams, contentType);
+      if(response != null){
+        return (Message) ApiInvoker.deserialize(response, "", Message.class);
       } else {
         return null;
       }
@@ -660,7 +703,7 @@ public class V3evidencesApi {
   }
   
     
-  public OtpBatchPrepare prepareBatchOtpSmsEvidence (String setCode, String groupCode) throws ApiException {
+  public OtpBatchPrepare prepareBatchOtpSmsEvidence (String setCode, String groupCode, String smsType) throws ApiException {
     Object postBody = null;
     
 
@@ -674,6 +717,8 @@ public class V3evidencesApi {
     Map<String, String> headerParams = new HashMap<String, String>();
     Map<String, String> formParams = new HashMap<String, String>();
 
+    if(!"null".equals(String.valueOf(smsType)))
+      queryParams.put("smsType", String.valueOf(smsType));
     
     
     String[] contentTypes = {
@@ -749,7 +794,7 @@ public class V3evidencesApi {
   }
   
     
-  public Evidence prepareOtpSmsEvidence (String messageCode, String evidenceCode) throws ApiException {
+  public Evidence prepareOtpSmsEvidence (String messageCode, String evidenceCode, String smsType) throws ApiException {
     Object postBody = null;
     
 
@@ -763,6 +808,8 @@ public class V3evidencesApi {
     Map<String, String> headerParams = new HashMap<String, String>();
     Map<String, String> formParams = new HashMap<String, String>();
 
+    if(!"null".equals(String.valueOf(smsType)))
+      queryParams.put("smsType", String.valueOf(smsType));
     
     
     String[] contentTypes = {

@@ -39,7 +39,7 @@ public class Notification  implements Serializable {
   @SerializedName("sound")
   private String sound = null;
   public enum StatusEnum {
-     SENT,  RECEIVED,  READ,  ERROR,  REJECTED,  EXPIRED,  RESENT,  DISPATCHED,  DISPOSED,  COMPLETED,  WAITING,  INVALID,  WAITING_CLIENT_SIGNATURE, 
+     SENT,  RECEIVED,  READ,  ERROR,  REJECTED,  EXPIRED,  RESENT,  DISPATCHED,  DISPOSED,  COMPLETED,  WAITING,  INVALID,  WAITING_CLIENT_SIGNATURE,  BLOCKED,  NO_PROVIDER,  DELIVERED,  BOUNCED,  RELAYED,  DEFERRED, 
   };
   @SerializedName("status")
   private StatusEnum status = null;
@@ -48,6 +48,11 @@ public class Notification  implements Serializable {
   };
   @SerializedName("notificationType")
   private NotificationTypeEnum notificationType = null;
+  public enum SmsTypeEnum {
+     SMS,  WHATSAPP,  SMS_WHATSAPP, 
+  };
+  @SerializedName("smsType")
+  private SmsTypeEnum smsType = null;
   @SerializedName("location")
   private String location = null;
   @SerializedName("sharedLink")
@@ -236,6 +241,17 @@ public class Notification  implements Serializable {
   /**
    **/
   @ApiModelProperty(required = false, value = "")
+  public SmsTypeEnum getSmsType() {
+    return smsType;
+  }
+  public void setSmsType(SmsTypeEnum smsType) {
+    this.smsType = smsType;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
   public String getLocation() {
     return location;
   }
@@ -397,6 +413,7 @@ public class Notification  implements Serializable {
     sb.append("  sound: ").append(sound).append("\n");
     sb.append("  status: ").append(status).append("\n");
     sb.append("  notificationType: ").append(notificationType).append("\n");
+    sb.append("  smsType: ").append(smsType).append("\n");
     sb.append("  location: ").append(location).append("\n");
     sb.append("  sharedLink: ").append(sharedLink).append("\n");
     sb.append("  updateDate: ").append(updateDate).append("\n");

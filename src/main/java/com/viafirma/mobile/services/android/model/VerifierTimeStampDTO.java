@@ -21,8 +21,17 @@ public class VerifierTimeStampDTO  implements Serializable {
   private String digestAlgo = null;
   @SerializedName("productionTime")
   private Date productionTime = null;
+  @SerializedName("signedBy")
+  private String signedBy = null;
   @SerializedName("certificate")
   private VerifierCertificateDTO certificate = null;
+  public enum ValidationStatusEnum {
+     VALID,  UNKNOWN,  INVALID, 
+  };
+  @SerializedName("validationStatus")
+  private ValidationStatusEnum validationStatus = null;
+  @SerializedName("issuerBy")
+  private String issuerBy = null;
 
   
   /**
@@ -83,11 +92,44 @@ public class VerifierTimeStampDTO  implements Serializable {
   /**
    **/
   @ApiModelProperty(required = false, value = "")
+  public String getSignedBy() {
+    return signedBy;
+  }
+  public void setSignedBy(String signedBy) {
+    this.signedBy = signedBy;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
   public VerifierCertificateDTO getCertificate() {
     return certificate;
   }
   public void setCertificate(VerifierCertificateDTO certificate) {
     this.certificate = certificate;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public ValidationStatusEnum getValidationStatus() {
+    return validationStatus;
+  }
+  public void setValidationStatus(ValidationStatusEnum validationStatus) {
+    this.validationStatus = validationStatus;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public String getIssuerBy() {
+    return issuerBy;
+  }
+  public void setIssuerBy(String issuerBy) {
+    this.issuerBy = issuerBy;
   }
 
   
@@ -102,7 +144,10 @@ public class VerifierTimeStampDTO  implements Serializable {
     sb.append("  subIndication: ").append(subIndication).append("\n");
     sb.append("  digestAlgo: ").append(digestAlgo).append("\n");
     sb.append("  productionTime: ").append(productionTime).append("\n");
+    sb.append("  signedBy: ").append(signedBy).append("\n");
     sb.append("  certificate: ").append(certificate).append("\n");
+    sb.append("  validationStatus: ").append(validationStatus).append("\n");
+    sb.append("  issuerBy: ").append(issuerBy).append("\n");
     sb.append("}\n");
     return sb.toString();
   }

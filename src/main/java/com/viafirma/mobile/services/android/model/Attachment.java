@@ -58,6 +58,14 @@ public class Attachment  implements Serializable {
   private String fileReference = null;
   @SerializedName("inMail")
   private Boolean inMail = Boolean.FALSE;
+  @SerializedName("enabledExpression")
+  private String enabledExpression = null;
+  @SerializedName("visibleExpression")
+  private String visibleExpression = null;
+  @SerializedName("enabled")
+  private Boolean enabled = Boolean.FALSE;
+  @SerializedName("visible")
+  private Boolean visible = Boolean.FALSE;
 
   
   /**
@@ -259,6 +267,50 @@ public class Attachment  implements Serializable {
   }
 
   
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public String getEnabledExpression() {
+    return enabledExpression;
+  }
+  public void setEnabledExpression(String enabledExpression) {
+    this.enabledExpression = enabledExpression;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public String getVisibleExpression() {
+    return visibleExpression;
+  }
+  public void setVisibleExpression(String visibleExpression) {
+    this.visibleExpression = visibleExpression;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public Boolean getEnabled() {
+    return enabled;
+  }
+  public void setEnabled(Boolean enabled) {
+    this.enabled = enabled;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public Boolean getVisible() {
+    return visible;
+  }
+  public void setVisible(Boolean visible) {
+    this.visible = visible;
+  }
+
+  
 
   @Override
   public String toString()  {
@@ -283,6 +335,10 @@ public class Attachment  implements Serializable {
     sb.append("  signature: ").append(signature).append("\n");
     sb.append("  fileReference: ").append(fileReference).append("\n");
     sb.append("  inMail: ").append(inMail).append("\n");
+    sb.append("  enabledExpression: ").append(enabledExpression).append("\n");
+    sb.append("  visibleExpression: ").append(visibleExpression).append("\n");
+    sb.append("  enabled: ").append(enabled).append("\n");
+    sb.append("  visible: ").append(visible).append("\n");
     sb.append("}\n");
     return sb.toString();
   }

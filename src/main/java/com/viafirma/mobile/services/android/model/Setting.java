@@ -3,6 +3,7 @@ package com.viafirma.mobile.services.android.model;
 import com.viafirma.mobile.services.android.model.Policy;
 import com.viafirma.mobile.services.android.model.Customization;
 import com.viafirma.mobile.services.android.model.Param;
+import com.viafirma.mobile.services.android.model.Transfer;
 import java.util.*;
 import com.viafirma.mobile.services.android.model.AcrofieldPosition;
 import com.viafirma.mobile.services.android.model.Font;
@@ -29,6 +30,8 @@ public class Setting  implements Serializable {
   private String callbackAuthorization = null;
   @SerializedName("callbackURL")
   private String callbackURL = null;
+  @SerializedName("callbackRedirectURL")
+  private String callbackRedirectURL = null;
   @SerializedName("callbackCheckListMails")
   private String callbackCheckListMails = null;
   @SerializedName("callbackMails")
@@ -73,6 +76,8 @@ public class Setting  implements Serializable {
   private Long retryCount = null;
   @SerializedName("workflowReferenceCode")
   private String workflowReferenceCode = null;
+  @SerializedName("transfers")
+  private List<Transfer> transfers = new ArrayList<Transfer>() ;
 
   
   /**
@@ -149,6 +154,17 @@ public class Setting  implements Serializable {
   }
   public void setCallbackURL(String callbackURL) {
     this.callbackURL = callbackURL;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public String getCallbackRedirectURL() {
+    return callbackRedirectURL;
+  }
+  public void setCallbackRedirectURL(String callbackRedirectURL) {
+    this.callbackRedirectURL = callbackRedirectURL;
   }
 
   
@@ -394,6 +410,17 @@ public class Setting  implements Serializable {
   }
 
   
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public List<Transfer> getTransfers() {
+    return transfers;
+  }
+  public void setTransfers(List<Transfer> transfers) {
+    this.transfers = transfers;
+  }
+
+  
 
   @Override
   public String toString()  {
@@ -407,6 +434,7 @@ public class Setting  implements Serializable {
     sb.append("  policies: ").append(policies).append("\n");
     sb.append("  callbackAuthorization: ").append(callbackAuthorization).append("\n");
     sb.append("  callbackURL: ").append(callbackURL).append("\n");
+    sb.append("  callbackRedirectURL: ").append(callbackRedirectURL).append("\n");
     sb.append("  callbackCheckListMails: ").append(callbackCheckListMails).append("\n");
     sb.append("  callbackMails: ").append(callbackMails).append("\n");
     sb.append("  callbackPhones: ").append(callbackPhones).append("\n");
@@ -429,6 +457,7 @@ public class Setting  implements Serializable {
     sb.append("  retryTime: ").append(retryTime).append("\n");
     sb.append("  retryCount: ").append(retryCount).append("\n");
     sb.append("  workflowReferenceCode: ").append(workflowReferenceCode).append("\n");
+    sb.append("  transfers: ").append(transfers).append("\n");
     sb.append("}\n");
     return sb.toString();
   }

@@ -13,6 +13,7 @@ import com.viafirma.mobile.services.android.model.SetExtendPeriod;
 import com.viafirma.mobile.services.android.model.MessageSetInfo;
 import com.viafirma.mobile.services.android.model.SetCallbackUrl;
 import com.viafirma.mobile.services.android.model.NotificationResend;
+import com.viafirma.mobile.services.android.model.MessageSetStatus;
 
 import java.io.File;
 import java.util.Map;
@@ -67,6 +68,134 @@ public class V3setApi {
       String response = ApiInvoker.getInstance().invokeAPI(path, "POST", queryParams, postBody, headerParams, formParams, contentType);
       if(response != null){
         return (MessageSetResponse) ApiInvoker.deserialize(response, "", MessageSetResponse.class);
+      } else {
+        return null;
+      }
+    
+  }
+  
+    
+  public String removeDraft (String setCode) throws ApiException {
+    Object postBody = null;
+    
+
+    // create path and map variables
+    String path = "/v3/set/draft/delete/{setCode}".replaceAll("\\{format\\}","json")
+      .replaceAll("\\{" + "setCode" + "\\}", ApiInvoker.getInstance().escapeString(setCode.toString()));
+
+    // query params
+    Map<String, String> queryParams = new HashMap<String, String>();
+    Map<String, String> headerParams = new HashMap<String, String>();
+    Map<String, String> formParams = new HashMap<String, String>();
+
+    
+    
+    String[] contentTypes = {
+      "application/json"
+    };
+
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+
+    if(contentType.startsWith("multipart/form-data")) {
+      boolean hasFields = false;
+      MultipartBody.Builder mp = new MultipartBody.Builder();
+      mp.setType(MultipartBody.FORM);
+      
+      if(hasFields)
+        postBody = mp;
+    }
+    else {
+      
+    }
+
+      String response = ApiInvoker.getInstance().invokeAPI(path, "DELETE", queryParams, postBody, headerParams, formParams, contentType);
+      if(response != null){
+        return (String) ApiInvoker.deserialize(response, "", String.class);
+      } else {
+        return null;
+      }
+    
+  }
+  
+    
+  public MessageSet loadDraft (String setCode) throws ApiException {
+    Object postBody = null;
+    
+
+    // create path and map variables
+    String path = "/v3/set/draft/load/{setCode}".replaceAll("\\{format\\}","json")
+      .replaceAll("\\{" + "setCode" + "\\}", ApiInvoker.getInstance().escapeString(setCode.toString()));
+
+    // query params
+    Map<String, String> queryParams = new HashMap<String, String>();
+    Map<String, String> headerParams = new HashMap<String, String>();
+    Map<String, String> formParams = new HashMap<String, String>();
+
+    
+    
+    String[] contentTypes = {
+      "application/json"
+    };
+
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+
+    if(contentType.startsWith("multipart/form-data")) {
+      boolean hasFields = false;
+      MultipartBody.Builder mp = new MultipartBody.Builder();
+      mp.setType(MultipartBody.FORM);
+      
+      if(hasFields)
+        postBody = mp;
+    }
+    else {
+      
+    }
+
+      String response = ApiInvoker.getInstance().invokeAPI(path, "GET", queryParams, postBody, headerParams, formParams, contentType);
+      if(response != null){
+        return (MessageSet) ApiInvoker.deserialize(response, "", MessageSet.class);
+      } else {
+        return null;
+      }
+    
+  }
+  
+    
+  public MessageSet saveDraft (MessageSet body) throws ApiException {
+    Object postBody = body;
+    
+
+    // create path and map variables
+    String path = "/v3/set/draft/save".replaceAll("\\{format\\}","json");
+
+    // query params
+    Map<String, String> queryParams = new HashMap<String, String>();
+    Map<String, String> headerParams = new HashMap<String, String>();
+    Map<String, String> formParams = new HashMap<String, String>();
+
+    
+    
+    String[] contentTypes = {
+      "application/json"
+    };
+
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+
+    if(contentType.startsWith("multipart/form-data")) {
+      boolean hasFields = false;
+      MultipartBody.Builder mp = new MultipartBody.Builder();
+      mp.setType(MultipartBody.FORM);
+      
+      if(hasFields)
+        postBody = mp;
+    }
+    else {
+      
+    }
+
+      String response = ApiInvoker.getInstance().invokeAPI(path, "POST", queryParams, postBody, headerParams, formParams, contentType);
+      if(response != null){
+        return (MessageSet) ApiInvoker.deserialize(response, "", MessageSet.class);
       } else {
         return null;
       }
@@ -257,7 +386,7 @@ public class V3setApi {
   }
   
     
-  public String callbackForm_1 (String message) throws ApiException {
+  public String callbackForm_1 (String set) throws ApiException {
     Object postBody = null;
     
 
@@ -283,14 +412,14 @@ public class V3setApi {
       mp.setType(MultipartBody.FORM);
       
       hasFields = true;
-      mp.addFormDataPart("message", message);
+      mp.addFormDataPart("set", set);
       
       
       if(hasFields)
         postBody = mp;
     }
     else {
-      formParams.put("message", message);
+      formParams.put("set", set);
       
     }
 
@@ -518,6 +647,49 @@ public class V3setApi {
       String response = ApiInvoker.getInstance().invokeAPI(path, "POST", queryParams, postBody, headerParams, formParams, contentType);
       if(response != null){
         return (MessageSet) ApiInvoker.deserialize(response, "", MessageSet.class);
+      } else {
+        return null;
+      }
+    
+  }
+  
+    
+  public MessageSetStatus getMessageSetStatus (String setCode) throws ApiException {
+    Object postBody = null;
+    
+
+    // create path and map variables
+    String path = "/v3/set/status/{setCode}".replaceAll("\\{format\\}","json")
+      .replaceAll("\\{" + "setCode" + "\\}", ApiInvoker.getInstance().escapeString(setCode.toString()));
+
+    // query params
+    Map<String, String> queryParams = new HashMap<String, String>();
+    Map<String, String> headerParams = new HashMap<String, String>();
+    Map<String, String> formParams = new HashMap<String, String>();
+
+    
+    
+    String[] contentTypes = {
+      "application/json"
+    };
+
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+
+    if(contentType.startsWith("multipart/form-data")) {
+      boolean hasFields = false;
+      MultipartBody.Builder mp = new MultipartBody.Builder();
+      mp.setType(MultipartBody.FORM);
+      
+      if(hasFields)
+        postBody = mp;
+    }
+    else {
+      
+    }
+
+      String response = ApiInvoker.getInstance().invokeAPI(path, "GET", queryParams, postBody, headerParams, formParams, contentType);
+      if(response != null){
+        return (MessageSetStatus) ApiInvoker.deserialize(response, "", MessageSetStatus.class);
       } else {
         return null;
       }

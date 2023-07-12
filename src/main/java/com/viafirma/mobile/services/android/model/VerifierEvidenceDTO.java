@@ -21,6 +21,8 @@ public class VerifierEvidenceDTO  implements Serializable {
   private XMLEvidenceDTO evidenceInfo = null;
   @SerializedName("evidenceName")
   private String evidenceName = null;
+  @SerializedName("evidenceDescription")
+  private String evidenceDescription = null;
   @SerializedName("signatureInfo")
   private VerifierSignatureDTO signatureInfo = null;
   @SerializedName("validationMessages")
@@ -59,6 +61,17 @@ public class VerifierEvidenceDTO  implements Serializable {
   }
   public void setEvidenceName(String evidenceName) {
     this.evidenceName = evidenceName;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public String getEvidenceDescription() {
+    return evidenceDescription;
+  }
+  public void setEvidenceDescription(String evidenceDescription) {
+    this.evidenceDescription = evidenceDescription;
   }
 
   
@@ -104,6 +117,7 @@ public class VerifierEvidenceDTO  implements Serializable {
     sb.append("  validationStatus: ").append(validationStatus).append("\n");
     sb.append("  evidenceInfo: ").append(evidenceInfo).append("\n");
     sb.append("  evidenceName: ").append(evidenceName).append("\n");
+    sb.append("  evidenceDescription: ").append(evidenceDescription).append("\n");
     sb.append("  signatureInfo: ").append(signatureInfo).append("\n");
     sb.append("  validationMessages: ").append(validationMessages).append("\n");
     sb.append("  validationErrors: ").append(validationErrors).append("\n");

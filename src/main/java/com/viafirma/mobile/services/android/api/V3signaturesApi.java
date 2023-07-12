@@ -40,7 +40,7 @@ public class V3signaturesApi {
   
   
     
-  public String signWithAndesCertificate (String messageCode, String signatureCode, String nationalId, String pin, String docType, String ip) throws ApiException {
+  public String signWithAndesCertificate_1 (String messageCode, String signatureCode, String nationalId, String pin, String docType, String ip) throws ApiException {
     Object postBody = null;
     
 
@@ -48,6 +48,69 @@ public class V3signaturesApi {
     String path = "/v3/signatures/andes/sign/{messageCode}/{signatureCode}".replaceAll("\\{format\\}","json")
       .replaceAll("\\{" + "messageCode" + "\\}", ApiInvoker.getInstance().escapeString(messageCode.toString()))
       .replaceAll("\\{" + "signatureCode" + "\\}", ApiInvoker.getInstance().escapeString(signatureCode.toString()));
+
+    // query params
+    Map<String, String> queryParams = new HashMap<String, String>();
+    Map<String, String> headerParams = new HashMap<String, String>();
+    Map<String, String> formParams = new HashMap<String, String>();
+
+    
+    
+    String[] contentTypes = {
+      "application/x-www-form-urlencoded"
+    };
+
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+
+    if(contentType.startsWith("multipart/form-data")) {
+      boolean hasFields = false;
+      MultipartBody.Builder mp = new MultipartBody.Builder();
+      mp.setType(MultipartBody.FORM);
+      
+      hasFields = true;
+      mp.addFormDataPart("nationalId", nationalId);
+      
+      
+      hasFields = true;
+      mp.addFormDataPart("pin", pin);
+      
+      
+      hasFields = true;
+      mp.addFormDataPart("docType", docType);
+      
+      
+      hasFields = true;
+      mp.addFormDataPart("ip", ip);
+      
+      
+      if(hasFields)
+        postBody = mp;
+    }
+    else {
+      formParams.put("nationalId", nationalId);
+      formParams.put("pin", pin);
+      formParams.put("docType", docType);
+      formParams.put("ip", ip);
+      
+    }
+
+      String response = ApiInvoker.getInstance().invokeAPI(path, "POST", queryParams, postBody, headerParams, formParams, contentType);
+      if(response != null){
+        return (String) ApiInvoker.deserialize(response, "", String.class);
+      } else {
+        return null;
+      }
+    
+  }
+  
+    
+  public String signWithAndesCertificate (String token, String nationalId, String pin, String docType, String ip) throws ApiException {
+    Object postBody = null;
+    
+
+    // create path and map variables
+    String path = "/v3/signatures/andes/signBatch/{token}".replaceAll("\\{format\\}","json")
+      .replaceAll("\\{" + "token" + "\\}", ApiInvoker.getInstance().escapeString(token.toString()));
 
     // query params
     Map<String, String> queryParams = new HashMap<String, String>();

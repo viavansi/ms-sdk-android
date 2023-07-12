@@ -17,6 +17,8 @@ public class VerifierCertificateDTO  implements Serializable {
   
   @SerializedName("certX509Base64")
   private String certX509Base64 = null;
+  @SerializedName("name")
+  private String name = null;
   @SerializedName("subject")
   private String subject = null;
   @SerializedName("issuer")
@@ -70,6 +72,17 @@ public class VerifierCertificateDTO  implements Serializable {
   }
   public void setCertX509Base64(String certX509Base64) {
     this.certX509Base64 = certX509Base64;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public String getName() {
+    return name;
+  }
+  public void setName(String name) {
+    this.name = name;
   }
 
   
@@ -300,6 +313,7 @@ public class VerifierCertificateDTO  implements Serializable {
     sb.append("class VerifierCertificateDTO {\n");
     
     sb.append("  certX509Base64: ").append(certX509Base64).append("\n");
+    sb.append("  name: ").append(name).append("\n");
     sb.append("  subject: ").append(subject).append("\n");
     sb.append("  issuer: ").append(issuer).append("\n");
     sb.append("  notafter: ").append(notafter).append("\n");

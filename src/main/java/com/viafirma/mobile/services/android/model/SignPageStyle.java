@@ -77,8 +77,14 @@ public class SignPageStyle  implements Serializable {
   private Boolean hideImageCapture = Boolean.FALSE;
   @SerializedName("hidePoweredByViafirma")
   private Boolean hidePoweredByViafirma = Boolean.FALSE;
+  @SerializedName("hideUserConsentBiometricSign")
+  private Boolean hideUserConsentBiometricSign = Boolean.FALSE;
   @SerializedName("allowedSignType")
   private String allowedSignType = null;
+  @SerializedName("apiVersion")
+  private String apiVersion = null;
+  @SerializedName("iframeDisabled")
+  private Boolean iframeDisabled = Boolean.FALSE;
 
   
   /**
@@ -458,11 +464,44 @@ public class SignPageStyle  implements Serializable {
   /**
    **/
   @ApiModelProperty(required = false, value = "")
+  public Boolean getHideUserConsentBiometricSign() {
+    return hideUserConsentBiometricSign;
+  }
+  public void setHideUserConsentBiometricSign(Boolean hideUserConsentBiometricSign) {
+    this.hideUserConsentBiometricSign = hideUserConsentBiometricSign;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
   public String getAllowedSignType() {
     return allowedSignType;
   }
   public void setAllowedSignType(String allowedSignType) {
     this.allowedSignType = allowedSignType;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public String getApiVersion() {
+    return apiVersion;
+  }
+  public void setApiVersion(String apiVersion) {
+    this.apiVersion = apiVersion;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public Boolean getIframeDisabled() {
+    return iframeDisabled;
+  }
+  public void setIframeDisabled(Boolean iframeDisabled) {
+    this.iframeDisabled = iframeDisabled;
   }
 
   
@@ -506,7 +545,10 @@ public class SignPageStyle  implements Serializable {
     sb.append("  hideImageUpload: ").append(hideImageUpload).append("\n");
     sb.append("  hideImageCapture: ").append(hideImageCapture).append("\n");
     sb.append("  hidePoweredByViafirma: ").append(hidePoweredByViafirma).append("\n");
+    sb.append("  hideUserConsentBiometricSign: ").append(hideUserConsentBiometricSign).append("\n");
     sb.append("  allowedSignType: ").append(allowedSignType).append("\n");
+    sb.append("  apiVersion: ").append(apiVersion).append("\n");
+    sb.append("  iframeDisabled: ").append(iframeDisabled).append("\n");
     sb.append("}\n");
     return sb.toString();
   }

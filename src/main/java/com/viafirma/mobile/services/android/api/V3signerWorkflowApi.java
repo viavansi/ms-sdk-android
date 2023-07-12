@@ -7,8 +7,7 @@ import com.viafirma.mobile.services.android.model.*;
 
 import java.util.*;
 
-import com.viafirma.mobile.services.android.model.Upload;
-import com.viafirma.mobile.services.android.model.UploadLink;
+import com.viafirma.mobile.services.android.model.SignerWorkflow;
 
 import java.io.File;
 import java.util.Map;
@@ -18,109 +17,22 @@ import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 
-public class V3uploadsApi {
+public class V3signerWorkflowApi {
 
-  private static final V3uploadsApi INSTANCE = new V3uploadsApi();
-  private V3uploadsApi(){}
-  public static V3uploadsApi getInstance() {
+  private static final V3signerWorkflowApi INSTANCE = new V3signerWorkflowApi();
+  private V3signerWorkflowApi(){}
+  public static V3signerWorkflowApi getInstance() {
     return INSTANCE;
   }
   
   
     
-  public Upload getDownloadLink (String token) throws ApiException {
-    Object postBody = null;
-    
-
-    // create path and map variables
-    String path = "/v3/uploads/download/link/{token}".replaceAll("\\{format\\}","json")
-      .replaceAll("\\{" + "token" + "\\}", ApiInvoker.getInstance().escapeString(token.toString()));
-
-    // query params
-    Map<String, String> queryParams = new HashMap<String, String>();
-    Map<String, String> headerParams = new HashMap<String, String>();
-    Map<String, String> formParams = new HashMap<String, String>();
-
-    
-    
-    String[] contentTypes = {
-      "application/json"
-    };
-
-    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
-
-    if(contentType.startsWith("multipart/form-data")) {
-      boolean hasFields = false;
-      MultipartBody.Builder mp = new MultipartBody.Builder();
-      mp.setType(MultipartBody.FORM);
-      
-      if(hasFields)
-        postBody = mp;
-    }
-    else {
-      
-    }
-
-      String response = ApiInvoker.getInstance().invokeAPI(path, "GET", queryParams, postBody, headerParams, formParams, contentType);
-      if(response != null){
-        return (Upload) ApiInvoker.deserialize(response, "", Upload.class);
-      } else {
-        return null;
-      }
-    
-  }
-  
-    
-  public Upload getUploadLink (String extension) throws ApiException {
-    Object postBody = null;
-    
-
-    // create path and map variables
-    String path = "/v3/uploads/link/{extension}".replaceAll("\\{format\\}","json")
-      .replaceAll("\\{" + "extension" + "\\}", ApiInvoker.getInstance().escapeString(extension.toString()));
-
-    // query params
-    Map<String, String> queryParams = new HashMap<String, String>();
-    Map<String, String> headerParams = new HashMap<String, String>();
-    Map<String, String> formParams = new HashMap<String, String>();
-
-    
-    
-    String[] contentTypes = {
-      "application/json"
-    };
-
-    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
-
-    if(contentType.startsWith("multipart/form-data")) {
-      boolean hasFields = false;
-      MultipartBody.Builder mp = new MultipartBody.Builder();
-      mp.setType(MultipartBody.FORM);
-      
-      if(hasFields)
-        postBody = mp;
-    }
-    else {
-      
-    }
-
-      String response = ApiInvoker.getInstance().invokeAPI(path, "GET", queryParams, postBody, headerParams, formParams, contentType);
-      if(response != null){
-        return (Upload) ApiInvoker.deserialize(response, "", Upload.class);
-      } else {
-        return null;
-      }
-    
-  }
-  
-    
-  public Upload uploadLink (UploadLink body, String token) throws ApiException {
+  public SignerWorkflow save (SignerWorkflow body) throws ApiException {
     Object postBody = body;
     
 
     // create path and map variables
-    String path = "/v3/uploads/link/{token}".replaceAll("\\{format\\}","json")
-      .replaceAll("\\{" + "token" + "\\}", ApiInvoker.getInstance().escapeString(token.toString()));
+    String path = "/v3/signerWorkflow".replaceAll("\\{format\\}","json");
 
     // query params
     Map<String, String> queryParams = new HashMap<String, String>();
@@ -130,7 +42,7 @@ public class V3uploadsApi {
     
     
     String[] contentTypes = {
-      
+      "application/json"
     };
 
     String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
@@ -147,9 +59,98 @@ public class V3uploadsApi {
       
     }
 
-      String response = ApiInvoker.getInstance().invokeAPI(path, "PUT", queryParams, postBody, headerParams, formParams, contentType);
+      String response = ApiInvoker.getInstance().invokeAPI(path, "POST", queryParams, postBody, headerParams, formParams, contentType);
       if(response != null){
-        return (Upload) ApiInvoker.deserialize(response, "", Upload.class);
+        return (SignerWorkflow) ApiInvoker.deserialize(response, "", SignerWorkflow.class);
+      } else {
+        return null;
+      }
+    
+  }
+  
+    
+  public List<SignerWorkflow> getSignerWorkflowByUser (String userCode, String groupCode) throws ApiException {
+    Object postBody = null;
+    
+
+    // create path and map variables
+    String path = "/v3/signerWorkflow/list/{userCode}/{groupCode}".replaceAll("\\{format\\}","json")
+      .replaceAll("\\{" + "userCode" + "\\}", ApiInvoker.getInstance().escapeString(userCode.toString()))
+      .replaceAll("\\{" + "groupCode" + "\\}", ApiInvoker.getInstance().escapeString(groupCode.toString()));
+
+    // query params
+    Map<String, String> queryParams = new HashMap<String, String>();
+    Map<String, String> headerParams = new HashMap<String, String>();
+    Map<String, String> formParams = new HashMap<String, String>();
+
+    
+    
+    String[] contentTypes = {
+      "application/json"
+    };
+
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+
+    if(contentType.startsWith("multipart/form-data")) {
+      boolean hasFields = false;
+      MultipartBody.Builder mp = new MultipartBody.Builder();
+      mp.setType(MultipartBody.FORM);
+      
+      if(hasFields)
+        postBody = mp;
+    }
+    else {
+      
+    }
+
+      String response = ApiInvoker.getInstance().invokeAPI(path, "GET", queryParams, postBody, headerParams, formParams, contentType);
+      if(response != null){
+        return (List<SignerWorkflow>) ApiInvoker.deserialize(response, "array", SignerWorkflow.class);
+      } else {
+        return null;
+      }
+    
+  }
+  
+    
+  public String removeSignerWorkflow (String code, String userCode, String groupCode) throws ApiException {
+    Object postBody = null;
+    
+
+    // create path and map variables
+    String path = "/v3/signerWorkflow/remove/{code}/{userCode}/{groupCode}".replaceAll("\\{format\\}","json")
+      .replaceAll("\\{" + "code" + "\\}", ApiInvoker.getInstance().escapeString(code.toString()))
+      .replaceAll("\\{" + "userCode" + "\\}", ApiInvoker.getInstance().escapeString(userCode.toString()))
+      .replaceAll("\\{" + "groupCode" + "\\}", ApiInvoker.getInstance().escapeString(groupCode.toString()));
+
+    // query params
+    Map<String, String> queryParams = new HashMap<String, String>();
+    Map<String, String> headerParams = new HashMap<String, String>();
+    Map<String, String> formParams = new HashMap<String, String>();
+
+    
+    
+    String[] contentTypes = {
+      "application/json"
+    };
+
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+
+    if(contentType.startsWith("multipart/form-data")) {
+      boolean hasFields = false;
+      MultipartBody.Builder mp = new MultipartBody.Builder();
+      mp.setType(MultipartBody.FORM);
+      
+      if(hasFields)
+        postBody = mp;
+    }
+    else {
+      
+    }
+
+      String response = ApiInvoker.getInstance().invokeAPI(path, "DELETE", queryParams, postBody, headerParams, formParams, contentType);
+      if(response != null){
+        return (String) ApiInvoker.deserialize(response, "", String.class);
       } else {
         return null;
       }

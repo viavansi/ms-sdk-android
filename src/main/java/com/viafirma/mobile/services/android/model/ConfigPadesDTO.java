@@ -21,6 +21,8 @@ public class ConfigPadesDTO  implements Serializable {
   private Boolean externalPkcs7Signature = Boolean.FALSE;
   @SerializedName("password")
   private String password = null;
+  @SerializedName("validatePdfSyntax")
+  private Boolean validatePdfSyntax = Boolean.FALSE;
 
   
   /**
@@ -67,6 +69,17 @@ public class ConfigPadesDTO  implements Serializable {
   }
 
   
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public Boolean getValidatePdfSyntax() {
+    return validatePdfSyntax;
+  }
+  public void setValidatePdfSyntax(Boolean validatePdfSyntax) {
+    this.validatePdfSyntax = validatePdfSyntax;
+  }
+
+  
 
   @Override
   public String toString()  {
@@ -77,6 +90,7 @@ public class ConfigPadesDTO  implements Serializable {
     sb.append("  certificationLevel: ").append(certificationLevel).append("\n");
     sb.append("  externalPkcs7Signature: ").append(externalPkcs7Signature).append("\n");
     sb.append("  password: ").append(password).append("\n");
+    sb.append("  validatePdfSyntax: ").append(validatePdfSyntax).append("\n");
     sb.append("}\n");
     return sb.toString();
   }

@@ -11,8 +11,21 @@ import java.io.Serializable;
 @ApiModel(description = "")
 public class OtpList  implements Serializable {
   
+  @SerializedName("allEvidencesOTPGroup")
+  private Boolean allEvidencesOTPGroup = Boolean.FALSE;
   @SerializedName("otpGroupEvidences")
   private List<OtpInfo> otpGroupEvidences = new ArrayList<OtpInfo>() ;
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public Boolean getAllEvidencesOTPGroup() {
+    return allEvidencesOTPGroup;
+  }
+  public void setAllEvidencesOTPGroup(Boolean allEvidencesOTPGroup) {
+    this.allEvidencesOTPGroup = allEvidencesOTPGroup;
+  }
 
   
   /**
@@ -32,6 +45,7 @@ public class OtpList  implements Serializable {
     StringBuilder sb = new StringBuilder();
     sb.append("class OtpList {\n");
     
+    sb.append("  allEvidencesOTPGroup: ").append(allEvidencesOTPGroup).append("\n");
     sb.append("  otpGroupEvidences: ").append(otpGroupEvidences).append("\n");
     sb.append("}\n");
     return sb.toString();

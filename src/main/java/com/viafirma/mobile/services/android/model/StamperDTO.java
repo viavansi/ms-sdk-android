@@ -34,6 +34,8 @@ public class StamperDTO  implements Serializable {
   private Integer page = null;
   @SerializedName("csvPath")
   private String csvPath = null;
+  @SerializedName("csvId")
+  private String csvId = null;
   @SerializedName("textLine1")
   private String textLine1 = null;
   @SerializedName("textLine2")
@@ -139,6 +141,17 @@ public class StamperDTO  implements Serializable {
   }
   public void setCsvPath(String csvPath) {
     this.csvPath = csvPath;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public String getCsvId() {
+    return csvId;
+  }
+  public void setCsvId(String csvId) {
+    this.csvId = csvId;
   }
 
   
@@ -255,6 +268,7 @@ public class StamperDTO  implements Serializable {
     sb.append("  getyAxis: ").append(getyAxis).append("\n");
     sb.append("  page: ").append(page).append("\n");
     sb.append("  csvPath: ").append(csvPath).append("\n");
+    sb.append("  csvId: ").append(csvId).append("\n");
     sb.append("  textLine1: ").append(textLine1).append("\n");
     sb.append("  textLine2: ").append(textLine2).append("\n");
     sb.append("  textLine3: ").append(textLine3).append("\n");
