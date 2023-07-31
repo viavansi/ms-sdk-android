@@ -56,6 +56,8 @@ public class MessageSet  implements Serializable {
   private String callbackRedirectURL = null;
   @SerializedName("callbackRedirectURLTargetWindow")
   private String callbackRedirectURLTargetWindow = null;
+  @SerializedName("callbackType")
+  private String callbackType = null;
 
   
   /**
@@ -290,6 +292,17 @@ public class MessageSet  implements Serializable {
   }
 
   
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public String getCallbackType() {
+    return callbackType;
+  }
+  public void setCallbackType(String callbackType) {
+    this.callbackType = callbackType;
+  }
+
+  
 
   @Override
   public String toString()  {
@@ -317,6 +330,7 @@ public class MessageSet  implements Serializable {
     sb.append("  callbackMails: ").append(callbackMails).append("\n");
     sb.append("  callbackRedirectURL: ").append(callbackRedirectURL).append("\n");
     sb.append("  callbackRedirectURLTargetWindow: ").append(callbackRedirectURLTargetWindow).append("\n");
+    sb.append("  callbackType: ").append(callbackType).append("\n");
     sb.append("}\n");
     return sb.toString();
   }

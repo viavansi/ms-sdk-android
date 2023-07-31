@@ -95,6 +95,8 @@ public class AppCustomization  implements Serializable {
   private String loginBackground = null;
   @SerializedName("newAttachments")
   private Boolean newAttachments = Boolean.FALSE;
+  @SerializedName("newImageEvidences")
+  private Boolean newImageEvidences = Boolean.FALSE;
 
   
   /**
@@ -570,6 +572,17 @@ public class AppCustomization  implements Serializable {
   }
 
   
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public Boolean getNewImageEvidences() {
+    return newImageEvidences;
+  }
+  public void setNewImageEvidences(Boolean newImageEvidences) {
+    this.newImageEvidences = newImageEvidences;
+  }
+
+  
 
   @Override
   public String toString()  {
@@ -619,6 +632,7 @@ public class AppCustomization  implements Serializable {
     sb.append("  target: ").append(target).append("\n");
     sb.append("  loginBackground: ").append(loginBackground).append("\n");
     sb.append("  newAttachments: ").append(newAttachments).append("\n");
+    sb.append("  newImageEvidences: ").append(newImageEvidences).append("\n");
     sb.append("}\n");
     return sb.toString();
   }
