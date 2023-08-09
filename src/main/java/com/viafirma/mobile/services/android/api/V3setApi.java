@@ -11,6 +11,7 @@ import com.viafirma.mobile.services.android.model.MessageSet;
 import com.viafirma.mobile.services.android.model.MessageSetResponse;
 import com.viafirma.mobile.services.android.model.SetExtendPeriod;
 import com.viafirma.mobile.services.android.model.MessageSetInfo;
+import com.viafirma.mobile.services.android.model.SetListUserGroup;
 import com.viafirma.mobile.services.android.model.SetCallbackUrl;
 import com.viafirma.mobile.services.android.model.NotificationResend;
 import com.viafirma.mobile.services.android.model.MessageSetStatus;
@@ -379,6 +380,65 @@ public class V3setApi {
       String response = ApiInvoker.getInstance().invokeAPI(path, "GET", queryParams, postBody, headerParams, formParams, contentType);
       if(response != null){
         return (Boolean) ApiInvoker.deserialize(response, "", Boolean.class);
+      } else {
+        return null;
+      }
+    
+  }
+  
+    
+  public SetListUserGroup getSetByUserAndOrGroup (String userCode, String groupCode, Integer numPag, Integer limit, String orderBy, String status, String title, String description, String recipient, Long creationDate) throws ApiException {
+    Object postBody = null;
+    
+
+    // create path and map variables
+    String path = "/v3/set/list/{userCode}/{groupCode}/{numPag}".replaceAll("\\{format\\}","json")
+      .replaceAll("\\{" + "userCode" + "\\}", ApiInvoker.getInstance().escapeString(userCode.toString()))
+      .replaceAll("\\{" + "groupCode" + "\\}", ApiInvoker.getInstance().escapeString(groupCode.toString()))
+      .replaceAll("\\{" + "numPag" + "\\}", ApiInvoker.getInstance().escapeString(numPag.toString()));
+
+    // query params
+    Map<String, String> queryParams = new HashMap<String, String>();
+    Map<String, String> headerParams = new HashMap<String, String>();
+    Map<String, String> formParams = new HashMap<String, String>();
+
+    if(!"null".equals(String.valueOf(limit)))
+      queryParams.put("limit", String.valueOf(limit));
+    if(!"null".equals(String.valueOf(orderBy)))
+      queryParams.put("orderBy", String.valueOf(orderBy));
+    if(!"null".equals(String.valueOf(status)))
+      queryParams.put("status", String.valueOf(status));
+    if(!"null".equals(String.valueOf(title)))
+      queryParams.put("title", String.valueOf(title));
+    if(!"null".equals(String.valueOf(description)))
+      queryParams.put("description", String.valueOf(description));
+    if(!"null".equals(String.valueOf(recipient)))
+      queryParams.put("recipient", String.valueOf(recipient));
+    if(!"null".equals(String.valueOf(creationDate)))
+      queryParams.put("creationDate", String.valueOf(creationDate));
+    
+    
+    String[] contentTypes = {
+      "application/json"
+    };
+
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+
+    if(contentType.startsWith("multipart/form-data")) {
+      boolean hasFields = false;
+      MultipartBody.Builder mp = new MultipartBody.Builder();
+      mp.setType(MultipartBody.FORM);
+      
+      if(hasFields)
+        postBody = mp;
+    }
+    else {
+      
+    }
+
+      String response = ApiInvoker.getInstance().invokeAPI(path, "GET", queryParams, postBody, headerParams, formParams, contentType);
+      if(response != null){
+        return (SetListUserGroup) ApiInvoker.deserialize(response, "", SetListUserGroup.class);
       } else {
         return null;
       }

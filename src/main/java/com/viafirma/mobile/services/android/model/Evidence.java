@@ -135,6 +135,8 @@ public class Evidence  implements Serializable {
   private ImageTextLocationEnum imageTextLocation = null;
   @SerializedName("imageTextSize")
   private Integer imageTextSize = null;
+  @SerializedName("legalText")
+  private String legalText = null;
 
   
   /**
@@ -713,6 +715,17 @@ public class Evidence  implements Serializable {
   }
 
   
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public String getLegalText() {
+    return legalText;
+  }
+  public void setLegalText(String legalText) {
+    this.legalText = legalText;
+  }
+
+  
 
   @Override
   public String toString()  {
@@ -771,6 +784,7 @@ public class Evidence  implements Serializable {
     sb.append("  imageDataType: ").append(imageDataType).append("\n");
     sb.append("  imageTextLocation: ").append(imageTextLocation).append("\n");
     sb.append("  imageTextSize: ").append(imageTextSize).append("\n");
+    sb.append("  legalText: ").append(legalText).append("\n");
     sb.append("}\n");
     return sb.toString();
   }
