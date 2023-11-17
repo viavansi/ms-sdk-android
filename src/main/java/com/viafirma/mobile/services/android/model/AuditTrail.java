@@ -1,12 +1,14 @@
 package com.viafirma.mobile.services.android.model;
 
 import com.viafirma.mobile.services.android.model.AuditTrailSummaryBlock;
+import com.viafirma.mobile.services.android.model.AuditTrailStatus;
 import com.viafirma.mobile.services.android.model.AuditTrailConfig;
 import com.viafirma.mobile.services.android.model.AuditTrailDownload;
 import java.util.*;
 import com.viafirma.mobile.services.android.model.AuditTrailHeader;
 import com.viafirma.mobile.services.android.model.AuditTrailTableBlock;
 import com.viafirma.mobile.services.android.model.AuditTrailFooter;
+import com.viafirma.mobile.services.android.model.AuditTrailHighlightedItem;
 import com.viafirma.mobile.services.android.model.AuditTrailHighlightedBlock;
 
 import com.wordnik.swagger.annotations.*;
@@ -19,8 +21,12 @@ public class AuditTrail  implements Serializable {
   
   @SerializedName("header")
   private AuditTrailHeader header = null;
+  @SerializedName("status")
+  private AuditTrailStatus status = null;
   @SerializedName("summaryBlock")
   private AuditTrailSummaryBlock summaryBlock = null;
+  @SerializedName("processMetadata")
+  private AuditTrailHighlightedItem processMetadata = null;
   @SerializedName("highlightedBlock")
   private AuditTrailHighlightedBlock highlightedBlock = null;
   @SerializedName("tableBlocks")
@@ -47,11 +53,33 @@ public class AuditTrail  implements Serializable {
   /**
    **/
   @ApiModelProperty(required = false, value = "")
+  public AuditTrailStatus getStatus() {
+    return status;
+  }
+  public void setStatus(AuditTrailStatus status) {
+    this.status = status;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
   public AuditTrailSummaryBlock getSummaryBlock() {
     return summaryBlock;
   }
   public void setSummaryBlock(AuditTrailSummaryBlock summaryBlock) {
     this.summaryBlock = summaryBlock;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public AuditTrailHighlightedItem getProcessMetadata() {
+    return processMetadata;
+  }
+  public void setProcessMetadata(AuditTrailHighlightedItem processMetadata) {
+    this.processMetadata = processMetadata;
   }
 
   
@@ -117,7 +145,9 @@ public class AuditTrail  implements Serializable {
     sb.append("class AuditTrail {\n");
     
     sb.append("  header: ").append(header).append("\n");
+    sb.append("  status: ").append(status).append("\n");
     sb.append("  summaryBlock: ").append(summaryBlock).append("\n");
+    sb.append("  processMetadata: ").append(processMetadata).append("\n");
     sb.append("  highlightedBlock: ").append(highlightedBlock).append("\n");
     sb.append("  tableBlocks: ").append(tableBlocks).append("\n");
     sb.append("  footer: ").append(footer).append("\n");

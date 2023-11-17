@@ -2,6 +2,7 @@ package com.viafirma.mobile.services.android.model;
 
 import com.viafirma.mobile.services.android.model.Stamper;
 import com.viafirma.mobile.services.android.model.SignaturePolicy;
+import com.viafirma.mobile.services.android.model.CertificateUserInfo;
 import java.util.*;
 
 import com.wordnik.swagger.annotations.*;
@@ -69,6 +70,8 @@ public class Signature  implements Serializable {
   private String ip = null;
   @SerializedName("signaturePolicy")
   private SignaturePolicy signaturePolicy = null;
+  @SerializedName("certificateUserInfo")
+  private CertificateUserInfo certificateUserInfo = null;
 
   
   /**
@@ -302,6 +305,17 @@ public class Signature  implements Serializable {
   }
 
   
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public CertificateUserInfo getCertificateUserInfo() {
+    return certificateUserInfo;
+  }
+  public void setCertificateUserInfo(CertificateUserInfo certificateUserInfo) {
+    this.certificateUserInfo = certificateUserInfo;
+  }
+
+  
 
   @Override
   public String toString()  {
@@ -329,6 +343,7 @@ public class Signature  implements Serializable {
     sb.append("  location: ").append(location).append("\n");
     sb.append("  ip: ").append(ip).append("\n");
     sb.append("  signaturePolicy: ").append(signaturePolicy).append("\n");
+    sb.append("  certificateUserInfo: ").append(certificateUserInfo).append("\n");
     sb.append("}\n");
     return sb.toString();
   }

@@ -81,6 +81,8 @@ public class SignPageStyle  implements Serializable {
   private Boolean hideUserConsentBiometricSign = Boolean.FALSE;
   @SerializedName("allowedSignType")
   private String allowedSignType = null;
+  @SerializedName("showDescriptionUnderChecks")
+  private Boolean showDescriptionUnderChecks = Boolean.FALSE;
   @SerializedName("apiVersion")
   private String apiVersion = null;
   @SerializedName("iframeDisabled")
@@ -486,6 +488,17 @@ public class SignPageStyle  implements Serializable {
   /**
    **/
   @ApiModelProperty(required = false, value = "")
+  public Boolean getShowDescriptionUnderChecks() {
+    return showDescriptionUnderChecks;
+  }
+  public void setShowDescriptionUnderChecks(Boolean showDescriptionUnderChecks) {
+    this.showDescriptionUnderChecks = showDescriptionUnderChecks;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
   public String getApiVersion() {
     return apiVersion;
   }
@@ -547,6 +560,7 @@ public class SignPageStyle  implements Serializable {
     sb.append("  hidePoweredByViafirma: ").append(hidePoweredByViafirma).append("\n");
     sb.append("  hideUserConsentBiometricSign: ").append(hideUserConsentBiometricSign).append("\n");
     sb.append("  allowedSignType: ").append(allowedSignType).append("\n");
+    sb.append("  showDescriptionUnderChecks: ").append(showDescriptionUnderChecks).append("\n");
     sb.append("  apiVersion: ").append(apiVersion).append("\n");
     sb.append("  iframeDisabled: ").append(iframeDisabled).append("\n");
     sb.append("}\n");

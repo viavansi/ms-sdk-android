@@ -20,6 +20,10 @@ public class Setting  implements Serializable {
   private String titleKey = null;
   @SerializedName("descriptionKey")
   private String descriptionKey = null;
+  @SerializedName("messageTitle")
+  private String messageTitle = null;
+  @SerializedName("messageDescription")
+  private String messageDescription = null;
   @SerializedName("policy")
   private Policy policy = null;
   @SerializedName("computec_key")
@@ -99,6 +103,28 @@ public class Setting  implements Serializable {
   }
   public void setDescriptionKey(String descriptionKey) {
     this.descriptionKey = descriptionKey;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public String getMessageTitle() {
+    return messageTitle;
+  }
+  public void setMessageTitle(String messageTitle) {
+    this.messageTitle = messageTitle;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public String getMessageDescription() {
+    return messageDescription;
+  }
+  public void setMessageDescription(String messageDescription) {
+    this.messageDescription = messageDescription;
   }
 
   
@@ -429,6 +455,8 @@ public class Setting  implements Serializable {
     
     sb.append("  titleKey: ").append(titleKey).append("\n");
     sb.append("  descriptionKey: ").append(descriptionKey).append("\n");
+    sb.append("  messageTitle: ").append(messageTitle).append("\n");
+    sb.append("  messageDescription: ").append(messageDescription).append("\n");
     sb.append("  policy: ").append(policy).append("\n");
     sb.append("  computec_key: ").append(computec_key).append("\n");
     sb.append("  policies: ").append(policies).append("\n");

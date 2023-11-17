@@ -19,6 +19,16 @@ public class RecipientLink  implements Serializable {
   private String token = null;
   @SerializedName("status")
   private String status = null;
+  @SerializedName("phone")
+  private String phone = null;
+  @SerializedName("mail")
+  private String mail = null;
+  @SerializedName("name")
+  private String name = null;
+  @SerializedName("userCode")
+  private String userCode = null;
+  @SerializedName("order")
+  private Integer order = null;
 
   
   /**
@@ -76,6 +86,61 @@ public class RecipientLink  implements Serializable {
   }
 
   
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public String getPhone() {
+    return phone;
+  }
+  public void setPhone(String phone) {
+    this.phone = phone;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public String getMail() {
+    return mail;
+  }
+  public void setMail(String mail) {
+    this.mail = mail;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public String getName() {
+    return name;
+  }
+  public void setName(String name) {
+    this.name = name;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public String getUserCode() {
+    return userCode;
+  }
+  public void setUserCode(String userCode) {
+    this.userCode = userCode;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public Integer getOrder() {
+    return order;
+  }
+  public void setOrder(Integer order) {
+    this.order = order;
+  }
+
+  
 
   @Override
   public String toString()  {
@@ -87,6 +152,11 @@ public class RecipientLink  implements Serializable {
     sb.append("  link: ").append(link).append("\n");
     sb.append("  token: ").append(token).append("\n");
     sb.append("  status: ").append(status).append("\n");
+    sb.append("  phone: ").append(phone).append("\n");
+    sb.append("  mail: ").append(mail).append("\n");
+    sb.append("  name: ").append(name).append("\n");
+    sb.append("  userCode: ").append(userCode).append("\n");
+    sb.append("  order: ").append(order).append("\n");
     sb.append("}\n");
     return sb.toString();
   }

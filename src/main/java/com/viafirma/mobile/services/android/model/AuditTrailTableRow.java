@@ -11,6 +11,8 @@ import java.io.Serializable;
 @ApiModel(description = "")
 public class AuditTrailTableRow  implements Serializable {
   
+  @SerializedName("status")
+  private String status = null;
   @SerializedName("column1Value")
   private String column1Value = null;
   @SerializedName("column2Value")
@@ -25,6 +27,17 @@ public class AuditTrailTableRow  implements Serializable {
   private Boolean includeModalPopup = Boolean.FALSE;
   @SerializedName("labelValueInfoList")
   private List<AuditTrailLabelValueInfo> labelValueInfoList = new ArrayList<AuditTrailLabelValueInfo>() ;
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public String getStatus() {
+    return status;
+  }
+  public void setStatus(String status) {
+    this.status = status;
+  }
 
   
   /**
@@ -110,6 +123,7 @@ public class AuditTrailTableRow  implements Serializable {
     StringBuilder sb = new StringBuilder();
     sb.append("class AuditTrailTableRow {\n");
     
+    sb.append("  status: ").append(status).append("\n");
     sb.append("  column1Value: ").append(column1Value).append("\n");
     sb.append("  column2Value: ").append(column2Value).append("\n");
     sb.append("  column3Value: ").append(column3Value).append("\n");

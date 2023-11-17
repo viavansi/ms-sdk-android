@@ -76,6 +76,8 @@ public class Document  implements Serializable {
   private String signedHash = null;
   @SerializedName("hashContent")
   private String hashContent = null;
+  @SerializedName("originalType")
+  private String originalType = null;
 
   
   /**
@@ -411,6 +413,17 @@ public class Document  implements Serializable {
   }
 
   
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public String getOriginalType() {
+    return originalType;
+  }
+  public void setOriginalType(String originalType) {
+    this.originalType = originalType;
+  }
+
+  
 
   @Override
   public String toString()  {
@@ -447,6 +460,7 @@ public class Document  implements Serializable {
     sb.append("  custodyDays: ").append(custodyDays).append("\n");
     sb.append("  signedHash: ").append(signedHash).append("\n");
     sb.append("  hashContent: ").append(hashContent).append("\n");
+    sb.append("  originalType: ").append(originalType).append("\n");
     sb.append("}\n");
     return sb.toString();
   }

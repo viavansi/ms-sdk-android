@@ -15,6 +15,8 @@ public class Group  implements Serializable {
   private String title = null;
   @SerializedName("description")
   private String description = null;
+  @SerializedName("copyStyles")
+  private Boolean copyStyles = Boolean.FALSE;
 
   
   /**
@@ -50,6 +52,17 @@ public class Group  implements Serializable {
   }
 
   
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public Boolean getCopyStyles() {
+    return copyStyles;
+  }
+  public void setCopyStyles(Boolean copyStyles) {
+    this.copyStyles = copyStyles;
+  }
+
+  
 
   @Override
   public String toString()  {
@@ -59,6 +72,7 @@ public class Group  implements Serializable {
     sb.append("  code: ").append(code).append("\n");
     sb.append("  title: ").append(title).append("\n");
     sb.append("  description: ").append(description).append("\n");
+    sb.append("  copyStyles: ").append(copyStyles).append("\n");
     sb.append("}\n");
     return sb.toString();
   }

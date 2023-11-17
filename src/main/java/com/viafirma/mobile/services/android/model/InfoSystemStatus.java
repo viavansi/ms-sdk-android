@@ -14,6 +14,8 @@ public class InfoSystemStatus  implements Serializable {
   
   @SerializedName("date")
   private Long date = null;
+  @SerializedName("init")
+  private Long init = null;
   @SerializedName("name")
   private String name = null;
   @SerializedName("info")
@@ -36,6 +38,18 @@ public class InfoSystemStatus  implements Serializable {
   }
   public void setDate(Long date) {
     this.date = date;
+  }
+
+  
+  /**
+   * epoch timestamp in milliseconds
+   **/
+  @ApiModelProperty(required = false, value = "epoch timestamp in milliseconds")
+  public Long getInit() {
+    return init;
+  }
+  public void setInit(Long init) {
+    this.init = init;
   }
 
   
@@ -90,6 +104,7 @@ public class InfoSystemStatus  implements Serializable {
     sb.append("class InfoSystemStatus {\n");
     
     sb.append("  date: ").append(date).append("\n");
+    sb.append("  init: ").append(init).append("\n");
     sb.append("  name: ").append(name).append("\n");
     sb.append("  info: ").append(info).append("\n");
     sb.append("  system: ").append(system).append("\n");

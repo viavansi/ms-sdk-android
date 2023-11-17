@@ -76,6 +76,48 @@ public class V3setApi {
   }
   
     
+  public String sendBatch (MessageSet body) throws ApiException {
+    Object postBody = body;
+    
+
+    // create path and map variables
+    String path = "/v3/set/batch".replaceAll("\\{format\\}","json");
+
+    // query params
+    Map<String, String> queryParams = new HashMap<String, String>();
+    Map<String, String> headerParams = new HashMap<String, String>();
+    Map<String, String> formParams = new HashMap<String, String>();
+
+    
+    
+    String[] contentTypes = {
+      "application/json"
+    };
+
+    String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
+
+    if(contentType.startsWith("multipart/form-data")) {
+      boolean hasFields = false;
+      MultipartBody.Builder mp = new MultipartBody.Builder();
+      mp.setType(MultipartBody.FORM);
+      
+      if(hasFields)
+        postBody = mp;
+    }
+    else {
+      
+    }
+
+      String response = ApiInvoker.getInstance().invokeAPI(path, "POST", queryParams, postBody, headerParams, formParams, contentType);
+      if(response != null){
+        return (String) ApiInvoker.deserialize(response, "", String.class);
+      } else {
+        return null;
+      }
+    
+  }
+  
+    
   public String removeDraft (String setCode) throws ApiException {
     Object postBody = null;
     
@@ -387,13 +429,12 @@ public class V3setApi {
   }
   
     
-  public SetListUserGroup getSetByUserAndOrGroup (String userCode, String groupCode, Integer numPag, Integer limit, String orderBy, String status, String title, String description, String recipient, Long creationDate) throws ApiException {
+  public SetListUserGroup getSetByUserAndOrGroup (String groupCode, Integer numPag, Integer limit, String sortBy, String sender, String status, String title, String description, String recipient, Long before, Long after) throws ApiException {
     Object postBody = null;
     
 
     // create path and map variables
-    String path = "/v3/set/list/{userCode}/{groupCode}/{numPag}".replaceAll("\\{format\\}","json")
-      .replaceAll("\\{" + "userCode" + "\\}", ApiInvoker.getInstance().escapeString(userCode.toString()))
+    String path = "/v3/set/list/{groupCode}/{numPag}".replaceAll("\\{format\\}","json")
       .replaceAll("\\{" + "groupCode" + "\\}", ApiInvoker.getInstance().escapeString(groupCode.toString()))
       .replaceAll("\\{" + "numPag" + "\\}", ApiInvoker.getInstance().escapeString(numPag.toString()));
 
@@ -404,8 +445,10 @@ public class V3setApi {
 
     if(!"null".equals(String.valueOf(limit)))
       queryParams.put("limit", String.valueOf(limit));
-    if(!"null".equals(String.valueOf(orderBy)))
-      queryParams.put("orderBy", String.valueOf(orderBy));
+    if(!"null".equals(String.valueOf(sortBy)))
+      queryParams.put("sortBy", String.valueOf(sortBy));
+    if(!"null".equals(String.valueOf(sender)))
+      queryParams.put("sender", String.valueOf(sender));
     if(!"null".equals(String.valueOf(status)))
       queryParams.put("status", String.valueOf(status));
     if(!"null".equals(String.valueOf(title)))
@@ -414,8 +457,10 @@ public class V3setApi {
       queryParams.put("description", String.valueOf(description));
     if(!"null".equals(String.valueOf(recipient)))
       queryParams.put("recipient", String.valueOf(recipient));
-    if(!"null".equals(String.valueOf(creationDate)))
-      queryParams.put("creationDate", String.valueOf(creationDate));
+    if(!"null".equals(String.valueOf(before)))
+      queryParams.put("before", String.valueOf(before));
+    if(!"null".equals(String.valueOf(after)))
+      queryParams.put("after", String.valueOf(after));
     
     
     String[] contentTypes = {

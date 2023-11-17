@@ -7,7 +7,6 @@ import com.viafirma.mobile.services.android.model.*;
 
 import java.util.*;
 
-import com.viafirma.mobile.services.android.model.ComposeToken;
 
 import java.io.File;
 import java.util.Map;
@@ -17,35 +16,32 @@ import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 
-public class V3composeApi {
+public class V3dashboardApi {
 
-  private static final V3composeApi INSTANCE = new V3composeApi();
-  private V3composeApi(){}
-  public static V3composeApi getInstance() {
+  private static final V3dashboardApi INSTANCE = new V3dashboardApi();
+  private V3dashboardApi(){}
+  public static V3dashboardApi getInstance() {
     return INSTANCE;
   }
   
   
     
-  public ComposeToken getWriteToken (String groupCode, String draftSetCode) throws ApiException {
+  public String getPortalLink () throws ApiException {
     Object postBody = null;
     
 
     // create path and map variables
-    String path = "/v3/compose/token/{groupCode}".replaceAll("\\{format\\}","json")
-      .replaceAll("\\{" + "groupCode" + "\\}", ApiInvoker.getInstance().escapeString(groupCode.toString()));
+    String path = "/v3/dashboard/portal".replaceAll("\\{format\\}","json");
 
     // query params
     Map<String, String> queryParams = new HashMap<String, String>();
     Map<String, String> headerParams = new HashMap<String, String>();
     Map<String, String> formParams = new HashMap<String, String>();
 
-    if(!"null".equals(String.valueOf(draftSetCode)))
-      queryParams.put("draftSetCode", String.valueOf(draftSetCode));
     
     
     String[] contentTypes = {
-      
+      "application/json"
     };
 
     String contentType = contentTypes.length > 0 ? contentTypes[0] : "application/json";
@@ -64,7 +60,7 @@ public class V3composeApi {
 
       String response = ApiInvoker.getInstance().invokeAPI(path, "GET", queryParams, postBody, headerParams, formParams, contentType);
       if(response != null){
-        return (ComposeToken) ApiInvoker.deserialize(response, "", ComposeToken.class);
+        return (String) ApiInvoker.deserialize(response, "", String.class);
       } else {
         return null;
       }

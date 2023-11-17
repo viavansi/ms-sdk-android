@@ -3,6 +3,7 @@ package com.viafirma.mobile.services.android.model;
 import com.viafirma.mobile.services.android.model.Policy;
 import com.viafirma.mobile.services.android.model.Transfer;
 import java.util.*;
+import com.viafirma.mobile.services.android.model.ErrorResponse;
 
 import com.wordnik.swagger.annotations.*;
 import com.google.gson.annotations.SerializedName;
@@ -31,6 +32,14 @@ public class MessageSummary  implements Serializable {
   private String externalCode = null;
   @SerializedName("commentReject")
   private String commentReject = null;
+  @SerializedName("title")
+  private String title = null;
+  @SerializedName("description")
+  private String description = null;
+  @SerializedName("auditTrailPage")
+  private String auditTrailPage = null;
+  @SerializedName("error")
+  private ErrorResponse error = null;
 
   
   /**
@@ -121,6 +130,50 @@ public class MessageSummary  implements Serializable {
   }
 
   
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public String getTitle() {
+    return title;
+  }
+  public void setTitle(String title) {
+    this.title = title;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public String getDescription() {
+    return description;
+  }
+  public void setDescription(String description) {
+    this.description = description;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public String getAuditTrailPage() {
+    return auditTrailPage;
+  }
+  public void setAuditTrailPage(String auditTrailPage) {
+    this.auditTrailPage = auditTrailPage;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public ErrorResponse getError() {
+    return error;
+  }
+  public void setError(ErrorResponse error) {
+    this.error = error;
+  }
+
+  
 
   @Override
   public String toString()  {
@@ -135,6 +188,10 @@ public class MessageSummary  implements Serializable {
     sb.append("  languageId: ").append(languageId).append("\n");
     sb.append("  externalCode: ").append(externalCode).append("\n");
     sb.append("  commentReject: ").append(commentReject).append("\n");
+    sb.append("  title: ").append(title).append("\n");
+    sb.append("  description: ").append(description).append("\n");
+    sb.append("  auditTrailPage: ").append(auditTrailPage).append("\n");
+    sb.append("  error: ").append(error).append("\n");
     sb.append("}\n");
     return sb.toString();
   }

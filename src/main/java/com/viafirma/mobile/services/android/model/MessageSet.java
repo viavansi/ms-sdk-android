@@ -58,6 +58,10 @@ public class MessageSet  implements Serializable {
   private String callbackRedirectURLTargetWindow = null;
   @SerializedName("callbackType")
   private String callbackType = null;
+  @SerializedName("csvReference")
+  private String csvReference = null;
+  @SerializedName("csvCallbackMails")
+  private String csvCallbackMails = null;
 
   
   /**
@@ -303,6 +307,28 @@ public class MessageSet  implements Serializable {
   }
 
   
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public String getCsvReference() {
+    return csvReference;
+  }
+  public void setCsvReference(String csvReference) {
+    this.csvReference = csvReference;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public String getCsvCallbackMails() {
+    return csvCallbackMails;
+  }
+  public void setCsvCallbackMails(String csvCallbackMails) {
+    this.csvCallbackMails = csvCallbackMails;
+  }
+
+  
 
   @Override
   public String toString()  {
@@ -331,6 +357,8 @@ public class MessageSet  implements Serializable {
     sb.append("  callbackRedirectURL: ").append(callbackRedirectURL).append("\n");
     sb.append("  callbackRedirectURLTargetWindow: ").append(callbackRedirectURLTargetWindow).append("\n");
     sb.append("  callbackType: ").append(callbackType).append("\n");
+    sb.append("  csvReference: ").append(csvReference).append("\n");
+    sb.append("  csvCallbackMails: ").append(csvCallbackMails).append("\n");
     sb.append("}\n");
     return sb.toString();
   }

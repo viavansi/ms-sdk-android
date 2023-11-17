@@ -24,6 +24,8 @@ public class SetListUserGroup  implements Serializable {
   private Integer associatedMessageNum = null;
   @SerializedName("associatedMessageCode")
   private String associatedMessageCode = null;
+  @SerializedName("associatedUserCode")
+  private String associatedUserCode = null;
   @SerializedName("creationDate")
   private Date creationDate = null;
 
@@ -108,6 +110,17 @@ public class SetListUserGroup  implements Serializable {
   /**
    **/
   @ApiModelProperty(required = false, value = "")
+  public String getAssociatedUserCode() {
+    return associatedUserCode;
+  }
+  public void setAssociatedUserCode(String associatedUserCode) {
+    this.associatedUserCode = associatedUserCode;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
   public Date getCreationDate() {
     return creationDate;
   }
@@ -129,6 +142,7 @@ public class SetListUserGroup  implements Serializable {
     sb.append("  status: ").append(status).append("\n");
     sb.append("  associatedMessageNum: ").append(associatedMessageNum).append("\n");
     sb.append("  associatedMessageCode: ").append(associatedMessageCode).append("\n");
+    sb.append("  associatedUserCode: ").append(associatedUserCode).append("\n");
     sb.append("  creationDate: ").append(creationDate).append("\n");
     sb.append("}\n");
     return sb.toString();

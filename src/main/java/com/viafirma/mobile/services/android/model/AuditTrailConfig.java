@@ -19,6 +19,12 @@ public class AuditTrailConfig  implements Serializable {
   private Boolean signPDF = Boolean.FALSE;
   @SerializedName("customizationUrl")
   private String customizationUrl = null;
+  @SerializedName("code")
+  private String code = null;
+  @SerializedName("url")
+  private String url = null;
+  @SerializedName("version")
+  private String version = null;
 
   
   /**
@@ -76,6 +82,39 @@ public class AuditTrailConfig  implements Serializable {
   }
 
   
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public String getCode() {
+    return code;
+  }
+  public void setCode(String code) {
+    this.code = code;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public String getUrl() {
+    return url;
+  }
+  public void setUrl(String url) {
+    this.url = url;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public String getVersion() {
+    return version;
+  }
+  public void setVersion(String version) {
+    this.version = version;
+  }
+
+  
 
   @Override
   public String toString()  {
@@ -87,6 +126,9 @@ public class AuditTrailConfig  implements Serializable {
     sb.append("  addPdfLinks: ").append(addPdfLinks).append("\n");
     sb.append("  signPDF: ").append(signPDF).append("\n");
     sb.append("  customizationUrl: ").append(customizationUrl).append("\n");
+    sb.append("  code: ").append(code).append("\n");
+    sb.append("  url: ").append(url).append("\n");
+    sb.append("  version: ").append(version).append("\n");
     sb.append("}\n");
     return sb.toString();
   }

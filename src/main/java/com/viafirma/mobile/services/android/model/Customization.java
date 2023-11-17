@@ -49,6 +49,10 @@ public class Customization  implements Serializable {
   private String callbackMailReminderSubject = null;
   @SerializedName("successMessage")
   private String successMessage = null;
+  @SerializedName("batchRequestSubject")
+  private String batchRequestSubject = null;
+  @SerializedName("batchRequestBody")
+  private String batchRequestBody = null;
 
   
   /**
@@ -271,6 +275,28 @@ public class Customization  implements Serializable {
   }
 
   
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public String getBatchRequestSubject() {
+    return batchRequestSubject;
+  }
+  public void setBatchRequestSubject(String batchRequestSubject) {
+    this.batchRequestSubject = batchRequestSubject;
+  }
+
+  
+  /**
+   **/
+  @ApiModelProperty(required = false, value = "")
+  public String getBatchRequestBody() {
+    return batchRequestBody;
+  }
+  public void setBatchRequestBody(String batchRequestBody) {
+    this.batchRequestBody = batchRequestBody;
+  }
+
+  
 
   @Override
   public String toString()  {
@@ -297,6 +323,8 @@ public class Customization  implements Serializable {
     sb.append("  callbackMailReminderBody: ").append(callbackMailReminderBody).append("\n");
     sb.append("  callbackMailReminderSubject: ").append(callbackMailReminderSubject).append("\n");
     sb.append("  successMessage: ").append(successMessage).append("\n");
+    sb.append("  batchRequestSubject: ").append(batchRequestSubject).append("\n");
+    sb.append("  batchRequestBody: ").append(batchRequestBody).append("\n");
     sb.append("}\n");
     return sb.toString();
   }
