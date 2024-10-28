@@ -39,6 +39,7 @@ import javax.net.ssl.TrustManager;
 import javax.net.ssl.TrustManagerFactory;
 import javax.net.ssl.X509TrustManager;
 
+import okhttp3.CertificatePinner;
 import okhttp3.ConnectionPool;
 import okhttp3.FormBody;
 import okhttp3.MediaType;
@@ -66,6 +67,7 @@ public class ApiInvoker {
   int timeoutRetryAttempts = 0;
   SSLSocketFactory sslSocketFactory;
   Gson gsonSerializer;
+  List<String[]> sslPinning = null;
   
   public void setReadTimeout(long timeoutSeconds) {
     this.timeoutSeconds = timeoutSeconds;
@@ -131,7 +133,15 @@ public class ApiInvoker {
 	    this.timeoutRetryAttempts = timeoutRetryAttempts;
 	}
 
-  public void enableDebug() {
+    public List<String[]> getSslPinning() {
+        return sslPinning;
+    }
+
+    public void setSslPinning(List<String[]> sslPinning) {
+        this.sslPinning = sslPinning;
+    }
+
+    public void enableDebug() {
     isDebug = true;
   }
   
@@ -198,6 +208,23 @@ public class ApiInvoker {
             throw e2;
         }
 	}
+
+    public CertificatePinner createCertificatePinner() {
+      try {
+          CertificatePinner.Builder builder = new CertificatePinner.Builder();
+          if (sslPinning != null) {
+              for (String[] entry : sslPinning) {
+                  builder.add(entry[0], entry[1]);
+              }
+              return builder.build();
+          } else {
+              return null;
+          }
+      } catch (Exception e) {
+          Log.e("ApiInvoker", e.getLocalizedMessage());
+      }
+      return null;
+    }
 
   public void addDefaultHeader(String key, String value) {
     defaultHeaderMap.put(key, value);
@@ -309,6 +336,10 @@ public class ApiInvoker {
         if(sslSocketFactory != null){
             clientBuilder.sslSocketFactory(sslSocketFactory);
         }
+        if (sslPinning != null) {
+            CertificatePinner certificatePinner = createCertificatePinner();
+            clientBuilder.certificatePinner(certificatePinner);
+        }
 
         OkHttpClient client = clientBuilder.build();
         Request request = new Request.Builder().url(url).build();
@@ -336,6 +367,10 @@ public class ApiInvoker {
 
         if(sslSocketFactory != null){
             clientBuilder.sslSocketFactory(sslSocketFactory);
+        }
+        if (sslPinning != null) {
+            CertificatePinner certificatePinner = createCertificatePinner();
+            clientBuilder.certificatePinner(certificatePinner);
         }
 
         OkHttpClient client = clientBuilder.build();
@@ -365,6 +400,10 @@ public class ApiInvoker {
     if(sslSocketFactory != null){
     	clientBuilder.sslSocketFactory(sslSocketFactory);
     }
+      if (sslPinning != null) {
+          CertificatePinner certificatePinner = createCertificatePinner();
+          clientBuilder.certificatePinner(certificatePinner);
+      }
 
     OkHttpClient client = clientBuilder.build();
 
