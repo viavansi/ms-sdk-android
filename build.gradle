@@ -77,7 +77,16 @@ afterEvaluate {
         }
         repositories {
             maven {
-                url = project.hasProperty('release') ? releaseUrl : snapshotUrl
+                name = 'release'
+                url = releaseUrl
+                credentials {
+                    username = repoUsername
+                    password = repoPassword
+                }
+            }
+            maven {
+                name = 'snapshot'
+                url = snapshotUrl
                 credentials {
                     username = repoUsername
                     password = repoPassword
@@ -87,9 +96,9 @@ afterEvaluate {
     }
 
     tasks.register("releaseVersion") {
-        dependsOn("clean", "build", "publishReleasePublicationToMavenRepository")
+        dependsOn("clean", "build", "publishReleasePublicationToReleaseRepository")
     }
     tasks.register("snapshotVersion") {
-        dependsOn("clean", "build", "publishSnapshotPublicationToMavenRepository")
+        dependsOn("clean", "build", "publishSnapshotPublicationToSnapshotRepository")
     }
 }
