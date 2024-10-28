@@ -1,6 +1,5 @@
 repositories {
     maven { url "https://maven.google.com" }
-    jcenter()
     mavenCentral()
     maven { url 'https://repo1.maven.org/maven2' }
     maven { url "https://repositorio.viavansi.com/artifactory/libs-releases-local/" }
@@ -11,23 +10,23 @@ buildscript {
         google()
         mavenCentral()
         maven { url "https://maven.google.com" }
-        jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.4.2'
+        classpath 'com.android.tools.build:gradle:7.2.2'
     }
 }
 
 apply plugin: 'com.android.library'
-apply plugin: 'maven'
+apply plugin: 'maven-publish'
 
 android {
-    compileSdkVersion 28
-    buildToolsVersion "28.0.3"
+
+    useLibrary 'org.apache.http.legacy'
+    compileSdk 33
 
     defaultConfig {
         minSdkVersion 15
-        targetSdkVersion 28
+        targetSdkVersion 33
         versionCode 1
         versionName "1.0"
     }
@@ -40,8 +39,6 @@ android {
     lintOptions {
 		abortOnError false
 	}
-	
-	useLibrary 'org.apache.http.legacy'
 }
 
 configurations {
@@ -51,7 +48,7 @@ configurations {
 dependencies {
 	// Maven publishing
     deployerJars 'org.apache.maven.wagon:wagon-http:2.2'
-    
+
     api 'com.google.code.gson:gson:2.2.+'
 
     api 'com.wordnik:swagger-annotations:1.5.1-M1'
@@ -62,38 +59,37 @@ dependencies {
     api 'org.apache.commons:commons-lang3:3.4'
 }
 
-// For Maven Repository submitting
-task uploadRelease(type: Upload) {
-    configuration = configurations.archives
-    repositories.mavenDeployer {
-        configuration = configurations.deployerJars
-        repository(url: releaseUrl) {
-            authentication(userName: repoUsername, password: repoPassword)
+afterEvaluate {
+    publishing {
+        publications {
+            release(MavenPublication) {
+                from components.release
+                groupId = "com.viafirma"
+                artifactId = "ms-sdk-android"
+                version = "3.7.84"
+            }
+            snapshot(MavenPublication) {
+                from components.release
+                groupId = "com.viafirma"
+                artifactId = "ms-sdk-android"
+                version = "3.7.84-SNAPSHOT"
+            }
         }
-        pom.version = '3.7.83'
-        pom.artifactId = "ms-sdk-android"
-        pom.groupId = "com.viafirma"
+        repositories {
+            maven {
+                url = project.hasProperty('release') ? releaseUrl : snapshotUrl
+                credentials {
+                    username = repoUsername
+                    password = repoPassword
+                }
+            }
+        }
+    }
+
+    tasks.register("releaseVersion") {
+        dependsOn("clean", "build", "publishReleasePublicationToMavenRepository")
+    }
+    tasks.register("snapshotVersion") {
+        dependsOn("clean", "build", "publishSnapshotPublicationToMavenRepository")
     }
 }
-
-task uploadSnapshot(type: Upload) {
-    configuration = configurations.archives
-    repositories.mavenDeployer {
-        configuration = configurations.deployerJars
-        snapshotRepository(url: snapshotUrl) {
-            authentication(userName: repoUsername, password: repoPassword)
-        }
-        pom.version = '3.7.83' + "-SNAPSHOT"
-        pom.artifactId = "ms-sdk-android"
-        pom.groupId = "com.viafirma"
-    }
-}
-
-// This is the task to be used for every release.
-task releaseVersion(dependsOn: ['clean', 'build', 'uploadRelease'])
-build.mustRunAfter clean
-uploadRelease.mustRunAfter build
-
-task snapshotVersion(dependsOn: ['clean', 'build', 'uploadSnapshot'])
-build.mustRunAfter clean
-uploadSnapshot.mustRunAfter build
