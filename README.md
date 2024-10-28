@@ -51,27 +51,24 @@
 		}
 		...
 		dependencies {
-			compile 'com.viafirma:ms-sdk-android:3.6.+'
+			compile 'com.viafirma:ms-sdk-android:3.7.+'
 			...
 		}
 
 ### Deployment guide for Maven Remote Repository
 
-1. If necessary, install Gradle distribution 2.2.1 or upper. You can download it here: http://www.gradle.org/downloads. Set the GRADLE_HOME environment variable to the path where you extracted Gradle, and add the Gradle folder to the PATH environment variable.
-2. To test that Gradle is working fine, open a new console window and run the following:
-
-		> gradle -v
-3. From the command line, in the path where you have the source, run the following command:
+1. From the command line, in the path where you have the source, run the following command:
 
 ```
-gradle releaseVersion
+gradlew releaseVersion
 ```
 
 or 
 
 ```
-gradle snapshotVersion
+gradlew snapshotVersion
 ```
 
-4. This will generate all the files and upload the AAR to the repository specified on `gradle.properties`
-5. You need to specify a new version number every time, the account configured does not have permission to modify/remove uploaded artifacts.
+2. This will generate all the files and upload the AAR to the repository specified on `gradle.properties`
+
+3. You need to specify a new version number every time, the account configured does not have permission to modify/remove uploaded artifacts.
