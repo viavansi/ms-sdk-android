@@ -22,6 +22,7 @@ apply plugin: 'maven-publish'
 android {
 
     useLibrary 'org.apache.http.legacy'
+    namespace "com.viafirma.mobile.services.android"
     compileSdk 33
 
     defaultConfig {
@@ -39,6 +40,12 @@ android {
     lintOptions {
 		abortOnError false
 	}
+    publishing {
+        singleVariant("release") {
+            withSourcesJar()
+            // withJavadocJar()
+        }
+    }
 }
 
 configurations {
@@ -66,13 +73,13 @@ afterEvaluate {
                 from components.release
                 groupId = "com.viafirma"
                 artifactId = "ms-sdk-android"
-                version = "3.7.84"
+                version = "3.7.85"
             }
             snapshot(MavenPublication) {
                 from components.release
                 groupId = "com.viafirma"
                 artifactId = "ms-sdk-android"
-                version = "3.7.84-SNAPSHOT"
+                version = "3.7.85-SNAPSHOT"
             }
         }
         repositories {

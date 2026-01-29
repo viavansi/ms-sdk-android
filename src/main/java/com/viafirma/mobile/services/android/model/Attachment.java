@@ -14,7 +14,7 @@ import java.io.Serializable;
 public class Attachment  implements Serializable {
   
   public enum TypeEnum {
-     PDF,  IMAGE,  VIDEO,  AUDIO,  PDF_IMAGE, 
+     PDF,  IMAGE,  VIDEO,  AUDIO,  PDF_IMAGE, LINK,
   };
   @SerializedName("type")
   private TypeEnum type = null;
