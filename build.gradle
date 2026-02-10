@@ -73,13 +73,13 @@ afterEvaluate {
                 from components.release
                 groupId = "com.viafirma"
                 artifactId = "ms-sdk-android"
-                version = "3.7.85"
+                version = "3.7.86"
             }
             snapshot(MavenPublication) {
                 from components.release
                 groupId = "com.viafirma"
                 artifactId = "ms-sdk-android"
-                version = "3.7.85-SNAPSHOT"
+                version = "3.7.86-SNAPSHOT"
             }
         }
         repositories {
