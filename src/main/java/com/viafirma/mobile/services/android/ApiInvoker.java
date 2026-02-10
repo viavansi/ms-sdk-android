@@ -58,10 +58,14 @@ public class ApiInvoker {
 
   ConnectionPool connectionPool = null;
   String basePath = null;
+
   String consumerKey = null;
   String consumerSecret = null;
   String token = null;
   String tokenSecret = null;
+
+  OAuth2TokenProvider tokenProvider = null;
+
   long timeoutSeconds = 120;
   long connectTimeout = 30;
   int timeoutRetryAttempts = 0;
@@ -152,6 +156,14 @@ public class ApiInvoker {
 	public void setGsonSerializer(Gson gsonSerializer) {
 	    this.gsonSerializer = gsonSerializer;
 	}
+
+    public OAuth2TokenProvider getTokenProvider() {
+        return tokenProvider;
+    }
+
+    public void setTokenProvider(OAuth2TokenProvider tokenProvider) {
+        this.tokenProvider = tokenProvider;
+    }
 
   public ApiInvoker() {
     connectionPool = new ConnectionPool(10, 5, TimeUnit.MINUTES);
@@ -353,17 +365,24 @@ public class ApiInvoker {
     
     public InputStream downloadSecure(String url) throws IOException{
 
-        OkHttpOAuthConsumer consumer = new OkHttpOAuthConsumer(consumerKey, consumerSecret);
-        if (token != null && tokenSecret != null) {
-            consumer.setTokenWithSecret(token, tokenSecret);
-        }
-
         OkHttpClient.Builder clientBuilder = new OkHttpClient.Builder()
                 .connectTimeout(connectTimeout, TimeUnit.SECONDS)
                 .readTimeout(timeoutSeconds, TimeUnit.SECONDS)
                 .writeTimeout(timeoutSeconds, TimeUnit.SECONDS)
-                .connectionPool(connectionPool)
-                .addInterceptor(new SigningInterceptor(consumer));
+                .connectionPool(connectionPool);
+
+        if (tokenProvider != null) {
+            String accessToken = tokenProvider.getRefreshToken(); // Refresh token if needed
+            if (accessToken != null) {
+                clientBuilder.addInterceptor(new AuthorizationInterceptor(accessToken));
+            }
+        } else if (consumerKey != null && consumerSecret != null) {
+            OkHttpOAuthConsumer consumer = new OkHttpOAuthConsumer(consumerKey, consumerSecret);
+            if (token != null && tokenSecret != null) {
+                consumer.setTokenWithSecret(token, tokenSecret);
+            }
+            clientBuilder.addInterceptor(new SigningInterceptor(consumer));
+        }
 
         if(sslSocketFactory != null){
             clientBuilder.sslSocketFactory(sslSocketFactory);
@@ -385,17 +404,24 @@ public class ApiInvoker {
 
   private String invokeAPI_(String path, String method, Map<String, String> queryParams, Object body, Map<String, String> headerParams, Map<String, String> formParams, String contentType) throws ApiException, IOException {
     
-	OkHttpOAuthConsumer consumer = new OkHttpOAuthConsumer(consumerKey, consumerSecret);
-    if (token != null && tokenSecret != null) {
-        consumer.setTokenWithSecret(token, tokenSecret);
-    }
-
- 	OkHttpClient.Builder clientBuilder = new OkHttpClient.Builder()
+	OkHttpClient.Builder clientBuilder = new OkHttpClient.Builder()
             .connectTimeout(connectTimeout, TimeUnit.SECONDS)
             .readTimeout(timeoutSeconds, TimeUnit.SECONDS)
             .writeTimeout(timeoutSeconds, TimeUnit.SECONDS)
-            .connectionPool(connectionPool)
-            .addInterceptor(new SigningInterceptor(consumer));
+            .connectionPool(connectionPool);
+
+    if (tokenProvider != null) {
+        String accessToken = tokenProvider.getRefreshToken(); // Refresh token if needed
+        if (accessToken != null) {
+            clientBuilder.addInterceptor(new AuthorizationInterceptor(accessToken));
+        }
+    } else if (consumerKey != null && consumerSecret != null) {
+        OkHttpOAuthConsumer consumer = new OkHttpOAuthConsumer(consumerKey, consumerSecret);
+        if (token != null && tokenSecret != null) {
+            consumer.setTokenWithSecret(token, tokenSecret);
+        }
+        clientBuilder.addInterceptor(new SigningInterceptor(consumer));
+    }
 
     if(sslSocketFactory != null){
     	clientBuilder.sslSocketFactory(sslSocketFactory);
