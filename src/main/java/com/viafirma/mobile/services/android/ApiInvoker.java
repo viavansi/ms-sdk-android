@@ -338,7 +338,7 @@ public class ApiInvoker {
         }
     }
     
-   	public InputStream download(String url) throws IOException{
+   	public InputStream download(String url) throws ApiException, IOException{
         OkHttpClient.Builder clientBuilder = new OkHttpClient.Builder()
                 .connectTimeout(connectTimeout, TimeUnit.SECONDS)
                 .readTimeout(timeoutSeconds, TimeUnit.SECONDS)
@@ -363,7 +363,7 @@ public class ApiInvoker {
         return response.body().byteStream();
     }
     
-    public InputStream downloadSecure(String url) throws IOException{
+    public InputStream downloadSecure(String url) throws ApiException, IOException{
 
         OkHttpClient.Builder clientBuilder = new OkHttpClient.Builder()
                 .connectTimeout(connectTimeout, TimeUnit.SECONDS)
